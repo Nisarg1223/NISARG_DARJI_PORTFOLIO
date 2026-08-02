@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
-import lenis from 'lenis'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { motion } from 'framer-motion'
 import heroImage from './assets/Hero_image.png'
 import backgroundVideo from './assets/test_video_7.mp4'
 import Navbar from './components/Navbar'
@@ -9,6 +9,31 @@ import secondpageImage from './assets/secondpage_image.png'
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger)
+
+// Framer Motion Variants for Staggered Reveal
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.025,
+      delayChildren: 0.1
+    }
+  }
+}
+
+const wordVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: 'spring',
+      stiffness: 110,
+      damping: 14
+    }
+  }
+}
 
 const App = () => {
   const horizontalTrackRef = useRef(null)
@@ -30,25 +55,7 @@ const App = () => {
       videoRef.current.playbackRate = 0.35; // Slow down background video significantly
     }
 
-    // 1. Initialize Lenis Smooth Scroll
-    const lenisScroll = new lenis({
-      duration: 0.7,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: 'vertical',
-      gestureOrientation: 'vertical',
-      smoothWheel: true,
-      wheelMultiplier: 1,
-      touchMultiplier: 2,
-      infinite: false,
-    })
 
-    lenisScroll.on('scroll', ScrollTrigger.update)
-
-    gsap.ticker.add((time) => {
-      lenisScroll.raf(time * 1000)
-    })
-
-    gsap.ticker.lagSmoothing(0)
 
     // 2. GSAP Animations on Load (Stable & Centered)
     gsap.fromTo(heroImageRef.current,
@@ -144,16 +151,6 @@ const App = () => {
         0.85
       )
 
-      // 5. Reveal words as they pass
-      heroTimeline.fromTo('.reveal-word',
-        { opacity: 0.15 },
-        {
-          opacity: 1,
-          stagger: 0.03,
-          ease: 'none'
-        },
-        0.5
-      )
     }
 
     // Infinite automatic scrolling for marquees
@@ -237,7 +234,6 @@ const App = () => {
         if (m2Tween) m2Tween.kill()
         if (floatTween) floatTween.kill()
         if (topoTween) topoTween.kill()
-        lenisScroll.destroy()
       }
     }
 
@@ -250,7 +246,6 @@ const App = () => {
       if (m2Tween) m2Tween.kill()
       if (floatTween) floatTween.kill()
       if (topoTween) topoTween.kill()
-      lenisScroll.destroy()
     }
   }, [])
 
@@ -384,9 +379,16 @@ const App = () => {
           </div>
         </div>
 
-        <div className="c statement-container" ref={statementContainerRef}>
+          <motion.div 
+            className="c statement-container" 
+            ref={statementContainerRef}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.15 }}
+            variants={containerVariants}
+          >
             {/* Top Laurel Icon */}
-            <div className="statement-icon-w">
+            <motion.div className="statement-icon-w" variants={wordVariants}>
               <svg viewBox="0 0 100 50" fill="currentColor" className="statement-laurel-svg" style={{ color: '#d2ff00' }}>
                 {/* Laurel wreath left */}
                 <path d="M 40 45 C 30 45, 15 35, 15 25 C 15 15, 25 10, 35 15 C 33 20, 25 22, 23 28 C 21 34, 30 38, 38 40" fill="none" stroke="currentColor" strokeWidth="2" />
@@ -396,48 +398,48 @@ const App = () => {
                 <text x="50" y="31" fontSize="11" fontWeight="800" textAnchor="middle" fill="#ffffff" style={{ fontFamily: 'Outfit' }}>N</text>
               </svg>
               <div className="statement-icon-sub">NISARG DARJI SINCE 2020</div>
-            </div>
+            </motion.div>
 
             {/* Main Statement Text */}
             <h2 className="statement-text">
               <span className="statement-line">
-                <span className="reveal-word serif-lime">REDEFINING</span>&nbsp;
-                <span className="reveal-word">LIMITS,</span>
+                <motion.span variants={wordVariants} className="reveal-word serif-lime">REDEFINING</motion.span>&nbsp;
+                <motion.span variants={wordVariants} className="reveal-word">LIMITS,</motion.span>
               </span>
               <span className="statement-line">
-                <span className="reveal-word">FIGHTING</span>&nbsp;
-                <span className="reveal-word">FOR</span>&nbsp;
-                <span className="reveal-word serif-lime">WINS,</span>
+                <motion.span variants={wordVariants} className="reveal-word">FIGHTING</motion.span>&nbsp;
+                <motion.span variants={wordVariants} className="reveal-word">FOR</motion.span>&nbsp;
+                <motion.span variants={wordVariants} className="reveal-word serif-lime">WINS,</motion.span>
               </span>
               <span className="statement-line">
-                <span className="reveal-word">BRINGING</span>&nbsp;
-                <span className="reveal-word">IT</span>&nbsp;
-                <span className="reveal-word">ALL</span>&nbsp;
-                <span className="reveal-word">IN</span>
+                <motion.span variants={wordVariants} className="reveal-word">BRINGING</motion.span>&nbsp;
+                <motion.span variants={wordVariants} className="reveal-word">IT</motion.span>&nbsp;
+                <motion.span variants={wordVariants} className="reveal-word">ALL</motion.span>&nbsp;
+                <motion.span variants={wordVariants} className="reveal-word">IN</motion.span>
               </span>
               <span className="statement-line">
-                <span className="reveal-word">ALL</span>&nbsp;
-                <span className="reveal-word">WAYS.</span>&nbsp;
-                <span className="reveal-word">DEFINING</span>&nbsp;
-                <span className="reveal-word">A</span>
+                <motion.span variants={wordVariants} className="reveal-word">ALL</motion.span>&nbsp;
+                <motion.span variants={wordVariants} className="reveal-word">WAYS.</motion.span>&nbsp;
+                <motion.span variants={wordVariants} className="reveal-word">DEFINING</motion.span>&nbsp;
+                <motion.span variants={wordVariants} className="reveal-word">A</motion.span>
               </span>
               <span className="statement-line">
-                <span className="reveal-word serif-lime">LEGACY</span>&nbsp;
-                <span className="reveal-word">IN</span>&nbsp;
-                <span className="reveal-word">FORMULA</span>&nbsp;
-                <span className="reveal-word">1</span>
+                <motion.span variants={wordVariants} className="reveal-word serif-lime">LEGACY</motion.span>&nbsp;
+                <motion.span variants={wordVariants} className="reveal-word">IN</motion.span>&nbsp;
+                <motion.span variants={wordVariants} className="reveal-word">FORMULA</motion.span>&nbsp;
+                <motion.span variants={wordVariants} className="reveal-word">1</motion.span>
               </span>
               <span className="statement-line">
-                <span className="reveal-word">ON</span>&nbsp;
-                <span className="reveal-word">AND</span>&nbsp;
-                <span className="reveal-word">OFF</span>&nbsp;
-                <span className="reveal-word">THE</span>
+                <motion.span variants={wordVariants} className="reveal-word">ON</motion.span>&nbsp;
+                <motion.span variants={wordVariants} className="reveal-word">AND</motion.span>&nbsp;
+                <motion.span variants={wordVariants} className="reveal-word">OFF</motion.span>&nbsp;
+                <motion.span variants={wordVariants} className="reveal-word">THE</motion.span>
               </span>
               <span className="statement-line">
-                <span className="reveal-word">TRACK.</span>
+                <motion.span variants={wordVariants} className="reveal-word">TRACK.</motion.span>
               </span>
             </h2>
-          </div>
+          </motion.div>
         </section>
 
         {/* Horizontal Pin Section */}
