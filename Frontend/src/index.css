@@ -759,6 +759,114 @@ html.lenis body {
   letter-spacing: 0.05em;
 }
 
+/* Statement Section */
+.home-statement {
+  background-color: #282C20;
+  height: 100vh;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 0 var(--container-padding);
+}
+
+.hero-topo-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-scroll-content-w {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  will-change: transform;
+}
+
+.statement-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  z-index: 5;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 1400px;
+  pointer-events: none;
+}
+
+.statement-icon-w {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  color: var(--color--white);
+  opacity: 0.8;
+}
+
+.statement-laurel-svg {
+  width: 60px;
+  height: 30px;
+  margin-bottom: 0.5rem;
+}
+
+.statement-icon-sub {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--color--white);
+  opacity: 0.6;
+}
+
+.statement-text {
+  font-family: 'Outfit', sans-serif;
+  font-size: 3.5vw;
+  font-weight: 800;
+  line-height: 1.15;
+  text-transform: uppercase;
+  color: var(--color--white);
+  letter-spacing: -0.01em;
+  max-width: 85%;
+  margin: 0 auto;
+}
+
+.statement-line {
+  display: block;
+  will-change: opacity, transform;
+}
+
+.reveal-word {
+  display: inline-block;
+  margin-right: 0.24em;
+  will-change: opacity;
+}
+
+.reveal-word:last-child {
+  margin-right: 0;
+}
+
+.statement-text .serif-lime {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color--lime);
+}
+
 /* Mobile Responsive Tweaks */
 @media screen and (max-width: 991px) {
   :root {

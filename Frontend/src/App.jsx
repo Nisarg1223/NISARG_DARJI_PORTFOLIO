@@ -4,6 +4,8 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import heroImage from './assets/Hero_image.png'
 import backgroundVideo from './assets/test_video_7.mp4'
+import Navbar from './components/Navbar'
+import secondpageImage from './assets/secondpage_image.png'
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger)
@@ -14,11 +16,23 @@ const App = () => {
   const heroImageRef = useRef(null)
   const nextRaceRef = useRef(null)
   const headerRef = useRef(null)
+  const videoRef = useRef(null)
+  const heroPinRef = useRef(null)
+  const heroCardRef = useRef(null)
+  const marquee1Ref = useRef(null)
+  const marquee2Ref = useRef(null)
+  const leftTextRef = useRef(null)
+  const heroContentRef = useRef(null)
+  const statementContainerRef = useRef(null)
 
   useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 0.35; // Slow down background video significantly
+    }
+
     // 1. Initialize Lenis Smooth Scroll
     const lenisScroll = new lenis({
-      duration: 1.2,
+      duration: 0.7,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
@@ -52,7 +66,144 @@ const App = () => {
       { opacity: 1, x: 0, duration: 1.2, ease: 'power3.out', delay: 0.8 }
     )
 
-    // 3. GSAP Horizontal Scroll Pin animation
+    // 3. Hero card scaling on scroll & automatic infinite marquees
+    const pinContainer = heroPinRef.current
+    const heroCard = heroCardRef.current
+    const m1 = marquee1Ref.current
+    const m2 = marquee2Ref.current
+    let heroTimeline = null
+    let m1Tween = null
+    let m2Tween = null
+
+    if (pinContainer && heroCard) {
+      const video = videoRef.current
+      heroTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: pinContainer,
+          pin: true,
+          scrub: true,
+          start: 'top top',
+          end: '+=250%',
+          invalidateOnRefresh: true,
+          onUpdate: (self) => {
+            if (video) {
+              if (self.progress > 0.18) {
+                video.pause()
+              } else {
+                video.play().catch(() => {})
+              }
+            }
+          }
+        }
+      })
+
+      // 1. Scale down the card
+      heroTimeline.fromTo(heroCard,
+        {
+          scale: 1,
+          borderRadius: '0px',
+          filter: 'grayscale(0) brightness(1)'
+        },
+        {
+          scale: 0.45,
+          borderRadius: '40px',
+          filter: 'grayscale(0.7) brightness(0.8)',
+          ease: 'none'
+        }, 0)
+
+      // 2. Fade out inner text & card early
+      heroTimeline.fromTo([leftTextRef.current, nextRaceRef.current],
+        { opacity: 1 },
+        {
+          opacity: 0,
+          ease: 'none'
+        }, 0)
+
+      // 3. Scroll card & marquees upwards out of the viewport
+      heroTimeline.fromTo(heroContentRef.current,
+        { y: '0vh' },
+        { y: '-120vh', ease: 'power1.inOut' },
+        0.35
+      )
+
+      // 4. Scroll statement text container upwards into and out of the viewport
+      heroTimeline.fromTo(statementContainerRef.current,
+        { y: '100vh' },
+        { y: '-100vh', ease: 'power1.inOut' },
+        0.35
+      )
+
+      heroTimeline.fromTo(statementContainerRef.current,
+        { opacity: 0 },
+        { opacity: 1, duration: 0.1, ease: 'power1.out' },
+        0.35
+      )
+
+      heroTimeline.to(statementContainerRef.current,
+        { opacity: 0, duration: 0.1, ease: 'power1.in' },
+        0.85
+      )
+
+      // 5. Reveal words as they pass
+      heroTimeline.fromTo('.reveal-word',
+        { opacity: 0.15 },
+        {
+          opacity: 1,
+          stagger: 0.03,
+          ease: 'none'
+        },
+        0.5
+      )
+    }
+
+    // Infinite automatic scrolling for marquees
+    if (m1) {
+      m1Tween = gsap.to(m1, {
+        xPercent: -50,
+        ease: 'none',
+        duration: 18,
+        repeat: -1
+      })
+    }
+    if (m2) {
+      gsap.set(m2, { xPercent: -50 })
+      m2Tween = gsap.to(m2, {
+        xPercent: 0,
+        ease: 'none',
+        duration: 18,
+        repeat: -1
+      })
+    }
+
+    // Float and drift background SVGs
+    let floatTween = gsap.to('.bg-floating-svg', {
+      x: 'random(-25, 25)',
+      y: 'random(-25, 25)',
+      rotation: 'random(-90, 90)',
+      duration: 'random(6, 10)',
+      repeat: -1,
+      yoyo: true,
+      ease: 'sine.inOut',
+      stagger: 0.1
+    })
+
+    // Topographic paths drifting animation
+    let topoTween = gsap.to('.topo-path', {
+      x: 'random(-45, 45)',
+      y: 'random(-45, 45)',
+      rotation: 'random(-8, 8)',
+      scale: 'random(0.95, 1.05)',
+      duration: 'random(12, 18)',
+      repeat: -1,
+      yoyo: true,
+      ease: 'sine.inOut',
+      stagger: {
+        amount: 2,
+        from: 'random'
+      }
+    })
+
+    // 4. GSAP Horizontal Scroll Pin animation
     const track = horizontalTrackRef.current
     const section = horizontalSectionRef.current
 
@@ -78,11 +229,27 @@ const App = () => {
       return () => {
         tween.scrollTrigger?.kill()
         tween.kill()
+        if (heroTimeline) {
+          heroTimeline.scrollTrigger?.kill()
+          heroTimeline.kill()
+        }
+        if (m1Tween) m1Tween.kill()
+        if (m2Tween) m2Tween.kill()
+        if (floatTween) floatTween.kill()
+        if (topoTween) topoTween.kill()
         lenisScroll.destroy()
       }
     }
 
     return () => {
+      if (heroTimeline) {
+        heroTimeline.scrollTrigger?.kill()
+        heroTimeline.kill()
+      }
+      if (m1Tween) m1Tween.kill()
+      if (m2Tween) m2Tween.kill()
+      if (floatTween) floatTween.kill()
+      if (topoTween) topoTween.kill()
       lenisScroll.destroy()
     }
   }, [])
@@ -90,112 +257,186 @@ const App = () => {
   return (
     <div className="page-w">
       {/* Header / Navbar */}
-      <header ref={headerRef} className="nav">
-        <div className="nav-inner">
-          <div className="nav-left">
-            <a href="/" className="nav-logo-stacked">
-              <span>NISARG</span>
-              <span>DARJI</span>
-            </a>
-          </div>
-
-          {/* Middle Diagonal Slanted LN Logo */}
-          <div className="nav-center">
-            <a href="/" className="nav-center-logo">
-              <svg width="45" height="35" viewBox="0 0 88 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-                {/* Slanted L */}
-                <path d="M12 4L32 44H42L22 4H12Z" fill="black" />
-                {/* Connected slanted N part */}
-                <path d="M45 44L65 4H75L55 44H45Z" fill="black" />
-                <path d="M37.5 24H52.5L50.5 30H35.5L37.5 24Z" fill="black" />
-              </svg>
-            </a>
-          </div>
-
-          <div className="nav-right">
-            <a href="https://store.landonorris.com/" target="_blank" rel="noopener noreferrer" className="btn-w is-nav">
-              <svg width="14" height="15" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ stroke: 'currentColor', strokeWidth: '2.5' }}>
-                <path d="m10.931 5.783-.759.812c-1.132 1.212-2.89 1.212-4.022 0l-.76-.812C4.313 4.637 2.568 5.29 2.275 6.928l-1.238 7.18c-.227 1.318.652 2.543 1.838 2.543h10.588c1.185 0 2.064-1.225 1.838-2.544l-1.239-7.179c-.28-1.638-2.037-2.29-3.116-1.145h-.014ZM10.839 3.048 9.84 1.849C8.894.717 7.43.717 6.484 1.85l-1 1.199" />
-              </svg>
-              STORE
-            </a>
-            <button title="Open Menu" className="nav-ham">
-              <span></span>
-              <span></span>
-            </button>
-          </div>
-        </div>
-      </header>
+      <Navbar ref={headerRef} />
 
       {/* Main Page Content */}
       <main className="main-w">
 
-        {/* Hero Section */}
-        <section className="s home-hero">
-          {/* Background Video */}
-          <video autoPlay loop muted playsInline className="hero-bg-video">
-            <source src={backgroundVideo} type="video/mp4" />
-          </video>
-
-          {/* Topographic Line Background overlaying the video */}
-          <div className="home-hero-bg-lines">
-            <svg viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M-150,150 C50,200 150,100 180,350 C210,600 50,750 -100,800" stroke="rgba(0,0,0,0.06)" strokeWidth="2" fill="none" />
-              <path d="M-100,100 C150,150 250,50 280,350 C310,650 150,850 -50,900" stroke="rgba(0,0,0,0.06)" strokeWidth="2" fill="none" />
-              <path d="M-200,200 C-50,250 50,150 80,350 C110,550 -50,650 -150,700" stroke="rgba(0,0,0,0.06)" strokeWidth="1.5" fill="none" />
-
-              <path d="M1590,150 C1390,200 1290,100 1260,350 C1230,600 1390,750 1540,800" stroke="rgba(0,0,0,0.06)" strokeWidth="2" fill="none" />
-              <path d="M1540,100 C1290,150 1190,50 1160,350 C1130,650 1290,850 1490,900" stroke="rgba(0,0,0,0.06)" strokeWidth="2" fill="none" />
-            </svg>
-          </div>
-
-          {/* Center Image (Perfect Centered Styling) */}
-          <div className="home-hero-center-img-w">
-            <img ref={heroImageRef} src={heroImage} alt="Lando Norris" style={{ transformOrigin: 'bottom center' }} />
-          </div>
-
-          {/* Next Race Left Component */}
-          <div ref={nextRaceRef} className="home-hero-next-race-w">
-            <div className="home-hero-next-race-container">
-              {/* Outline border */}
-              <div className="home-hero-next-race-bg">
-                <svg width="100%" height="100%" viewBox="0 0 119 244" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M118.5 6v232a5.5 5.5 0 0 1-5.5 5.5H6a5.5 5.5 0 0 1-5.5-5.5V25A5.5 5.5 0 0 1 6 19.5h46.346c4.695 0 9.167-2 12.297-5.498l7.46-8.337A15.5 15.5 0 0 1 83.653.5H113a5.5 5.5 0 0 1 5.5 5.5Z" stroke="currentColor" strokeWidth="1.5" />
-                </svg>
-              </div>
-
-              {/* Top Title */}
-              <div className="next-race-title">Next Race</div>
-
-              {/* Accurate Zandvoort Circuit Path */}
-              <div className="next-race-circuit-w">
-                <svg viewBox="0 0 120 70">
-                  <path d="M 15 35 C 15 15, 35 10, 55 10 C 65 10, 80 15, 95 15 C 105 15, 110 30, 105 45 C 95 60, 80 60, 65 55 C 55 50, 45 45, 35 50 C 25 55, 10 50, 15 35" stroke="black" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </div>
-
-              {/* Race Name */}
-              <div className="next-race-name">Zandvoort GP</div>
-
-              {/* Laurel Wreath */}
-              <div className="next-race-laurel-w">
-                <div className="laurel-svg-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <svg viewBox="0 0 100 50" fill="currentColor" style={{ width: '85%', height: '85%' }}>
-                    {/* Wreath left */}
-                    <path d="M 40 45 C 30 45, 15 35, 15 25 C 15 15, 25 10, 35 15 C 33 20, 25 22, 23 28 C 21 34, 30 38, 38 40" />
-                    {/* Wreath right */}
-                    <path d="M 60 45 C 70 45, 85 35, 85 25 C 85 15, 75 10, 65 15 C 67 20, 75 22, 77 28 C 79 34, 70 38, 62 40" />
-                    {/* Helmet center */}
-                    <circle cx="50" cy="27" r="8" fill="none" stroke="black" strokeWidth="2" />
-                    <path d="M 44 27 L 56 27 M 46 31 L 54 31" stroke="black" strokeWidth="1.5" />
-                  </svg>
-                </div>
-                <div className="laurel-subtext">
-                  McLAREN F1<br />
-                  SINCE 2019
-                </div>
+        {/* Hero Scroll-Pin Container */}
+        <section ref={heroPinRef} className="hero-pin-container">
+          {/* Fixed Topographic Background Image */}
+          <img src={secondpageImage} alt="topography contour lines background" className="hero-topo-bg" />
+          
+          <div className="hero-scroll-content-w" ref={heroContentRef}>
+            {/* Background Marquee */}
+          <div className="hero-marquee-w">
+            <div className="marquee-line line-1">
+              <div ref={marquee1Ref} className="marquee-track">
+                <span>CREATIVE DEV • NISARG DARJI • DESIGNER • CODING •&nbsp;</span>
+                <span>CREATIVE DEV • NISARG DARJI • DESIGNER • CODING •&nbsp;</span>
               </div>
             </div>
+            <div className="marquee-line line-2">
+              <div ref={marquee2Ref} className="marquee-track">
+                <span>REACT • GSAP • WEB DEVELOPMENT • THREE.JS •&nbsp;</span>
+                <span>REACT • GSAP • WEB DEVELOPMENT • THREE.JS •&nbsp;</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Floating Background SVGs */}
+          <svg className="bg-floating-svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" style={{ top: '15%', left: '12%' }}>
+            <line x1="12" y1="5" x2="12" y2="19" />
+            <line x1="5" y1="12" x2="19" y2="12" />
+          </svg>
+          <svg className="bg-floating-svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" style={{ top: '78%', left: '9%' }}>
+            <circle cx="12" cy="12" r="8" />
+          </svg>
+          <svg className="bg-floating-svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" style={{ top: '12%', left: '85%' }}>
+            <polygon points="12 2 22 22 2 22" />
+          </svg>
+          <svg className="bg-floating-svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" style={{ top: '82%', left: '88%' }}>
+            <line x1="5" y1="5" x2="19" y2="19" />
+            <line x1="19" y1="5" x2="5" y2="19" />
+          </svg>
+          <svg className="bg-floating-svg" width="45" height="35" viewBox="0 0 88 56" fill="none" stroke="currentColor" strokeWidth="2" style={{ top: '48%', left: '86%', opacity: 0.08 }}>
+            <path d="M12 4L32 44H42L22 4H12Z" />
+            <path d="M45 44L65 4H75L55 44H45Z" />
+          </svg>
+
+          {/* Scaling Hero Card */}
+          <div ref={heroCardRef} className="home-hero-card-w">
+            {/* Hero Section */}
+            <section className="s home-hero" style={{ width: '100vw', height: '100vh', padding: 0 }}>
+              {/* Background Video */}
+              <video ref={videoRef} autoPlay loop muted playsInline className="hero-bg-video">
+                <source src={backgroundVideo} type="video/mp4" />
+              </video>
+
+              {/* Topographic Line Background overlaying the video */}
+              <div className="home-hero-bg-lines">
+                <svg viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M-150,150 C50,200 150,100 180,350 C210,600 50,750 -100,800" stroke="rgba(0,0,0,0.06)" strokeWidth="2" fill="none" />
+                  <path d="M-100,100 C150,150 250,50 280,350 C310,650 150,850 -50,900" stroke="rgba(0,0,0,0.06)" strokeWidth="2" fill="none" />
+                  <path d="M-200,200 C-50,250 50,150 80,350 C110,550 -50,650 -150,700" stroke="rgba(0,0,0,0.06)" strokeWidth="1.5" fill="none" />
+
+                  <path d="M1590,150 C1390,200 1290,100 1260,350 C1230,600 1390,750 1540,800" stroke="rgba(0,0,0,0.06)" strokeWidth="2" fill="none" />
+                  <path d="M1540,100 C1290,150 1190,50 1160,350 C1130,650 1290,850 1490,900" stroke="rgba(0,0,0,0.06)" strokeWidth="2" fill="none" />
+                </svg>
+              </div>
+
+              {/* Center Image (Perfect Centered Styling) */}
+              <div className="home-hero-center-img-w">
+                <img ref={heroImageRef} src={heroImage} alt="Lando Norris" style={{ transformOrigin: 'bottom center' }} />
+              </div>
+
+              {/* Left creative text */}
+              <div ref={leftTextRef} className="hero-left-text-w">
+                <div className="hero-creative-text">creative</div>
+                <div className="hero-dev-text">web developer</div>
+              </div>
+
+              {/* Next Race Right Component adapted for Coding Stats */}
+              <div ref={nextRaceRef} className="home-hero-next-race-w">
+                <div className="home-hero-next-race-container">
+                  {/* Outline border */}
+                  <div className="home-hero-next-race-bg">
+                    <svg width="100%" height="100%" viewBox="0 0 119 244" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M118.5 6v232a5.5 5.5 0 0 1-5.5 5.5H6a5.5 5.5 0 0 1-5.5-5.5V25A5.5 5.5 0 0 1 6 19.5h46.346c4.695 0 9.167-2 12.297-5.498l7.46-8.337A15.5 15.5 0 0 1 83.653.5H113a5.5 5.5 0 0 1 5.5 5.5Z" stroke="currentColor" strokeWidth="1.5" />
+                    </svg>
+                  </div>
+
+                  {/* Top Title */}
+                  <div className="next-race-title">Dev Stack</div>
+
+                  {/* Coding Symbol SVG */}
+                  <div className="next-race-circuit-w">
+                    <svg viewBox="0 0 100 60" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ width: '65%', height: 'auto' }}>
+                      <polyline points="30 15 10 30 30 45" />
+                      <polyline points="70 15 90 30 70 45" />
+                      <line x1="55" y1="10" x2="45" y2="50" />
+                    </svg>
+                  </div>
+
+                  {/* Race Name */}
+                  <div className="next-race-name">React & GSAP</div>
+
+                  {/* Laurel Wreath with coding info */}
+                  <div className="next-race-laurel-w">
+                    <div className="laurel-svg-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <svg viewBox="0 0 100 50" fill="currentColor" style={{ width: '85%', height: '85%' }}>
+                        {/* Wreath left */}
+                        <path d="M 40 45 C 30 45, 15 35, 15 25 C 15 15, 25 10, 35 15 C 33 20, 25 22, 23 28 C 21 34, 30 38, 38 40" />
+                        {/* Wreath right */}
+                        <path d="M 60 45 C 70 45, 85 35, 85 25 C 85 15, 75 10, 65 15 C 67 20, 75 22, 77 28 C 79 34, 70 38, 62 40" />
+                        {/* JS Logo center */}
+                        <text x="50" y="32" fontSize="14" fontWeight="800" textAnchor="middle" fill="currentColor" style={{ fontFamily: 'Outfit' }}>JS</text>
+                      </svg>
+                    </div>
+                    <div className="laurel-subtext">
+                      CREATIVE CODING<br />
+                      SINCE 2020
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+
+        <div className="c statement-container" ref={statementContainerRef}>
+            {/* Top Laurel Icon */}
+            <div className="statement-icon-w">
+              <svg viewBox="0 0 100 50" fill="currentColor" className="statement-laurel-svg" style={{ color: '#d2ff00' }}>
+                {/* Laurel wreath left */}
+                <path d="M 40 45 C 30 45, 15 35, 15 25 C 15 15, 25 10, 35 15 C 33 20, 25 22, 23 28 C 21 34, 30 38, 38 40" fill="none" stroke="currentColor" strokeWidth="2" />
+                {/* Laurel wreath right */}
+                <path d="M 60 45 C 70 45, 85 35, 85 25 C 85 15, 75 10, 65 15 C 67 20, 75 22, 77 28 C 79 34, 70 38, 62 40" fill="none" stroke="currentColor" strokeWidth="2" />
+                {/* Center text / icon */}
+                <text x="50" y="31" fontSize="11" fontWeight="800" textAnchor="middle" fill="#ffffff" style={{ fontFamily: 'Outfit' }}>N</text>
+              </svg>
+              <div className="statement-icon-sub">NISARG DARJI SINCE 2020</div>
+            </div>
+
+            {/* Main Statement Text */}
+            <h2 className="statement-text">
+              <span className="statement-line">
+                <span className="reveal-word serif-lime">REDEFINING</span>&nbsp;
+                <span className="reveal-word">LIMITS,</span>
+              </span>
+              <span className="statement-line">
+                <span className="reveal-word">FIGHTING</span>&nbsp;
+                <span className="reveal-word">FOR</span>&nbsp;
+                <span className="reveal-word serif-lime">WINS,</span>
+              </span>
+              <span className="statement-line">
+                <span className="reveal-word">BRINGING</span>&nbsp;
+                <span className="reveal-word">IT</span>&nbsp;
+                <span className="reveal-word">ALL</span>&nbsp;
+                <span className="reveal-word">IN</span>
+              </span>
+              <span className="statement-line">
+                <span className="reveal-word">ALL</span>&nbsp;
+                <span className="reveal-word">WAYS.</span>&nbsp;
+                <span className="reveal-word">DEFINING</span>&nbsp;
+                <span className="reveal-word">A</span>
+              </span>
+              <span className="statement-line">
+                <span className="reveal-word serif-lime">LEGACY</span>&nbsp;
+                <span className="reveal-word">IN</span>&nbsp;
+                <span className="reveal-word">FORMULA</span>&nbsp;
+                <span className="reveal-word">1</span>
+              </span>
+              <span className="statement-line">
+                <span className="reveal-word">ON</span>&nbsp;
+                <span className="reveal-word">AND</span>&nbsp;
+                <span className="reveal-word">OFF</span>&nbsp;
+                <span className="reveal-word">THE</span>
+              </span>
+              <span className="statement-line">
+                <span className="reveal-word">TRACK.</span>
+              </span>
+            </h2>
           </div>
         </section>
 
@@ -370,8 +611,8 @@ const App = () => {
         <div className="c footer-inner">
           <div className="footer-logo">
             <a href="/" className="nav-logo-stacked">
-              <span>LANDO</span>
-              <span>NORRIS</span>
+              <span>NISARG</span>
+              <span>DARJI</span>
             </a>
           </div>
           <div className="footer-links">
@@ -381,7 +622,7 @@ const App = () => {
             <a href="https://www.twitch.tv/landonorris" target="_blank" rel="noopener noreferrer" className="footer-link-item">Twitch</a>
           </div>
           <div className="footer-copy">
-            © 2026 LANDO NORRIS. ALL RIGHTS RESERVED.
+            © 2026 NISARG DARJI. ALL RIGHTS RESERVED.
           </div>
         </div>
       </footer>
