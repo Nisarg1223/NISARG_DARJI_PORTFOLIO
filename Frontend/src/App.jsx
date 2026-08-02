@@ -210,9 +210,7 @@ const App = () => {
         return -(trackWidth - window.innerWidth)
       }
 
-      const tween = gsap.to(track, {
-        x: getScrollAmount,
-        ease: 'none',
+      const tween = gsap.timeline({
         scrollTrigger: {
           trigger: section,
           pin: true,
@@ -222,6 +220,38 @@ const App = () => {
           invalidateOnRefresh: true,
         },
       })
+
+      // Horizontal translation of the track
+      tween.to(track, {
+        x: getScrollAmount,
+        ease: 'none'
+      }, 0)
+
+      // Vertical wavy parallax movements of the cards as we scroll
+      // Card 1 starts at bottom left and rises to top left
+      tween.fromTo('.card-1', { y: '35vh' }, { y: '-5vh', ease: 'power1.out' }, 0)
+      
+      // Card 2 enters from bottom center and moves up
+      tween.fromTo('.card-2', { y: '50vh' }, { y: '15vh', ease: 'power1.out' }, 0.05)
+      
+      // Card 3 moves from y: 25vh to 5vh
+      tween.fromTo('.card-3', { y: '25vh' }, { y: '5vh', ease: 'power1.out' }, 0.1)
+      
+      // Card 4 moves from y: 45vh and scales from 0.85 to 1.05
+      tween.fromTo('.card-4', { y: '45vh', scale: 0.85 }, { y: '0vh', scale: 1.05, ease: 'power1.out' }, 0.15)
+      
+      // Card 5 moves from y: 15vh to -10vh
+      tween.fromTo('.card-5', { y: '15vh' }, { y: '-10vh', ease: 'power1.out' }, 0.2)
+      
+      // Card 6 moves from y: 40vh to 10vh
+      tween.fromTo('.card-6', { y: '40vh' }, { y: '10vh', ease: 'power1.out' }, 0.25)
+
+      // Background transition from dark green to off-white, and lines invert
+      tween.to('.is-horizontal-track', { backgroundColor: '#e9edd9', ease: 'power2.out' }, 0.2)
+      tween.to('.horizontal-topo-bg', { filter: 'invert(1) opacity(0.2)', ease: 'power2.out' }, 0.2)
+      tween.to('.horizontal-header', { color: '#282C20', ease: 'power2.out' }, 0.2)
+      tween.to('.horizontal-item-w .text-eyebrow', { color: '#5f634f', ease: 'power2.out' }, 0.2)
+      tween.to('.horizontal-item-text', { color: '#282C20', ease: 'power2.out' }, 0.2)
 
       return () => {
         tween.scrollTrigger?.kill()
@@ -444,10 +474,16 @@ const App = () => {
 
         {/* Horizontal Pin Section */}
         <section ref={horizontalSectionRef} className="s is-horizontal-track">
+          {/* Fixed Background Topo Image inside horizontal track */}
+          <img src={secondpageImage} alt="topography background" className="horizontal-topo-bg" />
+          
+          {/* Large Fixed Heading */}
+          <div className="horizontal-header">ON AND OFF THE TRACK.</div>
+
           <div className="horizontal-pin-sticky">
             <div ref={horizontalTrackRef} className="horizontal-track">
               {/* Card 1 */}
-              <div className="horizontal-item-w">
+              <div className="horizontal-item-w card-1">
                 <div className="text-eyebrow">Qatar, 2024</div>
                 <div className="horizontal-item-img-w">
                   <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68302baa04b14a1ca33c0b25_ln-home-horiz-1.webp" alt="Qatar 2024" />
@@ -455,7 +491,7 @@ const App = () => {
               </div>
 
               {/* Card 2 */}
-              <div className="horizontal-item-w">
+              <div className="horizontal-item-w card-2">
                 <div className="text-eyebrow">FIA Prize Giving, 2024</div>
                 <div className="horizontal-item-img-w">
                   <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68302baab12220595c8223b3_ln-home-horiz-2.webp" alt="FIA Prize Giving" />
@@ -463,14 +499,14 @@ const App = () => {
               </div>
 
               {/* Card 3 (Quote Card) */}
-              <div className="horizontal-item-w" style={{ justifyContent: 'center' }}>
+              <div className="horizontal-item-w card-3" style={{ justifyContent: 'center' }}>
                 <div className="horizontal-item-text">
                   It doesn’t matter <span className="span-green-off-white-1">where</span> you start, it’s <span className="span-green-off-white-1">how</span> you progress from there.
                 </div>
               </div>
 
               {/* Card 4 */}
-              <div className="horizontal-item-w">
+              <div className="horizontal-item-w card-4">
                 <div className="text-eyebrow">Miami GP, 2024</div>
                 <div className="horizontal-item-img-w">
                   <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68302babcf12f0111d96322e_ln-home-horiz-3.webp" alt="Miami GP 2024" />
@@ -478,7 +514,7 @@ const App = () => {
               </div>
 
               {/* Card 5 */}
-              <div className="horizontal-item-w">
+              <div className="horizontal-item-w card-5">
                 <div className="text-eyebrow">Monaco, 2023</div>
                 <div className="horizontal-item-img-w">
                   <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68302baa798e2cc6e02ac38a_ln-home-horiz-4.webp" alt="Monaco 2023" />
@@ -486,7 +522,7 @@ const App = () => {
               </div>
 
               {/* Card 6 */}
-              <div className="horizontal-item-w">
+              <div className="horizontal-item-w card-6">
                 <div className="text-eyebrow">Battersea, 2024</div>
                 <div className="horizontal-item-img-w">
                   <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68302baa14a96f3cdd2f9a95_ln-home-horiz-6.webp" alt="Battersea 2024" />
