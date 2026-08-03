@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Playfair+Display:ital,wght@0,700;1,700&family=Satisfy&display=swap');
 
 html {
   scroll-behavior: smooth;
@@ -43,7 +43,7 @@ html {
 html {
   font-size: var(--fluid-font);
   scroll-behavior: initial;
-  background-color: var(--color--white);
+  background-color: #282C20;
   color: var(--color--black);
   font-family: 'Outfit', sans-serif;
   overflow-x: hidden;
@@ -55,6 +55,7 @@ body {
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #282C20;
 }
 
 /* Custom scrollbar hiding */
@@ -148,10 +149,16 @@ html.lenis body {
   text-transform: uppercase;
   color: var(--color--white);
   text-decoration: none;
+  transition: color 0.4s var(--cubic-default);
 }
 
 .nav-logo-stacked span {
   letter-spacing: -0.02em;
+}
+
+.nav-center-logo {
+  color: var(--color--white);
+  transition: color 0.4s var(--cubic-default);
 }
 
 .nav-center {
@@ -216,18 +223,35 @@ html.lenis body {
   justify-content: center;
   cursor: pointer;
   background: transparent;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, border-color 0.4s var(--cubic-default);
 }
 
 .nav-ham span {
   width: 1.2rem;
   height: 2px;
   background: var(--color--white);
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.4s var(--cubic-default);
 }
 
 .nav-ham:hover {
   background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Navbar Theme Overrides for Light Backgrounds */
+.nav.is-light-nav .nav-logo-stacked {
+  color: var(--color--dark-green);
+}
+
+.nav.is-light-nav .nav-center-logo {
+  color: var(--color--dark-green);
+}
+
+.nav.is-light-nav .nav-ham {
+  border-color: var(--color--dark-green);
+}
+
+.nav.is-light-nav .nav-ham span {
+  background-color: var(--color--dark-green);
 }
 
 /* Main Page Wrapper */
@@ -550,12 +574,15 @@ html.lenis body {
 }
 
 .horizontal-pin-sticky {
-  position: sticky;
+  position: absolute;
   top: 0;
+  left: 0;
+  width: 100%;
   height: 100vh;
   display: flex;
   align-items: center;
   overflow: hidden;
+  z-index: 3;
 }
 
 .horizontal-track {
@@ -581,21 +608,27 @@ html.lenis body {
 .horizontal-item-w.card-1 {
   width: 32rem;
 }
+
 .horizontal-item-w.card-2 {
   width: 24rem;
 }
+
 .horizontal-item-w.card-3 {
   width: 34rem;
 }
+
 .horizontal-item-w.card-4 {
   width: 26rem;
 }
+
 .horizontal-item-w.card-4 .horizontal-item-img-w {
   aspect-ratio: 3/4 !important;
 }
+
 .horizontal-item-w.card-5 {
   width: 28rem;
 }
+
 .horizontal-item-w.card-6 {
   width: 24rem;
 }
@@ -630,12 +663,55 @@ html.lenis body {
 }
 
 /* On / Off Track Grid */
+.otot-sticky-wrapper {
+  position: relative;
+  width: 100%;
+}
+
 .is-otot-home {
-  background-color: var(--color--dark-green-tint-1);
-  color: var(--color--white);
+  background-color: #F4F4ED;
+  color: var(--color--dark-green);
   display: flex;
   flex-direction: column;
   justify-content: center;
+  position: relative;
+  overflow: hidden;
+  height: 100vh;
+  width: 100%;
+  padding: 0;
+}
+
+.is-otot-end {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 10;
+  overflow: hidden;
+  transform: translateY(100%);
+  pointer-events: none;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.is-otot-end.is-active {
+  pointer-events: auto;
+}
+
+.otot-home-end-img-w {
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.image.is-otot-home-end {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block;
+  transform: scale(1.1);
 }
 
 .otot-home-layout {
@@ -643,18 +719,97 @@ html.lenis body {
   grid-template-columns: 1fr 1fr;
   gap: 6rem;
   z-index: 2;
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .otot-home-text-col {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  align-items: center;
+  text-align: center;
+  gap: 1.5rem;
 }
 
-.text-impact-reg-mona {
-  font-size: 5rem;
-  line-height: 0.9;
-  letter-spacing: -0.03em;
+.otot-home-text-w {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.text-impact-reg-brier {
+  font-family: 'Playfair Display', serif;
+  font-size: 7.5vw;
+  font-weight: 700;
+  font-style: italic;
+  line-height: 0.8;
+  text-transform: uppercase;
+  color: var(--color--dark-green);
+}
+
+.text-impact-reg-mona.line-increase {
+  font-family: 'Outfit', sans-serif;
+  font-size: 6.5vw;
+  font-weight: 800;
+  line-height: 0.8;
+  text-transform: uppercase;
+  color: var(--color--dark-green);
+  letter-spacing: -0.04em;
+  margin-top: -0.5rem;
+}
+
+/* Handwritten Slanted "on" Overlay positioned exactly over the text */
+.on-overlay {
+  position: absolute;
+  font-family: 'Satisfy', cursive;
+  font-size: 8.5vw;
+  color: var(--color--lime);
+  transform: rotate(-15deg) translate(-50%, -50%);
+  top: 35%;
+  left: 50%;
+  pointer-events: none;
+  z-index: 3;
+  line-height: 1;
+  text-shadow: 0 0 10px rgba(210, 255, 0, 0.2);
+}
+
+.otot-home-p-w {
+  max-width: 20rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--color--grey-1);
+}
+
+/* Round Squircle Arrow Buttons */
+.btn-round-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 0.85rem;
+  background-color: var(--color--lime);
+  color: var(--color--black);
+  text-decoration: none;
+  transition: transform 0.4s var(--cubic-default), background-color 0.4s var(--cubic-default), color 0.4s var(--cubic-default);
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 4px 15px rgba(210, 255, 0, 0.15);
+}
+
+.btn-round-arrow:hover {
+  transform: scale(1.1) rotate(90deg);
+  background-color: var(--color--dark-green);
+  color: var(--color--lime);
+  box-shadow: 0 6px 20px rgba(11, 15, 2, 0.2);
+}
+
+.btn-round-arrow svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  transition: transform 0.4s var(--cubic-default);
 }
 
 .otot-home-bg {
@@ -665,21 +820,32 @@ html.lenis body {
   height: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
   pointer-events: none;
-  opacity: 0.15;
   z-index: 1;
+  opacity: 1;
 }
 
 .otot-home-img-w {
-  width: 35%;
-  height: 100%;
-  overflow: hidden;
+  width: 18vw;
+  height: auto;
+  display: flex;
+  align-items: flex-end;
+  will-change: transform;
+}
+
+.otot-home-img-w.is-left {
+  padding-left: 0;
+}
+
+.otot-home-img-w.is-right {
+  padding-right: 0;
 }
 
 .otot-home-img-w img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
 }
 
 /* Helmets Hall of Fame Grid */
@@ -869,6 +1035,7 @@ html.lenis body {
   width: 100%;
   max-width: 1400px;
   pointer-events: none;
+  opacity: 0;
 }
 
 .statement-icon-w {
@@ -897,10 +1064,10 @@ html.lenis body {
 
 .statement-text {
   font-family: 'Outfit', sans-serif;
-  font-size: 3.5vw;
+  font-size: 4.5vw;
   font-weight: 800;
   line-height: 1.15;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--color--white);
   letter-spacing: -0.01em;
   max-width: 85%;
@@ -926,8 +1093,8 @@ html.lenis body {
   font-family: 'Playfair Display', serif;
   font-style: italic;
   font-weight: 700;
-  text-transform: uppercase;
-  color: var(--color--lime);
+  text-transform: none;
+  color: var(--color--lime-off);
 }
 
 /* Mobile Responsive Tweaks */

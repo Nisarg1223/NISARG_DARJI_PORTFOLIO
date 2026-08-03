@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { motion } from 'framer-motion'
+import { motion, useAnimation } from 'framer-motion'
 import heroImage from './assets/Hero_image.png'
 import backgroundVideo from './assets/test_video_7.mp4'
 import Navbar from './components/Navbar'
@@ -36,6 +36,7 @@ const wordVariants = {
 }
 
 const App = () => {
+  const controls = useAnimation()
   const horizontalTrackRef = useRef(null)
   const horizontalSectionRef = useRef(null)
   const heroImageRef = useRef(null)
@@ -49,6 +50,7 @@ const App = () => {
   const leftTextRef = useRef(null)
   const heroContentRef = useRef(null)
   const statementContainerRef = useRef(null)
+  const ototPinRef = useRef(null)
 
   useEffect(() => {
     if (videoRef.current) {
@@ -90,11 +92,11 @@ const App = () => {
           pin: true,
           scrub: true,
           start: 'top top',
-          end: '+=250%',
+          end: '+=450%',
           invalidateOnRefresh: true,
           onUpdate: (self) => {
             if (video) {
-              if (self.progress > 0.18) {
+              if (self.progress > 0.1) {
                 video.pause()
               } else {
                 video.play().catch(() => {})
@@ -133,24 +135,88 @@ const App = () => {
         0.35
       )
 
-      // 4. Scroll statement text container upwards into and out of the viewport
+      // 4. Scroll statement text container upwards into the viewport
       heroTimeline.fromTo(statementContainerRef.current,
-        { y: '100vh' },
-        { y: '-100vh', ease: 'power1.inOut' },
-        0.35
+        { y: '30vh', opacity: 0 },
+        { y: '0vh', opacity: 1, ease: 'power1.inOut' },
+        0.6
       )
 
-      heroTimeline.fromTo(statementContainerRef.current,
-        { opacity: 0 },
-        { opacity: 1, duration: 0.1, ease: 'power1.out' },
-        0.35
-      )
+      // Trigger Framer Motion animation when the statement container starts to appear
+      heroTimeline.to({}, {
+        duration: 0.1,
+        onStart: () => {
+          controls.start("visible")
+        },
+        onReverseComplete: () => {
+          controls.start("hidden")
+        }
+      }, 0.6)
 
+      // 5. Fade out statement container and move it slightly up/left as the horizontal track starts sliding in
       heroTimeline.to(statementContainerRef.current,
-        { opacity: 0, duration: 0.1, ease: 'power1.in' },
-        0.85
+        { y: '-50vh', opacity: 0, ease: 'power1.inOut', duration: 0.5 },
+        1.4
       )
 
+      // 6. Horizontal scroll animation starting off-screen
+      const track = horizontalTrackRef.current
+      if (track) {
+        const getScrollAmount = () => {
+          let trackWidth = track.scrollWidth
+          return -(trackWidth - window.innerWidth)
+        }
+
+        gsap.set(track, { x: window.innerWidth, y: 0 })
+
+        heroTimeline.fromTo(track,
+          { x: window.innerWidth },
+          { x: getScrollAmount, ease: 'none', duration: 2.0 },
+          1.9
+        )
+
+        // Transition background to off-white and text to dark green halfway through horizontal scroll
+        heroTimeline.to(pinContainer, {
+          backgroundColor: '#F4F4ED',
+          duration: 0.6,
+          ease: 'power1.inOut'
+        }, 2.5)
+
+        // Toggle light nav class halfway through horizontal scroll
+        heroTimeline.call(() => {
+          document.querySelector('.nav')?.classList.add('is-light-nav')
+        }, null, 2.5)
+
+        heroTimeline.call(() => {
+          document.querySelector('.nav')?.classList.remove('is-light-nav')
+        }, null, 2.49)
+
+        heroTimeline.to('.horizontal-item-text', {
+          color: '#0b0f02',
+          duration: 0.6,
+          ease: 'power1.inOut'
+        }, 2.5)
+
+        heroTimeline.to('.horizontal-track .text-eyebrow', {
+          color: '#5f634f',
+          duration: 0.6,
+          ease: 'power1.inOut'
+        }, 2.5)
+
+        heroTimeline.to('.span-green-off-white-1', {
+          color: '#0b0f02',
+          duration: 0.6,
+          ease: 'power1.inOut'
+        }, 2.5)
+
+        // Vertical wavy parallax movements of the cards as we scroll (shifted to align with horizontal scroll starting at 1.9)
+        heroTimeline.fromTo('.card-1', { y: '35vh' }, { y: '-5vh', ease: 'power1.out', duration: 0.8 }, 2.1)
+        heroTimeline.fromTo('.card-2', { y: '50vh' }, { y: '15vh', ease: 'power1.out', duration: 0.8 }, 2.3)
+        heroTimeline.fromTo('.card-3', { y: '25vh' }, { y: '5vh', ease: 'power1.out', duration: 0.8 }, 2.5)
+        heroTimeline.fromTo('.card-4', { y: '45vh', scale: 0.85 }, { y: '0vh', scale: 1.05, ease: 'power1.out', duration: 0.8 }, 2.7)
+        heroTimeline.fromTo('.card-5', { y: '15vh' }, { y: '-10vh', ease: 'power1.out', duration: 0.8 }, 2.9)
+        heroTimeline.fromTo('.card-6', { y: '40vh' }, { y: '10vh', ease: 'power1.out', duration: 0.8 }, 3.1)
+      }
     }
 
     // Infinite automatic scrolling for marquees
@@ -200,71 +266,67 @@ const App = () => {
       }
     })
 
-    // 4. GSAP Horizontal Scroll Pin animation
-    const track = horizontalTrackRef.current
-    const section = horizontalSectionRef.current
-
-    if (track && section) {
-      const getScrollAmount = () => {
-        let trackWidth = track.scrollWidth
-        return -(trackWidth - window.innerWidth)
-      }
-
-      const tween = gsap.timeline({
+    // 4. Pinned On/Off Track Scroll Trigger Timeline (Merging Cutouts into Full Scene)
+    let ototTimeline = null
+    const ototPin = ototPinRef.current
+    if (ototPin) {
+      ototTimeline = gsap.timeline({
         scrollTrigger: {
-          trigger: section,
-          pin: true,
-          scrub: 1,
+          trigger: ototPin,
           start: 'top top',
-          end: () => `+=${track.scrollWidth - window.innerWidth}`,
-          invalidateOnRefresh: true,
-        },
+          end: '+=150%',
+          pin: true,
+          scrub: true,
+          invalidateOnRefresh: true
+        }
       })
 
-      // Horizontal translation of the track
-      tween.to(track, {
-        x: getScrollAmount,
-        ease: 'none'
+      // 1. Slide up & fade out the text layout
+      ototTimeline.to('.otot-home-layout', {
+        opacity: 0,
+        y: -100,
+        ease: 'power1.inOut',
+        duration: 1.0
       }, 0)
 
-      // Vertical wavy parallax movements of the cards as we scroll
-      // Card 1 starts at bottom left and rises to top left
-      tween.fromTo('.card-1', { y: '35vh' }, { y: '-5vh', ease: 'power1.out' }, 0)
-      
-      // Card 2 enters from bottom center and moves up
-      tween.fromTo('.card-2', { y: '50vh' }, { y: '15vh', ease: 'power1.out' }, 0.05)
-      
-      // Card 3 moves from y: 25vh to 5vh
-      tween.fromTo('.card-3', { y: '25vh' }, { y: '5vh', ease: 'power1.out' }, 0.1)
-      
-      // Card 4 moves from y: 45vh and scales from 0.85 to 1.05
-      tween.fromTo('.card-4', { y: '45vh', scale: 0.85 }, { y: '0vh', scale: 1.05, ease: 'power1.out' }, 0.15)
-      
-      // Card 5 moves from y: 15vh to -10vh
-      tween.fromTo('.card-5', { y: '15vh' }, { y: '-10vh', ease: 'power1.out' }, 0.2)
-      
-      // Card 6 moves from y: 40vh to 10vh
-      tween.fromTo('.card-6', { y: '40vh' }, { y: '10vh', ease: 'power1.out' }, 0.25)
+      // 2. Translate/Slide the cutout images out of the screen
+      ototTimeline.to('.otot-home-img-w.is-left', {
+        x: '-100%',
+        ease: 'power1.inOut',
+        duration: 1.0
+      }, 0)
 
-      // Background transition from dark green to off-white, and lines invert
-      tween.to('.is-horizontal-track', { backgroundColor: '#e9edd9', ease: 'power2.out' }, 0.2)
-      tween.to('.horizontal-topo-bg', { filter: 'invert(1) opacity(0.2)', ease: 'power2.out' }, 0.2)
-      tween.to('.horizontal-header', { color: '#282C20', ease: 'power2.out' }, 0.2)
-      tween.to('.horizontal-item-w .text-eyebrow', { color: '#5f634f', ease: 'power2.out' }, 0.2)
-      tween.to('.horizontal-item-text', { color: '#282C20', ease: 'power2.out' }, 0.2)
+      ototTimeline.to('.otot-home-img-w.is-right', {
+        x: '100%',
+        ease: 'power1.inOut',
+        duration: 1.0
+      }, 0)
 
-      return () => {
-        tween.scrollTrigger?.kill()
-        tween.kill()
-        if (heroTimeline) {
-          heroTimeline.scrollTrigger?.kill()
-          heroTimeline.kill()
-        }
-        if (m1Tween) m1Tween.kill()
-        if (m2Tween) m2Tween.kill()
-        if (floatTween) floatTween.kill()
-        if (topoTween) topoTween.kill()
-      }
+      // 3. Slide up the full garage scene image overlay from below
+      ototTimeline.to('.is-otot-end', {
+        y: '0%',
+        ease: 'none',
+        duration: 1.2
+      }, 0)
+
+      // 4. Parallax scale on the inner image
+      ototTimeline.to('.image.is-otot-home-end', {
+        scale: 1.0,
+        ease: 'none',
+        duration: 1.2
+      }, 0)
+
+      // 5. Toggle light nav class:
+      // Keep it light (dark text/icons) initially, but turn it back to white (dark background style) at 0.5 progress when Section 2 covers the viewport
+      ototTimeline.call(() => {
+        document.querySelector('.nav')?.classList.remove('is-light-nav')
+        document.querySelector('.is-otot-end')?.classList.add('is-active')
+      }, null, 0.5)
+
+      ototTimeline.call(() => {
+        document.querySelector('.nav')?.classList.add('is-light-nav')
+        document.querySelector('.is-otot-end')?.classList.remove('is-active')
+      }, null, 0.49)
     }
 
     return () => {
@@ -276,6 +338,10 @@ const App = () => {
       if (m2Tween) m2Tween.kill()
       if (floatTween) floatTween.kill()
       if (topoTween) topoTween.kill()
+      if (ototTimeline) {
+        ototTimeline.scrollTrigger?.kill()
+        ototTimeline.kill()
+      }
     }
   }, [])
 
@@ -400,7 +466,7 @@ const App = () => {
                     </div>
                     <div className="laurel-subtext">
                       CREATIVE CODING<br />
-                      SINCE 2020
+                    
                     </div>
                   </div>
                 </div>
@@ -413,8 +479,7 @@ const App = () => {
             className="c statement-container" 
             ref={statementContainerRef}
             initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.15 }}
+            animate={controls}
             variants={containerVariants}
           >
             {/* Top Laurel Icon */}
@@ -432,53 +497,25 @@ const App = () => {
 
             {/* Main Statement Text */}
             <h2 className="statement-text">
-              <span className="statement-line">
-                <motion.span variants={wordVariants} className="reveal-word serif-lime">REDEFINING</motion.span>&nbsp;
-                <motion.span variants={wordVariants} className="reveal-word">LIMITS,</motion.span>
-              </span>
-              <span className="statement-line">
-                <motion.span variants={wordVariants} className="reveal-word">FIGHTING</motion.span>&nbsp;
-                <motion.span variants={wordVariants} className="reveal-word">FOR</motion.span>&nbsp;
-                <motion.span variants={wordVariants} className="reveal-word serif-lime">WINS,</motion.span>
-              </span>
-              <span className="statement-line">
-                <motion.span variants={wordVariants} className="reveal-word">BRINGING</motion.span>&nbsp;
-                <motion.span variants={wordVariants} className="reveal-word">IT</motion.span>&nbsp;
-                <motion.span variants={wordVariants} className="reveal-word">ALL</motion.span>&nbsp;
-                <motion.span variants={wordVariants} className="reveal-word">IN</motion.span>
-              </span>
-              <span className="statement-line">
-                <motion.span variants={wordVariants} className="reveal-word">ALL</motion.span>&nbsp;
-                <motion.span variants={wordVariants} className="reveal-word">WAYS.</motion.span>&nbsp;
-                <motion.span variants={wordVariants} className="reveal-word">DEFINING</motion.span>&nbsp;
-                <motion.span variants={wordVariants} className="reveal-word">A</motion.span>
-              </span>
-              <span className="statement-line">
-                <motion.span variants={wordVariants} className="reveal-word serif-lime">LEGACY</motion.span>&nbsp;
-                <motion.span variants={wordVariants} className="reveal-word">IN</motion.span>&nbsp;
-                <motion.span variants={wordVariants} className="reveal-word">FORMULA</motion.span>&nbsp;
-                <motion.span variants={wordVariants} className="reveal-word">1</motion.span>
-              </span>
-              <span className="statement-line">
-                <motion.span variants={wordVariants} className="reveal-word">ON</motion.span>&nbsp;
-                <motion.span variants={wordVariants} className="reveal-word">AND</motion.span>&nbsp;
-                <motion.span variants={wordVariants} className="reveal-word">OFF</motion.span>&nbsp;
-                <motion.span variants={wordVariants} className="reveal-word">THE</motion.span>
-              </span>
-              <span className="statement-line">
-                <motion.span variants={wordVariants} className="reveal-word">TRACK.</motion.span>
-              </span>
+              {"Redefining limits, fighting for wins, bringing it all in all ways. Defining a legacy in Formula 1 on and off the track."
+                .split(" ")
+                .map((word, idx) => {
+                  const cleanWord = word.replace(/[^a-zA-Z]/g, "").toLowerCase();
+                  const isSpecial = ["redefining", "wins", "legacy"].includes(cleanWord);
+                  return (
+                    <motion.span
+                      key={idx}
+                      variants={wordVariants}
+                      className={isSpecial ? "serif-lime" : "reveal-word"}
+                      style={{ display: "inline-block" }}
+                    >
+                      {isSpecial ? <strong>{word}</strong> : word}
+                      {"\u00A0"}
+                    </motion.span>
+                  );
+                })}
             </h2>
           </motion.div>
-        </section>
-
-        {/* Horizontal Pin Section */}
-        <section ref={horizontalSectionRef} className="s is-horizontal-track">
-          {/* Fixed Background Topo Image inside horizontal track */}
-          <img src={secondpageImage} alt="topography background" className="horizontal-topo-bg" />
-          
-          {/* Large Fixed Heading */}
-          <div className="horizontal-header">ON AND OFF THE TRACK.</div>
 
           <div className="horizontal-pin-sticky">
             <div ref={horizontalTrackRef} className="horizontal-track">
@@ -533,52 +570,85 @@ const App = () => {
         </section>
 
         {/* On/Off Track Section */}
-        <section className="s is-otot-home">
-          <div className="c">
-            <div className="otot-home-layout">
-              <div className="otot-home-text-col">
-                <div className="text-eyebrow">Racing Career</div>
-                <h2 className="text-impact-reg-mona">
-                  ON <br />
-                  <span className="font-serif" style={{ color: '#d2ff00' }}>TRACK</span>
-                </h2>
-                <p style={{ fontSize: '1.2rem', color: '#c4caac', lineHeight: '1.6' }}>
-                  Most recent <strong>results</strong>, career stats and photos from trackside.
-                </p>
-                <div>
-                  <a href="/on-track" className="btn-w">
-                    Explore
-                  </a>
+        <div ref={ototPinRef} className="otot-sticky-wrapper">
+          <div className="otot-sticky-item">
+            <section className="s is-otot-home">
+              {/* Topographic Lines Background overlaying the section */}
+              <img src={secondpageImage} alt="topography contour lines background" className="hero-topo-bg" style={{ opacity: 0.1 }} />
+
+              <div className="c">
+                <div className="otot-home-layout">
+                  {/* Left Column: ON TRACK */}
+                  <motion.div 
+                    className="otot-home-text-col is-1"
+                    initial={{ opacity: 0, y: 60 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                  >
+                    <div className="otot-home-text-w">
+                      <div className="on-overlay">on</div>
+                      <h2 className="text-impact-reg-brier">ON</h2>
+                      <h2 className="text-impact-reg-mona line-increase">TRACK</h2>
+                    </div>
+                    <p className="otot-home-p-w">
+                      Most recent <strong>results</strong>, career stats and photos from trackside.
+                    </p>
+                    <div>
+                      <a href="/on-track" className="btn-round-arrow" title="On Track">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M9 10l-5 5 5 5" />
+                          <path d="M20 4v7a4 4 0 0 1-4 4H4" />
+                        </svg>
+                      </a>
+                    </div>
+                  </motion.div>
+
+                  {/* Right Column: OFF TRACK */}
+                  <motion.div 
+                    className="otot-home-text-col is-2"
+                    initial={{ opacity: 0, y: 60 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.8, ease: "easeOut", delay: 0.15 }}
+                  >
+                    <div className="otot-home-text-w">
+                      <h2 className="text-impact-reg-brier">OFF</h2>
+                      <h2 className="text-impact-reg-mona line-increase">TRACK</h2>
+                    </div>
+                    <p className="otot-home-p-w">
+                      <strong>Campaigns</strong>, shoots and other such promotional materials for fans.
+                    </p>
+                    <div>
+                      <a href="/off-track" className="btn-round-arrow" title="Off Track">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M9 10l-5 5 5 5" />
+                          <path d="M20 4v7a4 4 0 0 1-4 4H4" />
+                        </svg>
+                      </a>
+                    </div>
+                  </motion.div>
                 </div>
               </div>
 
-              <div className="otot-home-text-col">
-                <div className="text-eyebrow">Life & Projects</div>
-                <h2 className="text-impact-reg-mona">
-                  OFF <br />
-                  <span className="font-serif" style={{ color: '#ffffff' }}>TRACK</span>
-                </h2>
-                <p style={{ fontSize: '1.2rem', color: '#c4caac', lineHeight: '1.6' }}>
-                  <strong>Campaigns</strong>, shoots and other such promotional materials for fans.
-                </p>
-                <div>
-                  <a href="/off-track" className="btn-w">
-                    View Gallery
-                  </a>
+              <div className="otot-home-bg">
+                <div className="otot-home-img-w is-left">
+                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67d18655b032045a4dc78e53_ln4-hp-lando-helmet.webp" alt="Lando Helmet" />
+                </div>
+                <div className="otot-home-img-w is-right">
+                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67d18655b032045a4dc78e56_ln4-hp-lando-head.webp" alt="Lando Head" />
                 </div>
               </div>
-            </div>
+            </section>
           </div>
 
-          <div className="otot-home-bg">
-            <div className="otot-home-img-w">
-              <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67d18655b032045a4dc78e53_ln4-hp-lando-helmet.webp" alt="Lando Helmet" />
+          {/* Section 2: is-otot-end */}
+          <section className="is-otot-end">
+            <div className="otot-home-end-img-w">
+              <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68302ff5ff89a9a4afb8c19e_ln-home-helm-large.webp" alt="Lando lifting helmet up" className="image is-otot-home-end" />
             </div>
-            <div className="otot-home-img-w">
-              <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67d18655b032045a4dc78e56_ln4-hp-lando-head.webp" alt="Lando Head" />
-            </div>
-          </div>
-        </section>
+          </section>
+        </div>
 
         {/* Helmets Section */}
         <section className="s home-helmets">

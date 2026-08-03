@@ -13,13 +13,13 @@ const Navbar = React.forwardRef((props, ref) => {
 
         {/* Middle Diagonal Slanted LN Logo */}
         <div className="nav-center">
-          <a href="/" className="nav-center-logo">
+          <a href="/" className="nav-center-logo" style={{ color: 'inherit' }}>
             <svg width="45" height="35" viewBox="0 0 88 56" fill="none" xmlns="http://www.w3.org/2000/svg">
               {/* Slanted L */}
-              <path d="M12 4L32 44H42L22 4H12Z" fill="white" />
+              <path d="M12 4L32 44H42L22 4H12Z" fill="currentColor" />
               {/* Connected slanted N part */}
-              <path d="M45 44L65 4H75L55 44H45Z" fill="white" />
-              <path d="M37.5 24H52.5L50.5 30H35.5L37.5 24Z" fill="white" />
+              <path d="M45 44L65 4H75L55 44H45Z" fill="currentColor" />
+              <path d="M37.5 24H52.5L50.5 30H35.5L37.5 24Z" fill="currentColor" />
             </svg>
           </a>
         </div>
