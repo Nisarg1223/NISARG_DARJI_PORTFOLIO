@@ -1825,7 +1825,7 @@ html.lenis body {
   z-index: 5;
   color: var(--color--black);
   position: relative;
-  background-color: #f4f3ef;
+  background-color: #F4F4ED;
   padding: 8rem 0;
   overflow: visible;
 }
@@ -1904,31 +1904,31 @@ html.lenis body {
 
 /* Fan arrangement of cards */
 .callout-socials-card-w:nth-child(1) {
-  transform: translate(calc(-50% - 27rem), calc(-50% + 6rem)) rotate(-24deg);
+  transform: translate(calc(-50% - 25rem), calc(-50% + 5rem)) rotate(-24deg) scale(0.80);
   z-index: 1;
 }
 .callout-socials-card-w:nth-child(2) {
-  transform: translate(calc(-50% - 18rem), calc(-50% + 3rem)) rotate(-16deg);
+  transform: translate(calc(-50% - 17.5rem), calc(-50% + 2.5rem)) rotate(-16deg) scale(0.87);
   z-index: 2;
 }
 .callout-socials-card-w:nth-child(3) {
-  transform: translate(calc(-50% - 9rem), calc(-50% + 1rem)) rotate(-8deg);
+  transform: translate(calc(-50% - 9rem), calc(-50% + 0.8rem)) rotate(-8deg) scale(0.94);
   z-index: 3;
 }
 .callout-socials-card-w:nth-child(4) {
-  transform: translate(-50%, -50%) rotate(0deg);
+  transform: translate(-50%, -50%) rotate(0deg) scale(1.0);
   z-index: 4;
 }
 .callout-socials-card-w:nth-child(5) {
-  transform: translate(calc(-50% + 9rem), calc(-50% + 1rem)) rotate(8deg);
+  transform: translate(calc(-50% + 9rem), calc(-50% + 0.8rem)) rotate(8deg) scale(0.94);
   z-index: 3;
 }
 .callout-socials-card-w:nth-child(6) {
-  transform: translate(calc(-50% + 18rem), calc(-50% + 3rem)) rotate(16deg);
+  transform: translate(calc(-50% + 17.5rem), calc(-50% + 2.5rem)) rotate(16deg) scale(0.87);
   z-index: 2;
 }
 .callout-socials-card-w:nth-child(7) {
-  transform: translate(calc(-50% + 27rem), calc(-50% + 6rem)) rotate(24deg);
+  transform: translate(calc(-50% + 25rem), calc(-50% + 5rem)) rotate(24deg) scale(0.80);
   z-index: 1;
 }
 
