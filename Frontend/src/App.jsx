@@ -6,7 +6,7 @@ import heroImage from './assets/Hero_image.png'
 import backgroundVideo from './assets/test_video_7.mp4'
 import Navbar from './components/Navbar'
 import secondpageImage from './assets/secondpage_image.png'
-import collabsWatermark from './assets/ln-collabs-rive-placeholder.svg'
+import signatureImage from './assets/signature_image.png'
 
 const HELMETS_DATA = [
   {
@@ -994,7 +994,7 @@ const App = () => {
               </div>
 
             </div>
-            <div className="spacer _8rem" style={{ height: '8rem' }}></div>
+            <div className="spacer _2rem" style={{ height: '2rem' }}></div>
           </div>
         </section>
 
@@ -1002,7 +1002,7 @@ const App = () => {
         <section className="s is-home-collabs">
           {/* Diagonal "collabs" watermark in background */}
           <div className="home-collab-rive-w">
-            <img src={collabsWatermark} alt="" className="image is-collab-placeholder" />
+            <img src={signatureImage} alt="" className="image is-collab-placeholder" />
           </div>
 
           <div className="c is-home-collabs">
@@ -1057,6 +1057,93 @@ const App = () => {
             </div>
 
             <div className="spacer _6rem" style={{ height: '6rem' }}></div>
+          </div>
+        </section>
+
+        {/* What's Up On Socials Section */}
+        <section className="s is-callout-socials">
+          <div className="c is-callout-socials">
+            <div className="callout-socials-layout">
+              {/* Globe Icon */}
+              <div className="callout-socials-rive-w">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '2.5rem', height: '2.5rem', color: '#0b0f02' }}>
+                  <circle cx="16" cy="16" r="14" stroke="currentColor" strokeWidth="1.5"/>
+                  <path d="M5 10H27" stroke="currentColor" strokeWidth="1.2" opacity="0.6"/>
+                  <path d="M2 16H30" stroke="currentColor" strokeWidth="1.5"/>
+                  <path d="M5 22H27" stroke="currentColor" strokeWidth="1.2" opacity="0.6"/>
+                  <path d="M10 5V27" stroke="currentColor" strokeWidth="1.2" opacity="0.6"/>
+                  <path d="M16 2V30" stroke="currentColor" strokeWidth="1.5"/>
+                  <path d="M22 5V27" stroke="currentColor" strokeWidth="1.2" opacity="0.6"/>
+                </svg>
+              </div>
+
+              {/* Title */}
+              <h2 className="text-title-lg-mona split-flex is-center" style={{ color: '#0b0f02' }}>
+                <span>what’s up</span>
+                <span className="span-font-brier" style={{ color: '#0b0f02', textTransform: 'lowercase', fontSize: '5rem', display: 'block', fontFamily: 'Brier, serif', fontStyle: 'italic' }}>on socials</span>
+              </h2>
+
+              {/* Cards Fan */}
+              <div className="callout-socials-card-layout">
+                <div className="callout-socials-card-w">
+                  <div className="video-stream">
+                    <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68d3ba846e593e52541fb7a8_Lando-6-on-track.webp" loading="lazy" alt="Lando on track" className="image is-social-card" />
+                  </div>
+                </div>
+                <div className="callout-socials-card-w">
+                  <div className="video-stream">
+                    <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/6830302d42237886d0c4b24c_ln-social-img-2.webp" loading="lazy" alt="Lando off track" className="image is-social-card" />
+                  </div>
+                </div>
+                <div className="callout-socials-card-w">
+                  <div className="video-stream">
+                    <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68d3ba8463e72a95c2d8a0ba_Lando-4-off-track.webp" loading="lazy" alt="Lando off track" className="image is-social-card" />
+                  </div>
+                </div>
+                <div className="callout-socials-card-w">
+                  <div className="video-stream">
+                    <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68d3ba848fb98d1ca68eb6c8_Lando-5-off-track.webp" loading="lazy" alt="Lando on track" className="image is-social-card" />
+                  </div>
+                </div>
+                <div className="callout-socials-card-w">
+                  <div className="video-stream">
+                    <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68d3ba8449f0506fbaad037b_Lano-5-on-track.webp" loading="lazy" alt="Lando on track" className="image is-social-card" />
+                  </div>
+                </div>
+                <div className="callout-socials-card-w">
+                  <div className="video-stream">
+                    <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/6830302dadd0727e6ac034dd_ln-social-img-6.webp" loading="lazy" alt="Lando off track" className="image is-social-card" />
+                  </div>
+                </div>
+                <div className="callout-socials-card-w">
+                  <div className="video-stream">
+                    <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68d3ba83f162f4d2f4e78442_Lando-6-off-track.webp" loading="lazy" alt="Lando off track" className="image is-social-card" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Subtext */}
+              <div className="callout-socials-intro-w">
+                <div className="text-cta-short-intro font-brier">Follow Lando on social media</div>
+              </div>
+
+              {/* Social Links */}
+              <div className="callout-socials-links-layout">
+                <a href="https://www.tiktok.com/@landonorris" target="_blank" rel="noopener noreferrer" className="text-link-w">
+                  tiktok
+                </a>
+                <a href="https://www.instagram.com/lando" target="_blank" rel="noopener noreferrer" className="text-link-w">
+                  instagram
+                </a>
+                <a href="https://www.youtube.com/@LandoNorris" target="_blank" rel="noopener noreferrer" className="text-link-w">
+                  Youtube
+                </a>
+                <a href="https://www.twitch.tv/landonorris" target="_blank" rel="noopener noreferrer" className="text-link-w">
+                  Twitch
+                </a>
+              </div>
+            </div>
+            <div className="spacer _4rem" style={{ height: '4rem' }}></div>
           </div>
         </section>
 

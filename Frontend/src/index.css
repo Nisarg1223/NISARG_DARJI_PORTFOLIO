@@ -1667,8 +1667,9 @@ html.lenis body {
 .is-home-collabs {
   background-color: #f4f3ef;
   position: relative;
-  padding: 8rem 0 12rem 0;
-  overflow: hidden;
+  padding: 2.5rem 0 12rem 0;
+  overflow: visible;
+  z-index: 1;
 }
 
 .c.is-home-collabs {
@@ -1683,14 +1684,16 @@ html.lenis body {
 
 /* Rive Watermark Background */
 .home-collab-rive-w {
-  z-index: 1;
-  width: 79.625rem;
-  height: 49.875rem;
+  z-index: 100;
+  width: 85rem;
+  height: 52rem;
   position: absolute;
-  top: 4rem;
-  left: -9rem;
+  top: -3rem;
+  left: -12rem;
   pointer-events: none;
   opacity: 1;
+  transform: rotate(-20deg);
+  transform-origin: center center;
 }
 
 .image.is-collab-placeholder {
@@ -1814,5 +1817,200 @@ html.lenis body {
   }
   .collabs-bg-watermark {
     opacity: 0.15;
+  }
+}
+
+/* What's Up On Socials Section */
+.s.is-callout-socials {
+  z-index: 5;
+  color: var(--color--black);
+  position: relative;
+  background-color: #f4f3ef;
+  padding: 8rem 0;
+  overflow: visible;
+}
+
+.callout-socials-inner {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.callout-socials-layout {
+  text-align: center;
+  grid-column-gap: calc(var(--gap) * 2);
+  grid-row-gap: calc(var(--gap) * 2);
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  display: flex;
+}
+
+.callout-socials-rive-w {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.callout-socials-card-layout {
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 80rem;
+  height: 38rem;
+  display: flex;
+  position: relative;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.callout-socials-card-w {
+  z-index: 0;
+  backface-visibility: hidden;
+  will-change: transform;
+  border-radius: 2rem;
+  flex: none;
+  width: 19rem;
+  height: 33rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  overflow: clip;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  transition: transform 0.4s var(--cubic-default), z-index 0.4s var(--cubic-default), filter 0.4s ease, box-shadow 0.4s ease;
+  filter: brightness(0.9);
+}
+
+.callout-socials-card-w:hover {
+  transform: translate(-50%, -50%) scale(1.08) translateY(-2.5rem) rotate(0deg) !important;
+  z-index: 10 !important;
+  filter: brightness(1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.video-stream {
+  position: absolute;
+  inset: 0%;
+  width: 100%;
+  height: 100%;
+}
+
+.image.is-social-card {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Fan arrangement of cards */
+.callout-socials-card-w:nth-child(1) {
+  transform: translate(calc(-50% - 27rem), calc(-50% + 6rem)) rotate(-24deg);
+  z-index: 1;
+}
+.callout-socials-card-w:nth-child(2) {
+  transform: translate(calc(-50% - 18rem), calc(-50% + 3rem)) rotate(-16deg);
+  z-index: 2;
+}
+.callout-socials-card-w:nth-child(3) {
+  transform: translate(calc(-50% - 9rem), calc(-50% + 1rem)) rotate(-8deg);
+  z-index: 3;
+}
+.callout-socials-card-w:nth-child(4) {
+  transform: translate(-50%, -50%) rotate(0deg);
+  z-index: 4;
+}
+.callout-socials-card-w:nth-child(5) {
+  transform: translate(calc(-50% + 9rem), calc(-50% + 1rem)) rotate(8deg);
+  z-index: 3;
+}
+.callout-socials-card-w:nth-child(6) {
+  transform: translate(calc(-50% + 18rem), calc(-50% + 3rem)) rotate(16deg);
+  z-index: 2;
+}
+.callout-socials-card-w:nth-child(7) {
+  transform: translate(calc(-50% + 27rem), calc(-50% + 6rem)) rotate(24deg);
+  z-index: 1;
+}
+
+.callout-socials-intro-w {
+  margin-top: 3rem;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.text-cta-short-intro {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 700;
+  text-transform: none;
+  font-size: 2.2rem;
+  color: var(--color--dark-green);
+  margin-bottom: 2rem;
+}
+
+.callout-socials-links-layout {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.callout-socials-links-layout .text-link-w {
+  font-family: 'Mona Sans', 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color--dark-green);
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.callout-socials-links-layout .text-link-w:hover {
+  color: var(--color--lime-off);
+  transform: translateY(-2px);
+}
+
+/* Responsive updates */
+@media screen and (max-width: 991px) {
+  .callout-socials-card-layout {
+    height: 28rem;
+  }
+  .callout-socials-card-w {
+    width: 14rem;
+    height: 24.5rem;
+    border-radius: 1.5rem;
+  }
+  .callout-socials-card-w:nth-child(1) { transform: rotate(-24deg) translate(-20rem, 4rem); }
+  .callout-socials-card-w:nth-child(2) { transform: rotate(-16deg) translate(-13.5rem, 2rem); }
+  .callout-socials-card-w:nth-child(3) { transform: rotate(-8deg) translate(-6.75rem, 0.75rem); }
+  .callout-socials-card-w:nth-child(4) { transform: rotate(0deg) translate(0, 0); }
+  .callout-socials-card-w:nth-child(5) { transform: rotate(8deg) translate(6.75rem, 0.75rem); }
+  .callout-socials-card-w:nth-child(6) { transform: rotate(16deg) translate(13.5rem, 2rem); }
+  .callout-socials-card-w:nth-child(7) { transform: rotate(24deg) translate(20rem, 4rem); }
+  .text-cta-short-intro {
+    font-size: 1.8rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .callout-socials-card-layout {
+    height: 24rem;
+  }
+  .callout-socials-card-w {
+    width: 11.5rem;
+    height: 20rem;
+  }
+  .callout-socials-card-w:nth-child(1) { transform: rotate(-24deg) translate(-14rem, 3rem); }
+  .callout-socials-card-w:nth-child(2) { transform: rotate(-16deg) translate(-9.5rem, 1.5rem); }
+  .callout-socials-card-w:nth-child(3) { transform: rotate(-8deg) translate(-4.75rem, 0.5rem); }
+  .callout-socials-card-w:nth-child(4) { transform: rotate(0deg) translate(0, 0); }
+  .callout-socials-card-w:nth-child(5) { transform: rotate(8deg) translate(4.75rem, 0.5rem); }
+  .callout-socials-card-w:nth-child(6) { transform: rotate(16deg) translate(9.5rem, 1.5rem); }
+  .callout-socials-card-w:nth-child(7) { transform: rotate(24deg) translate(14rem, 3rem); }
+  .callout-socials-links-layout {
+    gap: 1.25rem;
+    flex-wrap: wrap;
   }
 }
