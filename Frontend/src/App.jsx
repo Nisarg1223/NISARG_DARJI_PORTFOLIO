@@ -6,6 +6,100 @@ import heroImage from './assets/Hero_image.png'
 import backgroundVideo from './assets/test_video_7.mp4'
 import Navbar from './components/Navbar'
 import secondpageImage from './assets/secondpage_image.png'
+import collabsWatermark from './assets/ln-collabs-rive-placeholder.svg'
+
+const HELMETS_DATA = [
+  {
+    title: "Season",
+    year: "2025",
+    base: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305b3e6c7ab86033cf172c_In-helm-2025-Season-base.webp",
+    hover: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305b411c575b2f777125f6_In-helm-2025-Season-hover.webp"
+  },
+  {
+    title: "Discoball",
+    year: "2025",
+    base: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305b2259159e5170d2b923_In-helm-2025-Discoball-base.webp",
+    hover: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305b24037a1e7681195c20_In-helm-2025-Discoball-hover.webp"
+  },
+  {
+    title: "Dark Glitter",
+    year: "2025",
+    base: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305aff4692de3e7ea12251_In-helm-2025-DarkGlitter-base.webp",
+    hover: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305b03644c91f0a8de407b_In-helm-2025-DarkGlitter-hover.webp"
+  },
+  {
+    title: "Season",
+    year: "2024",
+    base: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305aeac44aa40f7bda5460_In-helm-2024-Season-base.webp",
+    hover: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305af56183c37dfd14ff3f_In-helm-2024-Season-hover.webp"
+  },
+  {
+    title: "Porcelain",
+    year: "2024",
+    base: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305acf3fccf71c6d72607b_In-helm-2024-Porcelain-base.webp",
+    hover: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305ad3a594ec37bd1d32cb_In-helm-2024-Porcelain-hover.webp"
+  },
+  {
+    title: "Japan",
+    year: "2024",
+    base: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305a980c399022066600a6_In-helm-2024-Japan-base.webp",
+    hover: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305a9b1716264ea006064b_In-helm-2024-Japan-hover.webp"
+  },
+  {
+    title: "GIF",
+    year: "2024",
+    base: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305a7d4e96d5f8f44f7803_In-helm-2024-GIF%20Helmet-base.webp",
+    hover: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305a8e13a9b59a5e99cafe_In-helm-2024-GIF%20Helmet-hover.webp"
+  },
+  {
+    title: "Dark Mode",
+    year: "2024",
+    base: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305a59417d51c0a58c32c6_In-helm-2024-DarkMode-base.webp",
+    hover: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305a5cdaa389d0c080afc7_In-helm-2024-DarkMode-hover.webp"
+  },
+  {
+    title: "Race",
+    year: "2023",
+    base: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305a459178b78319e05b55_In-helm-2023-Race%20100-base.webp",
+    hover: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305a47417d51c0a58c28a6_In-helm-2023-Race%20100-hover.webp"
+  },
+  {
+    title: "Las Vegas",
+    year: "2023",
+    base: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305a2e3fccf71c6d71e5a8_In-helm-2023-Las%20Vegas-base.webp",
+    hover: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305a3053985f797745cdfc_In-helm-2023-Las%20Vegas-hover.webp"
+  },
+  {
+    title: "Chrome",
+    year: "2023",
+    base: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305a153de4a824d397d21d_In-helm-2023-Chrome-base.webp",
+    hover: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305a175a720573cbd3000f_In-helm-2023-Chrome-hover.webp"
+  },
+  {
+    title: "Basketball",
+    year: "2022",
+    base: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/683052a8a475dfa06075ca17_In-helm-2022-Basketball-base.webp",
+    hover: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/683052ab1073a33331767d2a_In-helm-2022-Basketball-hover.webp"
+  },
+  {
+    title: "Season",
+    year: "2021",
+    base: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305038652a87f86290bf3b_ln-helm-2021-base.webp",
+    hover: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305b57817f019bc368a7b6_ln-helm-2021-hover.webp"
+  },
+  {
+    title: "Silverstone",
+    year: "2020",
+    base: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305203f28384dcf8ef81cb_In-helm-2020-Silverstone-base.webp",
+    hover: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305223cddca8f1ea359a7a_In-helm-2020-Silverstone-hover.webp"
+  },
+  {
+    title: "Season",
+    year: "2019",
+    base: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305139c5020a27624aa793_In-helm-2019-base.webp",
+    hover: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/6830513c652a87f862917de3_In-helm-2019-hover.webp"
+  }
+];
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger)
@@ -329,6 +423,91 @@ const App = () => {
       }, null, 0.49)
     }
 
+    // 5. Helmets Entry ScrollTrigger (Animating inner .helmet-grid-item)
+    let helmetsTween = null
+    const helmetCards = document.querySelectorAll('.helmet-grid-item')
+    if (helmetCards.length > 0) {
+      helmetsTween = gsap.fromTo(helmetCards, {
+        opacity: 0,
+        y: 40
+      }, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        stagger: 0.08,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: '.helmet-grid',
+          start: 'top 85%',
+          toggleActions: 'play none none none'
+        }
+      })
+    }
+
+    // 6. Lando Store Parallax ScrollTrigger
+    let exeTweens = []
+    if (document.querySelector('.is-lando-exe')) {
+      const t1 = gsap.to('.exe-cta-img-w.is-1 img', {
+        y: -50,
+        scrollTrigger: {
+          trigger: '.is-lando-exe',
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1
+        }
+      })
+      const t2 = gsap.to('.exe-cta-img-w.is-2 img', {
+        y: -40,
+        scrollTrigger: {
+          trigger: '.is-lando-exe',
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1.5
+        }
+      })
+      const t3 = gsap.to('.exe-cta-img-w.is-3 img', {
+        y: -40,
+        scrollTrigger: {
+          trigger: '.is-lando-exe',
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 0.8
+        }
+      })
+      const t4 = gsap.to('.exe-cta-img-w.is-4 img', {
+        y: -30,
+        scrollTrigger: {
+          trigger: '.is-lando-exe',
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1.2
+        }
+      })
+      const t5 = gsap.to('.exe-cta-sticker-w', {
+        rotate: 15,
+        y: -25,
+        scrollTrigger: {
+          trigger: '.is-lando-exe',
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1
+        }
+      })
+      const t6 = gsap.fromTo('.exe-top-visor', {
+        clipPath: 'ellipse(100% 0% at 50% 0%)'
+      }, {
+        clipPath: 'ellipse(70% 100% at 50% 0%)',
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.is-lando-exe',
+          start: 'top bottom',
+          end: 'top top',
+          scrub: true
+        }
+      })
+      exeTweens.push(t1, t2, t3, t4, t5, t6)
+    }
+
     return () => {
       if (heroTimeline) {
         heroTimeline.scrollTrigger?.kill()
@@ -342,6 +521,14 @@ const App = () => {
         ototTimeline.scrollTrigger?.kill()
         ototTimeline.kill()
       }
+      if (helmetsTween) {
+        helmetsTween.scrollTrigger?.kill()
+        helmetsTween.kill()
+      }
+      exeTweens.forEach(t => {
+        t.scrollTrigger?.kill()
+        t.kill()
+      })
     }
   }, [])
 
@@ -652,63 +839,224 @@ const App = () => {
 
         {/* Helmets Section */}
         <section className="s home-helmets">
-          <div className="c">
+          <div className="c is-helmets">
             <div className="title-layout">
               <div>
                 <div className="text-eyebrow">Helmet Designs</div>
                 <h2 className="text-title-lg-mona">
                   HELMETS <br />
-                  <span className="text-title-lg-brier c-lime-off">HALL OF FAME</span>
+                  <span className="text-title-lg-brier">HALL OF FAME</span>
                 </h2>
               </div>
-              <p style={{ fontSize: '1.1rem', color: '#a8ad92', lineHeight: '1.6' }}>
-                From his iconic blobs to innovative one-off designs, Lando has always been passionate about designing innovative and memorable helmets.
+              <p className="title-para-w">
+                <span className="text-highlight">From his iconic blobs to innovative one-off</span><br />
+                designs, Lando has always been<br />
+                <span className="text-highlight">passionate about designing innovative</span><br />
+                <span className="text-highlight">and memorable helmets.</span>
               </p>
             </div>
 
             <div className="helmet-grid">
-              {/* Helmet 1 */}
-              <div className="helmet-grid-item-w">
-                <div className="helmet-grid-item">
-                  <div className="helmet-grid-item-img-helmet-w">
-                    <img src="https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305b3e6c7ab86033cf172c_In-helm-2025-Season-base.webp" alt="Season 2025 Base" className="helmet-grid-item-img-helmet" />
+              {HELMETS_DATA.map((helmet, idx) => (
+                <div key={idx} className="helmet-grid-item-w">
+                  <div className="helmet-grid-item" data-helmet-item="">
+                    {/* Desktop borders */}
+                    <div className="helmet-grid-frame-w destop">
+                      <div className="helmet-grid-frame is-overlay">
+                        <svg width="100%" height="100%" viewBox="0 0 407 411" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M8 1h390.89a7 7 0 0 1 7 7v356.983a7 7 0 0 1-7 7H263.329a23.999 23.999 0 0 0-18.766 9.038l-16.499 20.694A21.999 21.999 0 0 1 210.862 410H8a7 7 0 0 1-7-7V8a7 7 0 0 1 7-7Z" stroke="var(--color--lime)" strokeWidth="2"/>
+                        </svg>
+                      </div>
+                      <div className="helmet-grid-frame is-base">
+                        <svg width="100%" height="100%" viewBox="0 0 407 411" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M8 .5h390.89a7.5 7.5 0 0 1 7.5 7.5v356.983a7.5 7.5 0 0 1-7.5 7.5H263.329a23.502 23.502 0 0 0-18.375 8.849l-16.499 20.695a22.502 22.502 0 0 1-17.593 8.473H8a7.5 7.5 0 0 1-7.5-7.5V8a7.5 7.5 0 0 1 7.5-7.5Z" stroke="currentColor" strokeWidth="2" vectorEffect="non-scaling-stroke"/>
+                        </svg>
+                      </div>
+                    </div>
+                    {/* Mobile borders */}
+                    <div className="helmet-grid-frame-w mobile">
+                      <div className="helmet-grid-frame is-overlay">
+                        <svg width="100%" height="100%" viewBox="0 0 187 188" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M8 .5h170.12a7.5 7.5 0 0 1 7.5 7.5v154.61a7.5 7.5 0 0 1-7.5 7.5H60.681a10.5 10.5 0 0 0-8.21 3.954l-7.86 9.858a9.5 9.5 0 0 1-7.427 3.578H8a7.5 7.5 0 0 1-7.5-7.5V8a7.5 7.5 0 0 1 7.5-7.5Z" stroke="var(--color--lime)" strokeWidth="2"/>
+                        </svg>
+                      </div>
+                      <div className="helmet-grid-frame is-base">
+                        <svg width="100%" height="100%" viewBox="0 0 187 188" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M8 .5h170.12a7.5 7.5 0 0 1 7.5 7.5v154.61a7.5 7.5 0 0 1-7.5 7.5H60.681a10.5 10.5 0 0 0-8.21 3.954l-7.86 9.858a9.5 9.5 0 0 1-7.427 3.578H8a7.5 7.5 0 0 1-7.5-7.5V8a7.5 7.5 0 0 1 7.5-7.5Z" stroke="currentColor" strokeWidth="1"/>
+                        </svg>
+                      </div>
+                    </div>
+                    {/* Helmet Images */}
+                    <div className="helmet-grid-item-img-w">
+                      <div className="helmet-grid-item-img-helmet-w">
+                        <img src={helmet.base} alt={`${helmet.title} base`} className="helmet-grid-item-img-helmet" />
+                      </div>
+                      <img src={helmet.hover} alt={`${helmet.title} hover`} className="helmet-grid-item-reveal-img" />
+                    </div>
                   </div>
-                  <img src="https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305b411c575b2f777125f6_In-helm-2025-Season-hover.webp" alt="Season 2025 Hover" className="helmet-grid-item-reveal-img" />
+                  {/* Notched Text Details wrapper */}
+                  <div className="helmet-grid-item-text-w">
+                    <h3 className="text-title-small-label text">{helmet.title}</h3>
+                    <div className="helmet-grid-item-date-w">
+                      <div className="text-title-small-label date">{helmet.year}</div>
+                    </div>
+                    <div className="helmet-grid-extender">
+                      <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67e41c00f127bc68e2462635_ln4-2-helm-mask-extender-grey-fade.png" alt="" className="helmet-grid-extender-img" />
+                      <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67e41235ad69136bdc861b67_ln4-2-helm-mask-extender-lime-fade.png" alt="" className="helmet-grid-extender-img is-overlay" />
+                    </div>
+                  </div>
                 </div>
-                <div className="helmet-grid-item-text-w">
-                  <div className="text-title-small-label">Season Helmet</div>
-                  <div className="text-title-small-label date">2025</div>
+              ))}
+            </div>
+
+            {/* Callout Section */}
+            <div className="helmets-callout-w">
+              <div className="callout-icon-w">
+                <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 97 50.1" width="80" height="41" fill="var(--color--lime)">
+                  <path d="M.4 27.6s3 .9 6.1 5.9c-.4-1.1-.6-2.2-.8-3.4C1.5 27.8 1.1 25.7.8 22c.2 1 3.2 2.4 3.6 4 .4 1.3.8 2.5 1.3 3.1 0-1-.1-2 0-3v-.5c-1.3-1.1-4.3-4.3-3.5-9.1.5 1.2 3 1.6 3.7 7.4.2-1.1.5-2.1.8-3.2C5.5 19.2 3.5 15 5.6 7.9c.3 1.2 2.5 5.7 2 8.3-.2.8-.2 1.7-.3 2.6 0-.2.1-.4.2-.6.3-.9.7-1.8 1.2-2.7 0-1.4-.2-2.8-.8-4.1-.3-.6-.4-1.3-.4-2s.4-1.3.8-1.8c.6-.8.8-2.8.8-2.8s2.2 3.4 0 9.8c.4-.7.9-1.5 1.4-2.1.4-1 .4-2 .2-3.1-.4-1.8-.7-4.5 2.2-7.7-.3 1.5.4 4.2-.1 6-.4 1.3-.9 2.6-1.5 3.8.5-.6 1.1-1.2 1.7-1.8.3-1 .2-2.5.8-4.9.7-2.9 2.2-3.3 2.8-4.8.5 3.3-1 6.7-2.4 8.6l.4-.3c.4-.3.8-.6 1.1-1 .4-1.8 1.2-3.5 2.4-5 .8-.9 2.7-1.4 3-2.2-.3 3.3-2.3 5.1-4 6.3.9-.5 1.9-.7 2.9-.7s2 .4 2.8 1c0 0-2.2 1.3-3.7 1.1-1.5-.2-2.1-.5-3-.2-.3.3-.7.6-1.1.9 2.2-.6 4.8 1 5.8 2-1.9.9-3.5.3-4.3-.6-.7-.7-1.8-.4-2.3-.8-.7.6-1.3 1.2-2 1.8-.7.7-1.3 1.5-1.9 2.4 1.4-1.3 3.7-2.7 6-2.2-.3.9-1.8 2.5-3.4 3.1-1.4.4-2.7.4-3.6.9-.6 1-1 2.1-1.4 3.3 2.1-3.1 6.3-3.9 7.3-3.7 0 0-2 .9-2.4 2.4-.5 1.6-2.2 2.1-3.6 2.2-.7.1-1.4.5-1.9 1-.4 1.4-.8 2.9-1 4.4 1.9-6.5 6.4-5.5 6.4-5.5-.6.3-1 .9-1.2 1.5-.4 1.1-.9 2-2.6 3.2-1.2.8-2.2 2.1-2.7 3.5 0 1.8.4 3.5.9 5.2-.3-2.2-.2-5.2 1.4-7.4-.2 1.5 1.5 4.1 1.1 5.9-.3 1.5-1.4 3.4-1.2 4.8.2.4.4.8.6 1.1 0-1 .5-2.3.5-3.3.3.9.2 3 .2 4.4.5.8 1.1 1.5 1.7 2.2-1.3-2.4-1.4-6-.4-9 1 1.5 2.1 4.4 1.8 6.4-.2 1.5 0 2.9.4 4.3l.3.3c.3.3.7.6 1 .8-1.5-2.1-1.3-5.3-1-6.7 1.8 2 3.3 6 3.2 8.1l1.2.6c1.6.7 3.4 1.1 5.1.6v.2l.1.2v.4c-1.8.5-3.8 0-5.5-.7l-1.8-.9c-1.1 1.1-3.4 1.8-4.8 1.4-1.3-.4-2.6-1.4-3.6-1.3 1.7-1.8 3.9-1.9 5.2-1.1 1.2.7 2 1 2.7.8-.8-.5-1.6-1.1-2.3-1.7l-.3-.3c-1.9.7-4 0-5.3-.8-1.5-.9-1.7-2.6-2.8-3.5 3.5-.1 5 1.4 5.6 2.3.5.7 1.2 1.3 2 1.5-1.1-1.1-2.1-2.2-2.9-3.5-.9-.2-3 0-4.1-1.5 1.5-.1 2.6 0 3.4.5-.2-.4-.4-.8-.6-1.1-1.1-.2-3.1 0-4.4-1.1-1.1-1.1-2.2-2.3-3.1-3.6 0 0 2.5.5 3.8 1.1-1.1-1-3.8-5.7-3.8-5.8ZM96.4 27.3s-3 1-6 6c.3-1.1.6-2.2.7-3.4 4.3-2.4 4.6-4.5 4.9-8.2-.2 1-3.1 2.5-3.6 4.1-.4 1.3-.8 2.5-1.2 3.2v-3.5c1.3-1.1 4.2-4.4 3.3-9.1-.4 1.2-3 1.6-3.6 7.5-.2-1.1-.5-2.1-.8-3.2 1.2-1.5 3.1-5.8.9-12.8-.3 1.2-2.4 5.7-1.9 8.3.2.8.3 1.7.3 2.6 0-.2-.1-.4-.2-.6L88 15.5c0-1.4.2-2.8.7-4.1.3-.6.4-1.3.3-2 0-.7-.4-1.3-.9-1.8-.6-.8-.9-2.8-.9-2.8s-2.1 3.5.2 9.8c-.4-.7-.9-1.4-1.5-2.1-.4-1-.5-2-.3-3.1.4-1.8.6-4.5-2.3-7.7.3 1.5-.4 4.2.2 6 .4 1.3.9 2.5 1.5 3.8-.5-.6-1.1-1.2-1.8-1.7-.3-1-.2-2.5-.8-4.9-.8-2.9-2.2-3.2-2.9-4.8-.4 3.3 1.1 6.7 2.5 8.6l-.4-.3-1.2-.9c-.4-1.8-1.3-3.5-2.5-5-.8-.9-2.8-1.3-3-2.2.3 3.3 2.4 5 4.1 6.3-.9-.5-1.9-.7-2.9-.6-1 0-2 .4-2.8 1 0 0 2.2 1.2 3.7 1 1.5-.2 2.1-.5 3-.2.3.3.7.6 1.1.9-2.2-.6-4.8 1.1-5.8 2.1 2 .9 3.5.2 4.3-.6.7-.7 1.7-.5 2.3-.9.7.6 1.4 1.1 2 1.8.7.7 1.3 1.5 1.9 2.3-1.4-1.2-3.7-2.6-6-2.1.3.9 1.8 2.5 3.5 3 1.4.4 2.7.4 3.6.8.6 1 1.1 2.1 1.5 3.2-2.2-3.1-6.4-3.7-7.4-3.6 0 0 2 .8 2.5 2.4.5 1.6 2.2 2 3.7 2.2.7 0 1.4.4 1.9 1 .5 1.4.8 2.9 1.1 4.4-2-6.4-6.5-5.4-6.5-5.4.6.3 1 .9 1.2 1.5.4 1.1.9 2 2.7 3.2 1.3.8 2.2 2 2.8 3.4 0 1.8-.3 3.5-.8 5.2.3-2.2.1-5.2-1.5-7.4.2 1.5-1.5 4.1-1 5.9.4 1.5 1.5 3.4 1.3 4.8l-.6 1.2c0-1-.5-2.3-.5-3.3-.3.9-.1 3-.2 4.4-.5.8-1 1.5-1.6 2.2 1.2-2.5 1.3-6 .2-9-1 1.5-2 4.5-1.7 6.5.2 1.5.1 2.9-.3 4.3l-.3.3c-.3.3-.7.6-1 .9 1.5-2.2 1.2-5.3.9-6.7-1.8 2-3.2 6-3 8.1-.4.2-.8.4-1.1.6-1.6.7-3.4 1.2-5.1.7v.8c1.9.5 3.8 0 5.5-.8.6-.3 1.2-.6 1.8-1 1.1 1.1 3.5 1.7 4.8 1.3 1.3-.4 2.6-1.5 3.6-1.4-1.7-1.7-4-1.8-5.2-1-1.1.7-1.9 1.1-2.7.8.8-.5 1.6-1.1 2.3-1.8l.3-.3c1.9.6 4 0 5.3-.9 1.4-.9 1.7-2.6 2.8-3.6-3.5 0-4.9 1.5-5.5 2.4-.5.7-1.2 1.3-2 1.5 1.1-1.1 2-2.3 2.9-3.5.9-.2 3-.1 4.1-1.6-1.5-.1-2.6 0-3.4.5l.6-1.2c1.1-.2 3.1 0 4.4-1.2 1.1-1.1 2.1-2.3 3-3.6 0 0-2.5.5-3.7 1.2 1.1-1 3.7-5.8 3.7-5.9ZM67.3 20.4zM67.2 20.8zM67.3 20.4zM67.3 20.4zM67.2 20.8zM68.4 33.8c.1-.7.3-1.4.4-2.3 1.1-6.1.4-11.8-2-17-2.9-6.2-9.3-12.9-18.3-13.1-9.1 0-15.6 6.4-18.7 12.6-2.6 5.1-3.4 10.8-2.4 17 .1.9.3 1.6.4 2.3 0 .5.1.9.3 1.4.1.6.3 1.2.4 1.7v.2c.1.5.3 1 .4 1.5.3 1 .5 1.5.8 1.9 0 .2.2.4.3.7l.3.9v.3c0 .3.1.5.2.8 0 1.4.7 2.2 1.5 3.3.9 1.1 1.6 1.3 2.9 1.5.9.1 1.4.2 3 .6l2 .4c2.3.8 4.6 1.3 7.9 1.3h.4c3.1 0 5.2-.4 7.5-1.1s1.9-.4 1.9-.4c1.6-.3 2.2-.4 3.1-.5 1.3-.2 2-.3 3-1.5.9-1 1.5-1.8 1.6-3.2.1-.3.2-.5.3-.8V42c0-.4.2-.7.3-.9.1-.3.2-.5.3-.7.3-.5.5-.9.8-1.9.1-.5.3-1 .4-1.5v-.2c.1-.5.3-1.1.4-1.7.2-.4.3-.9.3-1.4Zm-1-.2v.2c0 .3-.1.6-.2.9-.4 1.2-1.6 2.1-3.5 2.8.1-.3.2-.6.3-1 .4.1.9.2 1.4-.1.3-.2.4-.5.6-.8.1-.3.2-.6.3-1 .2-.7.3-1.7.6-2.8 0 .2 0 .4.2.6.1.2.3.2.5.3 0 .3-.1.7-.2 1ZM47.9 46.5c-7.3 0-13.6-1.7-16.1-4.1.1-.1.3-.3.6-.4 4.8 2.5 12.5 2.8 15.4 2.9h.7c3.3 0 10.4-.3 14.9-2.5.3.1.5.3.6.4-2.6 2.3-8.9 3.8-16.1 3.7ZM28.7 33.3v-.2c0-.3-.1-.6-.2-1 .4 0 .6-.4.7-.8.2.8.3 1.5.4 2 .2 1.4.4 2.2 1 2.6.3.2.6.3.8.3h.5c0 .3.1.7.2 1-1.9-.7-3-1.7-3.4-2.9 0-.3-.1-.6-.2-.9Zm1.8-18.5c.2-.2.4-.4.6-.5-.4.6-.9 1.3-1.2 2 .2-.5.4-.9.6-1.4Zm35.6.5c.2.5.4 1 .6 1.4-.4-.7-.8-1.4-1.2-2 .2.2.4.3.6.6ZM68 30.4h-.2c-.2 0-.5 0-.6.3.2-.9.4-1.5.5-1.9.2-.6.3-.8.5-.9 0 .9-.2 1.8-.3 2.8Zm-4.6 10.9h-.1c-.3-.1-.7-.2-1.1-.3 1.4-.4 2.6-.9 3.4-1.5-.5.7-1.3 1.3-2.3 1.8Zm-29.4.4c1.2-.2 2.5-.2 2.6-.2 3 .5 6.8.9 11.4.9h1.3c4.2 0 7.6-.3 10.4-.8 0 0 1.1.2 2.3.4-3.7 1.4-9.1 2-14 1.9-4.9 0-10.3-.7-13.9-2.2Zm-3.7-2.6c.9.6 2 1.2 3.4 1.6-.4 0-.8.1-1.1.2h-.1c-.9-.5-1.7-1.2-2.2-1.9Zm17.6 2.3c-10.6-.1-17.1-1.8-18.4-4.7 1.2.9 3 1.6 5.4 2.1 3.9.8 8.9.9 12.9.9h3.9c3.2 0 6.6-.1 9.5-.6 2.4-.4 4.2-1.1 5.4-2-1.4 2.9-8 4.4-18.6 4.2ZM33 35.3c0-.1 0-.3.4-.4.6-.1 1.1-.2 1.6-.2.6 0 1-.1 1.5-.3.4-.2.7 0 .7 0h.1v.8c0 .1-.1.3-.1.5v1c-.2.2-.2.2-1.1.2h-.3c-.7 0-1 .1-1.3.3-.2 0-.3.2-.6.2-.5 0-.7-1.3-.8-2.1Zm30.1.4Zm0 0Zm-4.1-1Zm-11 3.4v.5-.5s-.9 0-3.7-.4c.1-.1.2-.2.3-.4.4-.6 0-1.8 0-2 0-.1 0-.2-.2-.3 1 0 2.2 0 3.5.1h3.6s-.1.2-.2.3c0 .2-.5 1.4-.1 1.9.1.3.2.4.3.5-2.8.3-3.7.3-3.7.3Zm-7-2.6c.6.1 1.3.3 2.1.4h.3v.4h-.2c-.8-.1-2.3-.6-3.2-1.1.3 0 .7.1 1 .2Zm11.7 1v-.4h.3c.8 0 1.5-.2 2.1-.3.4 0 .7-.1 1-.2-.9.4-2.4.9-3.2 1h-.2Zm-16.8 1.4c.9 0 1.4 0 1.9-.6.2-.3.3-.6.3-.8 1.3.9 3.6 1.7 5.6 2.1-2.7 0-5.5-.3-8-.7h.2Zm22-1.1c0 .3 0 .6.3.8.5.6 1 .6 1.9.6h.2c-2.5.4-5.3.5-8 .5 2-.3 4.3-1.1 5.7-2Zm2.2.4c-.8 0-.9 0-1.1-.2-.1-.2 0-.4 0-.7V36c0-.2 0-.4-.1-.5s0-.1 0-.3v-.4h.7c.4.2.9.3 1.4.3.5 0 1 .1 1.7.3.3 0 .3.2.4.2v.1c-.1.8-.4 2.1-.8 2.1-.3 0-.4 0-.6-.2-.3-.2-.6-.3-1.3-.3h-.3Zm5.1-2.9v.4c-.3.3-.5.4-.5.4 0-.4-.4-1-1.6-1.3-.7-.2-1.3-.3-1.7-.3-.5 0-.8 0-1.1-.2-.6-.3-1.1-.2-1.4 0L58 33h-.2s-2.4.8-9.6.7c-7.3 0-9.5-.9-9.6-.9h-.2l-.9.2c-.3-.1-.8-.2-1.4 0-.3.1-.7.2-1.1.2-.5 0-1.1 0-1.8.3-1.1.3-1.5.9-1.6 1.3 0 0-.2 0-.5-.4 0-.3-.1-.7-.2-1.1-.1-.7-.3-1.5-.5-2.4-.1-.6-.3-1.1-.4-1.5-.4-1.6-.5-2.3-1.2-2.8-.4-.3-.2-1.3 0-2v-.2c.2-1.1.3-1.8.3-2.6 0-.7.2-1.4.2-1.4V20c0-.2-.1-.4-.2-.5.6 0 .6 0 .7.3v.4c0 .6.2 1.2.4 2.2.3 1.2.7 1.2 3.4 1.1h1c3.8-.2 6.2-.2 13.5 0 7.6 0 10.1.1 13.9.4.9 0 1.6.1 2.2.1h1.2c.3 0 .6-.2.8-.4.2-.2.2-.5.3-.7.3-1.1.4-1.9.5-2.5v-.2h.6v2.1c0 .8 0 1.5.2 2.6 0 .5.2 1 .2 1.5 0 .4-.1.6-.2.7-.5.3-.7.8-.9 1.4-.2.6-.4 1.5-.7 2.8-.4 1.3-.6 2.4-.7 3.2Zm-37-4.4c-.1-.9-.2-1.8-.2-2.8.4.3.5.7.8 2.2 0 .2.1.5.2.7 0 0 0-.1-.1-.1-.2-.1-.3-.2-.5-.2h-.2ZM52.5 6.2c-.4.7-.8 1.5-1.1 2.3-1-.2-1.9-.3-3-.3-1 0-2 0-3 .2-.3-.8-.7-1.6-1.1-2.3 1.3-.3 2.7-.5 4.1-.5 1.4 0 2.7.2 4.1.6Zm-4.3 3h.2c.9 0 1.8.1 2.6.2-.3.8-.6 1.7-.8 2.6h-3.6c-.2-.9-.5-1.7-.8-2.6.8-.1 1.6-.2 2.4-.2Zm17.5 11.4c-1.4-2-3.2-3.8-5.3-5.1.3-.3.6-.6.9-.8 1.9 1.8 3.4 3.9 4.4 5.8ZM49.9 13c-.2.7-.3 1.5-.5 2.2h-2.2c-.1-.8-.3-1.5-.4-2.2h3.1Zm-1.6 3.2h1c-.1.7-.2 1.4-.3 2.2h-1.4c0-.7-.1-1.5-.2-2.2h1Zm15.3 5.9c-1.4-1-3.1-1.9-5.3-2.5.1-.5.3-1 .5-1.5 2.1.9 3.8 2.3 5.2 4h-.4Zm-15.5-.5h-.4c0-.8 0-1.5-.1-2.3h1.2c0 .7-.1 1.5-.2 2.3H48Zm-8.6-.1c0-.5-.1-1-.2-1.4 1.2-.3 2.6-.4 4.3-.6.1.7.2 1.3.3 2.1h-4.3Zm-1 0h-3.7c1-.5 2.1-1 3.5-1.3 0 .4.1.8.2 1.2Zm6.3.1c0-.7-.2-1.4-.3-2.1h2c0 .7 0 1.5.1 2.2h-1.9Zm5.1-2.2c.7 0 1.4 0 2 .1l-.3 2.1h-1.9c0-.8.1-1.5.2-2.2Zm3 .2c1.6.2 3 .4 4.2.7 0 .5-.2.9-.2 1.4h-4.3c0-.7.2-1.4.3-2Zm5.2.9c1.3.4 2.5.9 3.5 1.4-.9 0-1.9-.1-3.1-.2h-.6c0-.4.1-.8.2-1.2Zm-.7-1.2c-1.2-.3-2.6-.5-4.3-.7.2-.7.3-1.4.5-2 1.6.2 3 .6 4.3 1.1-.2.5-.4 1-.5 1.6Zm-5.3-.8c-.7 0-1.4 0-2.1-.1 0-.7.2-1.5.3-2.1.8 0 1.6.1 2.4.2-.2.7-.4 1.3-.5 2.1Zm-5.6-.1h-2.1c-.1-.7-.3-1.4-.5-2.1.8 0 1.6-.1 2.4-.1 0 .7.2 1.4.2 2.1Zm-3.1.1c-1.6.1-3.1.3-4.3.6-.1-.6-.3-1.1-.5-1.6 1.3-.5 2.7-.8 4.3-1 .2.6.3 1.3.5 2Zm-5.3.8c-2.2.6-3.9 1.4-5.4 2.4h-.4c1.4-1.7 3.2-3 5.3-3.9.2.4.3.9.5 1.5Zm21.2-2.1c.2-.3.4-.6.5-.9 2.3 1.5 4.2 3.4 5.6 5.8v.2c-1.6-2.2-3.6-3.9-6.1-5Zm-1-.4c-1.3-.5-2.8-.9-4.4-1.1.2-.6.5-1.2.8-1.7 1.5.5 2.9 1.1 4.2 1.8-.2.3-.4.7-.6 1ZM53 15.5c-.8-.1-1.7-.2-2.6-.2.1-.8.3-1.5.5-2.2 1 .1 1.9.3 2.9.5-.3.6-.5 1.2-.8 1.9Zm-6.8-.3c-.9 0-1.7 0-2.6.2-.2-.7-.5-1.3-.7-1.9.9-.2 1.9-.4 2.9-.5.2.7.3 1.4.4 2.2Zm-3.6.3c-1.6.2-3.1.6-4.4 1-.2-.4-.4-.7-.6-1.1 1.3-.7 2.8-1.3 4.3-1.7.3.6.5 1.2.7 1.8Zm-5.3 1.4c-2.6 1.1-4.6 2.7-6.2 4.9v-.2c1.5-2.3 3.4-4.2 5.8-5.6.2.3.4.6.5.9Zm22.3-2c-1.4-.8-2.8-1.5-4.4-1.9.4-.6.8-1.2 1.2-1.7 1.5.8 2.9 1.7 4.1 2.8-.3.3-.7.6-1 .9Zm-5.4-2.2c-1-.3-2-.5-3.1-.6.2-.9.5-1.7.8-2.5 1.2.3 2.4.7 3.5 1.2-.5.6-.9 1.2-1.3 1.9Zm-8.7-.7c-1.1.1-2.1.3-3.1.5-.4-.7-.8-1.3-1.2-1.9 1.1-.5 2.3-.8 3.6-1.1.3.8.5 1.6.8 2.5Zm-4.1.8c-1.6.5-3 1.1-4.4 1.8-.3-.4-.6-.7-.9-.9 1.3-1 2.7-1.9 4.2-2.7.4.5.8 1.1 1.2 1.8Zm-5.3 2.4c-2.1 1.3-3.9 3-5.4 5 1-2 2.6-4 4.5-5.7.3.2.6.5.9.8ZM66.7 19h-.2c-.1 0-.2.1-.3.2-1-1.7-2.3-3.5-3.9-5h.2c.4-.1.9-.2 1.3-.1 1.1 1.5 2.1 3.1 3 4.9Zm-4.6-5.8c-.2 0-.5.2-.7.3-1.3-1.1-2.7-2.2-4.3-3 .5-.5 1-.9 1.6-1.3 1.5 1.1 2.9 2.4 4.2 3.9-.3 0-.5 0-.8.2ZM56.2 10c-1.2-.6-2.5-1-3.8-1.3.3-.8.7-1.5 1.1-2.2 1.5.5 3 1.2 4.4 2.1-.6.4-1.1.9-1.6 1.5Zm-2.3-4.4c.4-.6.7-1.1 1.1-1.7 1.9.8 3.6 2 5.1 3.3-.5.2-1 .5-1.5.8-1.5-1-3.1-1.8-4.8-2.3Zm-.9-.3c-1.5-.4-3-.6-4.5-.7-1.5 0-3.1.2-4.6.5-.4-.6-.7-1.2-1.1-1.8 1.8-.6 3.7-.9 5.7-.9s3.9.4 5.7 1.1L53 5.3Zm-10.1.2c-1.7.5-3.3 1.3-4.8 2.2-.5-.3-.9-.6-1.5-.8 1.5-1.3 3.2-2.4 5.2-3.2.4.6.8 1.2 1.1 1.8Zm.5.9c.4.7.7 1.5 1 2.2-1.3.3-2.6.7-3.8 1.2-.5-.6-1-1.1-1.6-1.5 1.4-.8 2.9-1.5 4.4-1.9Zm-3.8 3.9c-1.6.8-3.1 1.8-4.4 2.9-.2-.1-.4-.2-.7-.3-.3 0-.5-.1-.8-.2C35 11.2 36.5 10 38 8.9c.6.4 1.1.9 1.5 1.4Zm-5.4 3.5h.2c-1.7 1.5-3 3.2-4.1 4.9-.1-.1-.3-.2-.5-.3.9-1.8 1.9-3.4 3.1-4.9.4 0 .9 0 1.3.2Zm-2.8 27.6s-.2.1-.2.2v-.4c.1 0 .2.2.3.2Zm33.3.7-.2-.2c.1 0 .2-.2.4-.2v.4Zm.4-28.8c-.3-.1-.5-.2-.8-.3-1.4-1.7-2.9-3.3-4.6-4.5.4-.2.9-.4 1.4-.6 1.7 1.6 3 3.5 4.1 5.4ZM35.8 7.6c.5.2.9.4 1.4.7-1.7 1.2-3.3 2.7-4.7 4.4-.3 0-.6.1-.8.2 1.1-1.9 2.5-3.7 4.2-5.3Zm-2.9 38.1c.6.4 1.2.7 1.9 1-.9-.1-1.3-.3-1.9-1Zm15 3.4c-4.1 0-6.5-.7-9.5-2l-.9-.4c-2.2-.9-3.6-1.5-4.7-2.4 3.2 1.9 8.8 3.2 15.2 3.2h.7c6.1 0 11.5-1.1 14.6-2.9-1.1.9-2.5 1.5-4.8 2.3l-.9.4c-3.1 1.2-5.5 1.8-9.6 1.8Zm13-2.1c.7-.3 1.4-.6 1.9-1-.6.7-1.1.8-1.9 1Z" fill="currentColor" />
+                </svg>
+              </div>
+              <h2 className="callout-title font-brier">
+                See more helmets and highlights<br />
+                from Lando on the track
+              </h2>
+              <a href="https://landonorris.com/on-track" target="_blank" rel="noopener noreferrer" className="btn-w is-callout">
+                VIEW ON TRACK
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ marginLeft: '10px' }}>
+                  <path d="M1 13L13 1M13 1H4M13 1V10" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* Lando Store World Drivers' Champion Section */}
+        <section className="s is-lando-exe">
+          <div className="exe-top-visor"></div>
+
+          <div className="c is-lando-exe">
+            <div className="spacer is-exe" style={{ height: '8rem' }}></div>
+            <div className="exe-grid">
+              
+              {/* Left Column: Text & Store Info */}
+              <div className="exe-text-w">
+                <div className="exe-eyebrow">
+                  <svg width="16" height="17" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ marginRight: '8px' }}>
+                    <path d="m10.931 5.783-.759.812c-1.132 1.212-2.89 1.212-4.022 0l-.76-.812C4.313 4.637 2.568 5.29 2.275 6.928l-1.238 7.18c-.227 1.318.652 2.543 1.838 2.543h10.588c1.185 0 2.064-1.225 1.838-2.544l-1.239-7.179c-.28-1.638-2.037-2.29-3.116-1.145h-.014ZM10.839 3.048 9.84 1.849C8.894.717 7.43.717 6.484 1.85l-1 1.199" stroke="currentColor" strokeWidth="1.949" strokeMiterlimit="10"/>
+                  </svg>
+                  <span>LANDO STORE</span>
+                </div>
+
+                <h2 className="exe-headline">
+                  WORLD<br />
+                  DRIVERS'<br />
+                  <span className="span-font-brier">CHAMPION</span>
+                </h2>
+
+                <p className="exe-para">
+                  Celebrate this incredible moment with a collection designed for the fans who never stopped believing. Wear it, frame it, treasure it forever.
+                </p>
+
+                <a href="https://landonorris.store/" target="_blank" rel="noopener noreferrer" className="btn-w is-store">
+                  VISIT THE STORE
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ marginLeft: '10px' }}>
+                    <path d="M1 8H15M15 8L8 1M15 8L8 15" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </a>
+
+                {/* Floating Image 4 (#1 NORRIS Black T-shirt) */}
+                <div className="exe-cta-img-w is-4">
+                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/69458be88faa89137717632c_lando-store-gold-2.webp" alt="Lando Store Gold Shirt" className="image is-exe-scroll" />
                 </div>
               </div>
 
-              {/* Helmet 2 */}
-              <div className="helmet-grid-item-w">
-                <div className="helmet-grid-item">
-                  <div className="helmet-grid-item-img-helmet-w">
-                    <img src="https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305b2259159e5170d2b923_In-helm-2025-Discoball-base.webp" alt="Discoball Base" className="helmet-grid-item-img-helmet" />
-                  </div>
-                  <img src="https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305b24037a1e7681195c20_In-helm-2025-Discoball-hover.webp" alt="Discoball Hover" className="helmet-grid-item-reveal-img" />
+              {/* Right Column: Parallax Image Composition */}
+              <div className="exe-col-2">
+                {/* Main Center Image: Lando Hoodie */}
+                <div className="exe-cta-img-w is-1">
+                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/69458be7e803d4123abb47dd_lando-store-gold-5.webp" alt="Lando Champion Hoodie" className="image is-exe-scroll" />
                 </div>
-                <div className="helmet-grid-item-text-w">
-                  <div className="text-title-small-label">Discoball Special</div>
-                  <div className="text-title-small-label date">2025</div>
+
+                {/* Top Right Image: Gold Collection graphic */}
+                <div className="exe-cta-img-w is-2">
+                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/69458be8f7e939c143a9bed6_lando-store-gold-3.webp" alt="Gold Collection" className="image is-exe-scroll" />
+                </div>
+
+                {/* Bottom Center Image: White Helmet Shirt */}
+                <div className="exe-cta-img-w is-3">
+                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/69458be7e4ccfdba84b69d27_lando-store-gold-1.webp" alt="White Helmet Shirt" className="image is-exe-scroll" />
+                </div>
+
+                {/* Floating Sticker: LN1 Gold Logo */}
+                <div className="exe-cta-sticker-w">
+                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/69458c78c9825ebb795d2e81_LN1.webp" alt="LN1 Sticker" className="image is-exe-sticker" />
                 </div>
               </div>
 
-              {/* Helmet 3 */}
-              <div className="helmet-grid-item-w">
-                <div className="helmet-grid-item">
-                  <div className="helmet-grid-item-img-helmet-w">
-                    <img src="https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305aff4692de3e7ea12251_In-helm-2025-DarkGlitter-base.webp" alt="Dark Glitter Base" className="helmet-grid-item-img-helmet" />
-                  </div>
-                  <img src="https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305b03644c91f0a8de407b_In-helm-2025-DarkGlitter-hover.webp" alt="Dark Glitter Hover" className="helmet-grid-item-reveal-img" />
+            </div>
+            <div className="spacer _8rem" style={{ height: '8rem' }}></div>
+          </div>
+        </section>
+
+        {/* Partners & Campaigns Section */}
+        <section className="s is-home-collabs">
+          {/* Diagonal "collabs" watermark in background */}
+          <div className="home-collab-rive-w">
+            <img src={collabsWatermark} alt="" className="image is-collab-placeholder" />
+          </div>
+
+          <div className="c is-home-collabs">
+            <div className="collabs-grid">
+              {/* Left Column: Heading */}
+              <div className="collabs-title-w">
+                <h2 className="collabs-title-main">partners</h2>
+                <h2 className="collabs-title-sub">
+                  <span className="span-font-brier">&amp;campaigns</span>
+                </h2>
+              </div>
+
+              {/* Right Column: Paragraph */}
+              <div className="collabs-para-w">
+                <p className="collabs-para">
+                  Lando is proud to collaborate with a range of partners, who share his passion for performance across a range of industries.
+                </p>
+              </div>
+            </div>
+
+            <div className="spacer _4rem" style={{ height: '4rem' }}></div>
+
+            {/* Infinite Horizontal Marquee Scroll */}
+            <div className="collabs-marquee-container">
+              <div className="collabs-marquee-track">
+                {/* Track has two lists side by side to loop infinitely */}
+                <div className="collabs-marquee-list">
+                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68d294a99b218abd71dc0764_ln4-ln4-collab-logo-uber.svg" alt="Uber" style={{ height: '2.5rem', width: 'auto' }} />
+                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68dbd5d7e14222573f46ebdb_ln4-ln4-collab-lnkart.svg" alt="LnkArt" style={{ height: '2.5rem', width: 'auto' }} />
+                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68dbd5d72c50967c2195c702_ln4-ln4-collab-bell-helmets.svg" alt="Bell" style={{ height: '2.5rem', width: 'auto' }} />
+                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68dbd5d718fcdbf76afbcc45_ln4-ln4-collab-pure-electric.svg" alt="Pure Electric" style={{ height: '2.5rem', width: 'auto' }} />
+                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68dbd5d7a8a302c07e91904d_ln4-ln4-collab-google.svg" alt="Google" style={{ height: '2.5rem', width: 'auto' }} />
+                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67d4349e00e6b7904f3746a3_ln4-ln4-collab-logo-ralph.svg" alt="Ralph Lauren" style={{ height: '2.5rem', width: 'auto' }} />
+                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67efc88cf1d78e3e7624d5e3_ln4-ln4-collab-logo-ps4.svg" alt="PlayStation" style={{ height: '2.5rem', width: 'auto' }} />
+                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67efc88c532235956e5d267a_ln4-ln4-collab-logo-quadrant.svg" alt="Quadrant" style={{ height: '2.5rem', width: 'auto' }} />
+                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67efc88cb3373daa7ba240d6_ln4-ln4-collab-logo-tumi.svg" alt="Tumi" style={{ height: '2.5rem', width: 'auto' }} />
+                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67efc88c1939bc87931c2599_ln4-ln4-collab-logo-hilton.svg" alt="Hilton" style={{ height: '2.5rem', width: 'auto' }} />
                 </div>
-                <div className="helmet-grid-item-text-w">
-                  <div className="text-title-small-label">Dark Glitter Edition</div>
-                  <div className="text-title-small-label date">2025</div>
+                <div className="collabs-marquee-list" aria-hidden="true">
+                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68d294a99b218abd71dc0764_ln4-ln4-collab-logo-uber.svg" alt="Uber" style={{ height: '2.5rem', width: 'auto' }} />
+                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68dbd5d7e14222573f46ebdb_ln4-ln4-collab-lnkart.svg" alt="LnkArt" style={{ height: '2.5rem', width: 'auto' }} />
+                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68dbd5d72c50967c2195c702_ln4-ln4-collab-bell-helmets.svg" alt="Bell" style={{ height: '2.5rem', width: 'auto' }} />
+                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68dbd5d718fcdbf76afbcc45_ln4-ln4-collab-pure-electric.svg" alt="Pure Electric" style={{ height: '2.5rem', width: 'auto' }} />
+                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68dbd5d7a8a302c07e91904d_ln4-ln4-collab-google.svg" alt="Google" style={{ height: '2.5rem', width: 'auto' }} />
+                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67d4349e00e6b7904f3746a3_ln4-ln4-collab-logo-ralph.svg" alt="Ralph Lauren" style={{ height: '2.5rem', width: 'auto' }} />
+                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67efc88cf1d78e3e7624d5e3_ln4-ln4-collab-logo-ps4.svg" alt="PlayStation" style={{ height: '2.5rem', width: 'auto' }} />
+                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67efc88c532235956e5d267a_ln4-ln4-collab-logo-quadrant.svg" alt="Quadrant" style={{ height: '2.5rem', width: 'auto' }} />
+                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67efc88cb3373daa7ba240d6_ln4-ln4-collab-logo-tumi.svg" alt="Tumi" style={{ height: '2.5rem', width: 'auto' }} />
+                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67efc88c1939bc87931c2599_ln4-ln4-collab-logo-hilton.svg" alt="Hilton" style={{ height: '2.5rem', width: 'auto' }} />
                 </div>
               </div>
             </div>
+
+            <div className="spacer _6rem" style={{ height: '6rem' }}></div>
           </div>
         </section>
 
