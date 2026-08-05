@@ -1149,26 +1149,159 @@ const App = () => {
 
       </main>
 
-      {/* Footer */}
-      <footer className="footer">
-        <div className="c footer-inner">
-          <div className="footer-logo">
-            <a href="/" className="nav-logo-stacked">
-              <span>NISARG</span>
-              <span>DARJI</span>
-            </a>
+      {/* Footer SVG Clip Path Definition */}
+      <svg width="0" height="0" style={{ position: 'absolute', pointerEvents: 'none' }} aria-hidden="true">
+        <defs>
+          <clipPath id="footer-clip" clipPathUnits="objectBoundingBox">
+            <path d="M 0,0.96
+                     L 0,0.16
+                     Q 0,0.12 0.02,0.12
+                     L 0.33,0.12
+                     C 0.40,0.12 0.44,0.01 0.5,0.01
+                     C 0.56,0.01 0.60,0.12 0.67,0.12
+                     L 0.98,0.12
+                     Q 1,0.12 1,0.16
+                     L 1,0.96
+                     Q 1,1 0.98,1
+                     L 0.02,1
+                     Q 0,1 0,0.96
+                     Z" />
+          </clipPath>
+        </defs>
+      </svg>
+
+      {/* Footer Section */}
+      <section className="s is-footer">
+        <div className="c is-footer">
+          <div className="footer-layout-w">
+            <div className="footer-layout-clip">
+              <div className="footer-inner-layout">
+                
+                {/* Statement overlay with signature */}
+                <div className="footer-statement-w">
+                  <div className="footer-statement-layout">
+                    <div className="footer-rive-w">
+                      <img 
+                        src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67cecea4e9d311047dcb51e5_ln4-hw-signature2.svg" 
+                        alt="Lando signature" 
+                      />
+                    </div>
+                    <h2 className="text-impact-sm-mona footer">
+                      <span>ALWAYS </span>
+                      <span className="text-impact-sm-brier c-lime-off">BRINGING</span>
+                      <br />
+                      <span>THE </span>
+                      <span className="text-impact-sm-brier c-lime-off">FIGHT.</span>
+                    </h2>
+                  </div>
+                </div>
+
+                {/* Left and Right navigation link columns */}
+                <div className="footer-links-w">
+                  <div className="footer-links-col">
+                    <div className="text-eyebrow">pages</div>
+                    <div className="footer-links-layout">
+                      <a href="/" className="text-link-w">Home</a>
+                      <a href="/on-track" className="text-link-w">On Track</a>
+                      <a href="/off-track" className="text-link-w">Off Track</a>
+                      <a href="/calendar" className="text-link-w">Calendar</a>
+                    </div>
+                    <a href="https://store.landonorris.com/" target="_blank" rel="noopener noreferrer" className="text-link-w c-lime">Store</a>
+                  </div>
+
+                  <div className="footer-links-col">
+                    <div className="text-eyebrow">Follow On</div>
+                    <div className="footer-links-layout">
+                      <a href="https://www.tiktok.com/@landonorris" target="_blank" rel="noopener noreferrer" className="text-link-w">Tiktok</a>
+                      <a href="https://www.instagram.com/lando" target="_blank" rel="noopener noreferrer" className="text-link-w">Instagram</a>
+                      <a href="https://www.youtube.com/landonorris04" target="_blank" rel="noopener noreferrer" className="text-link-w">Youtube</a>
+                      <a href="https://www.twitch.tv/landonorris" target="_blank" rel="noopener noreferrer" className="text-link-w">Twitch</a>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Center Helmet and Business enquiries button */}
+                <div className="footer-bg-helmet-w">
+                  <div className="footer-bg-helmet-layout">
+                    <img 
+                      src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67d43d6e276c436a378a1da6_ln-360-helm-1.webp" 
+                      alt="Lando Helmet" 
+                      className="footer-bg-img"
+                    />
+                    <div className="footer-bg-bottom-btn-w">
+                      <a href="mailto:business@landonorris.com" className="btn-w">
+                        <span>business enquiries</span>
+                        <span>↗</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Partner logos marquee row */}
+                <div className="footer-marquee" aria-hidden="true">
+                  <div className="footer-marquee-item">
+                    <div className="footer-marquee-logo-w">
+                      <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68dbd5d70a9e147b77952c0d_ln4-footer-logo-android.svg" alt="Android" className="footer-marquee-svg" />
+                    </div>
+                    <div className="footer-marquee-logo-w">
+                      <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68dbd5d7564fc5a9fccf822f_ln4-footer-logo-pap.svg" alt="PAP" className="footer-marquee-svg" />
+                    </div>
+                    <div className="footer-marquee-logo-w">
+                      <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68dbd5d761eeca9060e00622_ln4-footer-logo-monster.svg" alt="Monster" className="footer-marquee-svg" />
+                    </div>
+                    <div className="footer-marquee-logo-w">
+                      <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68dbd5d72c50967c2195c702_ln4-ln4-collab-bell-helmets.svg" alt="Bell Helmets" className="footer-marquee-svg" />
+                    </div>
+                    <div className="footer-marquee-logo-w">
+                      <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67efc88cb3373daa7ba240d6_ln4-ln4-collab-logo-tumi.svg" alt="Tumi" className="footer-marquee-svg" />
+                    </div>
+                    <div className="footer-marquee-logo-w">
+                      <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68dbd5d718fcdbf76afbcc45_ln4-ln4-collab-pure-electric.svg" alt="Pure Electric" className="footer-marquee-svg" />
+                    </div>
+                    {/* Duplicate set for seamless marquee loop */}
+                    <div className="footer-marquee-logo-w">
+                      <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68dbd5d70a9e147b77952c0d_ln4-footer-logo-android.svg" alt="Android" className="footer-marquee-svg" />
+                    </div>
+                    <div className="footer-marquee-logo-w">
+                      <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68dbd5d7564fc5a9fccf822f_ln4-footer-logo-pap.svg" alt="PAP" className="footer-marquee-svg" />
+                    </div>
+                    <div className="footer-marquee-logo-w">
+                      <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68dbd5d761eeca9060e00622_ln4-footer-logo-monster.svg" alt="Monster" className="footer-marquee-svg" />
+                    </div>
+                    <div className="footer-marquee-logo-w">
+                      <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68dbd5d72c50967c2195c702_ln4-ln4-collab-bell-helmets.svg" alt="Bell Helmets" className="footer-marquee-svg" />
+                    </div>
+                    <div className="footer-marquee-logo-w">
+                      <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67efc88cb3373daa7ba240d6_ln4-ln4-collab-logo-tumi.svg" alt="Tumi" className="footer-marquee-svg" />
+                    </div>
+                    <div className="footer-marquee-logo-w">
+                      <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68dbd5d718fcdbf76afbcc45_ln4-ln4-collab-pure-electric.svg" alt="Pure Electric" className="footer-marquee-svg" />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Topographic pattern overlay */}
+                <div className="footer-bg-pattern-w">
+                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67dbeba158707fa1cd5e5e45_blobs_footer_1.svg" alt="Background pattern" />
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="footer-links">
-            <a href="https://www.tiktok.com/@landonorris" target="_blank" rel="noopener noreferrer" className="footer-link-item">Tiktok</a>
-            <a href="https://www.instagram.com/lando" target="_blank" rel="noopener noreferrer" className="footer-link-item">Instagram</a>
-            <a href="https://www.youtube.com/landonorris04" target="_blank" rel="noopener noreferrer" className="footer-link-item">Youtube</a>
-            <a href="https://www.twitch.tv/landonorris" target="_blank" rel="noopener noreferrer" className="footer-link-item">Twitch</a>
-          </div>
-          <div className="footer-copy">
-            © 2026 NISARG DARJI. ALL RIGHTS RESERVED.
+
+          {/* Legal bottom row */}
+          <div className="footer-legal-links-w">
+            <div className="footer-legal-links-col">
+              <span style={{ fontWeight: 700 }}>© 2026 NISARG DARJI.</span>
+              <span>All rights reserved</span>
+            </div>
+            <div className="footer-legal-links-col">
+              <a href="/legal/privacy-policy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+              <a href="/legal/terms-conditions" target="_blank" rel="noopener noreferrer">Terms</a>
+            </div>
           </div>
         </div>
-      </footer>
+        <div className="footer-bg-gradient"></div>
+      </section>
     </div>
   )
 }
