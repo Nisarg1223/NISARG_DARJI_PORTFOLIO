@@ -1999,7 +1999,7 @@ html.lenis body {
 .is-home-collabs {
   background-color: #f4f3ef;
   position: relative;
-  padding: 2.5rem 0 12rem 0;
+  padding: 2.5rem 0 3rem 0;
   overflow: visible;
   z-index: 1;
 }
@@ -2158,7 +2158,7 @@ html.lenis body {
   color: var(--color--black);
   position: relative;
   background-color: #F4F4ED;
-  padding: 8rem 0;
+  padding: 3rem 0 8rem 0;
   overflow: visible;
 }
 
