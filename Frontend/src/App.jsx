@@ -625,16 +625,69 @@ const App = () => {
             rotation: target.rotate,
             scale: target.scale,
             opacity: 1,
-            duration: 1.2,
+            duration: 0.5,
             ease: 'power4.out',
             scrollTrigger: {
               trigger: '.is-callout-socials',
               start: 'top 70%',
               toggleActions: 'play none none none'
             },
-            delay: index * 0.05
+            delay: index * 0.015
           })
           socialsTweens.push(tween)
+
+          // Card Hover Animation Focus setup
+          card.addEventListener('mouseenter', () => {
+            gsap.to(card, {
+              y: (parseFloat(target.y) - 2.5) + 'rem',
+              scale: target.scale * 1.08,
+              rotation: target.rotate * 0.4,
+              duration: 0.35,
+              ease: 'power2.out',
+              overwrite: 'auto'
+            })
+            card.style.zIndex = 15
+
+            socialsCards.forEach((otherCard) => {
+              if (otherCard !== card) {
+                gsap.to(otherCard, {
+                  opacity: 0.45,
+                  duration: 0.35,
+                  ease: 'power2.out',
+                  overwrite: 'auto'
+                })
+              }
+            })
+          })
+
+          card.addEventListener('mouseleave', () => {
+            gsap.to(card, {
+              y: target.y,
+              scale: target.scale,
+              rotation: target.rotate,
+              duration: 0.35,
+              ease: 'power2.out',
+              overwrite: 'auto'
+            })
+            
+            setTimeout(() => {
+              const originalZIndex = [1, 2, 3, 4, 3, 2, 1][index]
+              card.style.zIndex = originalZIndex
+            }, 100)
+
+            socialsCards.forEach((otherCard, otherIdx) => {
+              const otherTarget = cardTargets[otherIdx]
+              if (otherCard !== card && otherTarget) {
+                gsap.to(otherCard, {
+                  opacity: 1,
+                  scale: otherTarget.scale,
+                  duration: 0.35,
+                  ease: 'power2.out',
+                  overwrite: 'auto'
+                })
+              }
+            })
+          })
         }
       })
     }
