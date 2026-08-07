@@ -1,12 +1,14 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { motion, useAnimation } from 'framer-motion'
+import Lenis from 'lenis'
 import heroImage from './assets/Hero_image.png'
 import backgroundVideo from './assets/test_video_7.mp4'
 import Navbar from './components/Navbar'
 import secondpageImage from './assets/secondpage_image.png'
 import signatureImage from './assets/signature_image.png'
+import Menu from './components/Menu'
 
 const HELMETS_DATA = [
   {
@@ -146,9 +148,67 @@ const App = () => {
   const statementContainerRef = useRef(null)
   const ototPinRef = useRef(null)
 
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const lenisRef = useRef(null)
+
+  useEffect(() => {
+    // Initialize Lenis smooth scroll
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 1.5,
+    })
+
+    lenisRef.current = lenis
+
+    // Connect Lenis to GSAP ScrollTrigger
+    lenis.on('scroll', ScrollTrigger.update)
+
+    const updateLenis = (time) => {
+      lenis.raf(time * 1000)
+    }
+    gsap.ticker.add(updateLenis)
+
+    // Disable lag smoothing in GSAP to prevent scroll syncing issues
+    gsap.ticker.lagSmoothing(0)
+
+    return () => {
+      lenis.destroy()
+      gsap.ticker.remove(updateLenis)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (lenisRef.current) {
+      if (isMenuOpen) {
+        lenisRef.current.stop()
+      } else {
+        lenisRef.current.start()
+      }
+    }
+  }, [isMenuOpen])
+
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.playbackRate = 0.35; // Slow down background video significantly
+    }
+
+    // 1. Pre-build Statement Text Block Reveal Timeline (paused, triggered on scrub crossover)
+    const statementTimeline = gsap.timeline({ paused: true })
+    const sBlocks = document.querySelectorAll('.reveal-line-block')
+    const sTexts = document.querySelectorAll('.reveal-line-text')
+    if (sBlocks.length > 0 && sTexts.length > 0) {
+      sBlocks.forEach((block, index) => {
+        const text = sTexts[index]
+        statementTimeline
+          .to(block, { scaleX: 1, duration: 0.4, ease: 'power2.inOut' }, index * 0.12)
+          .set(text, { opacity: 1 }, index * 0.12 + 0.38)
+          .to(block, { scaleX: 0, transformOrigin: 'right', duration: 0.4, ease: 'power2.inOut' }, index * 0.12 + 0.4)
+      })
     }
 
 
@@ -229,23 +289,24 @@ const App = () => {
         0.35
       )
 
-      // 4. Scroll statement text container upwards into the viewport
+      // 4. Scroll statement text container upwards into the viewport early and rapidly
       heroTimeline.fromTo(statementContainerRef.current,
-        { y: '30vh', opacity: 0 },
-        { y: '0vh', opacity: 1, ease: 'power1.inOut' },
-        0.6
+        { y: '35vh', opacity: 0 },
+        { y: '0vh', opacity: 1, duration: 0.25, ease: 'power2.out' },
+        0.45
       )
 
-      // Trigger Framer Motion animation when the statement container starts to appear
-      heroTimeline.to({}, {
-        duration: 0.1,
-        onStart: () => {
-          controls.start("visible")
-        },
-        onReverseComplete: () => {
-          controls.start("hidden")
+      // Trigger block reveal animation forward on scroll down, and in reverse on scroll up
+      heroTimeline.call(() => {
+        if (heroTimeline.scrollTrigger) {
+          const isScrollingDown = heroTimeline.scrollTrigger.direction === 1
+          if (isScrollingDown) {
+            statementTimeline.play()
+          } else {
+            statementTimeline.reverse()
+          }
         }
-      }, 0.6)
+      }, null, 0.65)
 
       // 5. Fade out statement container and move it slightly up/left as the horizontal track starts sliding in
       heroTimeline.to(statementContainerRef.current,
@@ -364,6 +425,25 @@ const App = () => {
     let ototTimeline = null
     const ototPin = ototPinRef.current
     if (ototPin) {
+      const playOtotReveal = () => {
+        const ototBlocks = ototPin.querySelectorAll('.reveal-line-block')
+        const ototTexts = ototPin.querySelectorAll('.reveal-line-text')
+        ototBlocks.forEach((block, index) => {
+          const text = ototTexts[index]
+          gsap.timeline()
+            .to(block, { scaleX: 1, duration: 0.4, ease: 'power2.inOut' }, index * 0.1)
+            .set(text, { opacity: 1 }, index * 0.1 + 0.38)
+            .to(block, { scaleX: 0, transformOrigin: 'right', duration: 0.4, ease: 'power2.inOut' }, index * 0.1 + 0.4)
+        })
+      }
+
+      const resetOtotReveal = () => {
+        const ototBlocks = ototPin.querySelectorAll('.reveal-line-block')
+        const ototTexts = ototPin.querySelectorAll('.reveal-line-text')
+        gsap.set(ototBlocks, { scaleX: 0, transformOrigin: 'left' })
+        gsap.set(ototTexts, { opacity: 0 })
+      }
+
       ototTimeline = gsap.timeline({
         scrollTrigger: {
           trigger: ototPin,
@@ -371,13 +451,16 @@ const App = () => {
           end: '+=150%',
           pin: true,
           scrub: true,
-          invalidateOnRefresh: true
+          invalidateOnRefresh: true,
+          onEnter: playOtotReveal,
+          onEnterBack: playOtotReveal,
+          onLeave: resetOtotReveal,
+          onLeaveBack: resetOtotReveal
         }
       })
 
-      // 1. Slide up & fade out the text layout
+      // 1. Slide up the text layout
       ototTimeline.to('.otot-home-layout', {
-        opacity: 0,
         y: -100,
         ease: 'power1.inOut',
         duration: 1.0
@@ -508,6 +591,76 @@ const App = () => {
       exeTweens.push(t1, t2, t3, t4, t5, t6)
     }
 
+    // 7. Socials cards fanning ScrollTrigger
+    const cardTargets = [
+      { x: '-25rem', y: '5rem', rotate: -24, scale: 0.8 },
+      { x: '-17.5rem', y: '2.5rem', rotate: -16, scale: 0.87 },
+      { x: '-9rem', y: '0.8rem', rotate: -8, scale: 0.94 },
+      { x: '0rem', y: '0rem', rotate: 0, scale: 1.0 },
+      { x: '9rem', y: '0.8rem', rotate: 8, scale: 0.94 },
+      { x: '17.5rem', y: '2.5rem', rotate: 16, scale: 0.87 },
+      { x: '25rem', y: '5rem', rotate: 24, scale: 0.8 }
+    ]
+
+    let socialsTweens = []
+    const socialsCards = document.querySelectorAll('.callout-socials-card-w')
+    if (socialsCards.length > 0) {
+      // Set initial state
+      gsap.set(socialsCards, {
+        xPercent: -50,
+        yPercent: -50,
+        x: 0,
+        y: 0,
+        rotation: 0,
+        scale: 0.9,
+        opacity: 0
+      })
+
+      socialsCards.forEach((card, index) => {
+        const target = cardTargets[index]
+        if (target) {
+          const tween = gsap.to(card, {
+            x: target.x,
+            y: target.y,
+            rotation: target.rotate,
+            scale: target.scale,
+            opacity: 1,
+            duration: 1.2,
+            ease: 'power4.out',
+            scrollTrigger: {
+              trigger: '.is-callout-socials',
+              start: 'top 70%',
+              toggleActions: 'play none none none'
+            },
+            delay: index * 0.05
+          })
+          socialsTweens.push(tween)
+        }
+      })
+    }
+
+    // 8. Socials Header Block Reveal Animation (plays once on enter)
+    let socialsHeaderTimeline = null
+    const socialsHeaderBlocks = document.querySelectorAll('.is-callout-socials .reveal-line-block')
+    const socialsHeaderTexts = document.querySelectorAll('.is-callout-socials .reveal-line-text')
+    if (socialsHeaderBlocks.length > 0 && socialsHeaderTexts.length > 0) {
+      socialsHeaderTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: '.is-callout-socials',
+          start: 'top 75%',
+          toggleActions: 'play none none none'
+        }
+      })
+
+      socialsHeaderBlocks.forEach((block, index) => {
+        const text = socialsHeaderTexts[index]
+        socialsHeaderTimeline
+          .to(block, { scaleX: 1, duration: 0.45, ease: 'power2.inOut' }, index * 0.15)
+          .set(text, { opacity: 1 }, index * 0.15 + 0.43)
+          .to(block, { scaleX: 0, transformOrigin: 'right', duration: 0.45, ease: 'power2.inOut' }, index * 0.15 + 0.45)
+      })
+    }
+
     return () => {
       if (heroTimeline) {
         heroTimeline.scrollTrigger?.kill()
@@ -525,6 +678,18 @@ const App = () => {
         helmetsTween.scrollTrigger?.kill()
         helmetsTween.kill()
       }
+      if (statementTimeline) {
+        statementTimeline.scrollTrigger?.kill()
+        statementTimeline.kill()
+      }
+      if (socialsHeaderTimeline) {
+        socialsHeaderTimeline.scrollTrigger?.kill()
+        socialsHeaderTimeline.kill()
+      }
+      socialsTweens.forEach(t => {
+        t.scrollTrigger?.kill()
+        t.kill()
+      })
       exeTweens.forEach(t => {
         t.scrollTrigger?.kill()
         t.kill()
@@ -535,7 +700,10 @@ const App = () => {
   return (
     <div className="page-w">
       {/* Header / Navbar */}
-      <Navbar ref={headerRef} />
+      <Navbar ref={headerRef} onOpenMenu={() => setIsMenuOpen(true)} />
+
+      {/* Full-Screen Overlay Menu */}
+      <Menu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
 
       {/* Main Page Content */}
       <main className="main-w">
@@ -662,15 +830,12 @@ const App = () => {
           </div>
         </div>
 
-          <motion.div 
+          <div 
             className="c statement-container" 
             ref={statementContainerRef}
-            initial="hidden"
-            animate={controls}
-            variants={containerVariants}
           >
             {/* Top Laurel Icon */}
-            <motion.div className="statement-icon-w" variants={wordVariants}>
+            <div className="statement-icon-w">
               <svg viewBox="0 0 100 50" fill="currentColor" className="statement-laurel-svg" style={{ color: '#d2ff00' }}>
                 {/* Laurel wreath left */}
                 <path d="M 40 45 C 30 45, 15 35, 15 25 C 15 15, 25 10, 35 15 C 33 20, 25 22, 23 28 C 21 34, 30 38, 38 40" fill="none" stroke="currentColor" strokeWidth="2" />
@@ -680,29 +845,28 @@ const App = () => {
                 <text x="50" y="31" fontSize="11" fontWeight="800" textAnchor="middle" fill="#ffffff" style={{ fontFamily: 'Outfit' }}>N</text>
               </svg>
               <div className="statement-icon-sub">NISARG DARJI SINCE 2020</div>
-            </motion.div>
+            </div>
 
-            {/* Main Statement Text */}
-            <h2 className="statement-text">
-              {"Redefining limits, fighting for wins, bringing it all in all ways. Defining a legacy in Formula 1 on and off the track."
-                .split(" ")
-                .map((word, idx) => {
-                  const cleanWord = word.replace(/[^a-zA-Z]/g, "").toLowerCase();
-                  const isSpecial = ["redefining", "wins", "legacy"].includes(cleanWord);
-                  return (
-                    <motion.span
-                      key={idx}
-                      variants={wordVariants}
-                      className={isSpecial ? "serif-lime" : "reveal-word"}
-                      style={{ display: "inline-block" }}
-                    >
-                      {isSpecial ? <strong>{word}</strong> : word}
-                      {"\u00A0"}
-                    </motion.span>
-                  );
-                })}
+            {/* Main Statement Text with Block Reveal structure */}
+            <h2 className="statement-text uppercase-impact">
+              <div className="reveal-line-wrapper">
+                <span className="reveal-line-text serif-lime">REDEFINING LIMITS,</span>
+                <div className="reveal-line-block"></div>
+              </div>
+              <div className="reveal-line-wrapper">
+                <span className="reveal-line-text">FIGHTING FOR WINS,</span>
+                <div className="reveal-line-block"></div>
+              </div>
+              <div className="reveal-line-wrapper">
+                <span className="reveal-line-text">BRINGING IT ALL IN ALL WAYS.</span>
+                <div className="reveal-line-block"></div>
+              </div>
+              <div className="reveal-line-wrapper">
+                <span className="reveal-line-text">DEFINING A LEGACY ON AND OFF THE TRACK.</span>
+                <div className="reveal-line-block"></div>
+              </div>
             </h2>
-          </motion.div>
+          </div>
 
           <div className="horizontal-pin-sticky">
             <div ref={horizontalTrackRef} className="horizontal-track">
@@ -766,17 +930,21 @@ const App = () => {
               <div className="c">
                 <div className="otot-home-layout">
                   {/* Left Column: ON TRACK */}
-                  <motion.div 
-                    className="otot-home-text-col is-1"
-                    initial={{ opacity: 0, y: 60 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.2 }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
-                  >
+                  <div className="otot-home-text-col is-1">
                     <div className="otot-home-text-w">
                       <div className="on-overlay">on</div>
-                      <h2 className="text-impact-reg-brier">ON</h2>
-                      <h2 className="text-impact-reg-mona line-increase">TRACK</h2>
+                      <h2 className="text-impact-reg-brier">
+                        <div className="reveal-line-wrapper">
+                          <span className="reveal-line-text">ON</span>
+                          <div className="reveal-line-block"></div>
+                        </div>
+                      </h2>
+                      <h2 className="text-impact-reg-mona line-increase">
+                        <div className="reveal-line-wrapper">
+                          <span className="reveal-line-text">TRACK</span>
+                          <div className="reveal-line-block"></div>
+                        </div>
+                      </h2>
                     </div>
                     <p className="otot-home-p-w">
                       Most recent <strong>results</strong>, career stats and photos from trackside.
@@ -789,19 +957,23 @@ const App = () => {
                         </svg>
                       </a>
                     </div>
-                  </motion.div>
+                  </div>
 
                   {/* Right Column: OFF TRACK */}
-                  <motion.div 
-                    className="otot-home-text-col is-2"
-                    initial={{ opacity: 0, y: 60 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.2 }}
-                    transition={{ duration: 0.8, ease: "easeOut", delay: 0.15 }}
-                  >
+                  <div className="otot-home-text-col is-2">
                     <div className="otot-home-text-w">
-                      <h2 className="text-impact-reg-brier">OFF</h2>
-                      <h2 className="text-impact-reg-mona line-increase">TRACK</h2>
+                      <h2 className="text-impact-reg-brier">
+                        <div className="reveal-line-wrapper">
+                          <span className="reveal-line-text">OFF</span>
+                          <div className="reveal-line-block"></div>
+                        </div>
+                      </h2>
+                      <h2 className="text-impact-reg-mona line-increase">
+                        <div className="reveal-line-wrapper">
+                          <span className="reveal-line-text">TRACK</span>
+                          <div className="reveal-line-block"></div>
+                        </div>
+                      </h2>
                     </div>
                     <p className="otot-home-p-w">
                       <strong>Campaigns</strong>, shoots and other such promotional materials for fans.
@@ -814,7 +986,7 @@ const App = () => {
                         </svg>
                       </a>
                     </div>
-                  </motion.div>
+                  </div>
                 </div>
               </div>
 
@@ -1079,8 +1251,14 @@ const App = () => {
 
               {/* Title */}
               <h2 className="text-title-lg-mona split-flex is-center" style={{ color: '#0b0f02' }}>
-                <span>what’s up</span>
-                <span className="span-font-brier" style={{ color: '#0b0f02', textTransform: 'lowercase', fontSize: '5rem', display: 'block', fontFamily: 'Brier, serif', fontStyle: 'italic' }}>on socials</span>
+                <div className="reveal-line-wrapper">
+                  <span className="reveal-line-text">WHAT'S UP</span>
+                  <div className="reveal-line-block"></div>
+                </div>
+                <div className="reveal-line-wrapper">
+                  <span className="reveal-line-text span-font-brier" style={{ color: '#0b0f02', textTransform: 'lowercase', fontSize: '5rem', display: 'block', fontFamily: 'Brier, serif', fontStyle: 'italic' }}>on socials</span>
+                  <div className="reveal-line-block"></div>
+                </div>
               </h2>
 
               {/* Cards Fan */}

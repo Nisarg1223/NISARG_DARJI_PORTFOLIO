@@ -31,7 +31,7 @@ const Navbar = React.forwardRef((props, ref) => {
             </svg>
             STORE
           </a>
-          <button title="Open Menu" className="nav-ham">
+          <button title="Open Menu" className="nav-ham" onClick={props.onOpenMenu}>
             <span></span>
             <span></span>
           </button>
