@@ -756,6 +756,29 @@ const App = () => {
       })
     }
 
+    // 10. Helmets Section Header Block Reveal Animation (plays every time on scroll enter)
+    let helmetsHeaderTimeline = null
+    const helmetsHeaderBlocks = document.querySelectorAll('.is-helmets .reveal-line-block')
+    const helmetsHeaderTexts = document.querySelectorAll('.is-helmets .reveal-line-text')
+    if (helmetsHeaderBlocks.length > 0 && helmetsHeaderTexts.length > 0) {
+      gsap.set(helmetsHeaderTexts, { opacity: 1 })
+      helmetsHeaderTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: '.is-helmets',
+          start: 'top 75%',
+          toggleActions: 'restart none restart none'
+        }
+      })
+
+      helmetsHeaderBlocks.forEach((block, index) => {
+        const text = helmetsHeaderTexts[index]
+        helmetsHeaderTimeline
+          .to(block, { scaleX: 1, duration: 0.45, ease: 'power2.inOut', transformOrigin: 'left' }, index * 0.12)
+          .set(text, { opacity: 1 }, index * 0.12 + 0.43)
+          .to(block, { scaleX: 0, transformOrigin: 'right', duration: 0.45, ease: 'power2.inOut' }, index * 0.12 + 0.45)
+      })
+    }
+
     return () => {
       if (heroTimeline) {
         heroTimeline.scrollTrigger?.kill()
@@ -785,6 +808,10 @@ const App = () => {
       if (exeHeaderTimeline) {
         exeHeaderTimeline.scrollTrigger?.kill()
         exeHeaderTimeline.kill()
+      }
+      if (helmetsHeaderTimeline) {
+        helmetsHeaderTimeline.scrollTrigger?.kill()
+        helmetsHeaderTimeline.kill()
       }
       socialsTweens.forEach(t => {
         t.scrollTrigger?.kill()
@@ -1141,18 +1168,35 @@ const App = () => {
           <div className="c is-helmets">
             <div className="title-layout">
               <div>
-                <div className="text-eyebrow">Helmet Designs</div>
                 <h2 className="text-title-lg-mona">
-                  HELMETS <br />
-                  <span className="text-title-lg-brier">HALL OF FAME</span>
+                  <div className="reveal-line-wrapper">
+                    <span className="reveal-line-text title-helmets-white">HELMETS</span>
+                    <div className="reveal-line-block"></div>
+                  </div>
+                  <div className="reveal-line-wrapper">
+                    <span className="reveal-line-text text-title-lg-brier">HALL OF FAME</span>
+                    <div className="reveal-line-block"></div>
+                  </div>
                 </h2>
               </div>
-              <p className="title-para-w">
-                <span className="text-highlight">From his iconic blobs to innovative one-off</span><br />
-                designs, Lando has always been<br />
-                <span className="text-highlight">passionate about designing innovative</span><br />
-                <span className="text-highlight">and memorable helmets.</span>
-              </p>
+              <div className="title-para-w">
+                <div className="reveal-line-wrapper">
+                  <span className="reveal-line-text">From his iconic blobs to innovative one-off</span>
+                  <div className="reveal-line-block"></div>
+                </div>
+                <div className="reveal-line-wrapper">
+                  <span className="reveal-line-text">designs, Lando has always been</span>
+                  <div className="reveal-line-block"></div>
+                </div>
+                <div className="reveal-line-wrapper">
+                  <span className="reveal-line-text">passionate about designing innovative</span>
+                  <div className="reveal-line-block"></div>
+                </div>
+                <div className="reveal-line-wrapper">
+                  <span className="reveal-line-text">and memorable helmets.</span>
+                  <div className="reveal-line-block"></div>
+                </div>
+              </div>
             </div>
 
             <div className="helmet-grid">

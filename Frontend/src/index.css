@@ -902,28 +902,43 @@ html.lenis body {
 }
 
 .text-title-lg-mona {
-  font-size: 5rem;
-  line-height: 0.9;
-  letter-spacing: -0.04em;
+  font-size: 4.8rem;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
   font-weight: 800;
   text-transform: uppercase;
-  color: var(--color--lime);
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.title-helmets-white {
+  color: #ffffff !important;
 }
 
 .text-title-lg-brier {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Brier', 'Playfair Display', serif;
   font-weight: 700;
-  font-style: italic;
-  text-transform: none;
-  font-size: 5rem;
-  line-height: 0.9;
-  color: var(--color--lime);
+  font-style: normal;
+  text-transform: uppercase;
+  font-size: 5.2rem;
+  line-height: 0.95;
+  color: var(--color--lime) !important;
 }
 
 .title-para-w {
-  font-size: 1.25rem;
-  line-height: 1.5;
-  color: var(--color--green-off-white-2);
+  font-family: 'Mona Sans', 'Outfit', sans-serif;
+  font-size: 1.15rem;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.85);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.title-para-w .reveal-line-text {
+  color: rgba(255, 255, 255, 0.85) !important;
 }
 
 .text-highlight {
@@ -1815,6 +1830,14 @@ html.lenis body {
 
 .is-lando-exe .reveal-line-block {
   background-color: #282C20 !important;
+}
+
+.is-helmets .reveal-line-text {
+  opacity: 1 !important;
+}
+
+.is-helmets .reveal-line-block {
+  background-color: var(--color--lime) !important;
 }
 
 .exe-headline {
