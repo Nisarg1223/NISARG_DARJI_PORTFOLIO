@@ -1582,14 +1582,15 @@ html.lenis body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   text-align: center;
-  z-index: 5;
+  z-index: 10;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
-  max-width: 1400px;
+  max-width: 95vw;
   pointer-events: none;
   opacity: 0;
 }
@@ -1598,35 +1599,37 @@ html.lenis body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
   color: var(--color--white);
-  opacity: 0.8;
+  opacity: 0.9;
 }
 
 .statement-laurel-svg {
-  width: 60px;
-  height: 30px;
-  margin-bottom: 0.5rem;
+  width: 54px;
+  height: 28px;
+  margin-bottom: 0.4rem;
+  color: var(--color--lime);
 }
 
 .statement-icon-sub {
-  font-size: 0.65rem;
-  font-weight: 700;
+  font-family: 'Mona Sans', 'Outfit', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 800;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: var(--color--white);
-  opacity: 0.6;
+  color: var(--color--green-off-white);
+  opacity: 0.85;
 }
 
 .statement-text {
-  font-family: 'Outfit', sans-serif;
-  font-size: 4.5vw;
-  font-weight: 800;
-  line-height: 1.15;
-  text-transform: none;
-  color: var(--color--white);
-  letter-spacing: -0.01em;
-  max-width: 85%;
+  font-family: 'Mona Sans', 'Outfit', sans-serif;
+  font-size: 4.6vw;
+  font-weight: 900;
+  line-height: 0.98;
+  text-transform: uppercase;
+  color: var(--color--green-off-white);
+  letter-spacing: -0.02em;
+  max-width: 95%;
   margin: 0 auto;
 }
 
@@ -1646,11 +1649,11 @@ html.lenis body {
 }
 
 .statement-text .serif-lime {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Brier', 'Playfair Display', serif;
   font-style: italic;
   font-weight: 700;
-  text-transform: none;
-  color: var(--color--lime-off);
+  text-transform: uppercase;
+  color: var(--color--lime);
 }
 
 /* Mobile Responsive Tweaks */
@@ -2572,9 +2575,9 @@ html.lenis body {
 .reveal-line-wrapper {
   position: relative;
   overflow: hidden;
-  display: block;
+  display: inline-block;
   width: fit-content;
-  margin: 0 auto 0.75rem auto;
+  margin: 0.04em auto;
 }
 
 .reveal-line-text {
@@ -2597,24 +2600,31 @@ html.lenis body {
 
 .statement-text.uppercase-impact {
   text-transform: uppercase;
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Mona Sans', 'Outfit', sans-serif;
   font-weight: 900;
-  line-height: 1.1;
+  line-height: 0.98;
   text-align: center;
-  font-size: 3.2vw;
+  font-size: 4.5vw;
+  letter-spacing: -0.02em;
+  color: var(--color--green-off-white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 @media screen and (max-width: 991px) {
   .statement-text.uppercase-impact {
-    font-size: 4.5vw;
+    font-size: 5.8vw;
+    line-height: 1.02;
   }
 }
 
 @media screen and (max-width: 767px) {
   .statement-text.uppercase-impact {
-    font-size: 5.5vw;
+    font-size: 6.8vw;
+    line-height: 1.05;
   }
   .reveal-line-text {
-    white-space: normal;
+    white-space: nowrap;
   }
 }

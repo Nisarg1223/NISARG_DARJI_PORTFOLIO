@@ -197,19 +197,28 @@ const App = () => {
       videoRef.current.playbackRate = 0.35; // Slow down background video significantly
     }
 
-    // 1. Pre-build Statement Text Block Reveal Timeline (paused, triggered on scrub crossover)
-    const statementTimeline = gsap.timeline({ paused: true })
-    const sBlocks = document.querySelectorAll('.reveal-line-block')
-    const sTexts = document.querySelectorAll('.reveal-line-text')
-    if (sBlocks.length > 0 && sTexts.length > 0) {
-      sBlocks.forEach((block, index) => {
-        const text = sTexts[index]
-        statementTimeline
-          .to(block, { scaleX: 1, duration: 0.4, ease: 'power2.inOut' }, index * 0.12)
-          .set(text, { opacity: 1 }, index * 0.12 + 0.38)
-          .to(block, { scaleX: 0, transformOrigin: 'right', duration: 0.4, ease: 'power2.inOut' }, index * 0.12 + 0.4)
-      })
+    // 1. Pre-build Statement Text Block Reveal Timeline
+    const statementContainer = statementContainerRef.current
+    let statementTimeline = null
+
+    if (statementContainer) {
+      gsap.set(statementContainer, { xPercent: -50, yPercent: -50, left: '50%', top: '50%' })
+      const sBlocks = statementContainer.querySelectorAll('.reveal-line-block')
+      const sTexts = statementContainer.querySelectorAll('.reveal-line-text')
+      if (sBlocks.length > 0 && sTexts.length > 0) {
+        statementTimeline = gsap.timeline()
+        sBlocks.forEach((block, index) => {
+          const text = sTexts[index]
+          const startTime = index * 0.14
+          statementTimeline
+            .to(block, { scaleX: 1, duration: 0.32, ease: 'power2.inOut', transformOrigin: 'left' }, startTime)
+            .set(text, { opacity: 1 }, startTime + 0.3)
+            .to(block, { scaleX: 0, duration: 0.32, ease: 'power2.inOut', transformOrigin: 'right' }, startTime + 0.32)
+        })
+      }
     }
+
+
 
 
 
@@ -290,29 +299,26 @@ const App = () => {
       )
 
       // 4. Scroll statement text container upwards into the viewport early and rapidly
-      heroTimeline.fromTo(statementContainerRef.current,
-        { y: '35vh', opacity: 0 },
-        { y: '0vh', opacity: 1, duration: 0.25, ease: 'power2.out' },
-        0.45
-      )
+      if (statementContainer) {
+        heroTimeline.fromTo(statementContainer,
+          { y: '35vh', opacity: 0 },
+          { y: '0vh', opacity: 1, duration: 0.25, ease: 'power2.out' },
+          0.45
+        )
 
-      // Trigger block reveal animation forward on scroll down, and in reverse on scroll up
-      heroTimeline.call(() => {
-        if (heroTimeline.scrollTrigger) {
-          const isScrollingDown = heroTimeline.scrollTrigger.direction === 1
-          if (isScrollingDown) {
-            statementTimeline.play()
-          } else {
-            statementTimeline.reverse()
-          }
+        // 5. Add staggered line block reveal timeline to scrub animation
+        if (statementTimeline) {
+          heroTimeline.add(statementTimeline, 0.65)
         }
-      }, null, 0.65)
 
-      // 5. Fade out statement container and move it slightly up/left as the horizontal track starts sliding in
-      heroTimeline.to(statementContainerRef.current,
-        { y: '-50vh', opacity: 0, ease: 'power1.inOut', duration: 0.5 },
-        1.4
-      )
+        // 6. Fade out statement container and move it slightly up as horizontal track starts sliding in
+        heroTimeline.to(statementContainer,
+          { y: '-50vh', opacity: 0, ease: 'power1.inOut', duration: 0.4 },
+          1.85
+        )
+      }
+
+
 
       // 6. Horizontal scroll animation starting off-screen
       const track = horizontalTrackRef.current
@@ -731,10 +737,11 @@ const App = () => {
         helmetsTween.scrollTrigger?.kill()
         helmetsTween.kill()
       }
+
       if (statementTimeline) {
-        statementTimeline.scrollTrigger?.kill()
         statementTimeline.kill()
       }
+
       if (socialsHeaderTimeline) {
         socialsHeaderTimeline.scrollTrigger?.kill()
         socialsHeaderTimeline.kill()
@@ -883,13 +890,14 @@ const App = () => {
           </div>
         </div>
 
+          {/* Statement Text Container (100% landonorris.com clone) */}
           <div 
             className="c statement-container" 
             ref={statementContainerRef}
           >
-            {/* Top Laurel Icon */}
+            {/* Top Laurel Icon & Badge */}
             <div className="statement-icon-w">
-              <svg viewBox="0 0 100 50" fill="currentColor" className="statement-laurel-svg" style={{ color: '#d2ff00' }}>
+              <svg viewBox="0 0 100 50" fill="currentColor" className="statement-laurel-svg">
                 {/* Laurel wreath left */}
                 <path d="M 40 45 C 30 45, 15 35, 15 25 C 15 15, 25 10, 35 15 C 33 20, 25 22, 23 28 C 21 34, 30 38, 38 40" fill="none" stroke="currentColor" strokeWidth="2" />
                 {/* Laurel wreath right */}
@@ -897,25 +905,51 @@ const App = () => {
                 {/* Center text / icon */}
                 <text x="50" y="31" fontSize="11" fontWeight="800" textAnchor="middle" fill="#ffffff" style={{ fontFamily: 'Outfit' }}>N</text>
               </svg>
-              <div className="statement-icon-sub">NISARG DARJI SINCE 2020</div>
+              <div className="statement-icon-sub">MCLAREN F1 SINCE 2019</div>
             </div>
 
-            {/* Main Statement Text with Block Reveal structure */}
+            {/* Main Statement Text matching landonorris.com 100% */}
             <h2 className="statement-text uppercase-impact">
               <div className="reveal-line-wrapper">
-                <span className="reveal-line-text serif-lime">REDEFINING LIMITS,</span>
+                <span className="reveal-line-text">
+                  <span className="serif-lime">REDEFINING</span> LIMITS,
+                </span>
                 <div className="reveal-line-block"></div>
               </div>
               <div className="reveal-line-wrapper">
-                <span className="reveal-line-text">FIGHTING FOR WINS,</span>
+                <span className="reveal-line-text">
+                  FIGHTING FOR <span className="serif-lime">WINS,</span>
+                </span>
                 <div className="reveal-line-block"></div>
               </div>
               <div className="reveal-line-wrapper">
-                <span className="reveal-line-text">BRINGING IT ALL IN ALL WAYS.</span>
+                <span className="reveal-line-text">
+                  BRINGING IT ALL IN
+                </span>
                 <div className="reveal-line-block"></div>
               </div>
               <div className="reveal-line-wrapper">
-                <span className="reveal-line-text">DEFINING A LEGACY ON AND OFF THE TRACK.</span>
+                <span className="reveal-line-text">
+                  ALL WAYS. DEFINING A
+                </span>
+                <div className="reveal-line-block"></div>
+              </div>
+              <div className="reveal-line-wrapper">
+                <span className="reveal-line-text">
+                  <span className="serif-lime">LEGACY</span> IN FORMULA 1
+                </span>
+                <div className="reveal-line-block"></div>
+              </div>
+              <div className="reveal-line-wrapper">
+                <span className="reveal-line-text">
+                  ON AND OFF THE
+                </span>
+                <div className="reveal-line-block"></div>
+              </div>
+              <div className="reveal-line-wrapper">
+                <span className="reveal-line-text">
+                  TRACK.
+                </span>
                 <div className="reveal-line-block"></div>
               </div>
             </h2>
