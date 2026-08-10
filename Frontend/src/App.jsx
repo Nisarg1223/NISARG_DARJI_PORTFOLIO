@@ -434,12 +434,11 @@ const App = () => {
       const playOtotReveal = () => {
         const ototBlocks = ototPin.querySelectorAll('.reveal-line-block')
         const ototTexts = ototPin.querySelectorAll('.reveal-line-text')
+        gsap.set(ototTexts, { opacity: 1 })
         ototBlocks.forEach((block, index) => {
-          const text = ototTexts[index]
           gsap.timeline()
-            .to(block, { scaleX: 1, duration: 0.4, ease: 'power2.inOut' }, index * 0.1)
-            .set(text, { opacity: 1 }, index * 0.1 + 0.38)
-            .to(block, { scaleX: 0, transformOrigin: 'right', duration: 0.4, ease: 'power2.inOut' }, index * 0.1 + 0.4)
+            .to(block, { scaleX: 1, duration: 0.4, ease: 'power2.inOut', transformOrigin: 'left' }, index * 0.1)
+            .to(block, { scaleX: 0, duration: 0.4, ease: 'power2.inOut', transformOrigin: 'right' }, index * 0.1 + 0.4)
         })
       }
 
@@ -447,7 +446,7 @@ const App = () => {
         const ototBlocks = ototPin.querySelectorAll('.reveal-line-block')
         const ototTexts = ototPin.querySelectorAll('.reveal-line-text')
         gsap.set(ototBlocks, { scaleX: 0, transformOrigin: 'left' })
-        gsap.set(ototTexts, { opacity: 0 })
+        gsap.set(ototTexts, { opacity: 1 })
       }
 
       ototTimeline = gsap.timeline({
@@ -642,23 +641,35 @@ const App = () => {
           })
           socialsTweens.push(tween)
 
-          // Card Hover Animation Focus setup
+          // Card Hover Animation (Exact landonorris.com splitting gap behavior)
           card.addEventListener('mouseenter', () => {
             gsap.to(card, {
-              y: (parseFloat(target.y) - 2.5) + 'rem',
-              scale: target.scale * 1.08,
-              rotation: target.rotate * 0.4,
-              duration: 0.35,
+              x: target.x,
+              y: (parseFloat(target.y) - 3.2) + 'rem',
+              scale: Math.max(target.scale * 1.14, 1.05),
+              rotation: target.rotate * 0.35,
+              duration: 0.15,
               ease: 'power2.out',
               overwrite: 'auto'
             })
-            card.style.zIndex = 15
+            card.style.zIndex = 50
 
-            socialsCards.forEach((otherCard) => {
-              if (otherCard !== card) {
+            socialsCards.forEach((otherCard, otherIdx) => {
+              const otherTarget = cardTargets[otherIdx]
+              if (otherCard !== card && otherTarget) {
+                const dist = Math.abs(otherIdx - index)
+                const totalShift = 9.5 + (dist - 1) * 0.8
+                const shiftX = otherIdx < index ? -totalShift : totalShift
+                const newX = (parseFloat(otherTarget.x) + shiftX) + 'rem'
+                const extraRotate = otherIdx < index ? -3 : 3
+
                 gsap.to(otherCard, {
-                  opacity: 0.45,
-                  duration: 0.35,
+                  x: newX,
+                  y: otherTarget.y,
+                  scale: otherTarget.scale * 0.95,
+                  rotation: otherTarget.rotate + extraRotate,
+                  opacity: 1,
+                  duration: 0.15,
                   ease: 'power2.out',
                   overwrite: 'auto'
                 })
@@ -668,26 +679,28 @@ const App = () => {
 
           card.addEventListener('mouseleave', () => {
             gsap.to(card, {
+              x: target.x,
               y: target.y,
               scale: target.scale,
               rotation: target.rotate,
-              duration: 0.35,
+              duration: 0.15,
               ease: 'power2.out',
               overwrite: 'auto'
             })
-            
-            setTimeout(() => {
-              const originalZIndex = [1, 2, 3, 4, 3, 2, 1][index]
-              card.style.zIndex = originalZIndex
-            }, 100)
+
+            const originalZIndex = [1, 2, 3, 4, 3, 2, 1][index]
+            card.style.zIndex = originalZIndex
 
             socialsCards.forEach((otherCard, otherIdx) => {
               const otherTarget = cardTargets[otherIdx]
               if (otherCard !== card && otherTarget) {
                 gsap.to(otherCard, {
-                  opacity: 1,
+                  x: otherTarget.x,
+                  y: otherTarget.y,
                   scale: otherTarget.scale,
-                  duration: 0.35,
+                  rotation: otherTarget.rotate,
+                  opacity: 1,
+                  duration: 0.15,
                   ease: 'power2.out',
                   overwrite: 'auto'
                 })
@@ -698,7 +711,7 @@ const App = () => {
       })
     }
 
-    // 8. Socials Header Block Reveal Animation (plays once on enter)
+    // 8. Socials Header Block Reveal Animation (plays every time on scroll enter)
     let socialsHeaderTimeline = null
     const socialsHeaderBlocks = document.querySelectorAll('.is-callout-socials .reveal-line-block')
     const socialsHeaderTexts = document.querySelectorAll('.is-callout-socials .reveal-line-text')
@@ -707,14 +720,37 @@ const App = () => {
         scrollTrigger: {
           trigger: '.is-callout-socials',
           start: 'top 75%',
-          toggleActions: 'play none none none'
+          toggleActions: 'restart none restart none'
         }
       })
 
       socialsHeaderBlocks.forEach((block, index) => {
         const text = socialsHeaderTexts[index]
         socialsHeaderTimeline
-          .to(block, { scaleX: 1, duration: 0.45, ease: 'power2.inOut' }, index * 0.15)
+          .to(block, { scaleX: 1, duration: 0.45, ease: 'power2.inOut', transformOrigin: 'left' }, index * 0.15)
+          .set(text, { opacity: 1 }, index * 0.15 + 0.43)
+          .to(block, { scaleX: 0, transformOrigin: 'right', duration: 0.45, ease: 'power2.inOut' }, index * 0.15 + 0.45)
+      })
+    }
+
+    // 9. Lando Store Header Block Reveal Animation (plays every time on scroll enter)
+    let exeHeaderTimeline = null
+    const exeHeaderBlocks = document.querySelectorAll('.is-lando-exe .reveal-line-block')
+    const exeHeaderTexts = document.querySelectorAll('.is-lando-exe .reveal-line-text')
+    if (exeHeaderBlocks.length > 0 && exeHeaderTexts.length > 0) {
+      gsap.set(exeHeaderTexts, { opacity: 1 })
+      exeHeaderTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: '.is-lando-exe',
+          start: 'top 75%',
+          toggleActions: 'restart none restart none'
+        }
+      })
+
+      exeHeaderBlocks.forEach((block, index) => {
+        const text = exeHeaderTexts[index]
+        exeHeaderTimeline
+          .to(block, { scaleX: 1, duration: 0.45, ease: 'power2.inOut', transformOrigin: 'left' }, index * 0.15)
           .set(text, { opacity: 1 }, index * 0.15 + 0.43)
           .to(block, { scaleX: 0, transformOrigin: 'right', duration: 0.45, ease: 'power2.inOut' }, index * 0.15 + 0.45)
       })
@@ -745,6 +781,10 @@ const App = () => {
       if (socialsHeaderTimeline) {
         socialsHeaderTimeline.scrollTrigger?.kill()
         socialsHeaderTimeline.kill()
+      }
+      if (exeHeaderTimeline) {
+        exeHeaderTimeline.scrollTrigger?.kill()
+        exeHeaderTimeline.kill()
       }
       socialsTweens.forEach(t => {
         t.scrollTrigger?.kill()
@@ -1207,9 +1247,18 @@ const App = () => {
                 </div>
 
                 <h2 className="exe-headline">
-                  WORLD<br />
-                  DRIVERS'<br />
-                  <span className="span-font-brier">CHAMPION</span>
+                  <div className="reveal-line-wrapper">
+                    <span className="reveal-line-text">WORLD</span>
+                    <div className="reveal-line-block"></div>
+                  </div>
+                  <div className="reveal-line-wrapper">
+                    <span className="reveal-line-text">DRIVERS'</span>
+                    <div className="reveal-line-block"></div>
+                  </div>
+                  <div className="reveal-line-wrapper">
+                    <span className="reveal-line-text span-font-brier">CHAMPION</span>
+                    <div className="reveal-line-block"></div>
+                  </div>
                 </h2>
 
                 <p className="exe-para">
@@ -1323,27 +1372,26 @@ const App = () => {
         <section className="s is-callout-socials">
           <div className="c is-callout-socials">
             <div className="callout-socials-layout">
-              {/* Globe Icon */}
+              {/* Controller Icon */}
               <div className="callout-socials-rive-w">
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '2.5rem', height: '2.5rem', color: '#0b0f02' }}>
-                  <circle cx="16" cy="16" r="14" stroke="currentColor" strokeWidth="1.5"/>
-                  <path d="M5 10H27" stroke="currentColor" strokeWidth="1.2" opacity="0.6"/>
-                  <path d="M2 16H30" stroke="currentColor" strokeWidth="1.5"/>
-                  <path d="M5 22H27" stroke="currentColor" strokeWidth="1.2" opacity="0.6"/>
-                  <path d="M10 5V27" stroke="currentColor" strokeWidth="1.2" opacity="0.6"/>
-                  <path d="M16 2V30" stroke="currentColor" strokeWidth="1.5"/>
-                  <path d="M22 5V27" stroke="currentColor" strokeWidth="1.2" opacity="0.6"/>
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" style={{ width: '2.75rem', height: '2.75rem', color: '#0b0f02' }}>
+                  <rect x="2" y="6" width="20" height="12" rx="4" />
+                  <line x1="6" y1="12" x2="10" y2="12" />
+                  <line x1="8" y1="10" x2="8" y2="14" />
+                  <circle cx="15" cy="10.5" r="0.5" fill="currentColor" stroke="none" />
+                  <circle cx="17.5" cy="12.5" r="0.5" fill="currentColor" stroke="none" />
+                  <circle cx="15" cy="14.5" r="0.5" fill="currentColor" stroke="none" />
                 </svg>
               </div>
 
-              {/* Title */}
-              <h2 className="text-title-lg-mona split-flex is-center" style={{ color: '#0b0f02' }}>
+              {/* Title matching landonorris.com 100% */}
+              <h2 className="callout-socials-title">
                 <div className="reveal-line-wrapper">
-                  <span className="reveal-line-text">WHAT'S UP</span>
+                  <span className="reveal-line-text title-whats-up">WHAT’S UP</span>
                   <div className="reveal-line-block"></div>
                 </div>
                 <div className="reveal-line-wrapper">
-                  <span className="reveal-line-text span-font-brier" style={{ color: '#0b0f02', textTransform: 'lowercase', fontSize: '5rem', display: 'block', fontFamily: 'Brier, serif', fontStyle: 'italic' }}>on socials</span>
+                  <span className="reveal-line-text title-on-socials">ON SOCIALS</span>
                   <div className="reveal-line-block"></div>
                 </div>
               </h2>

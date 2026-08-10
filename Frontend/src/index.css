@@ -756,11 +756,15 @@ html.lenis body {
   align-items: center;
 }
 
+.otot-home-text-w .reveal-line-text {
+  opacity: 1 !important;
+}
+
 .text-impact-reg-brier {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Brier', 'Playfair Display', serif;
   font-size: 7.5vw;
   font-weight: 700;
-  font-style: italic;
+  font-style: normal;
   line-height: 0.8;
   text-transform: uppercase;
   color: var(--color--dark-green);
@@ -1805,6 +1809,14 @@ html.lenis body {
   margin-bottom: 1.75rem;
 }
 
+.is-lando-exe .reveal-line-text {
+  opacity: 1 !important;
+}
+
+.is-lando-exe .reveal-line-block {
+  background-color: #282C20 !important;
+}
+
 .exe-headline {
   font-family: 'Mona Sans', 'Outfit', sans-serif;
   font-size: 7rem;
@@ -2184,7 +2196,56 @@ html.lenis body {
 
 .callout-socials-rive-w {
   position: relative;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.callout-socials-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  line-height: 0.95;
+  margin: 0.5rem 0 1rem 0;
+}
+
+.title-whats-up {
+  font-family: 'Mona Sans', 'Outfit', sans-serif;
+  font-weight: 900;
+  font-size: 4.8rem;
+  text-transform: uppercase;
+  color: #0b0f02;
+  letter-spacing: -0.025em;
+  line-height: 0.98;
+}
+
+.title-on-socials {
+  font-family: 'Brier', 'Playfair Display', serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 5.2rem;
+  text-transform: uppercase;
+  color: #0b0f02;
+  letter-spacing: -0.015em;
+  line-height: 0.92;
+  margin-top: -0.1rem;
+}
+
+@media screen and (max-width: 991px) {
+  .title-whats-up {
+    font-size: 3.5rem;
+  }
+  .title-on-socials {
+    font-size: 3.8rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .title-whats-up {
+    font-size: 2.75rem;
+  }
+  .title-on-socials {
+    font-size: 3rem;
+  }
 }
 
 .callout-socials-card-layout {
@@ -2214,11 +2275,10 @@ html.lenis body {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
   transition: transform 0.4s var(--cubic-default), z-index 0.4s var(--cubic-default), filter 0.4s ease, box-shadow 0.4s ease;
   filter: brightness(0.9);
+  cursor: pointer;
 }
 
 .callout-socials-card-w:hover {
-  transform: translate(-50%, -50%) scale(1.08) translateY(-2.5rem) rotate(0deg) !important;
-  z-index: 10 !important;
   filter: brightness(1);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
