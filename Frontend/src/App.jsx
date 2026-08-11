@@ -269,7 +269,10 @@ const App = () => {
         }
       })
 
-      // 1. Scale down the card
+      // 1. Scale down the card (responsive scale for mobile/tablet/desktop)
+      const targetScale = window.innerWidth <= 767 ? 0.7 : window.innerWidth <= 991 ? 0.55 : 0.45
+      const targetRadius = window.innerWidth <= 767 ? '24px' : '40px'
+
       heroTimeline.fromTo(heroCard,
         {
           scale: 1,
@@ -277,8 +280,8 @@ const App = () => {
           filter: 'grayscale(0) brightness(1)'
         },
         {
-          scale: 0.45,
-          borderRadius: '40px',
+          scale: targetScale,
+          borderRadius: targetRadius,
           filter: 'grayscale(0.7) brightness(0.8)',
           ease: 'none'
         }, 0)
@@ -597,15 +600,51 @@ const App = () => {
     }
 
     // 7. Socials cards fanning ScrollTrigger
-    const cardTargets = [
-      { x: '-25rem', y: '5rem', rotate: -24, scale: 0.8 },
-      { x: '-17.5rem', y: '2.5rem', rotate: -16, scale: 0.87 },
-      { x: '-9rem', y: '0.8rem', rotate: -8, scale: 0.94 },
-      { x: '0rem', y: '0rem', rotate: 0, scale: 1.0 },
-      { x: '9rem', y: '0.8rem', rotate: 8, scale: 0.94 },
-      { x: '17.5rem', y: '2.5rem', rotate: 16, scale: 0.87 },
-      { x: '25rem', y: '5rem', rotate: 24, scale: 0.8 }
-    ]
+    const getSocialCardTargets = () => {
+      const w = window.innerWidth
+      if (w <= 479) {
+        return [
+          { x: '-8.5rem', y: '2rem', rotate: -18, scale: 0.75 },
+          { x: '-5.6rem', y: '1rem', rotate: -12, scale: 0.82 },
+          { x: '-2.8rem', y: '0.3rem', rotate: -6, scale: 0.9 },
+          { x: '0rem', y: '0rem', rotate: 0, scale: 0.96 },
+          { x: '2.8rem', y: '0.3rem', rotate: 6, scale: 0.9 },
+          { x: '5.6rem', y: '1rem', rotate: 12, scale: 0.82 },
+          { x: '8.5rem', y: '2rem', rotate: 18, scale: 0.75 }
+        ]
+      } else if (w <= 767) {
+        return [
+          { x: '-11.5rem', y: '2.8rem', rotate: -20, scale: 0.78 },
+          { x: '-7.6rem', y: '1.4rem', rotate: -13, scale: 0.84 },
+          { x: '-3.8rem', y: '0.4rem', rotate: -6, scale: 0.92 },
+          { x: '0rem', y: '0rem', rotate: 0, scale: 0.98 },
+          { x: '3.8rem', y: '0.4rem', rotate: 6, scale: 0.92 },
+          { x: '7.6rem', y: '1.4rem', rotate: 13, scale: 0.84 },
+          { x: '11.5rem', y: '2.8rem', rotate: 20, scale: 0.78 }
+        ]
+      } else if (w <= 991) {
+        return [
+          { x: '-16rem', y: '3.5rem', rotate: -21, scale: 0.8 },
+          { x: '-11rem', y: '1.8rem', rotate: -14, scale: 0.86 },
+          { x: '-5.5rem', y: '0.6rem', rotate: -7, scale: 0.93 },
+          { x: '0rem', y: '0rem', rotate: 0, scale: 1.0 },
+          { x: '5.5rem', y: '0.6rem', rotate: 7, scale: 0.93 },
+          { x: '11rem', y: '1.8rem', rotate: 14, scale: 0.86 },
+          { x: '16rem', y: '3.5rem', rotate: 21, scale: 0.8 }
+        ]
+      }
+      return [
+        { x: '-25rem', y: '5rem', rotate: -24, scale: 0.8 },
+        { x: '-17.5rem', y: '2.5rem', rotate: -16, scale: 0.87 },
+        { x: '-9rem', y: '0.8rem', rotate: -8, scale: 0.94 },
+        { x: '0rem', y: '0rem', rotate: 0, scale: 1.0 },
+        { x: '9rem', y: '0.8rem', rotate: 8, scale: 0.94 },
+        { x: '17.5rem', y: '2.5rem', rotate: 16, scale: 0.87 },
+        { x: '25rem', y: '5rem', rotate: 24, scale: 0.8 }
+      ]
+    }
+
+    const cardTargets = getSocialCardTargets()
 
     let socialsTweens = []
     const socialsCards = document.querySelectorAll('.callout-socials-card-w')

@@ -171,19 +171,25 @@ const Menu = ({ isOpen, onClose }) => {
         <div className="menu-right-content">
           {/* Header row inside menu */}
           <div className="menu-header">
-            <a href="/" className="nav-logo-stacked">
+            <a href="/" className="nav-logo-stacked desktop-menu-logo">
               <span className="nisarg">NISARG</span>
               <span>DARJI</span>
             </a>
+            <a href="https://store.landonorris.com/" target="_blank" rel="noopener noreferrer" className="btn-w is-nav mobile-menu-store-btn">
+              <svg width="14" height="15" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ stroke: 'currentColor', strokeWidth: '2.5' }}>
+                <path d="m10.931 5.783-.759.812c-1.132 1.212-2.89 1.212-4.022 0l-.76-.812C4.313 4.637 2.568 5.29 2.275 6.928l-1.238 7.18c-.227 1.318.652 2.543 1.838 2.543h10.588c1.185 0 2.064-1.225 1.838-2.544l-1.239-7.179c-.28-1.638-2.037-2.29-3.116-1.145h-.014ZM10.839 3.048 9.84 1.849C8.894.717 7.43.717 6.484 1.85l-1 1.199" />
+              </svg>
+              STORE
+            </a>
             <div className="menu-header-actions">
-              <a href="https://store.landonorris.com/" target="_blank" rel="noopener noreferrer" className="btn-w is-nav store-btn">
+              <a href="https://store.landonorris.com/" target="_blank" rel="noopener noreferrer" className="btn-w is-nav desktop-menu-store-btn">
                 <svg width="14" height="15" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ stroke: 'currentColor', strokeWidth: '2.5' }}>
                   <path d="m10.931 5.783-.759.812c-1.132 1.212-2.89 1.212-4.022 0l-.76-.812C4.313 4.637 2.568 5.29 2.275 6.928l-1.238 7.18c-.227 1.318.652 2.543 1.838 2.543h10.588c1.185 0 2.064-1.225 1.838-2.544l-1.239-7.179c-.28-1.638-2.037-2.29-3.116-1.145h-.014ZM10.839 3.048 9.84 1.849C8.894.717 7.43.717 6.484 1.85l-1 1.199" />
                 </svg>
                 STORE
               </a>
               <button title="Close Menu" className="menu-close-btn" onClick={onClose}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <line x1="18" y1="6" x2="6" y2="18"></line>
                   <line x1="6" y1="6" x2="18" y2="18"></line>
                 </svg>
@@ -233,11 +239,8 @@ const Menu = ({ isOpen, onClose }) => {
                 </div>
               )
             })}
-          </div>
 
-          {/* Footer content */}
-          <div ref={footerRef} className="menu-footer">
-            {/* Laurel Wreath Badge */}
+            {/* Laurel Wreath Badge under links on mobile */}
             <div className="menu-badge-w">
               <svg viewBox="0 0 100 50" fill="currentColor" className="menu-laurel-svg">
                 <path d="M 40 45 C 30 45, 15 35, 15 25 C 15 15, 25 10, 35 15 C 33 20, 25 22, 23 28 C 21 34, 30 38, 38 40" fill="none" stroke="currentColor" strokeWidth="2" />
@@ -246,7 +249,10 @@ const Menu = ({ isOpen, onClose }) => {
               </svg>
               <div className="menu-badge-text">CREATIVE DEV SINCE 2020</div>
             </div>
+          </div>
 
+          {/* Footer content */}
+          <div ref={footerRef} className="menu-footer">
             <a href="mailto:business@nisargdarji.com" className="menu-business-link">
               BUSINESS ENQUIRIES
             </a>
