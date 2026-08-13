@@ -10,6 +10,26 @@ import secondpageImage from './assets/secondpage_image.png'
 import signatureImage from './assets/signature_image.png'
 import Menu from './components/Menu'
 
+const SKILLS_DATA = [
+  "HTML",
+  "CSS",
+  "SCSS",
+  "Javascript",
+  "React js",
+  "Redux js",
+  "Express js",
+  "Node js",
+  "Mongo DB",
+  "GSAP",
+  "Langchain",
+  "GenAI",
+  "Github",
+  "Rest API",
+  "DESIGNING",
+  "DEVELOPING",
+  "EXPLAINING & technical concepts"
+]
+
 const HELMETS_DATA = [
   {
     title: "Season",
@@ -890,8 +910,8 @@ const App = () => {
             </div>
             <div className="marquee-line line-2">
               <div ref={marquee2Ref} className="marquee-track">
-                <span>REACT • GSAP • WEB DEVELOPMENT • THREE.JS •&nbsp;</span>
-                <span>REACT • GSAP • WEB DEVELOPMENT • THREE.JS •&nbsp;</span>
+                <span>REACT • GSAP • WEB DEVELOPMENT • FULLSTACK •&nbsp;</span>
+                <span>REACT • GSAP • WEB DEVELOPMENT • FULLSTACK •&nbsp;</span>
               </div>
             </div>
           </div>
@@ -1011,54 +1031,60 @@ const App = () => {
                 {/* Center text / icon */}
                 <text x="50" y="31" fontSize="11" fontWeight="800" textAnchor="middle" fill="#ffffff" style={{ fontFamily: 'Outfit' }}>N</text>
               </svg>
-              <div className="statement-icon-sub">MCLAREN F1 SINCE 2019</div>
+              <div className="statement-icon-sub">DESIGNING · DEVELOPING · CREATING</div>
             </div>
 
             {/* Main Statement Text matching landonorris.com 100% */}
-            <h2 className="statement-text uppercase-impact">
-              <div className="reveal-line-wrapper">
-                <span className="reveal-line-text">
-                  <span className="serif-lime">REDEFINING</span> LIMITS,
-                </span>
-                <div className="reveal-line-block"></div>
-              </div>
-              <div className="reveal-line-wrapper">
-                <span className="reveal-line-text">
-                  FIGHTING FOR <span className="serif-lime">WINS,</span>
-                </span>
-                <div className="reveal-line-block"></div>
-              </div>
-              <div className="reveal-line-wrapper">
-                <span className="reveal-line-text">
-                  BRINGING IT ALL IN
-                </span>
-                <div className="reveal-line-block"></div>
-              </div>
-              <div className="reveal-line-wrapper">
-                <span className="reveal-line-text">
-                  ALL WAYS. DEFINING A
-                </span>
-                <div className="reveal-line-block"></div>
-              </div>
-              <div className="reveal-line-wrapper">
-                <span className="reveal-line-text">
-                  <span className="serif-lime">LEGACY</span> IN FORMULA 1
-                </span>
-                <div className="reveal-line-block"></div>
-              </div>
-              <div className="reveal-line-wrapper">
-                <span className="reveal-line-text">
-                  ON AND OFF THE
-                </span>
-                <div className="reveal-line-block"></div>
-              </div>
-              <div className="reveal-line-wrapper">
-                <span className="reveal-line-text">
-                  TRACK.
-                </span>
-                <div className="reveal-line-block"></div>
-              </div>
-            </h2>
+           <h2 className="statement-text uppercase-impact">
+  <div className="reveal-line-wrapper">
+    <span className="reveal-line-text">
+      <span className="serif-lime">REDEFINING</span> DIGITAL EXPERIENCES,
+    </span>
+    <div className="reveal-line-block"></div>
+  </div>
+
+  <div className="reveal-line-wrapper">
+    <span className="reveal-line-text">
+      BUILDING WITH <span className="serif-lime">PURPOSE,</span>
+    </span>
+    <div className="reveal-line-block"></div>
+  </div>
+
+  <div className="reveal-line-wrapper">
+    <span className="reveal-line-text">
+      TURNING IDEAS INTO
+    </span>
+    <div className="reveal-line-block"></div>
+  </div>
+
+  <div className="reveal-line-wrapper">
+    <span className="reveal-line-text">
+      <span className="serif-lime">REALITY,</span> CRAFTING A
+    </span>
+    <div className="reveal-line-block"></div>
+  </div>
+
+  <div className="reveal-line-wrapper">
+    <span className="reveal-line-text">
+      CREATIVE <span className="serif-lime">LEGACY</span> THROUGH CODE,
+    </span>
+    <div className="reveal-line-block"></div>
+  </div>
+
+  <div className="reveal-line-wrapper">
+    <span className="reveal-line-text">
+      PUSHING THE WEB
+    </span>
+    <div className="reveal-line-block"></div>
+  </div>
+
+  <div className="reveal-line-wrapper">
+    <span className="reveal-line-text">
+      FORWARD EVERY <span className="serif-lime">DAY.</span>
+    </span>
+    <div className="reveal-line-block"></div>
+  </div>
+</h2>
           </div>
 
           <div className="horizontal-pin-sticky">
@@ -1400,52 +1426,45 @@ const App = () => {
             <div className="collabs-grid">
               {/* Left Column: Heading */}
               <div className="collabs-title-w">
-                <h2 className="collabs-title-main">partners</h2>
+                <h2 className="collabs-title-main">SKILLS</h2>
                 <h2 className="collabs-title-sub">
-                  <span className="span-font-brier">&amp;campaigns</span>
+                  <span className="span-font-brier">&amp;expertise</span>
                 </h2>
               </div>
 
               {/* Right Column: Paragraph */}
               <div className="collabs-para-w">
                 <p className="collabs-para">
-                  Lando is proud to collaborate with a range of partners, who share his passion for performance across a range of industries.
+                 I combine creative thinking with modern technology to build meaningful digital experiences, blending thoughtful design, clean code, and powerful interactions across the web.
                 </p>
               </div>
             </div>
 
             <div className="spacer _4rem" style={{ height: '4rem' }}></div>
 
-            {/* Infinite Horizontal Marquee Scroll */}
+            {/* Infinite Horizontal Marquee Scroll for Skills */}
             <div className="collabs-marquee-container">
               <div className="collabs-marquee-track">
                 {/* Track has two lists side by side to loop infinitely */}
                 <div className="collabs-marquee-list">
-                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68d294a99b218abd71dc0764_ln4-ln4-collab-logo-uber.svg" alt="Uber" style={{ height: '2.5rem', width: 'auto' }} />
-                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68dbd5d7e14222573f46ebdb_ln4-ln4-collab-lnkart.svg" alt="LnkArt" style={{ height: '2.5rem', width: 'auto' }} />
-                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68dbd5d72c50967c2195c702_ln4-ln4-collab-bell-helmets.svg" alt="Bell" style={{ height: '2.5rem', width: 'auto' }} />
-                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68dbd5d718fcdbf76afbcc45_ln4-ln4-collab-pure-electric.svg" alt="Pure Electric" style={{ height: '2.5rem', width: 'auto' }} />
-                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68dbd5d7a8a302c07e91904d_ln4-ln4-collab-google.svg" alt="Google" style={{ height: '2.5rem', width: 'auto' }} />
-                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67d4349e00e6b7904f3746a3_ln4-ln4-collab-logo-ralph.svg" alt="Ralph Lauren" style={{ height: '2.5rem', width: 'auto' }} />
-                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67efc88cf1d78e3e7624d5e3_ln4-ln4-collab-logo-ps4.svg" alt="PlayStation" style={{ height: '2.5rem', width: 'auto' }} />
-                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67efc88c532235956e5d267a_ln4-ln4-collab-logo-quadrant.svg" alt="Quadrant" style={{ height: '2.5rem', width: 'auto' }} />
-                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67efc88cb3373daa7ba240d6_ln4-ln4-collab-logo-tumi.svg" alt="Tumi" style={{ height: '2.5rem', width: 'auto' }} />
-                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67efc88c1939bc87931c2599_ln4-ln4-collab-logo-hilton.svg" alt="Hilton" style={{ height: '2.5rem', width: 'auto' }} />
+                  {SKILLS_DATA.map((skill, idx) => (
+                    <div key={idx} className="skill-pill">
+                      <span className="skill-dot"></span>
+                      <span className="skill-text">{skill}</span>
+                    </div>
+                  ))}
                 </div>
                 <div className="collabs-marquee-list" aria-hidden="true">
-                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68d294a99b218abd71dc0764_ln4-ln4-collab-logo-uber.svg" alt="Uber" style={{ height: '2.5rem', width: 'auto' }} />
-                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68dbd5d7e14222573f46ebdb_ln4-ln4-collab-lnkart.svg" alt="LnkArt" style={{ height: '2.5rem', width: 'auto' }} />
-                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68dbd5d72c50967c2195c702_ln4-ln4-collab-bell-helmets.svg" alt="Bell" style={{ height: '2.5rem', width: 'auto' }} />
-                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68dbd5d718fcdbf76afbcc45_ln4-ln4-collab-pure-electric.svg" alt="Pure Electric" style={{ height: '2.5rem', width: 'auto' }} />
-                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68dbd5d7a8a302c07e91904d_ln4-ln4-collab-google.svg" alt="Google" style={{ height: '2.5rem', width: 'auto' }} />
-                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67d4349e00e6b7904f3746a3_ln4-ln4-collab-logo-ralph.svg" alt="Ralph Lauren" style={{ height: '2.5rem', width: 'auto' }} />
-                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67efc88cf1d78e3e7624d5e3_ln4-ln4-collab-logo-ps4.svg" alt="PlayStation" style={{ height: '2.5rem', width: 'auto' }} />
-                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67efc88c532235956e5d267a_ln4-ln4-collab-logo-quadrant.svg" alt="Quadrant" style={{ height: '2.5rem', width: 'auto' }} />
-                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67efc88cb3373daa7ba240d6_ln4-ln4-collab-logo-tumi.svg" alt="Tumi" style={{ height: '2.5rem', width: 'auto' }} />
-                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67efc88c1939bc87931c2599_ln4-ln4-collab-logo-hilton.svg" alt="Hilton" style={{ height: '2.5rem', width: 'auto' }} />
+                  {SKILLS_DATA.map((skill, idx) => (
+                    <div key={`dup-${idx}`} className="skill-pill">
+                      <span className="skill-dot"></span>
+                      <span className="skill-text">{skill}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
+
 
             <div className="spacer _6rem" style={{ height: '6rem' }}></div>
           </div>

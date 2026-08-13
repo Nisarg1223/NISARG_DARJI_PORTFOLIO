@@ -2650,13 +2650,13 @@ html.lenis body {
   color: var(--color--dark-green);
 }
 
-/* Infinite Horizontal Marquee Scroll */
+/* Infinite Horizontal Marquee Scroll & Skills Styling */
 .collabs-marquee-container {
   width: 100%;
   overflow: hidden;
   position: relative;
   z-index: 1;
-  padding: 4rem 0;
+  padding: 3rem 0;
   background: transparent;
   display: flex;
 }
@@ -2664,30 +2664,71 @@ html.lenis body {
 .collabs-marquee-track {
   display: flex;
   width: max-content;
-  animation: collabsMarqueeScroll 25s linear infinite;
+  animation: collabsMarqueeScroll 35s linear infinite;
+}
+
+.collabs-marquee-container:hover .collabs-marquee-track {
+  animation-play-state: paused;
 }
 
 .collabs-marquee-list {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  gap: 6rem;
-  padding: 0 3rem;
+  gap: 1.5rem;
+  padding: 0 0.75rem;
   flex-shrink: 0;
 }
 
-.collabs-marquee-list img {
-  height: 2.5rem;
-  width: auto;
-  opacity: 0.85;
-  filter: brightness(0.15);
-  transition: opacity 0.3s ease, filter 0.3s ease;
+/* Skill Pills & Badges Styling */
+.skill-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.75rem 1.6rem;
+  background: rgba(11, 15, 2, 0.04);
+  border: 1.5px solid rgba(11, 15, 2, 0.15);
+  border-radius: 100px;
+  font-family: 'Outfit', 'Mona Sans', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--color--dark-green);
+  white-space: nowrap;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  cursor: pointer;
+  user-select: none;
 }
 
-.collabs-marquee-list img:hover {
-  opacity: 1;
-  filter: none;
+.skill-pill:hover {
+  background: var(--color--lime);
+  border-color: var(--color--dark-green);
+  color: var(--color--dark-green);
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 10px 25px rgba(11, 15, 2, 0.16);
 }
+
+.skill-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color--lime);
+  border: 1.5px solid var(--color--dark-green);
+  display: inline-block;
+  flex-shrink: 0;
+  transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+.skill-pill:hover .skill-dot {
+  background-color: var(--color--dark-green);
+  border-color: var(--color--dark-green);
+  transform: scale(1.2);
+}
+
+.skill-text {
+  line-height: 1;
+}
+
 
 @keyframes collabsMarqueeScroll {
   0% {
