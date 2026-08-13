@@ -9,6 +9,9 @@ import Navbar from './components/Navbar'
 import secondpageImage from './assets/secondpage_image.png'
 import signatureImage from './assets/signature_image.png'
 import Menu from './components/Menu'
+import taskelloHeaderBg from './assets/taskello_header_bg.png'
+import card1Image from './assets/card_1_image.png'
+import card2Image from './assets/card_2_image.png'
 
 const SKILLS_DATA = [
   "HTML",
@@ -1267,42 +1270,53 @@ const App = () => {
             <div className="helmet-grid">
               {HELMETS_DATA.map((helmet, idx) => (
                 <div key={idx} className="helmet-grid-item-w">
-                  <div className="helmet-grid-item" data-helmet-item="">
-                    {/* Desktop borders */}
-                    <div className="helmet-grid-frame-w destop">
-                      <div className="helmet-grid-frame is-overlay">
-                        <svg width="100%" height="100%" viewBox="0 0 407 411" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M8 1h390.89a7 7 0 0 1 7 7v356.983a7 7 0 0 1-7 7H263.329a23.999 23.999 0 0 0-18.766 9.038l-16.499 20.694A21.999 21.999 0 0 1 210.862 410H8a7 7 0 0 1-7-7V8a7 7 0 0 1 7-7Z" stroke="var(--color--lime)" strokeWidth="2"/>
+                  <div className="helmet-grid-item taskello-card-wrapper" data-helmet-item="">
+                    <div className="taskello-card">
+                      {/* Top Header Background Image */}
+                      <div className="taskello-header-bg-w">
+                        <img src={idx % 2 === 0 ? card1Image : card2Image} alt={`${helmet.title} Background`} className="taskello-header-img" />
+                        
+                        <div className="taskello-header-text">
+                          <div>Taskello App</div>
+                          <div>Card Design</div>
+                        </div>
+                      </div>
+
+                      {/* Folder Tab SVG Overlay */}
+                      <div className="taskello-dark-panel-w">
+                        <svg viewBox="0 0 400 411" fill="none" preserveAspectRatio="none" className="taskello-dark-panel-svg">
+                          <path d="M -2,411 L -2,105 C -2,85 10,75 26,75 L 145,75 C 165,75 175,82 185,95 C 195,108 205,115 225,115 L 375,115 C 390,115 405,127 405,143 L 405,411 Z" fill="#18181a" />
                         </svg>
                       </div>
-                      <div className="helmet-grid-frame is-base">
-                        <svg width="100%" height="100%" viewBox="0 0 407 411" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M8 .5h390.89a7.5 7.5 0 0 1 7.5 7.5v356.983a7.5 7.5 0 0 1-7.5 7.5H263.329a23.502 23.502 0 0 0-18.375 8.849l-16.499 20.695a22.502 22.502 0 0 1-17.593 8.473H8a7.5 7.5 0 0 1-7.5-7.5V8a7.5 7.5 0 0 1 7.5-7.5Z" stroke="currentColor" strokeWidth="2" vectorEffect="non-scaling-stroke"/>
-                        </svg>
+
+                      {/* Content Overlay */}
+                      <div className="taskello-content">
+                        <div className="taskello-tab-header">
+                          <div>
+                            <h4 className="taskello-tab-title">{idx === 0 ? "Daily memo" : helmet.title}</h4>
+                            <p className="taskello-tab-subtitle">{idx === 0 ? "Notes & Journaling" : `${helmet.year} Edition`}</p>
+                          </div>
+                          <div className="taskello-arrow-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                              <line x1="7" y1="17" x2="17" y2="7"></line>
+                              <polyline points="7 7 17 7 17 17"></polyline>
+                            </svg>
+                          </div>
+                        </div>
+
+                        <div className="taskello-bottom-bar">
+                          <div className="taskello-bottom-left">
+                            <span className="taskello-num">{(idx + 1).toString().padStart(2, '0')}</span>
+                            <span className="taskello-doc">Doc</span>
+                          </div>
+                          <div className="taskello-bottom-right">
+                            1270 Notes
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                    {/* Mobile borders */}
-                    <div className="helmet-grid-frame-w mobile">
-                      <div className="helmet-grid-frame is-overlay">
-                        <svg width="100%" height="100%" viewBox="0 0 187 188" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M8 .5h170.12a7.5 7.5 0 0 1 7.5 7.5v154.61a7.5 7.5 0 0 1-7.5 7.5H60.681a10.5 10.5 0 0 0-8.21 3.954l-7.86 9.858a9.5 9.5 0 0 1-7.427 3.578H8a7.5 7.5 0 0 1-7.5-7.5V8a7.5 7.5 0 0 1 7.5-7.5Z" stroke="var(--color--lime)" strokeWidth="2"/>
-                        </svg>
-                      </div>
-                      <div className="helmet-grid-frame is-base">
-                        <svg width="100%" height="100%" viewBox="0 0 187 188" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M8 .5h170.12a7.5 7.5 0 0 1 7.5 7.5v154.61a7.5 7.5 0 0 1-7.5 7.5H60.681a10.5 10.5 0 0 0-8.21 3.954l-7.86 9.858a9.5 9.5 0 0 1-7.427 3.578H8a7.5 7.5 0 0 1-7.5-7.5V8a7.5 7.5 0 0 1 7.5-7.5Z" stroke="currentColor" strokeWidth="1"/>
-                        </svg>
-                      </div>
-                    </div>
-                    {/* Helmet Images */}
-                    <div className="helmet-grid-item-img-w">
-                      <div className="helmet-grid-item-img-helmet-w">
-                        <img src={helmet.base} alt={`${helmet.title} base`} className="helmet-grid-item-img-helmet" />
-                      </div>
-                      <img src={helmet.hover} alt={`${helmet.title} hover`} className="helmet-grid-item-reveal-img" />
                     </div>
                   </div>
-                  {/* Notched Text Details wrapper */}
+                  {/* Notched Text Details wrapper (same as normal cards) */}
                   <div className="helmet-grid-item-text-w">
                     <h3 className="text-title-small-label text">{helmet.title}</h3>
                     <div className="helmet-grid-item-date-w">
