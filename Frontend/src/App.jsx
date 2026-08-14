@@ -16,6 +16,9 @@ import contactCardImage from './assets/contact_card_1.png'
 import experienceCardImage from './assets/Experiance_card.png'
 import certificatesCardImage from './assets/certificates_card.png'
 import githubCardImage from './assets/github_card.png'
+import toolsCardImage from './assets/tools_card.png'
+import achievementsCardImage from './assets/achivements_cards.png'
+import linkedinCardImage from './assets/Linked_card.png'
 
 const SKILLS_DATA = [
   "HTML",
@@ -1507,11 +1510,11 @@ const App = () => {
               {/* Title matching landonorris.com 100% */}
               <h2 className="callout-socials-title">
                 <div className="reveal-line-wrapper">
-                  <span className="reveal-line-text title-whats-up">WHAT’S UP</span>
+                  <span className="reveal-line-text title-whats-up">LET’S CONNECT</span>
                   <div className="reveal-line-block"></div>
                 </div>
                 <div className="reveal-line-wrapper">
-                  <span className="reveal-line-text title-on-socials">ON SOCIALS</span>
+                  <span className="reveal-line-text title-on-socials">& GET TO KNOW ME</span>
                   <div className="reveal-line-block"></div>
                 </div>
               </h2>
@@ -1520,12 +1523,12 @@ const App = () => {
               <div className="callout-socials-card-layout">
                 <div className="callout-socials-card-w">
                   <div className="video-stream">
-                    <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68d3ba846e593e52541fb7a8_Lando-6-on-track.webp" loading="lazy" alt="Lando on track" className="image is-social-card" />
+                    <img src={linkedinCardImage} loading="lazy" alt="LinkedIn Card" className="image is-social-card" />
                   </div>
                 </div>
                 <div className="callout-socials-card-w">
                   <div className="video-stream">
-                    <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/6830302d42237886d0c4b24c_ln-social-img-2.webp" loading="lazy" alt="Lando off track" className="image is-social-card" />
+                    <img src={toolsCardImage} loading="lazy" alt="Tools Card" className="image is-social-card" />
                   </div>
                 </div>
                 <div className="callout-socials-card-w">
@@ -1545,7 +1548,7 @@ const App = () => {
                 </div>
                 <div className="callout-socials-card-w">
                   <div className="video-stream">
-                    <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/6830302dadd0727e6ac034dd_ln-social-img-6.webp" loading="lazy" alt="Lando off track" className="image is-social-card" />
+                    <img src={achievementsCardImage} loading="lazy" alt="Achievements Card" className="image is-social-card" />
                   </div>
                 </div>
                 <div className="callout-socials-card-w">
