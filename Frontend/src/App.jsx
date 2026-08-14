@@ -12,6 +12,10 @@ import Menu from './components/Menu'
 import taskelloHeaderBg from './assets/taskello_header_bg.png'
 import card1Image from './assets/card_1_image.png'
 import card2Image from './assets/card_2_image.png'
+import contactCardImage from './assets/contact_card_1.png'
+import experienceCardImage from './assets/Experiance_card.png'
+import certificatesCardImage from './assets/certificates_card.png'
+import githubCardImage from './assets/github_card.png'
 
 const SKILLS_DATA = [
   "HTML",
@@ -1526,17 +1530,17 @@ const App = () => {
                 </div>
                 <div className="callout-socials-card-w">
                   <div className="video-stream">
-                    <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68d3ba8463e72a95c2d8a0ba_Lando-4-off-track.webp" loading="lazy" alt="Lando off track" className="image is-social-card" />
+                    <img src={experienceCardImage} loading="lazy" alt="Experience Card" className="image is-social-card" />
+                  </div>
+                </div>
+                <div className="callout-socials-card-w is-contact-card-w">
+                  <div className="video-stream">
+                    <img src={contactCardImage} loading="lazy" alt="Contact Card" className="image is-social-card is-contact-card" />
                   </div>
                 </div>
                 <div className="callout-socials-card-w">
                   <div className="video-stream">
-                    <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68d3ba848fb98d1ca68eb6c8_Lando-5-off-track.webp" loading="lazy" alt="Lando on track" className="image is-social-card" />
-                  </div>
-                </div>
-                <div className="callout-socials-card-w">
-                  <div className="video-stream">
-                    <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68d3ba8449f0506fbaad037b_Lano-5-on-track.webp" loading="lazy" alt="Lando on track" className="image is-social-card" />
+                    <img src={certificatesCardImage} loading="lazy" alt="Certificates Card" className="image is-social-card" />
                   </div>
                 </div>
                 <div className="callout-socials-card-w">
@@ -1546,7 +1550,7 @@ const App = () => {
                 </div>
                 <div className="callout-socials-card-w">
                   <div className="video-stream">
-                    <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68d3ba83f162f4d2f4e78442_Lando-6-off-track.webp" loading="lazy" alt="Lando off track" className="image is-social-card" />
+                    <img src={githubCardImage} loading="lazy" alt="GitHub Card" className="image is-social-card" />
                   </div>
                 </div>
               </div>
