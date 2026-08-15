@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { motion, useAnimation } from 'framer-motion'
+import { motion, useAnimation, AnimatePresence } from 'framer-motion'
 import Lenis from 'lenis'
 import heroImage from './assets/Hero_image.png'
 import backgroundVideo from './assets/test_video_7.mp4'
@@ -19,6 +19,94 @@ import githubCardImage from './assets/github_card.png'
 import toolsCardImage from './assets/tools_card.png'
 import achievementsCardImage from './assets/achivements_cards.png'
 import linkedinCardImage from './assets/Linked_card.png'
+import myPhoto from './assets/my_photo.png'
+
+const SOCIAL_CARDS = [
+  {
+    id: 'linkedin',
+    image: linkedinCardImage,
+    alt: 'LinkedIn Card',
+    className: '',
+    isContact: false,
+    quote: 'Creating my Card has been an eye-opening experience. While digital portfolio platforms are not new, this one feels truly tailored to artists and curators. Viewers can immediately access a curated, high-resolution portfolio alongside my social links and contact information, allowing my work to continue speaking even when I am not in the room.',
+    name: 'Nisarg Darji',
+    role: 'Full Stack Developer',
+    location: 'India',
+    flagType: 'in'
+  },
+  {
+    id: 'tools',
+    image: toolsCardImage,
+    alt: 'Tools Card',
+    className: '',
+    isContact: false,
+    quote: 'Mastering modern web tools and frameworks has been an eye-opening journey. From React and Node to GSAP, LangChain, and GenAI, having the right arsenal enables crafting high-performance, immersive web applications that push digital boundaries.',
+    name: 'Nisarg Darji',
+    role: 'Full Stack Developer',
+    location: 'India',
+    flagType: 'in'
+  },
+  {
+    id: 'experience',
+    image: experienceCardImage,
+    alt: 'Experience Card',
+    className: '',
+    isContact: false,
+    quote: 'Hands-on building and shipping real-world products has shaped my engineering philosophy. From frontend animations to full-stack architectures, every project is crafted with high standards of performance, scalability, and user empathy.',
+    name: 'Nisarg Darji',
+    role: 'Full Stack Developer',
+    location: 'India',
+    flagType: 'in'
+  },
+  {
+    id: 'contact',
+    image: contactCardImage,
+    alt: 'Contact Card',
+    className: 'is-contact-card-w',
+    isContact: true,
+    quote: 'Creating my Card has been an eye-opening experience. While digital portfolio platforms are not new, this one feels truly tailored to artists and curators. Viewers can immediately access a curated, high-resolution portfolio alongside my social links and contact information, allowing my work to continue speaking even when I am not in the room.',
+    name: 'Nisarg Darji',
+    role: 'Full Stack Developer',
+    location: 'India',
+    flagType: 'in'
+  },
+  {
+    id: 'certificates',
+    image: certificatesCardImage,
+    alt: 'Certificates Card',
+    className: '',
+    isContact: false,
+    quote: 'Continuous learning is the cornerstone of my development craft. Pursuing rigorous certifications across full-stack ecosystems, generative AI, and algorithms ensures every solution I design is modern, robust, and industry-proven.',
+    name: 'Nisarg Darji',
+    role: 'Full Stack Developer',
+    location: 'India',
+    flagType: 'in'
+  },
+  {
+    id: 'achievements',
+    image: achievementsCardImage,
+    alt: 'Achievements Card',
+    className: '',
+    isContact: false,
+    quote: 'Pushing limits through hackathons, innovative web creations, and impactful technical milestones has driven my growth. These achievements represent the dedication to craft, grit, and passion I bring to every product I build.',
+    name: 'Nisarg Darji',
+    role: 'Full Stack Developer',
+    location: 'India',
+    flagType: 'in'
+  },
+  {
+    id: 'github',
+    image: githubCardImage,
+    alt: 'GitHub Card',
+    className: '',
+    isContact: false,
+    quote: 'Open source and public repositories are the truest reflection of a developer\'s journey. From modular components to experimental animations, my GitHub repositories showcase a commitment to clean code and continuous exploration.',
+    name: 'Nisarg Darji',
+    role: 'Full Stack Developer',
+    location: 'India',
+    flagType: 'in'
+  },
+]
 
 const SKILLS_DATA = [
   "HTML",
@@ -179,6 +267,7 @@ const App = () => {
   const ototPinRef = useRef(null)
 
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [selectedSocialCard, setSelectedSocialCard] = useState(null)
   const lenisRef = useRef(null)
 
   useEffect(() => {
@@ -214,13 +303,37 @@ const App = () => {
 
   useEffect(() => {
     if (lenisRef.current) {
-      if (isMenuOpen) {
+      if (isMenuOpen || selectedSocialCard) {
         lenisRef.current.stop()
       } else {
         lenisRef.current.start()
       }
     }
-  }, [isMenuOpen])
+  }, [isMenuOpen, selectedSocialCard])
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (!selectedSocialCard) return
+      if (e.key === 'Escape') {
+        setSelectedSocialCard(null)
+      } else if (e.key === 'ArrowRight') {
+        const currentIndex = SOCIAL_CARDS.findIndex((c) => c.id === selectedSocialCard.id)
+        if (currentIndex !== -1) {
+          const nextIndex = (currentIndex + 1) % SOCIAL_CARDS.length
+          setSelectedSocialCard(SOCIAL_CARDS[nextIndex])
+        }
+      } else if (e.key === 'ArrowLeft') {
+        const currentIndex = SOCIAL_CARDS.findIndex((c) => c.id === selectedSocialCard.id)
+        if (currentIndex !== -1) {
+          const prevIndex = (currentIndex - 1 + SOCIAL_CARDS.length) % SOCIAL_CARDS.length
+          setSelectedSocialCard(SOCIAL_CARDS[prevIndex])
+        }
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [selectedSocialCard])
 
   useEffect(() => {
     if (videoRef.current) {
@@ -1521,41 +1634,22 @@ const App = () => {
 
               {/* Cards Fan */}
               <div className="callout-socials-card-layout">
-                <div className="callout-socials-card-w">
-                  <div className="video-stream">
-                    <img src={linkedinCardImage} loading="lazy" alt="LinkedIn Card" className="image is-social-card" />
+                {SOCIAL_CARDS.map((card) => (
+                  <div
+                    key={card.id}
+                    className={`callout-socials-card-w ${card.className || ''}`}
+                    onClick={() => setSelectedSocialCard(card)}
+                  >
+                    <div className="video-stream">
+                      <img
+                        src={card.image}
+                        loading="lazy"
+                        alt={card.alt}
+                        className={`image is-social-card ${card.isContact ? 'is-contact-card' : ''}`}
+                      />
+                    </div>
                   </div>
-                </div>
-                <div className="callout-socials-card-w">
-                  <div className="video-stream">
-                    <img src={toolsCardImage} loading="lazy" alt="Tools Card" className="image is-social-card" />
-                  </div>
-                </div>
-                <div className="callout-socials-card-w">
-                  <div className="video-stream">
-                    <img src={experienceCardImage} loading="lazy" alt="Experience Card" className="image is-social-card" />
-                  </div>
-                </div>
-                <div className="callout-socials-card-w is-contact-card-w">
-                  <div className="video-stream">
-                    <img src={contactCardImage} loading="lazy" alt="Contact Card" className="image is-social-card is-contact-card" />
-                  </div>
-                </div>
-                <div className="callout-socials-card-w">
-                  <div className="video-stream">
-                    <img src={certificatesCardImage} loading="lazy" alt="Certificates Card" className="image is-social-card" />
-                  </div>
-                </div>
-                <div className="callout-socials-card-w">
-                  <div className="video-stream">
-                    <img src={achievementsCardImage} loading="lazy" alt="Achievements Card" className="image is-social-card" />
-                  </div>
-                </div>
-                <div className="callout-socials-card-w">
-                  <div className="video-stream">
-                    <img src={githubCardImage} loading="lazy" alt="GitHub Card" className="image is-social-card" />
-                  </div>
-                </div>
+                ))}
               </div>
 
               {/* Subtext */}
@@ -1738,6 +1832,95 @@ const App = () => {
         </div>
         <div className="footer-bg-gradient"></div>
       </section>
+
+      {/* Centered Social Card Modal Lightbox */}
+      <AnimatePresence>
+        {selectedSocialCard && (
+          <motion.div
+            className="social-card-modal-backdrop"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.24, ease: 'easeOut' }}
+            onClick={() => setSelectedSocialCard(null)}
+          >
+            {/* Close Button */}
+            <button
+              className="social-card-modal-close"
+              onClick={(e) => {
+                e.stopPropagation()
+                setSelectedSocialCard(null)
+              }}
+              aria-label="Close modal"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+
+            {/* Centered Modal Card matching Image 2 */}
+            <motion.div
+              key={selectedSocialCard.id}
+              className="testimonial-modal-card"
+              initial={{ scale: 0.88, opacity: 0, y: 24 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.88, opacity: 0, y: 20 }}
+              transition={{ type: 'spring', damping: 26, stiffness: 320 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Quote / Statement Body Text */}
+              <div className="testimonial-card-text">
+                {selectedSocialCard.quote}
+              </div>
+
+              {/* Horizontal Divider Line */}
+              <div className="testimonial-card-divider"></div>
+
+              {/* Footer Author & Country Flag Row */}
+              <div className="testimonial-card-footer">
+                <div className="testimonial-card-author-w">
+                  <div className="testimonial-card-avatar-w">
+                    <img
+                      src={myPhoto}
+                      alt={selectedSocialCard.name}
+                      className="testimonial-card-avatar"
+                    />
+                  </div>
+                  <div className="testimonial-card-info">
+                    <div className="testimonial-card-name">{selectedSocialCard.name}</div>
+                    <div className="testimonial-card-role">{selectedSocialCard.role}</div>
+                    <div className="testimonial-card-location">{selectedSocialCard.location}</div>
+                  </div>
+                </div>
+
+                {/* Country Flag Badge (Image 2 style) */}
+                <div className="testimonial-card-flag-w">
+                  <svg viewBox="0 0 72 48" className="flag-svg" width="60" height="40">
+                    {/* Indian Flag SVG */}
+                    <rect width="72" height="16" fill="#FF9933" />
+                    <rect y="16" width="72" height="16" fill="#FFFFFF" />
+                    <rect y="32" width="72" height="16" fill="#128807" />
+                    <circle cx="36" cy="24" r="5.8" fill="none" stroke="#000080" strokeWidth="0.9" />
+                    <circle cx="36" cy="24" r="1.2" fill="#000080" />
+                    {Array.from({ length: 24 }).map((_, i) => (
+                      <line
+                        key={i}
+                        x1="36"
+                        y1="24"
+                        x2={36 + 5.8 * Math.cos((i * 15 * Math.PI) / 180)}
+                        y2={24 + 5.8 * Math.sin((i * 15 * Math.PI) / 180)}
+                        stroke="#000080"
+                        strokeWidth="0.5"
+                      />
+                    ))}
+                  </svg>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }

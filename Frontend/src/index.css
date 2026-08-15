@@ -3924,3 +3924,180 @@ html.lenis body {
     line-height: 1.05;
   }
 }
+
+/* ==========================================================================
+   Centered Social Card Modal Lightbox (Image 2 style)
+   ========================================================================== */
+.social-card-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(8, 11, 6, 0.84);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 1.5rem;
+  cursor: zoom-out;
+}
+
+.testimonial-modal-card {
+  position: relative;
+  width: 100%;
+  max-width: 62rem;
+  min-height: 38rem;
+  background-color: #ffffff;
+  border-radius: 0.75rem;
+  padding: 4.75rem 4.5rem 3.75rem 4.5rem;
+  box-shadow: 0 35px 100px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: default;
+  user-select: text;
+  box-sizing: border-box;
+}
+
+.testimonial-card-text {
+  font-family: 'Mona Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: clamp(1.65rem, 2.55vw, 2.35rem);
+  font-weight: 450;
+  line-height: 1.4;
+  letter-spacing: -0.024em;
+  color: #0b0f02;
+  margin: 0;
+  text-align: left;
+}
+
+.testimonial-card-divider {
+  width: 100%;
+  height: 1px;
+  background-color: #ededed;
+  margin: 3.5rem 0 2.75rem 0;
+}
+
+.testimonial-card-footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.testimonial-card-author-w {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+.testimonial-card-avatar-w {
+  width: 6.25rem;
+  height: 6.25rem;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 4px;
+  background-color: #e5e5e5;
+}
+
+.testimonial-card-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+.testimonial-card-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.testimonial-card-name {
+  font-family: 'Mona Sans', 'Inter', sans-serif;
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #111111;
+  line-height: 1.2;
+  margin: 0 0 0.5rem 0;
+}
+
+.testimonial-card-role,
+.testimonial-card-location {
+  font-family: 'Mona Sans', 'Inter', sans-serif;
+  font-size: 1.15rem;
+  color: #8c8c8c;
+  line-height: 1.35;
+}
+
+.testimonial-card-flag-w {
+  flex-shrink: 0;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 0.25rem;
+}
+
+.flag-svg {
+  display: block;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+.social-card-modal-close {
+  position: fixed;
+  top: 2rem;
+  right: 2.5rem;
+  z-index: 100000;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.social-card-modal-close:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.1) rotate(90deg);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+@media screen and (max-width: 767px) {
+  .testimonial-modal-card {
+    max-width: 92vw;
+    min-height: auto;
+    padding: 2.25rem 1.5rem 1.85rem 1.5rem;
+  }
+  .testimonial-card-text {
+    font-size: 1.25rem;
+    line-height: 1.38;
+  }
+  .testimonial-card-divider {
+    margin: 1.75rem 0 1.5rem 0;
+  }
+  .testimonial-card-avatar-w {
+    width: 4.25rem;
+    height: 4.25rem;
+  }
+  .testimonial-card-name {
+    font-size: 1.15rem;
+  }
+  .testimonial-card-role,
+  .testimonial-card-location {
+    font-size: 0.95rem;
+  }
+  .social-card-modal-close {
+    top: 1.25rem;
+    right: 1.25rem;
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+}
