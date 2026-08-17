@@ -20,6 +20,18 @@ import toolsCardImage from './assets/tools_card.png'
 import achievementsCardImage from './assets/achivements_cards.png'
 import linkedinCardImage from './assets/Linked_card.png'
 import myPhoto from './assets/my_photo.png'
+import antigravityLogo from './assets/antigravity_image.png'
+import githubLogo from './assets/tools/github.svg'
+import vscodeLogo from './assets/tools/vscode.svg'
+import figmaLogo from './assets/tools/figma.svg'
+import stitchLogo from './assets/tools/stitch.svg'
+import postmanLogo from './assets/tools/postman.svg'
+import vercelLogo from './assets/tools/vercel.svg'
+import mongodbLogo from './assets/tools/mongodb.svg'
+import splineLogo from './assets/tools/spline.svg'
+import chatgptLogo from './assets/chatgpt_logo.png'
+import geminiLogo from './assets/gemini_logo.png'
+import claudeLogo from './assets/Clude_image.png'
 
 const SOCIAL_CARDS = [
   {
@@ -39,8 +51,9 @@ const SOCIAL_CARDS = [
     image: toolsCardImage,
     alt: 'Tools Card',
     className: '',
+    isTools: true,
     isContact: false,
-    quote: 'Mastering modern web tools and frameworks has been an eye-opening journey. From React and Node to GSAP, LangChain, and GenAI, having the right arsenal enables crafting high-performance, immersive web applications that push digital boundaries.',
+    quote: 'TOOLS I USE',
     name: 'Nisarg Darji',
     role: 'Full Stack Developer',
     location: 'India',
@@ -64,7 +77,9 @@ const SOCIAL_CARDS = [
     alt: 'Contact Card',
     className: 'is-contact-card-w',
     isContact: true,
-    quote: 'Creating my Card has been an eye-opening experience. While digital portfolio platforms are not new, this one feels truly tailored to artists and curators. Viewers can immediately access a curated, high-resolution portfolio alongside my social links and contact information, allowing my work to continue speaking even when I am not in the room.',
+    quote: 'Connect with me.',
+    phone: '8320377379',
+    email: 'darjinisarg49@gmail.com',
     name: 'Nisarg Darji',
     role: 'Full Stack Developer',
     location: 'India',
@@ -106,6 +121,69 @@ const SOCIAL_CARDS = [
     location: 'India',
     flagType: 'in'
   },
+]
+
+const TOOLS_DATA = [
+  {
+    name: 'Antigravity',
+    category: 'AI Assistant',
+    logo: antigravityLogo
+  },
+  {
+    name: 'GitHub',
+    category: 'Code & Collab',
+    logo: githubLogo
+  },
+  {
+    name: 'VS Code',
+    category: 'IDE / Editor',
+    logo: vscodeLogo
+  },
+  {
+    name: 'Figma',
+    category: 'UI/UX Design',
+    logo: figmaLogo
+  },
+  {
+    name: 'Stitch',
+    category: 'UI & Workflow',
+    logo: stitchLogo
+  },
+  {
+    name: 'Postman',
+    category: 'API Testing',
+    logo: postmanLogo
+  },
+  {
+    name: 'Vercel',
+    category: 'Deployment',
+    logo: vercelLogo
+  },
+  {
+    name: 'MongoDB',
+    category: 'Database',
+    logo: mongodbLogo
+  },
+  {
+    name: 'Spline',
+    category: '3D Design',
+    logo: splineLogo
+  },
+  {
+    name: 'ChatGPT',
+    category: 'AI / LLM',
+    logo: chatgptLogo
+  },
+  {
+    name: 'Gemini',
+    category: 'Multimodal AI',
+    logo: geminiLogo
+  },
+  {
+    name: 'Claude',
+    category: 'AI / Reasoning',
+    logo: claudeLogo
+  }
 ]
 
 const SKILLS_DATA = [
@@ -1869,10 +1947,64 @@ const App = () => {
               transition={{ type: 'spring', damping: 26, stiffness: 320 }}
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Quote / Statement Body Text */}
-              <div className="testimonial-card-text">
-                {selectedSocialCard.quote}
-              </div>
+              {/* Quote / Statement Body Text or Contact / Tools Details */}
+              {selectedSocialCard.id === 'tools' || selectedSocialCard.isTools ? (
+                <div className="tools-modal-content">
+                  <div className="tools-modal-header">
+                    <h3 className="tools-modal-heading">TOOLS I USE</h3>
+                    <span className="tools-modal-subheading">Tech Stack &amp; Daily Workflow</span>
+                  </div>
+                  <div className="tools-modal-grid">
+                    {TOOLS_DATA.map((tool, idx) => (
+                      <div key={idx} className="tools-modal-card-item">
+                        <div className="tools-modal-card-icon-w">
+                          <img src={tool.logo} alt={tool.name} className="tools-modal-logo-img" />
+                        </div>
+                        <div className="tools-modal-card-info">
+                          <span className="tools-modal-card-name">{tool.name}</span>
+                          <span className="tools-modal-card-cat">{tool.category}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ) : selectedSocialCard.isContact ? (
+                <div className="contact-modal-content">
+                  <h3 className="contact-modal-heading">Connect with me.</h3>
+                  <div className="contact-modal-info-list">
+                    <div className="contact-modal-info-row">
+                      <span className="contact-modal-info-label">Phone no:</span>
+                      <a href="tel:8320377379" className="contact-modal-info-link">
+                        <span className="contact-modal-icon">
+                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                          </svg>
+                        </span>
+                        <span>8320377379</span>
+                        <span className="contact-modal-arrow">↗</span>
+                      </a>
+                    </div>
+
+                    <div className="contact-modal-info-row">
+                      <span className="contact-modal-info-label">Email:</span>
+                      <a href="mailto:darjinisarg49@gmail.com" className="contact-modal-info-link">
+                        <span className="contact-modal-icon">
+                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                            <rect x="2" y="4" width="20" height="16" rx="2"/>
+                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                          </svg>
+                        </span>
+                        <span>darjinisarg49@gmail.com</span>
+                        <span className="contact-modal-arrow">↗</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <div className="testimonial-card-text">
+                  {selectedSocialCard.quote}
+                </div>
+              )}
 
               {/* Horizontal Divider Line */}
               <div className="testimonial-card-divider"></div>

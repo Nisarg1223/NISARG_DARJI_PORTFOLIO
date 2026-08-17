@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="100%" height="100%">
+  <defs>
+    <linearGradient id="stitch-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#1E293B"/>
+    </linearGradient>
+    <linearGradient id="stitch-accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06B6D4"/>
+      <stop offset="50%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#8B5CF6"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="url(#stitch-bg)"/>
+  <rect x="1" y="1" width="126" height="126" rx="27" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+  <g transform="translate(64, 64)">
+    <rect x="-32" y="-32" width="64" height="64" rx="14" fill="none" stroke="url(#stitch-accent)" stroke-width="3" stroke-dasharray="7 5"/>
+    <path d="M-18 -18 L18 18 M18 -18 L-18 18" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round"/>
+    <path d="M0 -24 L0 24 M-24 0 L24 0" stroke="url(#stitch-accent)" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="-18" cy="-18" r="4" fill="#38BDF8"/>
+    <circle cx="18" cy="-18" r="4" fill="#818CF8"/>
+    <circle cx="18" cy="18" r="4" fill="#C084FC"/>
+    <circle cx="-18" cy="18" r="4" fill="#38BDF8"/>
+    <circle cx="0" cy="0" r="5" fill="#FFFFFF"/>
+  </g>
+</svg>
