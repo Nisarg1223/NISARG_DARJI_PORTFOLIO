@@ -749,20 +749,27 @@ html.lenis body {
 }
 
 /* Navbar Theme Overrides for Light Backgrounds */
-.nav.is-light-nav .nav-logo-stacked {
-  color: var(--color--dark-green);
+.nav.is-light-nav .nav-logo-stacked,
+.nav.is-light-nav .nav-logo-stacked span,
+.nav.is-light-nav .nisarg,
+.nav.is-light-nav .nav-center-logo,
+.nav.is-light-nav .nav-emblem-svg,
+.nav.is-light-nav .nav-brand-title,
+.nav.is-light-nav .nav-brand-title strong {
+  color: #0b0f02 !important;
+  fill: #0b0f02 !important;
 }
 
-.nav.is-light-nav .nav-center-logo {
-  color: var(--color--dark-green);
+.nav.is-light-nav .nav-brand-sub {
+  color: rgba(11, 15, 2, 0.75) !important;
 }
 
 .nav.is-light-nav .nav-ham {
-  border-color: var(--color--dark-green);
+  border-color: #0b0f02 !important;
 }
 
 .nav.is-light-nav .nav-ham span {
-  background-color: var(--color--dark-green);
+  background-color: #0b0f02 !important;
 }
 
 /* Main Page Wrapper */

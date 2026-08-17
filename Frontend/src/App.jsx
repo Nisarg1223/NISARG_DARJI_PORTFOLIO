@@ -1108,6 +1108,30 @@ const App = () => {
       })
     }
 
+    // 11. Global Navbar Theme Switcher for Light Background Sections
+    const navLightTriggers = []
+    if (document.querySelector('.is-lando-exe') && document.querySelector('.is-footer')) {
+      const lightSectionTrigger = ScrollTrigger.create({
+        trigger: '.is-lando-exe',
+        start: 'top 5%',
+        endTrigger: '.is-footer',
+        end: 'top 5%',
+        onEnter: () => {
+          document.querySelector('.nav')?.classList.add('is-light-nav')
+        },
+        onLeave: () => {
+          document.querySelector('.nav')?.classList.remove('is-light-nav')
+        },
+        onEnterBack: () => {
+          document.querySelector('.nav')?.classList.add('is-light-nav')
+        },
+        onLeaveBack: () => {
+          document.querySelector('.nav')?.classList.remove('is-light-nav')
+        }
+      })
+      navLightTriggers.push(lightSectionTrigger)
+    }
+
     return () => {
       if (heroTimeline) {
         heroTimeline.scrollTrigger?.kill()
@@ -1148,6 +1172,9 @@ const App = () => {
       })
       exeTweens.forEach(t => {
         t.scrollTrigger?.kill()
+        t.kill()
+      })
+      navLightTriggers.forEach(t => {
         t.kill()
       })
     }
