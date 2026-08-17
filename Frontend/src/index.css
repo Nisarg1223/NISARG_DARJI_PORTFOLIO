@@ -4179,6 +4179,412 @@ html.lenis body {
   transform: translate(2px, -2px);
 }
 
+/* Experience Modal Specific Styles */
+.experience-modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.experience-modal-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.experience-modal-tag-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.85rem;
+  background: #f4f5f7;
+  border-radius: 2rem;
+  border: 1px solid #e5e7eb;
+}
+
+.experience-modal-tag-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+}
+
+.experience-modal-tag-text {
+  font-family: 'Mona Sans', 'Inter', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #0b0f02;
+  text-transform: uppercase;
+}
+
+.experience-modal-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.experience-dots {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.experience-dot {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: #d1d5db;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.22s ease;
+}
+
+.experience-dot.is-active {
+  width: 1.5rem;
+  border-radius: 1rem;
+  background: #0b0f02;
+}
+
+.experience-slide-counter {
+  font-family: 'Mona Sans', 'Inter', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #71717a;
+}
+
+.experience-arrows {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.experience-nav-btn {
+  width: 2.35rem;
+  height: 2.35rem;
+  border-radius: 50%;
+  background: #f4f5f7;
+  border: 1px solid #e5e7eb;
+  color: #0b0f02;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.experience-nav-btn:hover:not(:disabled) {
+  background: #0b0f02;
+  color: #ffffff;
+  border-color: #0b0f02;
+  transform: scale(1.08);
+}
+
+.experience-nav-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.experience-slide-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  min-height: 13.5rem;
+}
+
+.experience-slide-title {
+  font-family: 'Mona Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: clamp(1.65rem, 2.5vw, 2.35rem);
+  font-weight: 750;
+  letter-spacing: -0.03em;
+  color: #0b0f02;
+  line-height: 1.25;
+  margin: 0;
+}
+
+.experience-slide-paragraphs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.95rem;
+}
+
+.experience-slide-p {
+  font-family: 'Mona Sans', 'Inter', sans-serif;
+  font-size: clamp(1.02rem, 1.4vw, 1.2rem);
+  font-weight: 420;
+  line-height: 1.6;
+  color: #374151;
+  margin: 0;
+}
+
+.experience-slide-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-top: 0.65rem;
+}
+
+.experience-project-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.8rem 1.4rem;
+  background: #0a66c2;
+  color: #ffffff;
+  border-radius: 0.65rem;
+  text-decoration: none;
+  font-family: 'Mona Sans', 'Inter', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  box-shadow: 0 6px 20px rgba(10, 102, 194, 0.28);
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+}
+
+.experience-project-link-btn:hover {
+  background: #004182;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(10, 102, 194, 0.4);
+}
+
+.experience-project-link-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.experience-project-link-arrow {
+  font-size: 1.1rem;
+  opacity: 0.85;
+  transition: transform 0.2s ease;
+}
+
+.experience-project-link-btn:hover .experience-project-link-arrow {
+  transform: translate(2px, -2px);
+}
+
+.experience-slide-nav-ctas {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.experience-slide-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.15rem;
+  background: #0b0f02;
+  color: #ffffff;
+  border: 1px solid #0b0f02;
+  border-radius: 0.65rem;
+  font-family: 'Mona Sans', 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.025em;
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+}
+
+.experience-slide-cta-btn:hover {
+  background: #ffffff;
+  color: #0b0f02;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+.experience-slide-cta-btn.is-prev-cta {
+  background: #f4f5f7;
+  color: #374151;
+  border-color: #e5e7eb;
+}
+
+.experience-slide-cta-btn.is-prev-cta:hover {
+  background: #0b0f02;
+  color: #ffffff;
+  border-color: #0b0f02;
+}
+
+/* GitHub Modal Specific Styles */
+.github-modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.github-modal-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.github-modal-heading {
+  font-family: 'Mona Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: clamp(2.1rem, 3.2vw, 2.85rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  color: #0b0f02;
+  margin: 0;
+  line-height: 1.15;
+}
+
+.github-modal-subheading {
+  font-family: 'Mona Sans', 'Inter', sans-serif;
+  font-size: 0.98rem;
+  font-weight: 500;
+  color: #767676;
+  letter-spacing: 0.01em;
+}
+
+.github-modal-action-w {
+  display: flex;
+  align-items: center;
+  margin-top: 0.25rem;
+}
+
+.github-modal-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.95rem;
+  padding: 1rem 1.6rem;
+  background: #181717;
+  color: #ffffff;
+  border-radius: 0.85rem;
+  text-decoration: none;
+  font-family: 'Mona Sans', 'Inter', sans-serif;
+  font-size: clamp(1.15rem, 1.6vw, 1.35rem);
+  font-weight: 650;
+  letter-spacing: -0.015em;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  transition: all 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+  width: fit-content;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.github-modal-btn:hover {
+  background: #000000;
+  color: #ffffff;
+  transform: translateY(-3px);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.4);
+}
+
+.github-modal-btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.github-modal-btn-arrow {
+  font-size: 1.25rem;
+  opacity: 0.8;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.github-modal-btn:hover .github-modal-btn-arrow {
+  opacity: 1;
+  transform: translate(3px, -3px);
+}
+
+/* LinkedIn Modal Specific Styles */
+.linkedin-modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.linkedin-modal-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.linkedin-modal-heading {
+  font-family: 'Mona Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: clamp(2.1rem, 3.2vw, 2.85rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  color: #0b0f02;
+  margin: 0;
+  line-height: 1.15;
+}
+
+.linkedin-modal-subheading {
+  font-family: 'Mona Sans', 'Inter', sans-serif;
+  font-size: 0.98rem;
+  font-weight: 500;
+  color: #767676;
+  letter-spacing: 0.01em;
+}
+
+.linkedin-modal-action-w {
+  display: flex;
+  align-items: center;
+  margin-top: 0.25rem;
+}
+
+.linkedin-modal-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.95rem;
+  padding: 1rem 1.6rem;
+  background: #0a66c2;
+  color: #ffffff;
+  border-radius: 0.85rem;
+  text-decoration: none;
+  font-family: 'Mona Sans', 'Inter', sans-serif;
+  font-size: clamp(1.15rem, 1.6vw, 1.35rem);
+  font-weight: 650;
+  letter-spacing: -0.015em;
+  box-shadow: 0 8px 24px rgba(10, 102, 194, 0.28);
+  transition: all 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+  width: fit-content;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.linkedin-modal-btn:hover {
+  background: #004182;
+  color: #ffffff;
+  transform: translateY(-3px);
+  box-shadow: 0 14px 32px rgba(10, 102, 194, 0.4);
+}
+
+.linkedin-modal-btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.linkedin-modal-btn-arrow {
+  font-size: 1.25rem;
+  opacity: 0.8;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.linkedin-modal-btn:hover .linkedin-modal-btn-arrow {
+  opacity: 1;
+  transform: translate(3px, -3px);
+}
+
 /* Tools Modal Specific Styles */
 .tools-modal-content {
   display: flex;
@@ -4307,6 +4713,69 @@ html.lenis body {
   .testimonial-card-text {
     font-size: 1.25rem;
     line-height: 1.38;
+  }
+  .experience-modal-topbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  .experience-modal-controls {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .experience-slide-title {
+    font-size: 1.35rem;
+  }
+  .experience-slide-p {
+    font-size: 0.96rem;
+    line-height: 1.5;
+  }
+  .experience-slide-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+  .experience-project-link-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .experience-slide-nav-ctas {
+    width: 100%;
+    flex-direction: column;
+  }
+  .experience-slide-cta-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .github-modal-heading {
+    font-size: 1.65rem;
+  }
+  .github-modal-content {
+    gap: 1.1rem;
+  }
+  .github-modal-btn {
+    width: 100%;
+    padding: 0.85rem 1.15rem;
+    font-size: 1.05rem;
+    justify-content: flex-start;
+  }
+  .github-modal-btn-arrow {
+    margin-left: auto;
+  }
+  .linkedin-modal-heading {
+    font-size: 1.65rem;
+  }
+  .linkedin-modal-content {
+    gap: 1.1rem;
+  }
+  .linkedin-modal-btn {
+    width: 100%;
+    padding: 0.85rem 1.15rem;
+    font-size: 1.05rem;
+    justify-content: flex-start;
+  }
+  .linkedin-modal-btn-arrow {
+    margin-left: auto;
   }
   .tools-modal-heading {
     font-size: 1.65rem;

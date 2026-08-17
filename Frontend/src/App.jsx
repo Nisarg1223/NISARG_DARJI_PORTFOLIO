@@ -39,8 +39,10 @@ const SOCIAL_CARDS = [
     image: linkedinCardImage,
     alt: 'LinkedIn Card',
     className: '',
+    isLinkedIn: true,
     isContact: false,
-    quote: 'Creating my Card has been an eye-opening experience. While digital portfolio platforms are not new, this one feels truly tailored to artists and curators. Viewers can immediately access a curated, high-resolution portfolio alongside my social links and contact information, allowing my work to continue speaking even when I am not in the room.',
+    url: 'https://www.linkedin.com/in/nisarg-darji-008106343?utm_source=share_via&utm_content=profile&utm_medium=member_android',
+    quote: 'See my LinkedIn,',
     name: 'Nisarg Darji',
     role: 'Full Stack Developer',
     location: 'India',
@@ -64,8 +66,9 @@ const SOCIAL_CARDS = [
     image: experienceCardImage,
     alt: 'Experience Card',
     className: '',
+    isExperience: true,
     isContact: false,
-    quote: 'Hands-on building and shipping real-world products has shaped my engineering philosophy. From frontend animations to full-stack architectures, every project is crafted with high standards of performance, scalability, and user empathy.',
+    quote: '15 DAYS. REAL-WORLD EXPERIENCE.',
     name: 'Nisarg Darji',
     role: 'Full Stack Developer',
     location: 'India',
@@ -114,8 +117,10 @@ const SOCIAL_CARDS = [
     image: githubCardImage,
     alt: 'GitHub Card',
     className: '',
+    isGitHub: true,
     isContact: false,
-    quote: 'Open source and public repositories are the truest reflection of a developer\'s journey. From modular components to experimental animations, my GitHub repositories showcase a commitment to clean code and continuous exploration.',
+    url: 'https://github.com/Nisarg1223',
+    quote: 'See my GitHub,',
     name: 'Nisarg Darji',
     role: 'Full Stack Developer',
     location: 'India',
@@ -204,6 +209,42 @@ const SKILLS_DATA = [
   "DESIGNING",
   "DEVELOPING",
   "EXPLAINING & technical concepts"
+]
+
+const EXPERIENCE_SLIDES = [
+  {
+    id: 0,
+    tag: '15 DAYS. REAL-WORLD EXPERIENCE.',
+    title: 'Offline Internship @ Optimal Telemedia',
+    paragraphs: [
+      'During my 15-day offline internship at Optimal Telemedia, I got to experience how real products move from an idea to a working digital experience. I learned to understand client requirements, map UI flows, design interfaces, think through user interactions, and turn designs into functional experiences through forward engineering.',
+      'From solving real business requirements to refining the smallest details of a user interface, the experience taught me how to think beyond just writing code — to build with purpose.'
+    ],
+    nextCtaText: 'SWIPE RIGHT → TO SEE MY EXPERIENCE'
+  },
+  {
+    id: 1,
+    tag: '01 — Optimal Cyber Security Website',
+    title: 'Awwwards-Level Cybersecurity Website Redesign',
+    paragraphs: [
+      "Redesigned and reimagined the Optimal Cyber Security website with a modern, immersive, and premium digital experience inspired by Awwwards-level web design. Focused on visual storytelling, smooth interactions, responsive layouts, engaging animations, and clear content hierarchy to transform the brand's online presence into a more distinctive and engaging experience."
+    ],
+    prevCtaText: '← SWIPE LEFT TO GO BACK',
+    nextCtaText: 'SWIPE RIGHT → TO SEE MORE'
+  },
+  {
+    id: 2,
+    tag: '02 — Task Management System',
+    title: 'End-to-End Task Management Platform',
+    paragraphs: [
+      'Developed a complete end-to-end task management system designed to streamline team workflows, task assignment, and project tracking. Built features including role-based access, task assignment, deadlines, notifications, Kanban boards, dashboards, meeting/diary management, and administrative controls, creating a centralized workspace for managing day-to-day operations.'
+    ],
+    prevCtaText: '← SWIPE LEFT TO GO BACK',
+    projectLink: {
+      url: 'https://lnkd.in/p/dkkGx6uj',
+      text: 'See the project'
+    }
+  }
 ]
 
 const HELMETS_DATA = [
@@ -346,6 +387,7 @@ const App = () => {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [selectedSocialCard, setSelectedSocialCard] = useState(null)
+  const [experienceSlide, setExperienceSlide] = useState(0)
   const lenisRef = useRef(null)
 
   useEffect(() => {
@@ -394,17 +436,44 @@ const App = () => {
       if (!selectedSocialCard) return
       if (e.key === 'Escape') {
         setSelectedSocialCard(null)
+        setExperienceSlide(0)
       } else if (e.key === 'ArrowRight') {
-        const currentIndex = SOCIAL_CARDS.findIndex((c) => c.id === selectedSocialCard.id)
-        if (currentIndex !== -1) {
-          const nextIndex = (currentIndex + 1) % SOCIAL_CARDS.length
-          setSelectedSocialCard(SOCIAL_CARDS[nextIndex])
+        if (selectedSocialCard.id === 'experience' || selectedSocialCard.isExperience) {
+          setExperienceSlide((prev) => {
+            if (prev < EXPERIENCE_SLIDES.length - 1) return prev + 1
+            const currentIndex = SOCIAL_CARDS.findIndex((c) => c.id === selectedSocialCard.id)
+            if (currentIndex !== -1) {
+              const nextIndex = (currentIndex + 1) % SOCIAL_CARDS.length
+              setSelectedSocialCard(SOCIAL_CARDS[nextIndex])
+            }
+            return 0
+          })
+        } else {
+          const currentIndex = SOCIAL_CARDS.findIndex((c) => c.id === selectedSocialCard.id)
+          if (currentIndex !== -1) {
+            const nextIndex = (currentIndex + 1) % SOCIAL_CARDS.length
+            setSelectedSocialCard(SOCIAL_CARDS[nextIndex])
+            setExperienceSlide(0)
+          }
         }
       } else if (e.key === 'ArrowLeft') {
-        const currentIndex = SOCIAL_CARDS.findIndex((c) => c.id === selectedSocialCard.id)
-        if (currentIndex !== -1) {
-          const prevIndex = (currentIndex - 1 + SOCIAL_CARDS.length) % SOCIAL_CARDS.length
-          setSelectedSocialCard(SOCIAL_CARDS[prevIndex])
+        if (selectedSocialCard.id === 'experience' || selectedSocialCard.isExperience) {
+          setExperienceSlide((prev) => {
+            if (prev > 0) return prev - 1
+            const currentIndex = SOCIAL_CARDS.findIndex((c) => c.id === selectedSocialCard.id)
+            if (currentIndex !== -1) {
+              const prevIndex = (currentIndex - 1 + SOCIAL_CARDS.length) % SOCIAL_CARDS.length
+              setSelectedSocialCard(SOCIAL_CARDS[prevIndex])
+            }
+            return 0
+          })
+        } else {
+          const currentIndex = SOCIAL_CARDS.findIndex((c) => c.id === selectedSocialCard.id)
+          if (currentIndex !== -1) {
+            const prevIndex = (currentIndex - 1 + SOCIAL_CARDS.length) % SOCIAL_CARDS.length
+            setSelectedSocialCard(SOCIAL_CARDS[prevIndex])
+            setExperienceSlide(0)
+          }
         }
       }
     }
@@ -1716,7 +1785,10 @@ const App = () => {
                   <div
                     key={card.id}
                     className={`callout-socials-card-w ${card.className || ''}`}
-                    onClick={() => setSelectedSocialCard(card)}
+                    onClick={() => {
+                      setSelectedSocialCard(card)
+                      setExperienceSlide(0)
+                    }}
                   >
                     <div className="video-stream">
                       <img
@@ -1947,8 +2019,174 @@ const App = () => {
               transition={{ type: 'spring', damping: 26, stiffness: 320 }}
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Quote / Statement Body Text or Contact / Tools Details */}
-              {selectedSocialCard.id === 'tools' || selectedSocialCard.isTools ? (
+              {/* Quote / Statement Body Text or Experience / GitHub / LinkedIn / Contact / Tools Details */}
+              {selectedSocialCard.id === 'experience' || selectedSocialCard.isExperience ? (
+                <div className="experience-modal-content">
+                  {/* Top Bar with Tag and Arrow Navigation Controls */}
+                  <div className="experience-modal-topbar">
+                    <div className="experience-modal-tag-badge">
+                      <span className="experience-modal-tag-dot"></span>
+                      <span className="experience-modal-tag-text">
+                        {EXPERIENCE_SLIDES[experienceSlide].tag}
+                      </span>
+                    </div>
+
+                    <div className="experience-modal-controls">
+                      <div className="experience-dots">
+                        {EXPERIENCE_SLIDES.map((_, idx) => (
+                          <button
+                            key={idx}
+                            type="button"
+                            className={`experience-dot ${experienceSlide === idx ? 'is-active' : ''}`}
+                            onClick={() => setExperienceSlide(idx)}
+                            aria-label={`Go to slide ${idx + 1}`}
+                          />
+                        ))}
+                      </div>
+
+                      <span className="experience-slide-counter">
+                        {experienceSlide + 1} / {EXPERIENCE_SLIDES.length}
+                      </span>
+
+                      <div className="experience-arrows">
+                        <button
+                          type="button"
+                          className="experience-nav-btn is-prev"
+                          onClick={() => setExperienceSlide((prev) => Math.max(0, prev - 1))}
+                          disabled={experienceSlide === 0}
+                          aria-label="Previous slide"
+                        >
+                          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <polyline points="15 18 9 12 15 6" />
+                          </svg>
+                        </button>
+                        <button
+                          type="button"
+                          className="experience-nav-btn is-next"
+                          onClick={() => setExperienceSlide((prev) => Math.min(EXPERIENCE_SLIDES.length - 1, prev + 1))}
+                          disabled={experienceSlide === EXPERIENCE_SLIDES.length - 1}
+                          aria-label="Next slide"
+                        >
+                          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <polyline points="9 18 15 12 9 6" />
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Animated Slide Body */}
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={experienceSlide}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -20 }}
+                      transition={{ duration: 0.26, ease: 'easeOut' }}
+                      className="experience-slide-body"
+                    >
+                      <h3 className="experience-slide-title">
+                        {EXPERIENCE_SLIDES[experienceSlide].title}
+                      </h3>
+
+                      <div className="experience-slide-paragraphs">
+                        {EXPERIENCE_SLIDES[experienceSlide].paragraphs.map((para, pIdx) => (
+                          <p key={pIdx} className="experience-slide-p">
+                            {para}
+                          </p>
+                        ))}
+                      </div>
+
+                      <div className="experience-slide-actions">
+                        {EXPERIENCE_SLIDES[experienceSlide].projectLink && (
+                          <a
+                            href={EXPERIENCE_SLIDES[experienceSlide].projectLink.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="experience-project-link-btn"
+                          >
+                            <span className="experience-project-link-icon">
+                              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76a1.64 1.64 0 1 0 0-3.28 1.64 1.64 0 0 0 0 3.28m1.39 9.74v-8.37H5.07v8.37h2.78z"/>
+                              </svg>
+                            </span>
+                            <span>{EXPERIENCE_SLIDES[experienceSlide].projectLink.text}</span>
+                            <span className="experience-project-link-arrow">↗</span>
+                          </a>
+                        )}
+
+                        <div className="experience-slide-nav-ctas">
+                          {EXPERIENCE_SLIDES[experienceSlide].prevCtaText && (
+                            <button
+                              type="button"
+                              className="experience-slide-cta-btn is-prev-cta"
+                              onClick={() => setExperienceSlide((prev) => Math.max(0, prev - 1))}
+                            >
+                              <span>{EXPERIENCE_SLIDES[experienceSlide].prevCtaText}</span>
+                            </button>
+                          )}
+
+                          {EXPERIENCE_SLIDES[experienceSlide].nextCtaText && (
+                            <button
+                              type="button"
+                              className="experience-slide-cta-btn is-next-cta"
+                              onClick={() => setExperienceSlide((prev) => Math.min(EXPERIENCE_SLIDES.length - 1, prev + 1))}
+                            >
+                              <span>{EXPERIENCE_SLIDES[experienceSlide].nextCtaText}</span>
+                            </button>
+                          )}
+                        </div>
+                      </div>
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+              ) : selectedSocialCard.id === 'github' || selectedSocialCard.isGitHub ? (
+                <div className="github-modal-content">
+                  <div className="github-modal-header">
+                    <h3 className="github-modal-heading">See my GitHub,</h3>
+                    <p className="github-modal-subheading">Explore my open-source projects, code repositories, and contributions</p>
+                  </div>
+                  <div className="github-modal-action-w">
+                    <a
+                      href="https://github.com/Nisarg1223"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="github-modal-btn"
+                    >
+                      <span className="github-modal-btn-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                          <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                        </svg>
+                      </span>
+                      <span className="github-modal-btn-text">Follow me on GitHub</span>
+                      <span className="github-modal-btn-arrow">↗</span>
+                    </a>
+                  </div>
+                </div>
+              ) : selectedSocialCard.id === 'linkedin' || selectedSocialCard.isLinkedIn ? (
+                <div className="linkedin-modal-content">
+                  <div className="linkedin-modal-header">
+                    <h3 className="linkedin-modal-heading">See my LinkedIn,</h3>
+                    <p className="linkedin-modal-subheading">Connect, network, and explore my professional journey</p>
+                  </div>
+                  <div className="linkedin-modal-action-w">
+                    <a
+                      href="https://www.linkedin.com/in/nisarg-darji-008106343?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="linkedin-modal-btn"
+                    >
+                      <span className="linkedin-modal-btn-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76a1.64 1.64 0 1 0 0-3.28 1.64 1.64 0 0 0 0 3.28m1.39 9.74v-8.37H5.07v8.37h2.78z"/>
+                        </svg>
+                      </span>
+                      <span className="linkedin-modal-btn-text">Follow me on LinkedIn</span>
+                      <span className="linkedin-modal-btn-arrow">↗</span>
+                    </a>
+                  </div>
+                </div>
+              ) : selectedSocialCard.id === 'tools' || selectedSocialCard.isTools ? (
                 <div className="tools-modal-content">
                   <div className="tools-modal-header">
                     <h3 className="tools-modal-heading">TOOLS I USE</h3>
