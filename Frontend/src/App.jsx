@@ -32,6 +32,11 @@ import splineLogo from './assets/tools/spline.svg'
 import chatgptLogo from './assets/chatgpt_logo.png'
 import geminiLogo from './assets/gemini_logo.png'
 import claudeLogo from './assets/Clude_image.png'
+import tcsCertJpg from './assets/TCS_certificare.jpg'
+import salCertPng from './assets/sal_participate_certificate.png'
+import microsoftCertJpg from './assets/Microsoft_certificate.jpg'
+import sem4TopperJpg from './assets/sem_4_topper.jpg'
+import sem5TopperJpeg from './assets/sem_5_topper.jpeg'
 
 const SOCIAL_CARDS = [
   {
@@ -93,6 +98,7 @@ const SOCIAL_CARDS = [
     image: certificatesCardImage,
     alt: 'Certificates Card',
     className: '',
+    isCertificates: true,
     isContact: false,
     quote: 'Continuous learning is the cornerstone of my development craft. Pursuing rigorous certifications across full-stack ecosystems, generative AI, and algorithms ensures every solution I design is modern, robust, and industry-proven.',
     name: 'Nisarg Darji',
@@ -105,6 +111,7 @@ const SOCIAL_CARDS = [
     image: achievementsCardImage,
     alt: 'Achievements Card',
     className: '',
+    isAchievements: true,
     isContact: false,
     quote: 'Pushing limits through hackathons, innovative web creations, and impactful technical milestones has driven my growth. These achievements represent the dedication to craft, grit, and passion I bring to every product I build.',
     name: 'Nisarg Darji',
@@ -244,6 +251,104 @@ const EXPERIENCE_SLIDES = [
       url: 'https://lnkd.in/p/dkkGx6uj',
       text: 'See the project'
     }
+  }
+]
+
+const CERTIFICATES_DATA = [
+  {
+    id: 0,
+    tag: '01 — Tata Consultancy Services',
+    name: 'TCS iON Career Edge - Young Professional',
+    organization: 'Tata Consultancy Services (TCS iON)',
+    year: '2024',
+    previewImage: tcsCertJpg,
+    fullCertificateUrl: tcsCertJpg,
+    description: 'Comprehensive industry-readiness training covering IT foundational skills, Artificial Intelligence overview, business communication, effective presentation, and professional etiquette.',
+    prevCtaText: '← PREVIOUS CERTIFICATE',
+    nextCtaText: 'NEXT CERTIFICATE →'
+  },
+  {
+    id: 1,
+    tag: '02 — SAL Education',
+    name: 'Ideation Poster Presentation',
+    organization: 'SAL Education & Technical Institute',
+    year: '2025',
+    previewImage: salCertPng,
+    fullCertificateUrl: salCertPng,
+    description: 'Certificate of Participation for demonstrating outstanding creativity, innovation, and technical presentation skills at the Ideation Poster Presentation event at SAL Education Campus.',
+    prevCtaText: '← PREVIOUS CERTIFICATE',
+    nextCtaText: 'NEXT CERTIFICATE →'
+  },
+  {
+    id: 2,
+    tag: '03 — Microsoft Learn',
+    name: 'Microsoft - Transform Your Everyday Work with Agents',
+    organization: 'Microsoft',
+    year: '2026',
+    previewImage: microsoftCertJpg,
+    fullCertificateUrl: microsoftCertJpg,
+    description: 'Official Microsoft Learn certification recognizing practical mastery in autonomous AI agents, AI-augmented development workflows, generative AI tooling, and everyday productivity transformation.',
+    prevCtaText: '← PREVIOUS CERTIFICATE',
+    nextCtaText: 'NEXT CERTIFICATE →'
+  }
+]
+
+const ACHIEVEMENTS_DATA = [
+  {
+    id: 0,
+    tag: '01 — Academic Achievement',
+    title: '3rd Rank — Semester 4',
+    subtitle: 'Top 10 Academic Performers',
+    image: sem4TopperJpg,
+    description: 'Ranked 3rd among the Semester 4 students, securing a place in the Top 10 academic performers.',
+    link: {
+      url: 'https://www.linkedin.com/posts/nisarg-darji-008106343_toppers-learning-visit-at-adani-skill-activity-7384955010008227840-O5Q5?utm_source=share&utm_medium=member_android&rcm=ACoAAFX6pIgBvJEW2I3cWaf7Z0bbtJB__3yG3MY',
+      text: 'View Post on LinkedIn'
+    },
+    prevCtaText: '← PREVIOUS',
+    nextCtaText: 'NEXT ACHIEVEMENT →'
+  },
+  {
+    id: 1,
+    tag: '02 — Adani Skill Development Visit',
+    title: 'Selected for Adani Skill Development Centre Visit',
+    subtitle: 'Academic Achievers Recognition',
+    image: sem4TopperJpg,
+    description: "Invited to visit the Adani Skill Development Centre as part of the academic achievers' visit organized for the semester toppers.",
+    link: {
+      url: 'https://www.linkedin.com/posts/nisarg-darji-008106343_toppers-learning-visit-at-adani-skill-activity-7384955010008227840-O5Q5?utm_source=share&utm_medium=member_android&rcm=ACoAAFX6pIgBvJEW2I3cWaf7Z0bbtJB__3yG3MY',
+      text: 'View Post on LinkedIn'
+    },
+    prevCtaText: '← PREVIOUS',
+    nextCtaText: 'NEXT ACHIEVEMENT →'
+  },
+  {
+    id: 2,
+    tag: '03 — Academic Achievement',
+    title: '6th Rank — Semester 5',
+    subtitle: 'Semester 5 Topper List',
+    image: sem5TopperJpeg,
+    description: 'Secured 6th position in the Semester 5 Topper List, continuing consistent academic performance.',
+    link: {
+      url: 'https://www.linkedin.com/posts/nisarg-darji-008106343_academicexcellence-top10-engineeringstudent-activity-7428011442076958720-Y4V8?utm_source=share&utm_medium=member_android&rcm=ACoAAFX6pIgBvJEW2I3cWaf7Z0bbtJB__3yG3MY',
+      text: 'View Post on LinkedIn'
+    },
+    prevCtaText: '← PREVIOUS',
+    nextCtaText: 'NEXT ACHIEVEMENT →'
+  },
+  {
+    id: 3,
+    tag: '04 — Industry Experience',
+    title: '15-Day Offline Internship',
+    subtitle: 'Optimal Telemedia',
+    image: experienceCardImage,
+    description: 'Successfully completed a 15-day offline internship at Optimal Telemedia, gaining hands-on experience in client requirements, UI/UX design, UI flows, forward engineering, and real-world project development.',
+    link: {
+      url: 'https://lnkd.in/p/dkkGx6uj',
+      text: 'See the project'
+    },
+    prevCtaText: '← PREVIOUS',
+    nextCtaText: 'NEXT ACHIEVEMENT →'
   }
 ]
 
@@ -388,6 +493,8 @@ const App = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [selectedSocialCard, setSelectedSocialCard] = useState(null)
   const [experienceSlide, setExperienceSlide] = useState(0)
+  const [certificateSlide, setCertificateSlide] = useState(0)
+  const [achievementSlide, setAchievementSlide] = useState(0)
   const lenisRef = useRef(null)
 
   useEffect(() => {
@@ -437,10 +544,32 @@ const App = () => {
       if (e.key === 'Escape') {
         setSelectedSocialCard(null)
         setExperienceSlide(0)
+        setCertificateSlide(0)
+        setAchievementSlide(0)
       } else if (e.key === 'ArrowRight') {
         if (selectedSocialCard.id === 'experience' || selectedSocialCard.isExperience) {
           setExperienceSlide((prev) => {
             if (prev < EXPERIENCE_SLIDES.length - 1) return prev + 1
+            const currentIndex = SOCIAL_CARDS.findIndex((c) => c.id === selectedSocialCard.id)
+            if (currentIndex !== -1) {
+              const nextIndex = (currentIndex + 1) % SOCIAL_CARDS.length
+              setSelectedSocialCard(SOCIAL_CARDS[nextIndex])
+            }
+            return 0
+          })
+        } else if (selectedSocialCard.id === 'certificates' || selectedSocialCard.isCertificates) {
+          setCertificateSlide((prev) => {
+            if (prev < CERTIFICATES_DATA.length - 1) return prev + 1
+            const currentIndex = SOCIAL_CARDS.findIndex((c) => c.id === selectedSocialCard.id)
+            if (currentIndex !== -1) {
+              const nextIndex = (currentIndex + 1) % SOCIAL_CARDS.length
+              setSelectedSocialCard(SOCIAL_CARDS[nextIndex])
+            }
+            return 0
+          })
+        } else if (selectedSocialCard.id === 'achievements' || selectedSocialCard.isAchievements) {
+          setAchievementSlide((prev) => {
+            if (prev < ACHIEVEMENTS_DATA.length - 1) return prev + 1
             const currentIndex = SOCIAL_CARDS.findIndex((c) => c.id === selectedSocialCard.id)
             if (currentIndex !== -1) {
               const nextIndex = (currentIndex + 1) % SOCIAL_CARDS.length
@@ -454,11 +583,33 @@ const App = () => {
             const nextIndex = (currentIndex + 1) % SOCIAL_CARDS.length
             setSelectedSocialCard(SOCIAL_CARDS[nextIndex])
             setExperienceSlide(0)
+            setCertificateSlide(0)
+            setAchievementSlide(0)
           }
         }
       } else if (e.key === 'ArrowLeft') {
         if (selectedSocialCard.id === 'experience' || selectedSocialCard.isExperience) {
           setExperienceSlide((prev) => {
+            if (prev > 0) return prev - 1
+            const currentIndex = SOCIAL_CARDS.findIndex((c) => c.id === selectedSocialCard.id)
+            if (currentIndex !== -1) {
+              const prevIndex = (currentIndex - 1 + SOCIAL_CARDS.length) % SOCIAL_CARDS.length
+              setSelectedSocialCard(SOCIAL_CARDS[prevIndex])
+            }
+            return 0
+          })
+        } else if (selectedSocialCard.id === 'certificates' || selectedSocialCard.isCertificates) {
+          setCertificateSlide((prev) => {
+            if (prev > 0) return prev - 1
+            const currentIndex = SOCIAL_CARDS.findIndex((c) => c.id === selectedSocialCard.id)
+            if (currentIndex !== -1) {
+              const prevIndex = (currentIndex - 1 + SOCIAL_CARDS.length) % SOCIAL_CARDS.length
+              setSelectedSocialCard(SOCIAL_CARDS[prevIndex])
+            }
+            return 0
+          })
+        } else if (selectedSocialCard.id === 'achievements' || selectedSocialCard.isAchievements) {
+          setAchievementSlide((prev) => {
             if (prev > 0) return prev - 1
             const currentIndex = SOCIAL_CARDS.findIndex((c) => c.id === selectedSocialCard.id)
             if (currentIndex !== -1) {
@@ -473,6 +624,8 @@ const App = () => {
             const prevIndex = (currentIndex - 1 + SOCIAL_CARDS.length) % SOCIAL_CARDS.length
             setSelectedSocialCard(SOCIAL_CARDS[prevIndex])
             setExperienceSlide(0)
+            setCertificateSlide(0)
+            setAchievementSlide(0)
           }
         }
       }
@@ -1815,6 +1968,8 @@ const App = () => {
                     onClick={() => {
                       setSelectedSocialCard(card)
                       setExperienceSlide(0)
+                      setCertificateSlide(0)
+                      setAchievementSlide(0)
                     }}
                   >
                     <div className="video-stream">
@@ -1927,16 +2082,11 @@ const App = () => {
                   </div>
                 </div>
 
-                {/* Center Helmet and Business enquiries button */}
+                {/* Center Business enquiries button */}
                 <div className="footer-bg-helmet-w">
                   <div className="footer-bg-helmet-layout">
-                    <img 
-                      src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67d43d6e276c436a378a1da6_ln-360-helm-1.webp" 
-                      alt="Lando Helmet" 
-                      className="footer-bg-img"
-                    />
                     <div className="footer-bg-bottom-btn-w">
-                      <a href="mailto:business@landonorris.com" className="btn-w">
+                      <a href="mailto:darjinisarg49@gmail.com" className="btn-w">
                         <span>business enquiries</span>
                         <span>↗</span>
                       </a>
@@ -2015,6 +2165,7 @@ const App = () => {
         {selectedSocialCard && (
           <motion.div
             className="social-card-modal-backdrop"
+            data-lenis-prevent="true"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -2040,11 +2191,13 @@ const App = () => {
             <motion.div
               key={selectedSocialCard.id}
               className="testimonial-modal-card"
+              data-lenis-prevent="true"
               initial={{ scale: 0.88, opacity: 0, y: 24 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.88, opacity: 0, y: 20 }}
               transition={{ type: 'spring', damping: 26, stiffness: 320 }}
               onClick={(e) => e.stopPropagation()}
+              onWheel={(e) => e.stopPropagation()}
             >
               {/* Quote / Statement Body Text or Experience / GitHub / LinkedIn / Contact / Tools Details */}
               {selectedSocialCard.id === 'experience' || selectedSocialCard.isExperience ? (
@@ -2213,6 +2366,176 @@ const App = () => {
                     </a>
                   </div>
                 </div>
+              ) : selectedSocialCard.id === 'certificates' || selectedSocialCard.isCertificates ? (
+                <div className="certificates-modal-content">
+                  {/* Top Bar with Tag and Arrow Navigation Controls */}
+                  <div className="certificates-modal-topbar">
+                    <div className="certificates-modal-tag-badge">
+                      <span className="certificates-modal-tag-dot"></span>
+                      <span className="certificates-modal-tag-text">
+                        {CERTIFICATES_DATA[certificateSlide].tag}
+                      </span>
+                    </div>
+
+                    <div className="certificates-modal-controls">
+                      <div className="certificates-dots">
+                        {CERTIFICATES_DATA.map((_, idx) => (
+                          <button
+                            key={idx}
+                            type="button"
+                            className={`certificates-dot ${certificateSlide === idx ? 'is-active' : ''}`}
+                            onClick={() => setCertificateSlide(idx)}
+                            aria-label={`Go to certificate ${idx + 1}`}
+                          />
+                        ))}
+                      </div>
+
+                      <span className="certificates-slide-counter">
+                        {certificateSlide + 1} / {CERTIFICATES_DATA.length}
+                      </span>
+
+                      <div className="certificates-arrows">
+                        <button
+                          type="button"
+                          className="certificates-nav-btn is-prev"
+                          onClick={() => setCertificateSlide((prev) => Math.max(0, prev - 1))}
+                          disabled={certificateSlide === 0}
+                          aria-label="Previous certificate"
+                        >
+                          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <polyline points="15 18 9 12 15 6" />
+                          </svg>
+                        </button>
+                        <button
+                          type="button"
+                          className="certificates-nav-btn is-next"
+                          onClick={() => setCertificateSlide((prev) => Math.min(CERTIFICATES_DATA.length - 1, prev + 1))}
+                          disabled={certificateSlide === CERTIFICATES_DATA.length - 1}
+                          aria-label="Next certificate"
+                        >
+                          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <polyline points="9 18 15 12 9 6" />
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Animated Certificate Slide Body */}
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={certificateSlide}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -20 }}
+                      transition={{ duration: 0.26, ease: 'easeOut' }}
+                      className="certificate-slide-body"
+                    >
+                      {/* Certificate Name Header */}
+                      <h3 className="certificate-slide-title">
+                        {CERTIFICATES_DATA[certificateSlide].name}
+                      </h3>
+
+                      {/* Certificate Presentation Layout */}
+                      <div className="certificate-presentation-card">
+                        {/* Small preview of the certificate */}
+                        <div className="certificate-preview-w">
+                          <a
+                            href={CERTIFICATES_DATA[certificateSlide].fullCertificateUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="certificate-preview-link"
+                            title="Click to view full certificate in new tab"
+                          >
+                            <img
+                              src={CERTIFICATES_DATA[certificateSlide].previewImage}
+                              alt={CERTIFICATES_DATA[certificateSlide].name}
+                              className="certificate-preview-img"
+                            />
+                            <div className="certificate-preview-overlay">
+                              <span className="certificate-preview-overlay-btn">
+                                <span>View Full</span>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                                  <polyline points="7 7 17 7 17 17"></polyline>
+                                </svg>
+                              </span>
+                            </div>
+                          </a>
+                        </div>
+
+                        {/* Details Column */}
+                        <div className="certificate-details-col">
+                          {/* Issuing Organization · Year */}
+                          <div className="certificate-meta-row">
+                            <span className="certificate-meta-icon">
+                              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                                <circle cx="12" cy="8" r="7" />
+                                <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
+                              </svg>
+                            </span>
+                            <span className="certificate-org-text">
+                              {CERTIFICATES_DATA[certificateSlide].organization}
+                            </span>
+                            <span className="certificate-meta-dot">·</span>
+                            <span className="certificate-year-badge">
+                              {CERTIFICATES_DATA[certificateSlide].year}
+                            </span>
+                          </div>
+
+                          {/* Short description of the certificate */}
+                          <p className="certificate-description-p">
+                            {CERTIFICATES_DATA[certificateSlide].description}
+                          </p>
+
+                          {/* View Full Certificate ↗ Button */}
+                          <div className="certificate-actions-row">
+                            <a
+                              href={CERTIFICATES_DATA[certificateSlide].fullCertificateUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="certificate-view-full-btn"
+                            >
+                              <span>View Full Certificate</span>
+                              <span className="certificate-view-full-arrow">↗</span>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Bottom Carousel Navigation Controls / CTAs */}
+                      <div className="certificate-bottom-nav">
+                        <div className="certificate-nav-ctas">
+                          {certificateSlide > 0 ? (
+                            <button
+                              type="button"
+                              className="certificate-slide-cta-btn is-prev-cta"
+                              onClick={() => setCertificateSlide((prev) => Math.max(0, prev - 1))}
+                            >
+                              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                <polyline points="15 18 9 12 15 6" />
+                              </svg>
+                              <span>{CERTIFICATES_DATA[certificateSlide].prevCtaText}</span>
+                            </button>
+                          ) : <div />}
+
+                          {certificateSlide < CERTIFICATES_DATA.length - 1 && (
+                            <button
+                              type="button"
+                              className="certificate-slide-cta-btn is-next-cta"
+                              onClick={() => setCertificateSlide((prev) => Math.min(CERTIFICATES_DATA.length - 1, prev + 1))}
+                            >
+                              <span>{CERTIFICATES_DATA[certificateSlide].nextCtaText}</span>
+                              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                <polyline points="9 18 15 12 9 6" />
+                              </svg>
+                            </button>
+                          )}
+                        </div>
+                      </div>
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
               ) : selectedSocialCard.id === 'tools' || selectedSocialCard.isTools ? (
                 <div className="tools-modal-content">
                   <div className="tools-modal-header">
@@ -2264,6 +2587,180 @@ const App = () => {
                       </a>
                     </div>
                   </div>
+                </div>
+              ) : selectedSocialCard.id === 'achievements' || selectedSocialCard.isAchievements ? (
+                <div className="achievements-modal-content">
+                  {/* Top Bar with Tag and Arrow Navigation Controls */}
+                  <div className="achievements-modal-topbar">
+                    <div className="achievements-modal-tag-badge">
+                      <span className="achievements-modal-tag-dot"></span>
+                      <span className="achievements-modal-tag-text">
+                        {ACHIEVEMENTS_DATA[achievementSlide].tag}
+                      </span>
+                    </div>
+
+                    <div className="achievements-modal-controls">
+                      <div className="achievements-dots">
+                        {ACHIEVEMENTS_DATA.map((_, idx) => (
+                          <button
+                            key={idx}
+                            type="button"
+                            className={`achievements-dot ${achievementSlide === idx ? 'is-active' : ''}`}
+                            onClick={() => setAchievementSlide(idx)}
+                            aria-label={`Go to achievement ${idx + 1}`}
+                          />
+                        ))}
+                      </div>
+
+                      <span className="achievements-slide-counter">
+                        {achievementSlide + 1} / {ACHIEVEMENTS_DATA.length}
+                      </span>
+
+                      <div className="achievements-arrows">
+                        <button
+                          type="button"
+                          className="achievements-nav-btn is-prev"
+                          onClick={() => setAchievementSlide((prev) => Math.max(0, prev - 1))}
+                          disabled={achievementSlide === 0}
+                          aria-label="Previous achievement"
+                        >
+                          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <polyline points="15 18 9 12 15 6" />
+                          </svg>
+                        </button>
+                        <button
+                          type="button"
+                          className="achievements-nav-btn is-next"
+                          onClick={() => setAchievementSlide((prev) => Math.min(ACHIEVEMENTS_DATA.length - 1, prev + 1))}
+                          disabled={achievementSlide === ACHIEVEMENTS_DATA.length - 1}
+                          aria-label="Next achievement"
+                        >
+                          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <polyline points="9 18 15 12 9 6" />
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Animated Achievement Slide Body */}
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={achievementSlide}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -20 }}
+                      transition={{ duration: 0.26, ease: 'easeOut' }}
+                      className="achievement-slide-body"
+                    >
+                      {/* Title */}
+                      <h3 className="achievement-slide-title">
+                        {ACHIEVEMENTS_DATA[achievementSlide].title}
+                      </h3>
+
+                      {/* Presentation Card */}
+                      <div className="achievement-presentation-card">
+                        {/* Preview Image if available */}
+                        {ACHIEVEMENTS_DATA[achievementSlide].image && (
+                          <div className="achievement-preview-w">
+                            <a
+                              href={ACHIEVEMENTS_DATA[achievementSlide].link?.url || ACHIEVEMENTS_DATA[achievementSlide].image}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="achievement-preview-link"
+                              title="Click to view details"
+                            >
+                              <img
+                                src={ACHIEVEMENTS_DATA[achievementSlide].image}
+                                alt={ACHIEVEMENTS_DATA[achievementSlide].title}
+                                className="achievement-preview-img"
+                              />
+                              <div className="achievement-preview-overlay">
+                                <span className="achievement-preview-overlay-btn">
+                                  <span>View Post</span>
+                                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                    <line x1="7" y1="17" x2="17" y2="7"></line>
+                                    <polyline points="7 7 17 7 17 17"></polyline>
+                                  </svg>
+                                </span>
+                              </div>
+                            </a>
+                          </div>
+                        )}
+
+                        {/* Details Column */}
+                        <div className="achievement-details-col">
+                          {ACHIEVEMENTS_DATA[achievementSlide].subtitle && (
+                            <div className="achievement-meta-row">
+                              <span className="achievement-meta-icon">
+                                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                                  <circle cx="12" cy="8" r="7" />
+                                  <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
+                                </svg>
+                              </span>
+                              <span className="achievement-subtitle-text">
+                                {ACHIEVEMENTS_DATA[achievementSlide].subtitle}
+                              </span>
+                            </div>
+                          )}
+
+                          <p className="achievement-description-p">
+                            {ACHIEVEMENTS_DATA[achievementSlide].description}
+                          </p>
+
+                          {ACHIEVEMENTS_DATA[achievementSlide].link && (
+                            <div className="achievement-actions-row">
+                              <a
+                                href={ACHIEVEMENTS_DATA[achievementSlide].link.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="achievement-view-link-btn"
+                              >
+                                <span className="achievement-link-icon">
+                                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76a1.64 1.64 0 1 0 0-3.28 1.64 1.64 0 0 0 0 3.28m1.39 9.74v-8.37H5.07v8.37h2.78z"/>
+                                  </svg>
+                                </span>
+                                <span>{ACHIEVEMENTS_DATA[achievementSlide].link.text}</span>
+                                <span className="achievement-view-arrow">↗</span>
+                              </a>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Bottom Navigation CTAs */}
+                      <div className="achievement-bottom-nav">
+                        <div className="achievement-nav-ctas">
+                          {achievementSlide > 0 ? (
+                            <button
+                              type="button"
+                              className="achievement-slide-cta-btn is-prev-cta"
+                              onClick={() => setAchievementSlide((prev) => Math.max(0, prev - 1))}
+                            >
+                              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                <polyline points="15 18 9 12 15 6" />
+                              </svg>
+                              <span>{ACHIEVEMENTS_DATA[achievementSlide].prevCtaText}</span>
+                            </button>
+                          ) : <div />}
+
+                          {achievementSlide < ACHIEVEMENTS_DATA.length - 1 && (
+                            <button
+                              type="button"
+                              className="achievement-slide-cta-btn is-next-cta"
+                              onClick={() => setAchievementSlide((prev) => Math.min(ACHIEVEMENTS_DATA.length - 1, prev + 1))}
+                            >
+                              <span>{ACHIEVEMENTS_DATA[achievementSlide].nextCtaText}</span>
+                              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                <polyline points="9 18 15 12 9 6" />
+                              </svg>
+                            </button>
+                          )}
+                        </div>
+                      </div>
+                    </motion.div>
+                  </AnimatePresence>
                 </div>
               ) : (
                 <div className="testimonial-card-text">
