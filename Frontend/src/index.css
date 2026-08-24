@@ -5648,3 +5648,447 @@ html.lenis body {
     grid-template-columns: 1fr;
   }
 }
+
+/* ==========================================================================
+   Folder Popup Modal (Image 2 Replica with #18181A & Purple / Green Themes)
+   ========================================================================== */
+
+.folder-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.82);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 1.5rem;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.folder-modal-card {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  min-height: 580px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Inter", sans-serif;
+  color: #ffffff;
+  filter: drop-shadow(0 25px 60px rgba(0, 0, 0, 0.9));
+  margin: auto;
+}
+
+/* Background SVG layer defining the folder silhouette */
+.folder-modal-svg-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.folder-modal-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.folder-modal-svg-path {
+  fill: #18181A;
+  transition: stroke 0.4s ease, filter 0.4s ease;
+}
+
+/* Purple Theme Styling (#18181A + Purple) */
+.folder-modal-card.is-theme-purple .folder-modal-svg-path {
+  stroke: rgba(139, 92, 246, 0.65);
+  stroke-width: 1.5px;
+  filter: none;
+}
+
+.folder-modal-card.is-theme-purple .folder-modal-tab-pill {
+  background: rgba(139, 92, 246, 0.16);
+  border: 1px solid rgba(139, 92, 246, 0.4);
+  color: #c4b5fd;
+}
+
+.folder-modal-card.is-theme-purple .folder-modal-theme-badge {
+  background: rgba(139, 92, 246, 0.14);
+  border: 1px solid rgba(139, 92, 246, 0.35);
+  color: #c4b5fd;
+}
+
+.folder-modal-card.is-theme-purple .folder-badge-dot {
+  background-color: #a855f7;
+  box-shadow: 0 0 6px #a855f7;
+}
+
+.folder-modal-card.is-theme-purple .folder-modal-preview-card {
+  border-color: rgba(139, 92, 246, 0.3);
+}
+
+.folder-modal-card.is-theme-purple .folder-modal-tech-pill {
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  color: #ddd6fe;
+}
+
+/* Green Theme Styling (#18181A + Green) */
+.folder-modal-card.is-theme-green .folder-modal-svg-path {
+  stroke: rgba(16, 185, 129, 0.65);
+  stroke-width: 1.5px;
+  filter: none;
+}
+
+.folder-modal-card.is-theme-green .folder-modal-tab-pill {
+  background: rgba(16, 185, 129, 0.16);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  color: #6ee7b7;
+}
+
+.folder-modal-card.is-theme-green .folder-modal-theme-badge {
+  background: rgba(16, 185, 129, 0.14);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  color: #6ee7b7;
+}
+
+.folder-badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.folder-modal-card.is-theme-green .folder-badge-dot {
+  background-color: #10b981;
+  box-shadow: 0 0 6px #10b981;
+}
+
+.folder-modal-card.is-theme-green .folder-modal-preview-card {
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.folder-modal-card.is-theme-green .folder-modal-tech-pill {
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  color: #a7f3d0;
+}
+
+/* Top Folder Tab Header Controls */
+.folder-modal-top-tab-bar {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 16px 28px 4px 28px;
+  box-sizing: border-box;
+}
+
+.folder-modal-tab-right {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.folder-modal-close-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.folder-modal-close-btn:hover {
+  background-color: #000000;
+  color: #ffffff;
+  transform: rotate(90deg) scale(1.08);
+}
+
+/* Inner Grid: Image 2 Layout */
+.folder-modal-content-grid {
+  position: relative;
+  z-index: 5;
+  display: grid;
+  grid-template-columns: 40% 60%;
+  gap: 32px;
+  padding: 12px 34px 34px 34px;
+  box-sizing: border-box;
+  flex: 1;
+}
+
+/* Left Preview Frame (Clean Image Container) */
+.folder-modal-preview-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.folder-modal-preview-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+  background-color: #121214;
+  border-radius: 20px;
+  border: 1.5px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  display: flex;
+  box-sizing: border-box;
+}
+
+.folder-modal-preview-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.folder-modal-preview-card:hover .folder-modal-preview-img {
+  transform: scale(1.03);
+}
+
+/* Right Details Column - Generous Top Spacing Added */
+.folder-modal-details-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 42px;
+  box-sizing: border-box;
+}
+
+.folder-modal-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.folder-modal-theme-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.folder-badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.folder-modal-title {
+  font-size: clamp(1.9rem, 2.7vw, 2.45rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0 0 18px 0;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+.folder-modal-desc-section {
+  margin-bottom: 20px;
+}
+
+.folder-modal-section-heading {
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #d1d1d6;
+  margin: 0 0 8px 0;
+}
+
+.folder-modal-desc-text {
+  font-size: clamp(0.92rem, 1.05vw, 1.02rem);
+  line-height: 1.62;
+  color: #a1a1aa;
+  margin: 0;
+}
+
+.folder-modal-tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 26px;
+}
+
+.folder-modal-tech-pill {
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* Actions Row: Square White Buttons with Black Font */
+.folder-modal-actions-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: auto;
+  padding-top: 14px;
+}
+
+.folder-modal-github-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 24px;
+  border-radius: 6px;
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border: 1px solid #ffffff;
+  font-size: 0.92rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+}
+
+.folder-modal-github-btn svg {
+  fill: #000000 !important;
+  color: #000000 !important;
+}
+
+.folder-modal-btn-icon {
+  display: flex;
+  align-items: center;
+}
+
+.folder-modal-btn-label {
+  color: #000000 !important;
+  font-weight: 700;
+}
+
+.folder-modal-btn-arrow {
+  font-size: 1.05rem;
+  color: #000000 !important;
+  transition: transform 0.2s ease;
+}
+
+.folder-modal-github-btn:hover {
+  background-color: #e2e2e2 !important;
+  border-color: #e2e2e2 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
+}
+
+.folder-modal-github-btn:hover .folder-modal-btn-arrow,
+.folder-modal-live-btn:hover .folder-modal-btn-arrow {
+  transform: translate(2px, -2px);
+}
+
+.folder-modal-live-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 13px 28px;
+  border-radius: 6px;
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border: 1px solid #ffffff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+}
+
+.folder-modal-live-btn span {
+  color: #000000 !important;
+  font-weight: 700;
+}
+
+.folder-modal-live-btn:hover {
+  background-color: #e2e2e2 !important;
+  border-color: #e2e2e2 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
+}
+
+.folder-modal-live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #000000 !important;
+  animation: pulseLiveDot 1.8s infinite ease-in-out;
+}
+
+@keyframes pulseLiveDot {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.75);
+  }
+}
+
+/* Responsive Styles for Folder Modal */
+@media screen and (max-width: 840px) {
+  .folder-modal-content-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 14px 22px 26px 22px;
+  }
+  .folder-modal-card {
+    min-height: unset;
+    border-radius: 24px;
+    background-color: #18181A;
+  }
+  .folder-modal-svg-bg {
+    display: none;
+  }
+  .folder-modal-card.is-theme-purple {
+    border: 1.5px solid rgba(139, 92, 246, 0.6);
+  }
+  .folder-modal-card.is-theme-green {
+    border: 1.5px solid rgba(16, 185, 129, 0.6);
+  }
+  .folder-modal-details-col {
+    padding-top: 10px;
+  }
+  .folder-modal-preview-card {
+    min-height: 220px;
+    max-height: 260px;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .folder-modal-top-tab-bar {
+    padding: 14px 16px 8px 16px;
+  }
+  .folder-modal-content-grid {
+    padding: 10px 16px 20px 16px;
+  }
+  .folder-modal-actions-row {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+  .folder-modal-github-btn,
+  .folder-modal-live-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

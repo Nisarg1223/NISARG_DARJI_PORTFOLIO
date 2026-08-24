@@ -12,6 +12,7 @@ import Menu from './components/Menu'
 import taskelloHeaderBg from './assets/taskello_header_bg.png'
 import card1Image from './assets/card_1_image.png'
 import card2Image from './assets/card_2_image.png'
+import animeHeadphonesImage from './assets/spiderman_neon.jpg'
 import contactCardImage from './assets/contact_card_1.png'
 import experienceCardImage from './assets/Experiance_card.png'
 import certificatesCardImage from './assets/certificates_card.png'
@@ -354,92 +355,227 @@ const ACHIEVEMENTS_DATA = [
 
 const HELMETS_DATA = [
   {
-    title: "Season",
+    id: "doc-01",
+    title: "Daily memo",
+    subtitle: "Notes & Journaling",
     year: "2025",
+    theme: "purple",
+    docNum: "01 Doc",
+    notesCount: "1270 Notes",
+    description: "An intuitive daily note-taking and journaling workspace designed for rapid thought capture, markdown syncing, and distraction-free creative writing. Features instant local persistence, ambient dark mode, and fluid micro-interactions.",
+    techStack: ["React 19", "GSAP", "Framer Motion", "Tailwind CSS", "Vite"],
+    githubUrl: "https://github.com/Nisarg1223",
+    liveUrl: "https://github.com/Nisarg1223",
     base: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305b3e6c7ab86033cf172c_In-helm-2025-Season-base.webp",
     hover: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305b411c575b2f777125f6_In-helm-2025-Season-hover.webp"
   },
   {
+    id: "doc-02",
     title: "Discoball",
+    subtitle: "Audio Visualizer",
     year: "2025",
+    theme: "green",
+    docNum: "02 Doc",
+    notesCount: "1270 Notes",
+    description: "Real-time interactive audio visualizer and 3D lighting experience. Features WebGL shaders reacting dynamically to acoustic frequencies with customizable bloom thresholds and spatial reverb presets.",
+    techStack: ["Three.js", "WebGL", "React", "GSAP", "Web Audio API"],
+    githubUrl: "https://github.com/Nisarg1223",
+    liveUrl: "https://github.com/Nisarg1223",
     base: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305b2259159e5170d2b923_In-helm-2025-Discoball-base.webp",
     hover: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305b24037a1e7681195c20_In-helm-2025-Discoball-hover.webp"
   },
   {
+    id: "doc-03",
     title: "Dark Glitter",
+    subtitle: "Luxury E-Commerce",
     year: "2025",
+    theme: "purple",
+    docNum: "03 Doc",
+    notesCount: "1270 Notes",
+    description: "High-fashion luxury e-commerce concept with ultra-smooth parallax reveals, dynamic particle simulations, and curated typography. Tailored for modern luxury brand identity and high conversion rates.",
+    techStack: ["React 19", "GSAP 3", "Lenis", "CSS Modules", "Vite"],
+    githubUrl: "https://github.com/Nisarg1223",
+    liveUrl: "https://github.com/Nisarg1223",
     base: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305aff4692de3e7ea12251_In-helm-2025-DarkGlitter-base.webp",
     hover: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305b03644c91f0a8de407b_In-helm-2025-DarkGlitter-hover.webp"
   },
   {
+    id: "doc-04",
     title: "Season",
+    subtitle: "Telemetry Dashboard",
     year: "2024",
+    theme: "green",
+    docNum: "04 Doc",
+    notesCount: "1270 Notes",
+    description: "Motorsport telemetry dashboard displaying race sector timings, tire degradation curves, and real-time pit strategy calculations with high-precision SVG gauges.",
+    techStack: ["React", "D3.js", "GSAP", "Tailwind CSS", "Vite"],
+    githubUrl: "https://github.com/Nisarg1223",
+    liveUrl: "https://github.com/Nisarg1223",
     base: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305aeac44aa40f7bda5460_In-helm-2024-Season-base.webp",
     hover: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305af56183c37dfd14ff3f_In-helm-2024-Season-hover.webp"
   },
   {
-    title: "Porcelain",
+    id: "doc-05",
+    title: "PORCELAIN",
+    subtitle: "Taskello App Card Design",
     year: "2024",
+    theme: "purple",
+    docNum: "05 Doc",
+    notesCount: "1270 Notes",
+    description: "An ultra-clean, ceramic-inspired design system for Taskello App. Emphasizes tactile micro-interactions, smooth bezier folder tabs, and low-friction productivity workflows crafted for modern agile teams.",
+    techStack: ["React 19", "GSAP", "Framer Motion", "CSS Variables", "Vite"],
+    githubUrl: "https://github.com/Nisarg1223",
+    liveUrl: "https://github.com/Nisarg1223",
     base: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305acf3fccf71c6d72607b_In-helm-2024-Porcelain-base.webp",
     hover: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305ad3a594ec37bd1d32cb_In-helm-2024-Porcelain-hover.webp"
   },
   {
-    title: "Japan",
+    id: "doc-06",
+    title: "JAPAN",
+    subtitle: "Minimalist Architecture",
     year: "2024",
+    theme: "green",
+    docNum: "06 Doc",
+    notesCount: "1270 Notes",
+    description: "Minimalist architecture portfolio inspired by modern Tokyo design studios. Combines bold vertical typography, delicate line work, smooth scroll triggers, and high-contrast dark surfaces.",
+    techStack: ["React", "GSAP 3", "Lenis Scroll", "Tailwind CSS", "Vite"],
+    githubUrl: "https://github.com/Nisarg1223",
+    liveUrl: "https://github.com/Nisarg1223",
     base: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305a980c399022066600a6_In-helm-2024-Japan-base.webp",
     hover: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305a9b1716264ea006064b_In-helm-2024-Japan-hover.webp"
   },
   {
+    id: "doc-07",
     title: "GIF",
+    subtitle: "Motion Studio",
     year: "2024",
+    theme: "purple",
+    docNum: "07 Doc",
+    notesCount: "1270 Notes",
+    description: "Motion graphics and frame animation workspace with instant video-to-GIF conversion, canvas rasterization, color palette quantization, and frame-by-frame timeline controls.",
+    techStack: ["Canvas 2D", "React", "Web Workers", "GSAP", "Vite"],
+    githubUrl: "https://github.com/Nisarg1223",
+    liveUrl: "https://github.com/Nisarg1223",
     base: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305a7d4e96d5f8f44f7803_In-helm-2024-GIF%20Helmet-base.webp",
     hover: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305a8e13a9b59a5e99cafe_In-helm-2024-GIF%20Helmet-hover.webp"
   },
   {
-    title: "Dark Mode",
+    id: "doc-08",
+    title: "DARK MODE",
+    subtitle: "Ergonomic Suite",
     year: "2024",
+    theme: "green",
+    docNum: "08 Doc",
+    notesCount: "1270 Notes",
+    description: "A dark theme engineered for developer ergonomics and OLED screens. Features custom #18181A backgrounds, emerald glowing accents, and optimized contrast ratios for prolonged focus sessions.",
+    techStack: ["React 19", "CSS Tokens", "GSAP", "Tailwind CSS", "Vite"],
+    githubUrl: "https://github.com/Nisarg1223",
+    liveUrl: "https://github.com/Nisarg1223",
     base: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305a59417d51c0a58c32c6_In-helm-2024-DarkMode-base.webp",
     hover: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305a5cdaa389d0c080afc7_In-helm-2024-DarkMode-hover.webp"
   },
   {
-    title: "Race",
+    id: "doc-09",
+    title: "RACE",
+    subtitle: "Speed Engine",
     year: "2023",
+    theme: "purple",
+    docNum: "09 Doc",
+    notesCount: "1270 Notes",
+    description: "High-velocity web application demonstrating sub-millisecond DOM updates, interactive lap comparison charts, and animated telemetry vectors built on top of GSAP ScrollTrigger.",
+    techStack: ["React", "GSAP", "SVG Animation", "Tailwind CSS", "Vite"],
+    githubUrl: "https://github.com/Nisarg1223",
+    liveUrl: "https://github.com/Nisarg1223",
     base: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305a459178b78319e05b55_In-helm-2023-Race%20100-base.webp",
     hover: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305a47417d51c0a58c28a6_In-helm-2023-Race%20100-hover.webp"
   },
   {
-    title: "Las Vegas",
+    id: "doc-10",
+    title: "LAS VEGAS",
+    subtitle: "Night UI Hub",
     year: "2023",
+    theme: "green",
+    docNum: "10 Doc",
+    notesCount: "1270 Notes",
+    description: "Cyberpunk night race interface with neon green telemetry lines, emissive shader glows, and dynamic grid layouts capturing the electric energy of the Strip Circuit.",
+    techStack: ["Three.js", "React", "GSAP", "CSS Modules", "Vite"],
+    githubUrl: "https://github.com/Nisarg1223",
+    liveUrl: "https://github.com/Nisarg1223",
     base: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305a2e3fccf71c6d71e5a8_In-helm-2023-Las%20Vegas-base.webp",
     hover: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305a3053985f797745cdfc_In-helm-2023-Las%20Vegas-hover.webp"
   },
   {
-    title: "Chrome",
+    id: "doc-11",
+    title: "CHROME",
+    subtitle: "3D Specular Sandbox",
     year: "2023",
+    theme: "purple",
+    docNum: "11 Doc",
+    notesCount: "1270 Notes",
+    description: "3D interactive specular showcase simulating liquid chrome materials, realistic Fresnel reflections, dynamic HDR environment maps, and smooth orbit controls.",
+    techStack: ["Three.js", "GLSL Shaders", "React", "GSAP", "Vite"],
+    githubUrl: "https://github.com/Nisarg1223",
+    liveUrl: "https://github.com/Nisarg1223",
     base: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305a153de4a824d397d21d_In-helm-2023-Chrome-base.webp",
     hover: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305a175a720573cbd3000f_In-helm-2023-Chrome-hover.webp"
   },
   {
-    title: "Basketball",
+    id: "doc-12",
+    title: "BASKETBALL",
+    subtitle: "Kinetic Physics",
     year: "2022",
+    theme: "green",
+    docNum: "12 Doc",
+    notesCount: "1270 Notes",
+    description: "Interactive physics simulation playground featuring realistic collision dynamics, spring constraints, drag-and-shoot gesture mechanics, and responsive canvas sizing.",
+    techStack: ["React", "Matter.js", "GSAP", "Tailwind CSS", "Vite"],
+    githubUrl: "https://github.com/Nisarg1223",
+    liveUrl: "https://github.com/Nisarg1223",
     base: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/683052a8a475dfa06075ca17_In-helm-2022-Basketball-base.webp",
     hover: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/683052ab1073a33331767d2a_In-helm-2022-Basketball-hover.webp"
   },
   {
+    id: "doc-13",
     title: "Season",
+    subtitle: "2021 Retrospective",
     year: "2021",
+    theme: "purple",
+    docNum: "13 Doc",
+    notesCount: "1270 Notes",
+    description: "Digital archive preserving season championship milestones, podium statistics, race weekend highlights, and interactive high-resolution gallery viewports.",
+    techStack: ["React", "GSAP", "Framer Motion", "Tailwind CSS", "Vite"],
+    githubUrl: "https://github.com/Nisarg1223",
+    liveUrl: "https://github.com/Nisarg1223",
     base: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305038652a87f86290bf3b_ln-helm-2021-base.webp",
     hover: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305b57817f019bc368a7b6_ln-helm-2021-hover.webp"
   },
   {
+    id: "doc-14",
     title: "Silverstone",
+    subtitle: "Heritage Archive",
     year: "2020",
+    theme: "green",
+    docNum: "14 Doc",
+    notesCount: "1270 Notes",
+    description: "Tribute experience for the British Grand Prix featuring high-speed track topography visuals, sector breakdown animations, and vintage racing color palettes.",
+    techStack: ["React", "GSAP", "SVG Filters", "Tailwind CSS", "Vite"],
+    githubUrl: "https://github.com/Nisarg1223",
+    liveUrl: "https://github.com/Nisarg1223",
     base: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305203f28384dcf8ef81cb_In-helm-2020-Silverstone-base.webp",
     hover: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305223cddca8f1ea359a7a_In-helm-2020-Silverstone-hover.webp"
   },
   {
+    id: "doc-15",
     title: "Season",
+    subtitle: "Genesis Edition",
     year: "2019",
+    theme: "purple",
+    docNum: "15 Doc",
+    notesCount: "1270 Notes",
+    description: "Debut season retrospective interface featuring early design iterations, chronological timeline navigation, and interactive retrospective documentation.",
+    techStack: ["React", "GSAP", "Framer Motion", "Tailwind CSS", "Vite"],
+    githubUrl: "https://github.com/Nisarg1223",
+    liveUrl: "https://github.com/Nisarg1223",
     base: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305139c5020a27624aa793_In-helm-2019-base.webp",
     hover: "https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/6830513c652a87f862917de3_In-helm-2019-hover.webp"
   }
@@ -492,10 +628,44 @@ const App = () => {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [selectedSocialCard, setSelectedSocialCard] = useState(null)
+  const [selectedFolderIndex, setSelectedFolderIndex] = useState(null)
+  const [modalLightPos, setModalLightPos] = useState({ x: 50, y: 50, px: 450, py: 300 })
   const [experienceSlide, setExperienceSlide] = useState(0)
   const [certificateSlide, setCertificateSlide] = useState(0)
   const [achievementSlide, setAchievementSlide] = useState(0)
   const lenisRef = useRef(null)
+
+  const handleModalMouseMove = (e) => {
+    const card = e.currentTarget.classList.contains('folder-modal-card')
+      ? e.currentTarget
+      : e.currentTarget.querySelector('.folder-modal-card')
+    if (card) {
+      const rect = card.getBoundingClientRect()
+      const px = e.clientX - rect.left
+      const py = e.clientY - rect.top
+      const percentX = (px / rect.width) * 100
+      const percentY = (py / rect.height) * 100
+      setModalLightPos({ x: percentX, y: percentY, px, py })
+    }
+  }
+
+  const handleOpenFolderModal = (idx) => {
+    setSelectedFolderIndex(idx)
+  }
+
+  const handleCloseFolderModal = () => {
+    setSelectedFolderIndex(null)
+  }
+
+  const handlePrevFolderProject = (e) => {
+    if (e && e.stopPropagation) e.stopPropagation()
+    setSelectedFolderIndex((prev) => (prev > 0 ? prev - 1 : HELMETS_DATA.length - 1))
+  }
+
+  const handleNextFolderProject = (e) => {
+    if (e && e.stopPropagation) e.stopPropagation()
+    setSelectedFolderIndex((prev) => (prev < HELMETS_DATA.length - 1 ? prev + 1 : 0))
+  }
 
   useEffect(() => {
     // Initialize Lenis smooth scroll
@@ -530,16 +700,27 @@ const App = () => {
 
   useEffect(() => {
     if (lenisRef.current) {
-      if (isMenuOpen || selectedSocialCard) {
+      if (isMenuOpen || selectedSocialCard || selectedFolderIndex !== null) {
         lenisRef.current.stop()
       } else {
         lenisRef.current.start()
       }
     }
-  }, [isMenuOpen, selectedSocialCard])
+  }, [isMenuOpen, selectedSocialCard, selectedFolderIndex])
 
   useEffect(() => {
     const handleKeyDown = (e) => {
+      if (selectedFolderIndex !== null) {
+        if (e.key === 'Escape') {
+          setSelectedFolderIndex(null)
+        } else if (e.key === 'ArrowRight') {
+          handleNextFolderProject()
+        } else if (e.key === 'ArrowLeft') {
+          handlePrevFolderProject()
+        }
+        return
+      }
+
       if (!selectedSocialCard) return
       if (e.key === 'Escape') {
         setSelectedSocialCard(null)
@@ -633,7 +814,7 @@ const App = () => {
 
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [selectedSocialCard])
+  }, [selectedSocialCard, selectedFolderIndex])
 
   useEffect(() => {
     if (videoRef.current) {
@@ -1717,7 +1898,20 @@ const App = () => {
             <div className="helmet-grid">
               {HELMETS_DATA.map((helmet, idx) => (
                 <div key={idx} className="helmet-grid-item-w">
-                  <div className="helmet-grid-item taskello-card-wrapper" data-helmet-item="">
+                  <div
+                    className="helmet-grid-item taskello-card-wrapper"
+                    data-helmet-item=""
+                    onClick={() => handleOpenFolderModal(idx)}
+                    role="button"
+                    tabIndex={0}
+                    aria-label={`Open ${idx === 0 ? "Daily memo" : helmet.title} folder details`}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault()
+                        handleOpenFolderModal(idx)
+                      }
+                    }}
+                  >
                     <div className="taskello-card">
                       {/* Top Header Background Image */}
                       <div className="taskello-header-bg-w">
@@ -2809,6 +3003,141 @@ const App = () => {
                       />
                     ))}
                   </svg>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+      {/* Centered Folder Modal Lightbox (Image 2 Replica with #18181A & Purple/Green UI) */}
+      <AnimatePresence>
+        {selectedFolderIndex !== null && HELMETS_DATA[selectedFolderIndex] && (
+          <motion.div
+            className="folder-modal-backdrop"
+            data-lenis-prevent="true"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.24, ease: 'easeOut' }}
+            onClick={handleCloseFolderModal}
+          >
+            {/* Folder-Shaped Centered Popup Box */}
+            <motion.div
+              key={selectedFolderIndex}
+              className={`folder-modal-card is-theme-${HELMETS_DATA[selectedFolderIndex].theme}`}
+              data-lenis-prevent="true"
+              initial={{ scale: 0.88, opacity: 0, y: 24 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.88, opacity: 0, y: 20 }}
+              transition={{ type: 'spring', damping: 26, stiffness: 320 }}
+              onClick={(e) => e.stopPropagation()}
+              onWheel={(e) => e.stopPropagation()}
+            >
+              {/* Background SVG defining the exact Folder Tab Silhouette (Image 2) */}
+              <div className="folder-modal-svg-bg">
+                <svg viewBox="0 0 940 600" fill="none" preserveAspectRatio="none" className="folder-modal-svg">
+                  <path
+                    d="M 28,0 L 330,0 C 365,0 385,14 405,36 C 425,58 445,68 480,68 L 912,68 C 927,68 940,81 940,96 L 940,572 C 940,587 927,600 912,600 L 28,600 C 13,600 0,587 0,572 L 0,28 C 0,13 13,0 28,0 Z"
+                    fill="#18181A"
+                    className="folder-modal-svg-path"
+                  />
+                </svg>
+              </div>
+
+              {/* Top Folder Tab Header Controls */}
+              <div className="folder-modal-top-tab-bar">
+                <div className="folder-modal-tab-left"></div>
+                <div className="folder-modal-tab-right">
+                  {/* Close (X) button */}
+                  <button
+                    type="button"
+                    className="folder-modal-close-btn"
+                    onClick={handleCloseFolderModal}
+                    aria-label="Close modal"
+                  >
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="18" y1="6" x2="6" y2="18" />
+                      <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              {/* Main Content Grid: Image 2 Layout */}
+              <div className="folder-modal-content-grid">
+                {/* Left Side: Clean Preview Image Frame */}
+                <div className="folder-modal-preview-col">
+                  <div className="folder-modal-preview-card">
+                    <img
+                      src={animeHeadphonesImage}
+                      alt={HELMETS_DATA[selectedFolderIndex].title}
+                      className="folder-modal-preview-img"
+                    />
+                  </div>
+                </div>
+
+                {/* Right Side: Title, Description, Tech Stack, GitHub & See Live */}
+                <div className="folder-modal-details-col">
+                  {/* Meta Tags Row */}
+                  <div className="folder-modal-meta-row">
+                    <span className="folder-modal-theme-badge">
+                      <span className="folder-badge-dot"></span>
+                      {HELMETS_DATA[selectedFolderIndex].subtitle}
+                    </span>
+                  </div>
+
+                  {/* Project Title */}
+                  <h2 className="folder-modal-title">
+                    {HELMETS_DATA[selectedFolderIndex].title}
+                  </h2>
+
+                  {/* Project Description Section (Image 2 style) */}
+                  <div className="folder-modal-desc-section">
+                    <h4 className="folder-modal-section-heading">Project description</h4>
+                    <p className="folder-modal-desc-text">
+                      {HELMETS_DATA[selectedFolderIndex].description}
+                    </p>
+                  </div>
+
+                  {/* Tech Stack Pills */}
+                  <div className="folder-modal-tech-stack">
+                    {HELMETS_DATA[selectedFolderIndex].techStack.map((tech, tIdx) => (
+                      <span key={tIdx} className="folder-modal-tech-pill">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Actions Row: GitHub Link & See Live (Image 2 style) */}
+                  <div className="folder-modal-actions-row">
+                    {/* github link */}
+                    <a
+                      href={HELMETS_DATA[selectedFolderIndex].githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="folder-modal-github-btn"
+                    >
+                      <span className="folder-modal-btn-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                          <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                        </svg>
+                      </span>
+                      <span className="folder-modal-btn-label">github link</span>
+                      <span className="folder-modal-btn-arrow">↗</span>
+                    </a>
+
+                    {/* see live */}
+                    <a
+                      href={HELMETS_DATA[selectedFolderIndex].liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="folder-modal-live-btn"
+                    >
+                      <span className="folder-modal-live-dot"></span>
+                      <span>see live</span>
+                      <span className="folder-modal-btn-arrow">↗</span>
+                    </a>
+                  </div>
                 </div>
               </div>
             </motion.div>
