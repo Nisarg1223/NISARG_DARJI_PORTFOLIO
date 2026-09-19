@@ -6092,3 +6092,41 @@ html.lenis body {
     justify-content: center;
   }
 }
+
+/* ==========================================================================
+   FULLSCREEN INTRO VIDEO LOADER
+   ========================================================================== */
+.intro-loader-fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999999;
+  background-color: #000000;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  transform: translateY(0);
+  transition: transform 0.9s cubic-bezier(0.76, 0, 0.24, 1);
+  will-change: transform;
+}
+
+.intro-loader-fullscreen.is-exiting-up {
+  transform: translateY(-100%);
+}
+
+.intro-video-fullscreen {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+}

@@ -9,6 +9,7 @@ import Navbar from './components/Navbar'
 import secondpageImage from './assets/secondpage_image.png'
 import signatureImage from './assets/signature_image.png'
 import Menu from './components/Menu'
+import IntroLoader from './components/IntroLoader'
 import taskelloHeaderBg from './assets/taskello_header_bg.png'
 import card1Image from './assets/card_1_image.png'
 import card2Image from './assets/card_2_image.png'
@@ -626,6 +627,7 @@ const App = () => {
   const statementContainerRef = useRef(null)
   const ototPinRef = useRef(null)
 
+  const [isLoading, setIsLoading] = useState(true)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [selectedSocialCard, setSelectedSocialCard] = useState(null)
   const [selectedFolderIndex, setSelectedFolderIndex] = useState(null)
@@ -634,6 +636,18 @@ const App = () => {
   const [certificateSlide, setCertificateSlide] = useState(0)
   const [achievementSlide, setAchievementSlide] = useState(0)
   const lenisRef = useRef(null)
+
+  const introRefreshTimeoutRef = useRef(null)
+
+  const handleIntroComplete = () => {
+    setIsLoading(false)
+    if (introRefreshTimeoutRef.current) {
+      clearTimeout(introRefreshTimeoutRef.current)
+    }
+    introRefreshTimeoutRef.current = setTimeout(() => {
+      ScrollTrigger.refresh()
+    }, 100)
+  }
 
   const handleModalMouseMove = (e) => {
     const card = e.currentTarget.classList.contains('folder-modal-card')
@@ -700,13 +714,13 @@ const App = () => {
 
   useEffect(() => {
     if (lenisRef.current) {
-      if (isMenuOpen || selectedSocialCard || selectedFolderIndex !== null) {
+      if (isLoading || isMenuOpen || selectedSocialCard || selectedFolderIndex !== null) {
         lenisRef.current.stop()
       } else {
         lenisRef.current.start()
       }
     }
-  }, [isMenuOpen, selectedSocialCard, selectedFolderIndex])
+  }, [isLoading, isMenuOpen, selectedSocialCard, selectedFolderIndex])
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -1511,11 +1525,19 @@ const App = () => {
       navLightTriggers.forEach(t => {
         t.kill()
       })
+      if (introRefreshTimeoutRef.current) {
+        clearTimeout(introRefreshTimeoutRef.current)
+      }
     }
   }, [])
 
   return (
     <div className="page-w">
+      {/* Intro Video Loading Screen */}
+      {isLoading && (
+        <IntroLoader onComplete={handleIntroComplete} />
+      )}
+
       {/* Header / Navbar */}
       <Navbar ref={headerRef} onOpenMenu={() => setIsMenuOpen(true)} />
 
