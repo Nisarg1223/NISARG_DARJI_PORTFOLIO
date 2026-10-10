@@ -681,6 +681,26 @@ const App = () => {
     setSelectedFolderIndex((prev) => (prev < HELMETS_DATA.length - 1 ? prev + 1 : 0))
   }
 
+  const scrollToSection = (target) => {
+    if (target === '#home') {
+      if (lenisRef.current) {
+        lenisRef.current.scrollTo(0, { duration: 1.2 })
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      }
+      return
+    }
+
+    if (lenisRef.current) {
+      lenisRef.current.scrollTo(target, { offset: -20, duration: 1.2 })
+    } else {
+      const el = document.querySelector(target)
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' })
+      }
+    }
+  }
+
   useEffect(() => {
     // Initialize Lenis smooth scroll
     const lenis = new Lenis({
@@ -1548,7 +1568,7 @@ const App = () => {
       <main className="main-w">
 
         {/* Hero Scroll-Pin Container */}
-        <section ref={heroPinRef} className="hero-pin-container">
+        <section ref={heroPinRef} id="home" className="hero-pin-container">
           {/* Fixed Topographic Background Image */}
           <img src={secondpageImage} alt="topography contour lines background" className="hero-topo-bg" />
           
@@ -1673,6 +1693,7 @@ const App = () => {
           <div 
             className="c statement-container" 
             ref={statementContainerRef}
+            id="about"
           >
             {/* Top Laurel Icon & Badge */}
             <div className="statement-icon-w">
@@ -1867,7 +1888,7 @@ const App = () => {
                   <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67d18655b032045a4dc78e53_ln4-hp-lando-helmet.webp" alt="Lando Helmet" />
                 </div>
                 <div className="otot-home-img-w is-right">
-                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67d18655b032045a4dc78e56_ln4-hp-lando-head.webp" alt="Lando Head" />
+                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67d18655b032045a4dc78e56_ln4-hp-lando-head.webp" alt="Nisarg Head" />
                 </div>
               </div>
             </section>
@@ -1882,7 +1903,7 @@ const App = () => {
         </div>
 
         {/* Helmets Section */}
-        <section className="s home-helmets">
+        <section className="s home-helmets" id="projects">
           <div className="c is-helmets">
             <div className="title-layout">
               <div>
@@ -2093,7 +2114,7 @@ const App = () => {
         </section>
 
         {/* Partners & Campaigns Section */}
-        <section className="s is-home-collabs">
+        <section className="s is-home-collabs" id="skills">
           {/* Diagonal "collabs" watermark in background */}
           <div className="home-collab-rive-w">
             <img src={signatureImage} alt="" className="image is-collab-placeholder" />
@@ -2148,7 +2169,7 @@ const App = () => {
         </section>
 
         {/* What's Up On Socials Section */}
-        <section className="s is-callout-socials">
+        <section className="s is-callout-socials" id="contact">
           <div className="c is-callout-socials">
             <div className="callout-socials-layout">
               {/* Controller Icon */}
@@ -2202,21 +2223,18 @@ const App = () => {
 
               {/* Subtext */}
               <div className="callout-socials-intro-w">
-                <div className="text-cta-short-intro font-brier">Follow Lando on social media</div>
+                <div className="text-cta-short-intro font-brier">Follow Nisarg on social media</div>
               </div>
 
               {/* Social Links */}
               <div className="callout-socials-links-layout">
-                <a href="https://www.tiktok.com/@landonorris" target="_blank" rel="noopener noreferrer" className="text-link-w">
-                  tiktok
-                </a>
-                <a href="https://www.instagram.com/lando" target="_blank" rel="noopener noreferrer" className="text-link-w">
+                <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className="text-link-w">
                   instagram
                 </a>
-                <a href="https://www.youtube.com/@LandoNorris" target="_blank" rel="noopener noreferrer" className="text-link-w">
+                <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" className="text-link-w">
                   Youtube
                 </a>
-                <a href="https://www.twitch.tv/landonorris" target="_blank" rel="noopener noreferrer" className="text-link-w">
+                <a href="https://www.twitch.tv" target="_blank" rel="noopener noreferrer" className="text-link-w">
                   Twitch
                 </a>
               </div>
@@ -2279,21 +2297,20 @@ const App = () => {
                   <div className="footer-links-col">
                     <div className="text-eyebrow">pages</div>
                     <div className="footer-links-layout">
-                      <a href="/" className="text-link-w">Home</a>
-                      <a href="/on-track" className="text-link-w">On Track</a>
-                      <a href="/off-track" className="text-link-w">Off Track</a>
-                      <a href="/calendar" className="text-link-w">Calendar</a>
+                      <a href="#home" onClick={(e) => { e.preventDefault(); scrollToSection('#home'); }} className="text-link-w">Home</a>
+                      <a href="#about" onClick={(e) => { e.preventDefault(); scrollToSection('#about'); }} className="text-link-w">About</a>
+                      <a href="#projects" onClick={(e) => { e.preventDefault(); scrollToSection('#projects'); }} className="text-link-w">Projects</a>
+                      <a href="#skills" onClick={(e) => { e.preventDefault(); scrollToSection('#skills'); }} className="text-link-w">Skills</a>
+                      <a href="#contact" onClick={(e) => { e.preventDefault(); scrollToSection('#contact'); }} className="text-link-w c-lime">Contact</a>
                     </div>
-                    <a href="https://store.landonorris.com/" target="_blank" rel="noopener noreferrer" className="text-link-w c-lime">Store</a>
                   </div>
 
                   <div className="footer-links-col">
                     <div className="text-eyebrow">Follow On</div>
                     <div className="footer-links-layout">
-                      <a href="https://www.tiktok.com/@landonorris" target="_blank" rel="noopener noreferrer" className="text-link-w">Tiktok</a>
-                      <a href="https://www.instagram.com/lando" target="_blank" rel="noopener noreferrer" className="text-link-w">Instagram</a>
-                      <a href="https://www.youtube.com/landonorris04" target="_blank" rel="noopener noreferrer" className="text-link-w">Youtube</a>
-                      <a href="https://www.twitch.tv/landonorris" target="_blank" rel="noopener noreferrer" className="text-link-w">Twitch</a>
+                      <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className="text-link-w">Instagram</a>
+                      <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" className="text-link-w">Youtube</a>
+                      <a href="https://www.twitch.tv" target="_blank" rel="noopener noreferrer" className="text-link-w">Twitch</a>
                     </div>
                   </div>
                 </div>
@@ -2306,49 +2323,6 @@ const App = () => {
                         <span>business enquiries</span>
                         <span>↗</span>
                       </a>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Partner logos marquee row */}
-                <div className="footer-marquee" aria-hidden="true">
-                  <div className="footer-marquee-item">
-                    <div className="footer-marquee-logo-w">
-                      <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68dbd5d70a9e147b77952c0d_ln4-footer-logo-android.svg" alt="Android" className="footer-marquee-svg" />
-                    </div>
-                    <div className="footer-marquee-logo-w">
-                      <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68dbd5d7564fc5a9fccf822f_ln4-footer-logo-pap.svg" alt="PAP" className="footer-marquee-svg" />
-                    </div>
-                    <div className="footer-marquee-logo-w">
-                      <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68dbd5d761eeca9060e00622_ln4-footer-logo-monster.svg" alt="Monster" className="footer-marquee-svg" />
-                    </div>
-                    <div className="footer-marquee-logo-w">
-                      <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68dbd5d72c50967c2195c702_ln4-ln4-collab-bell-helmets.svg" alt="Bell Helmets" className="footer-marquee-svg" />
-                    </div>
-                    <div className="footer-marquee-logo-w">
-                      <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67efc88cb3373daa7ba240d6_ln4-ln4-collab-logo-tumi.svg" alt="Tumi" className="footer-marquee-svg" />
-                    </div>
-                    <div className="footer-marquee-logo-w">
-                      <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68dbd5d718fcdbf76afbcc45_ln4-ln4-collab-pure-electric.svg" alt="Pure Electric" className="footer-marquee-svg" />
-                    </div>
-                    {/* Duplicate set for seamless marquee loop */}
-                    <div className="footer-marquee-logo-w">
-                      <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68dbd5d70a9e147b77952c0d_ln4-footer-logo-android.svg" alt="Android" className="footer-marquee-svg" />
-                    </div>
-                    <div className="footer-marquee-logo-w">
-                      <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68dbd5d7564fc5a9fccf822f_ln4-footer-logo-pap.svg" alt="PAP" className="footer-marquee-svg" />
-                    </div>
-                    <div className="footer-marquee-logo-w">
-                      <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68dbd5d761eeca9060e00622_ln4-footer-logo-monster.svg" alt="Monster" className="footer-marquee-svg" />
-                    </div>
-                    <div className="footer-marquee-logo-w">
-                      <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68dbd5d72c50967c2195c702_ln4-ln4-collab-bell-helmets.svg" alt="Bell Helmets" className="footer-marquee-svg" />
-                    </div>
-                    <div className="footer-marquee-logo-w">
-                      <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67efc88cb3373daa7ba240d6_ln4-ln4-collab-logo-tumi.svg" alt="Tumi" className="footer-marquee-svg" />
-                    </div>
-                    <div className="footer-marquee-logo-w">
-                      <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68dbd5d718fcdbf76afbcc45_ln4-ln4-collab-pure-electric.svg" alt="Pure Electric" className="footer-marquee-svg" />
                     </div>
                   </div>
                 </div>
