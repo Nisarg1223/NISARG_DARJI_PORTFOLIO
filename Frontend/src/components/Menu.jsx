@@ -1,5 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
+import socialImage1 from '../assets/social_image_1.jpeg'
+import socialImage2 from '../assets/social_image_2.png'
+import socialImage3 from '../assets/social_image_3.jpeg'
+import socialImage4 from '../assets/social_image_4.jpeg'
+
 
 const Menu = ({ isOpen, onClose }) => {
   const overlayRef = useRef(null)
@@ -124,20 +129,20 @@ const Menu = ({ isOpen, onClose }) => {
 
   const gridImages = [
     {
-      url: 'https://cdn.prod.website-files.com/67d97a68478fe87e30c67abe/68305b3e6c7ab86033cf172c_In-helm-2025-Season-base.webp',
-      alt: 'Nisarg in Helmet'
+      url: socialImage1,
+      alt: 'Nisarg Darji Editorial'
     },
     {
-      url: 'https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68302baab12220595c8223b3_ln-home-horiz-2.webp',
-      alt: 'Celebrating Win'
+      url: socialImage2,
+      alt: 'Nisarg Darji Classic'
     },
     {
-      url: 'https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68302baa14a96f3cdd2f9a95_ln-home-horiz-6.webp',
-      alt: 'Portrait Focus'
+      url: socialImage3,
+      alt: 'Nisarg Darji Film'
     },
     {
-      url: 'https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68302baa04b14a1ca33c0b25_ln-home-horiz-1.webp',
-      alt: 'F1 Car Racing'
+      url: socialImage4,
+      alt: 'Nisarg Darji Moments'
     }
   ]
 

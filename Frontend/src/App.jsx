@@ -39,6 +39,11 @@ import salCertPng from './assets/sal_participate_certificate.png'
 import microsoftCertJpg from './assets/Microsoft_certificate.jpg'
 import sem4TopperJpg from './assets/sem_4_topper.jpg'
 import sem5TopperJpeg from './assets/sem_5_topper.jpeg'
+import socialImage1 from './assets/social_image_1.jpeg'
+import socialImage2 from './assets/social_image_2.png'
+import socialImage3 from './assets/social_image_3.jpeg'
+import socialImage4 from './assets/social_image_4.jpeg'
+
 
 const SOCIAL_CARDS = [
   {
@@ -1765,17 +1770,17 @@ const App = () => {
             <div ref={horizontalTrackRef} className="horizontal-track">
               {/* Card 1 */}
               <div className="horizontal-item-w card-1">
-                <div className="text-eyebrow">Qatar, 2024</div>
+                <div className="text-eyebrow">Editorial, 2024</div>
                 <div className="horizontal-item-img-w">
-                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68302baa04b14a1ca33c0b25_ln-home-horiz-1.webp" alt="Qatar 2024" />
+                  <img src={socialImage1} alt="Editorial 2024" style={{ objectPosition: 'center 20%' }} />
                 </div>
               </div>
 
               {/* Card 2 */}
               <div className="horizontal-item-w card-2">
-                <div className="text-eyebrow">FIA Prize Giving, 2024</div>
+                <div className="text-eyebrow">Streets, 2024</div>
                 <div className="horizontal-item-img-w">
-                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68302baab12220595c8223b3_ln-home-horiz-2.webp" alt="FIA Prize Giving" />
+                  <img src={socialImage2} alt="Streets 2024" style={{ objectPosition: 'center 25%' }} />
                 </div>
               </div>
 
@@ -1788,25 +1793,25 @@ const App = () => {
 
               {/* Card 4 */}
               <div className="horizontal-item-w card-4">
-                <div className="text-eyebrow">Miami GP, 2024</div>
+                <div className="text-eyebrow">Film Still, 2024</div>
                 <div className="horizontal-item-img-w">
-                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68302babcf12f0111d96322e_ln-home-horiz-3.webp" alt="Miami GP 2024" />
+                  <img src={socialImage3} alt="Film Still 2024" style={{ objectPosition: 'center center' }} />
                 </div>
               </div>
 
               {/* Card 5 */}
               <div className="horizontal-item-w card-5">
-                <div className="text-eyebrow">Monaco, 2023</div>
+                <div className="text-eyebrow">Moments, 2024</div>
                 <div className="horizontal-item-img-w">
-                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68302baa798e2cc6e02ac38a_ln-home-horiz-4.webp" alt="Monaco 2023" />
+                  <img src={socialImage4} alt="Moments 2024" style={{ objectPosition: 'center 20%' }} />
                 </div>
               </div>
 
               {/* Card 6 */}
               <div className="horizontal-item-w card-6">
-                <div className="text-eyebrow">Battersea, 2024</div>
+                <div className="text-eyebrow">Studio, 2024</div>
                 <div className="horizontal-item-img-w">
-                  <img src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/68302baa14a96f3cdd2f9a95_ln-home-horiz-6.webp" alt="Battersea 2024" />
+                  <img src={myPhoto} alt="Studio 2024" style={{ objectPosition: 'center 15%' }} />
                 </div>
               </div>
             </div>

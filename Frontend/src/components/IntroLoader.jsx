@@ -72,6 +72,35 @@ const IntroLoader = ({ onComplete }) => {
         onEnded={handleVideoEnd}
         onError={handleVideoEnd}
       />
+
+      {/* Floating Skip Button */}
+      <button
+        type="button"
+        className="intro-skip-btn"
+        onClick={(e) => {
+          e.stopPropagation()
+          handleVideoEnd()
+        }}
+        aria-label="Skip Intro Video"
+      >
+        <span className="intro-skip-text">SKIP INTRO</span>
+        <span className="intro-skip-icon">
+          <svg
+            width="13"
+            height="13"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <polygon points="5 4 15 12 5 20 5 4" fill="currentColor" />
+            <line x1="19" y1="5" x2="19" y2="19" />
+          </svg>
+        </span>
+        <span className="intro-skip-esc">ESC</span>
+      </button>
     </div>
   )
 }

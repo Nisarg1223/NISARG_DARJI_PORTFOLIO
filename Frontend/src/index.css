@@ -6130,3 +6130,93 @@ html.lenis body {
   border: none;
   outline: none;
 }
+
+/* Intro Video Floating Skip Button */
+.intro-skip-btn {
+  position: absolute;
+  bottom: 2.5rem;
+  right: 2.5rem;
+  z-index: 1000000;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.65rem 1.25rem;
+  background: rgba(18, 20, 16, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 9999px;
+  color: #FFFFFF;
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
+  user-select: none;
+}
+
+.intro-skip-btn:hover {
+  background: var(--color--lime, #D2F800);
+  color: #0B0F02;
+  border-color: var(--color--lime, #D2F800);
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 8px 25px rgba(210, 248, 0, 0.35);
+}
+
+.intro-skip-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.intro-skip-text {
+  line-height: 1;
+}
+
+.intro-skip-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s ease;
+}
+
+.intro-skip-btn:hover .intro-skip-icon {
+  transform: translateX(2px);
+}
+
+.intro-skip-esc {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.2rem 0.45rem;
+  font-size: 0.65rem;
+  font-weight: 800;
+  line-height: 1;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 4px;
+  color: rgba(255, 255, 255, 0.85);
+  letter-spacing: 0.05em;
+  transition: all 0.25s ease;
+}
+
+.intro-skip-btn:hover .intro-skip-esc {
+  background: rgba(0, 0, 0, 0.18);
+  border-color: rgba(0, 0, 0, 0.25);
+  color: #0B0F02;
+}
+
+@media screen and (max-width: 767px) {
+  .intro-skip-btn {
+    bottom: 1.5rem;
+    right: 1.25rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.72rem;
+    gap: 0.45rem;
+  }
+  .intro-skip-esc {
+    display: none;
+  }
+}
