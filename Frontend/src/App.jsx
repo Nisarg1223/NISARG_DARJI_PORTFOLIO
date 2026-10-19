@@ -10,6 +10,7 @@ import secondpageImage from './assets/secondpage_image.png'
 import signatureImage from './assets/signature_image.png'
 import Menu from './components/Menu'
 import IntroLoader from './components/IntroLoader'
+import LanyardBadge from './components/LanyardBadge'
 import taskelloHeaderBg from './assets/taskello_header_bg.png'
 import card1Image from './assets/card_1_image.png'
 import card2Image from './assets/card_2_image.png'
@@ -925,7 +926,7 @@ const App = () => {
               if (self.progress > 0.1) {
                 video.pause()
               } else {
-                video.play().catch(() => {})
+                video.play().catch(() => { })
               }
             }
           }
@@ -1576,127 +1577,127 @@ const App = () => {
         <section ref={heroPinRef} id="home" className="hero-pin-container">
           {/* Fixed Topographic Background Image */}
           <img src={secondpageImage} alt="topography contour lines background" className="hero-topo-bg" />
-          
+
           <div className="hero-scroll-content-w" ref={heroContentRef}>
             {/* Background Marquee */}
-          <div className="hero-marquee-w">
-            <div className="marquee-line line-1">
-              <div ref={marquee1Ref} className="marquee-track">
-                <span>CREATIVE DEV • NISARG DARJI • DESIGNER • CODING •&nbsp;</span>
-                <span>CREATIVE DEV • NISARG DARJI • DESIGNER • CODING •&nbsp;</span>
+            <div className="hero-marquee-w">
+              <div className="marquee-line line-1">
+                <div ref={marquee1Ref} className="marquee-track">
+                  <span>CREATIVE DEV • NISARG DARJI • DESIGNER • CODING •&nbsp;</span>
+                  <span>CREATIVE DEV • NISARG DARJI • DESIGNER • CODING •&nbsp;</span>
+                </div>
+              </div>
+              <div className="marquee-line line-2">
+                <div ref={marquee2Ref} className="marquee-track">
+                  <span>REACT • GSAP • WEB DEVELOPMENT • FULLSTACK •&nbsp;</span>
+                  <span>REACT • GSAP • WEB DEVELOPMENT • FULLSTACK •&nbsp;</span>
+                </div>
               </div>
             </div>
-            <div className="marquee-line line-2">
-              <div ref={marquee2Ref} className="marquee-track">
-                <span>REACT • GSAP • WEB DEVELOPMENT • FULLSTACK •&nbsp;</span>
-                <span>REACT • GSAP • WEB DEVELOPMENT • FULLSTACK •&nbsp;</span>
-              </div>
-            </div>
-          </div>
 
-          {/* Floating Background SVGs */}
-          <svg className="bg-floating-svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" style={{ top: '15%', left: '12%' }}>
-            <line x1="12" y1="5" x2="12" y2="19" />
-            <line x1="5" y1="12" x2="19" y2="12" />
-          </svg>
-          <svg className="bg-floating-svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" style={{ top: '78%', left: '9%' }}>
-            <circle cx="12" cy="12" r="8" />
-          </svg>
-          <svg className="bg-floating-svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" style={{ top: '12%', left: '85%' }}>
-            <polygon points="12 2 22 22 2 22" />
-          </svg>
-          <svg className="bg-floating-svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" style={{ top: '82%', left: '88%' }}>
-            <line x1="5" y1="5" x2="19" y2="19" />
-            <line x1="19" y1="5" x2="5" y2="19" />
-          </svg>
-          <svg className="bg-floating-svg" width="45" height="35" viewBox="0 0 88 56" fill="none" stroke="currentColor" strokeWidth="2" style={{ top: '48%', left: '86%', opacity: 0.08 }}>
-            <path d="M12 4L32 44H42L22 4H12Z" />
-            <path d="M45 44L65 4H75L55 44H45Z" />
-          </svg>
+            {/* Floating Background SVGs */}
+            <svg className="bg-floating-svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" style={{ top: '15%', left: '12%' }}>
+              <line x1="12" y1="5" x2="12" y2="19" />
+              <line x1="5" y1="12" x2="19" y2="12" />
+            </svg>
+            <svg className="bg-floating-svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" style={{ top: '78%', left: '9%' }}>
+              <circle cx="12" cy="12" r="8" />
+            </svg>
+            <svg className="bg-floating-svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" style={{ top: '12%', left: '85%' }}>
+              <polygon points="12 2 22 22 2 22" />
+            </svg>
+            <svg className="bg-floating-svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" style={{ top: '82%', left: '88%' }}>
+              <line x1="5" y1="5" x2="19" y2="19" />
+              <line x1="19" y1="5" x2="5" y2="19" />
+            </svg>
+            <svg className="bg-floating-svg" width="45" height="35" viewBox="0 0 88 56" fill="none" stroke="currentColor" strokeWidth="2" style={{ top: '48%', left: '86%', opacity: 0.08 }}>
+              <path d="M12 4L32 44H42L22 4H12Z" />
+              <path d="M45 44L65 4H75L55 44H45Z" />
+            </svg>
 
-          {/* Scaling Hero Card */}
-          <div ref={heroCardRef} className="home-hero-card-w">
-            {/* Hero Section */}
-            <section className="s home-hero" style={{ width: '100vw', height: '100vh', padding: 0 }}>
-              {/* Background Video */}
-              <video ref={videoRef} autoPlay loop muted playsInline className="hero-bg-video">
-                <source src={backgroundVideo} type="video/mp4" />
-              </video>
+            {/* Scaling Hero Card */}
+            <div ref={heroCardRef} className="home-hero-card-w">
+              {/* Hero Section */}
+              <section className="s home-hero" style={{ width: '100vw', height: '100vh', padding: 0 }}>
+                {/* Background Video */}
+                <video ref={videoRef} autoPlay loop muted playsInline className="hero-bg-video">
+                  <source src={backgroundVideo} type="video/mp4" />
+                </video>
 
-              {/* Topographic Line Background overlaying the video */}
-              <div className="home-hero-bg-lines">
-                <svg viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M-150,150 C50,200 150,100 180,350 C210,600 50,750 -100,800" stroke="rgba(0,0,0,0.06)" strokeWidth="2" fill="none" />
-                  <path d="M-100,100 C150,150 250,50 280,350 C310,650 150,850 -50,900" stroke="rgba(0,0,0,0.06)" strokeWidth="2" fill="none" />
-                  <path d="M-200,200 C-50,250 50,150 80,350 C110,550 -50,650 -150,700" stroke="rgba(0,0,0,0.06)" strokeWidth="1.5" fill="none" />
+                {/* Topographic Line Background overlaying the video */}
+                <div className="home-hero-bg-lines">
+                  <svg viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M-150,150 C50,200 150,100 180,350 C210,600 50,750 -100,800" stroke="rgba(0,0,0,0.06)" strokeWidth="2" fill="none" />
+                    <path d="M-100,100 C150,150 250,50 280,350 C310,650 150,850 -50,900" stroke="rgba(0,0,0,0.06)" strokeWidth="2" fill="none" />
+                    <path d="M-200,200 C-50,250 50,150 80,350 C110,550 -50,650 -150,700" stroke="rgba(0,0,0,0.06)" strokeWidth="1.5" fill="none" />
 
-                  <path d="M1590,150 C1390,200 1290,100 1260,350 C1230,600 1390,750 1540,800" stroke="rgba(0,0,0,0.06)" strokeWidth="2" fill="none" />
-                  <path d="M1540,100 C1290,150 1190,50 1160,350 C1130,650 1290,850 1490,900" stroke="rgba(0,0,0,0.06)" strokeWidth="2" fill="none" />
-                </svg>
-              </div>
+                    <path d="M1590,150 C1390,200 1290,100 1260,350 C1230,600 1390,750 1540,800" stroke="rgba(0,0,0,0.06)" strokeWidth="2" fill="none" />
+                    <path d="M1540,100 C1290,150 1190,50 1160,350 C1130,650 1290,850 1490,900" stroke="rgba(0,0,0,0.06)" strokeWidth="2" fill="none" />
+                  </svg>
+                </div>
 
-              {/* Center Image (Perfect Centered Styling) */}
-              <div className="home-hero-center-img-w">
-                <img ref={heroImageRef} src={heroImage} alt="Lando Norris" style={{ transformOrigin: 'bottom center' }} />
-              </div>
+                {/* Center Image (Perfect Centered Styling) */}
+                <div className="home-hero-center-img-w">
+                  <img ref={heroImageRef} src={heroImage} alt="Lando Norris" style={{ transformOrigin: 'bottom center' }} />
+                </div>
 
-              {/* Left creative text */}
-              <div ref={leftTextRef} className="hero-left-text-w">
-                <div className="hero-creative-text">creative</div>
-                <div className="hero-dev-text">web developer</div>
-              </div>
+                {/* Left creative text */}
+                <div ref={leftTextRef} className="hero-left-text-w">
+                  <div className="hero-creative-text">creative</div>
+                  <div className="hero-dev-text">web developer</div>
+                </div>
 
-              {/* Next Race Right Component adapted for Coding Stats */}
-              <div ref={nextRaceRef} className="home-hero-next-race-w">
-                <div className="home-hero-next-race-container">
-                  {/* Outline border */}
-                  <div className="home-hero-next-race-bg">
-                    <svg width="100%" height="100%" viewBox="0 0 119 244" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M118.5 6v232a5.5 5.5 0 0 1-5.5 5.5H6a5.5 5.5 0 0 1-5.5-5.5V25A5.5 5.5 0 0 1 6 19.5h46.346c4.695 0 9.167-2 12.297-5.498l7.46-8.337A15.5 15.5 0 0 1 83.653.5H113a5.5 5.5 0 0 1 5.5 5.5Z" stroke="currentColor" strokeWidth="1.5" />
-                    </svg>
-                  </div>
-
-                  {/* Top Title */}
-                  <div className="next-race-title">Dev Stack</div>
-
-                  {/* Coding Symbol SVG */}
-                  <div className="next-race-circuit-w">
-                    <svg viewBox="0 0 100 60" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ width: '65%', height: 'auto' }}>
-                      <polyline points="30 15 10 30 30 45" />
-                      <polyline points="70 15 90 30 70 45" />
-                      <line x1="55" y1="10" x2="45" y2="50" />
-                    </svg>
-                  </div>
-
-                  {/* Race Name */}
-                  <div className="next-race-name">React & GSAP</div>
-
-                  {/* Laurel Wreath with coding info */}
-                  <div className="next-race-laurel-w">
-                    <div className="laurel-svg-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <svg viewBox="0 0 100 50" fill="currentColor" style={{ width: '85%', height: '85%' }}>
-                        {/* Wreath left */}
-                        <path d="M 40 45 C 30 45, 15 35, 15 25 C 15 15, 25 10, 35 15 C 33 20, 25 22, 23 28 C 21 34, 30 38, 38 40" />
-                        {/* Wreath right */}
-                        <path d="M 60 45 C 70 45, 85 35, 85 25 C 85 15, 75 10, 65 15 C 67 20, 75 22, 77 28 C 79 34, 70 38, 62 40" />
-                        {/* JS Logo center */}
-                        <text x="50" y="32" fontSize="14" fontWeight="800" textAnchor="middle" fill="currentColor" style={{ fontFamily: 'Outfit' }}>JS</text>
+                {/* Next Race Right Component adapted for Coding Stats */}
+                <div ref={nextRaceRef} className="home-hero-next-race-w">
+                  <div className="home-hero-next-race-container">
+                    {/* Outline border */}
+                    <div className="home-hero-next-race-bg">
+                      <svg width="100%" height="100%" viewBox="0 0 119 244" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M118.5 6v232a5.5 5.5 0 0 1-5.5 5.5H6a5.5 5.5 0 0 1-5.5-5.5V25A5.5 5.5 0 0 1 6 19.5h46.346c4.695 0 9.167-2 12.297-5.498l7.46-8.337A15.5 15.5 0 0 1 83.653.5H113a5.5 5.5 0 0 1 5.5 5.5Z" stroke="currentColor" strokeWidth="1.5" />
                       </svg>
                     </div>
-                    <div className="laurel-subtext">
-                      CREATIVE CODING<br />
-                    
+
+                    {/* Top Title */}
+                    <div className="next-race-title">Dev Stack</div>
+
+                    {/* Coding Symbol SVG */}
+                    <div className="next-race-circuit-w">
+                      <svg viewBox="0 0 100 60" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ width: '65%', height: 'auto' }}>
+                        <polyline points="30 15 10 30 30 45" />
+                        <polyline points="70 15 90 30 70 45" />
+                        <line x1="55" y1="10" x2="45" y2="50" />
+                      </svg>
+                    </div>
+
+                    {/* Race Name */}
+                    <div className="next-race-name">React & GSAP</div>
+
+                    {/* Laurel Wreath with coding info */}
+                    <div className="next-race-laurel-w">
+                      <div className="laurel-svg-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <svg viewBox="0 0 100 50" fill="currentColor" style={{ width: '85%', height: '85%' }}>
+                          {/* Wreath left */}
+                          <path d="M 40 45 C 30 45, 15 35, 15 25 C 15 15, 25 10, 35 15 C 33 20, 25 22, 23 28 C 21 34, 30 38, 38 40" />
+                          {/* Wreath right */}
+                          <path d="M 60 45 C 70 45, 85 35, 85 25 C 85 15, 75 10, 65 15 C 67 20, 75 22, 77 28 C 79 34, 70 38, 62 40" />
+                          {/* JS Logo center */}
+                          <text x="50" y="32" fontSize="14" fontWeight="800" textAnchor="middle" fill="currentColor" style={{ fontFamily: 'Outfit' }}>JS</text>
+                        </svg>
+                      </div>
+                      <div className="laurel-subtext">
+                        CREATIVE CODING<br />
+
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </section>
+              </section>
+            </div>
           </div>
-        </div>
 
           {/* Statement Text Container (100% landonorris.com clone) */}
-          <div 
-            className="c statement-container" 
+          <div
+            className="c statement-container"
             ref={statementContainerRef}
             id="about"
           >
@@ -1714,56 +1715,56 @@ const App = () => {
             </div>
 
             {/* Main Statement Text matching landonorris.com 100% */}
-           <h2 className="statement-text uppercase-impact">
-  <div className="reveal-line-wrapper">
-    <span className="reveal-line-text">
-      <span className="serif-lime">REDEFINING</span> DIGITAL EXPERIENCES,
-    </span>
-    <div className="reveal-line-block"></div>
-  </div>
+            <h2 className="statement-text uppercase-impact">
+              <div className="reveal-line-wrapper">
+                <span className="reveal-line-text">
+                  <span className="serif-lime">REDEFINING</span> DIGITAL EXPERIENCES,
+                </span>
+                <div className="reveal-line-block"></div>
+              </div>
 
-  <div className="reveal-line-wrapper">
-    <span className="reveal-line-text">
-      BUILDING WITH <span className="serif-lime">PURPOSE,</span>
-    </span>
-    <div className="reveal-line-block"></div>
-  </div>
+              <div className="reveal-line-wrapper">
+                <span className="reveal-line-text">
+                  BUILDING WITH <span className="serif-lime">PURPOSE,</span>
+                </span>
+                <div className="reveal-line-block"></div>
+              </div>
 
-  <div className="reveal-line-wrapper">
-    <span className="reveal-line-text">
-      TURNING IDEAS INTO
-    </span>
-    <div className="reveal-line-block"></div>
-  </div>
+              <div className="reveal-line-wrapper">
+                <span className="reveal-line-text">
+                  TURNING IDEAS INTO
+                </span>
+                <div className="reveal-line-block"></div>
+              </div>
 
-  <div className="reveal-line-wrapper">
-    <span className="reveal-line-text">
-      <span className="serif-lime">REALITY,</span> CRAFTING A
-    </span>
-    <div className="reveal-line-block"></div>
-  </div>
+              <div className="reveal-line-wrapper">
+                <span className="reveal-line-text">
+                  <span className="serif-lime">REALITY,</span> CRAFTING A
+                </span>
+                <div className="reveal-line-block"></div>
+              </div>
 
-  <div className="reveal-line-wrapper">
-    <span className="reveal-line-text">
-      CREATIVE <span className="serif-lime">LEGACY</span> THROUGH CODE,
-    </span>
-    <div className="reveal-line-block"></div>
-  </div>
+              <div className="reveal-line-wrapper">
+                <span className="reveal-line-text">
+                  CREATIVE <span className="serif-lime">LEGACY</span> THROUGH CODE,
+                </span>
+                <div className="reveal-line-block"></div>
+              </div>
 
-  <div className="reveal-line-wrapper">
-    <span className="reveal-line-text">
-      PUSHING THE WEB
-    </span>
-    <div className="reveal-line-block"></div>
-  </div>
+              <div className="reveal-line-wrapper">
+                <span className="reveal-line-text">
+                  PUSHING THE WEB
+                </span>
+                <div className="reveal-line-block"></div>
+              </div>
 
-  <div className="reveal-line-wrapper">
-    <span className="reveal-line-text">
-      FORWARD EVERY <span className="serif-lime">DAY.</span>
-    </span>
-    <div className="reveal-line-block"></div>
-  </div>
-</h2>
+              <div className="reveal-line-wrapper">
+                <span className="reveal-line-text">
+                  FORWARD EVERY <span className="serif-lime">DAY.</span>
+                </span>
+                <div className="reveal-line-block"></div>
+              </div>
+            </h2>
           </div>
 
           <div className="horizontal-pin-sticky">
@@ -1964,7 +1965,7 @@ const App = () => {
                       {/* Top Header Background Image */}
                       <div className="taskello-header-bg-w">
                         <img src={idx % 2 === 0 ? card1Image : card2Image} alt={`${helmet.title} Background`} className="taskello-header-img" />
-                        
+
                         <div className="taskello-header-text">
                           <div>Taskello App</div>
                           <div>Card Design</div>
@@ -2048,12 +2049,12 @@ const App = () => {
           <div className="c is-lando-exe">
             <div className="spacer is-exe" style={{ height: '8rem' }}></div>
             <div className="exe-grid">
-              
+
               {/* Left Column: Text & Store Info */}
               <div className="exe-text-w">
                 <div className="exe-eyebrow">
                   <svg width="16" height="17" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ marginRight: '8px' }}>
-                    <path d="m10.931 5.783-.759.812c-1.132 1.212-2.89 1.212-4.022 0l-.76-.812C4.313 4.637 2.568 5.29 2.275 6.928l-1.238 7.18c-.227 1.318.652 2.543 1.838 2.543h10.588c1.185 0 2.064-1.225 1.838-2.544l-1.239-7.179c-.28-1.638-2.037-2.29-3.116-1.145h-.014ZM10.839 3.048 9.84 1.849C8.894.717 7.43.717 6.484 1.85l-1 1.199" stroke="currentColor" strokeWidth="1.949" strokeMiterlimit="10"/>
+                    <path d="m10.931 5.783-.759.812c-1.132 1.212-2.89 1.212-4.022 0l-.76-.812C4.313 4.637 2.568 5.29 2.275 6.928l-1.238 7.18c-.227 1.318.652 2.543 1.838 2.543h10.588c1.185 0 2.064-1.225 1.838-2.544l-1.239-7.179c-.28-1.638-2.037-2.29-3.116-1.145h-.014ZM10.839 3.048 9.84 1.849C8.894.717 7.43.717 6.484 1.85l-1 1.199" stroke="currentColor" strokeWidth="1.949" strokeMiterlimit="10" />
                   </svg>
                   <span>LANDO STORE</span>
                 </div>
@@ -2080,7 +2081,7 @@ const App = () => {
                 <a href="https://landonorris.store/" target="_blank" rel="noopener noreferrer" className="btn-w is-store">
                   VISIT THE STORE
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ marginLeft: '10px' }}>
-                    <path d="M1 8H15M15 8L8 1M15 8L8 15" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M1 8H15M15 8L8 1M15 8L8 15" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </a>
 
@@ -2138,7 +2139,7 @@ const App = () => {
               {/* Right Column: Paragraph */}
               <div className="collabs-para-w">
                 <p className="collabs-para">
-                 I combine creative thinking with modern technology to build meaningful digital experiences, blending thoughtful design, clean code, and powerful interactions across the web.
+                  I combine creative thinking with modern technology to build meaningful digital experiences, blending thoughtful design, clean code, and powerful interactions across the web.
                 </p>
               </div>
             </div>
@@ -2277,14 +2278,14 @@ const App = () => {
           <div className="footer-layout-w">
             <div className="footer-layout-clip">
               <div className="footer-inner-layout">
-                
+
                 {/* Statement overlay with signature */}
                 <div className="footer-statement-w">
                   <div className="footer-statement-layout">
                     <div className="footer-rive-w">
-                      <img 
-                        src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67cecea4e9d311047dcb51e5_ln4-hw-signature2.svg" 
-                        alt="Lando signature" 
+                      <img
+                        src="https://cdn.prod.website-files.com/67b5a02dc5d338960b17a7e9/67cecea4e9d311047dcb51e5_ln4-hw-signature2.svg"
+                        alt="Lando signature"
                       />
                     </div>
                     <h2 className="text-impact-sm-mona footer">
@@ -2324,7 +2325,12 @@ const App = () => {
                 <div className="footer-bg-helmet-w">
                   <div className="footer-bg-helmet-layout">
                     <div className="footer-bg-bottom-btn-w">
-                      <a href="mailto:darjinisarg49@gmail.com" className="btn-w">
+                      <a
+                        href="https://mail.google.com/mail/?view=cm&fs=1&to=darjinisarg49@gmail.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-w"
+                      >
                         <span>business enquiries</span>
                         <span>↗</span>
                       </a>
@@ -2358,15 +2364,25 @@ const App = () => {
       {/* Centered Social Card Modal Lightbox */}
       <AnimatePresence>
         {selectedSocialCard && (
-          <motion.div
-            className="social-card-modal-backdrop"
-            data-lenis-prevent="true"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.24, ease: 'easeOut' }}
-            onClick={() => setSelectedSocialCard(null)}
-          >
+          selectedSocialCard.isContact ? (
+            /* New Experiment: Lanyard ID Badge (Image 3) with #030408 screen & top drop animation */
+            <LanyardBadge
+              key="contact-lanyard-badge"
+              onClose={() => setSelectedSocialCard(null)}
+              photo={myPhoto}
+              phone={selectedSocialCard.phone || '8320377379'}
+              email={selectedSocialCard.email || 'darjinisarg49@gmail.com'}
+            />
+          ) : (
+            <motion.div
+              className="social-card-modal-backdrop"
+              data-lenis-prevent="true"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.24, ease: 'easeOut' }}
+              onClick={() => setSelectedSocialCard(null)}
+            >
             {/* Close Button */}
             <button
               className="social-card-modal-close"
@@ -2482,7 +2498,7 @@ const App = () => {
                           >
                             <span className="experience-project-link-icon">
                               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76a1.64 1.64 0 1 0 0-3.28 1.64 1.64 0 0 0 0 3.28m1.39 9.74v-8.37H5.07v8.37h2.78z"/>
+                                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76a1.64 1.64 0 1 0 0-3.28 1.64 1.64 0 0 0 0 3.28m1.39 9.74v-8.37H5.07v8.37h2.78z" />
                               </svg>
                             </span>
                             <span>{EXPERIENCE_SLIDES[experienceSlide].projectLink.text}</span>
@@ -2530,7 +2546,7 @@ const App = () => {
                     >
                       <span className="github-modal-btn-icon">
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-                          <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                          <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
                         </svg>
                       </span>
                       <span className="github-modal-btn-text">Follow me on GitHub</span>
@@ -2553,7 +2569,7 @@ const App = () => {
                     >
                       <span className="linkedin-modal-btn-icon">
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-                          <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76a1.64 1.64 0 1 0 0-3.28 1.64 1.64 0 0 0 0 3.28m1.39 9.74v-8.37H5.07v8.37h2.78z"/>
+                          <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76a1.64 1.64 0 1 0 0-3.28 1.64 1.64 0 0 0 0 3.28m1.39 9.74v-8.37H5.07v8.37h2.78z" />
                         </svg>
                       </span>
                       <span className="linkedin-modal-btn-text">Follow me on LinkedIn</span>
@@ -2752,37 +2768,44 @@ const App = () => {
                   </div>
                 </div>
               ) : selectedSocialCard.isContact ? (
-                <div className="contact-modal-content">
-                  <h3 className="contact-modal-heading">Connect with me.</h3>
-                  <div className="contact-modal-info-list">
-                    <div className="contact-modal-info-row">
-                      <span className="contact-modal-info-label">Phone no:</span>
-                      <a href="tel:8320377379" className="contact-modal-info-link">
-                        <span className="contact-modal-icon">
-                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-                          </svg>
-                        </span>
-                        <span>8320377379</span>
-                        <span className="contact-modal-arrow">↗</span>
-                      </a>
-                    </div>
+                /* 
+                   ==================================================================
+                   ORIGINAL CONTACT MODAL CODE (COMMENTED OUT AS REQUESTED FOR EXPERIMENT)
+                   ==================================================================
+                */
+                false ? (
+                  <div className="contact-modal-content">
+                    <h3 className="contact-modal-heading">Connect with me.</h3>
+                    <div className="contact-modal-info-list">
+                      <div className="contact-modal-info-row">
+                        <span className="contact-modal-info-label">Phone no:</span>
+                        <a href="tel:8320377379" className="contact-modal-info-link">
+                          <span className="contact-modal-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                            </svg>
+                          </span>
+                          <span>8320377379</span>
+                          <span className="contact-modal-arrow">↗</span>
+                        </a>
+                      </div>
 
-                    <div className="contact-modal-info-row">
-                      <span className="contact-modal-info-label">Email:</span>
-                      <a href="mailto:darjinisarg49@gmail.com" className="contact-modal-info-link">
-                        <span className="contact-modal-icon">
-                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                            <rect x="2" y="4" width="20" height="16" rx="2"/>
-                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-                          </svg>
-                        </span>
-                        <span>darjinisarg49@gmail.com</span>
-                        <span className="contact-modal-arrow">↗</span>
-                      </a>
+                      <div className="contact-modal-info-row">
+                        <span className="contact-modal-info-label">Email:</span>
+                        <a href="mailto:darjinisarg49@gmail.com" className="contact-modal-info-link">
+                          <span className="contact-modal-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                              <rect x="2" y="4" width="20" height="16" rx="2" />
+                              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                            </svg>
+                          </span>
+                          <span>darjinisarg49@gmail.com</span>
+                          <span className="contact-modal-arrow">↗</span>
+                        </a>
+                      </div>
                     </div>
                   </div>
-                </div>
+                ) : null
               ) : selectedSocialCard.id === 'achievements' || selectedSocialCard.isAchievements ? (
                 <div className="achievements-modal-content">
                   {/* Top Bar with Tag and Arrow Navigation Controls */}
@@ -2913,7 +2936,7 @@ const App = () => {
                               >
                                 <span className="achievement-link-icon">
                                   <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76a1.64 1.64 0 1 0 0-3.28 1.64 1.64 0 0 0 0 3.28m1.39 9.74v-8.37H5.07v8.37h2.78z"/>
+                                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76a1.64 1.64 0 1 0 0-3.28 1.64 1.64 0 0 0 0 3.28m1.39 9.74v-8.37H5.07v8.37h2.78z" />
                                   </svg>
                                 </span>
                                 <span>{ACHIEVEMENTS_DATA[achievementSlide].link.text}</span>
@@ -3008,6 +3031,7 @@ const App = () => {
               </div>
             </motion.div>
           </motion.div>
+          )
         )}
       </AnimatePresence>
       {/* Centered Folder Modal Lightbox (Image 2 Replica with #18181A & Purple/Green UI) */}
@@ -3120,7 +3144,7 @@ const App = () => {
                     >
                       <span className="folder-modal-btn-icon">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                          <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                          <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
                         </svg>
                       </span>
                       <span className="folder-modal-btn-label">github link</span>

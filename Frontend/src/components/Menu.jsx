@@ -258,7 +258,12 @@ const Menu = ({ isOpen, onClose }) => {
 
           {/* Footer content */}
           <div ref={footerRef} className="menu-footer">
-            <a href="mailto:business@nisargdarji.com" className="menu-business-link">
+            <a
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=darjinisarg49@gmail.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="menu-business-link"
+            >
               BUSINESS ENQUIRIES
             </a>
 
