@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Playfair+Display:ital,wght@0,700;1,700&family=Satisfy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Patrick+Hand&family=Outfit:wght@300;400;500;700;800&family=Playfair+Display:ital,wght@0,700;1,700&family=Satisfy&display=swap');
 
 @font-face {
   font-family: 'Brier';
@@ -7152,3 +7152,479 @@ html.lenis body {
     transform-origin: top center;
   }
 }
+
+/* ==========================================================================
+   TRACING PAPER CERTIFICATE SECTION (ILLOCA EXACT MATCH)
+   Background: #1F396D | Box: #DECEB0 | Paper: #ECE6DB
+   ========================================================================== */
+
+.tracing-section-root {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  background-color: #1F396D;
+  background-image: radial-gradient(circle at 50% 30%, rgba(45, 82, 155, 0.45) 0%, rgba(20, 38, 75, 0.75) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  overflow: hidden;
+  user-select: none;
+  cursor: default;
+  box-sizing: border-box;
+}
+
+/* Subtle Canvas/Grain texture overlay */
+.tracing-section-root::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 0);
+  background-size: 24px 24px;
+  pointer-events: none;
+  opacity: 0.4;
+  z-index: 1;
+}
+
+/* Top Right Minimal Close Button (X, Y and hello xyz removed) */
+.tracing-esc-btn {
+  position: fixed;
+  top: 1.8rem;
+  right: 2.2rem;
+  z-index: 50;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #FFFFFF;
+  padding: 0.42rem 0.9rem;
+  border-radius: 9999px;
+  font-family: 'Outfit', -apple-system, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(8px);
+}
+
+.tracing-esc-btn:hover {
+  background: rgba(255, 255, 255, 0.24);
+  border-color: rgba(255, 255, 255, 0.45);
+  transform: scale(1.06);
+}
+
+/* Corner Screen Navigation Arrows (< and >) */
+.tracing-screen-nav-btn {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 35;
+  background: transparent;
+  border: none;
+  padding: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.65);
+  transition: all 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.45));
+}
+
+.tracing-screen-nav-btn.is-left {
+  left: 2rem;
+}
+
+.tracing-screen-nav-btn.is-right {
+  right: 2rem;
+}
+
+.tracing-screen-nav-btn:hover {
+  color: #FFFFFF;
+  transform: translateY(-50%) scale(1.18);
+  filter: drop-shadow(0 0 18px rgba(255, 255, 255, 0.85));
+}
+
+.tracing-screen-nav-btn:active {
+  transform: translateY(-50%) scale(0.92);
+}
+
+/* 4 FLOATING 3D ISOMETRIC CUBES (USING EXACT ATTACHED ASSETS 1, 4, 2, 3 - BIGGER & CLOSER) */
+.tracing-float-cube {
+  position: fixed;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.top-left-cube {
+  top: 25px;
+  left: 8%;
+  width: clamp(260px, 22.5vw, 370px);
+}
+
+.top-right-cube {
+  top: -15px;
+  right: 6.5%;
+  width: clamp(280px, 24vw, 400px);
+}
+
+.bottom-left-cube {
+  bottom: 5px;
+  left: 4.5%;
+  width: clamp(290px, 25vw, 420px);
+}
+
+.bottom-right-cube {
+  bottom: 5px;
+  right: 5.5%;
+  width: clamp(270px, 23vw, 390px);
+}
+
+.tracing-cube-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  user-select: none;
+  filter: drop-shadow(0 20px 36px rgba(0, 0, 0, 0.48));
+}
+
+/* CENTER COMPOSITION: THE PHYSICAL BOX & PAPER ASSEMBLY MATCHING IMAGE 1 */
+.tracing-center-container {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  height: 100%;
+  padding-bottom: 25px; /* Moves the paper and box higher up on screen */
+  box-sizing: border-box;
+}
+
+/* Handwritten Cursive Title on Top */
+.tracing-cursive-title {
+  font-family: 'Satisfy', 'Caveat', cursive;
+  font-size: 2.85rem;
+  color: #FFFFFF;
+  margin-bottom: 0.85rem;
+  text-align: center;
+  letter-spacing: 0.03em;
+  transform: rotate(-2.5deg);
+  text-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* The Assembly holding Back Box, Paper Sheet, and Front Box */
+.tracing-stage-assembly {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  width: clamp(560px, 43vw, 730px);
+}
+
+/* 1. BACK BOX LAYER (Behind Paper, z-index: 10) */
+.tracing-box-back-layer {
+  position: absolute;
+  bottom: 0;
+  width: 122%;
+  height: 260px;
+  z-index: 10;
+  pointer-events: none;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.tracing-box-layer-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  filter: drop-shadow(0 6px 20px rgba(0, 0, 0, 0.25));
+}
+
+/* 2. THE PAPER SHEET (Middle Layer, z-index: 20) */
+.tracing-paper-sheet {
+  background-color: #ECE6DB;
+  color: #1A1A1E;
+  width: 100%;
+  padding: 38px 46px 68px 46px; /* Generous bottom padding so footer is clear of box lip */
+  border-radius: 2px;
+  box-shadow: 0 16px 38px rgba(15, 25, 45, 0.42), 0 2px 8px rgba(15, 25, 45, 0.22);
+  position: relative;
+  z-index: 20;
+  margin-bottom: -18px; /* Subtle tuck into the front lip of the box */
+  box-sizing: border-box;
+  transform-origin: center bottom;
+}
+
+/* Main Heading matching Image 1 directly */
+.tracing-paper-heading {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 650;
+  color: #17181D;
+  margin: 0 0 1.25rem 0;
+  line-height: 1.35;
+  text-transform: none;
+}
+
+/* Editorial Body Paragraphs matching Image 1 layout */
+.tracing-paper-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.tracing-paper-para {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.98rem;
+  line-height: 1.54;
+  color: #2B2D35;
+  margin: 0;
+  text-align: left;
+}
+
+/* Signoff & View Certificate Button Row matching Image 1 */
+.tracing-paper-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.4rem;
+  padding-top: 0;
+}
+
+.tracing-paper-signoff {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 1.05rem;
+  font-weight: 750;
+  color: #141518;
+}
+
+.tracing-paper-view-btn {
+  background: transparent;
+  border: none;
+  font-family: 'Outfit', -apple-system, sans-serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #0D55DB;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.6rem;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.tracing-paper-view-btn:hover {
+  background: rgba(13, 85, 219, 0.08);
+  transform: translateX(2px);
+  text-decoration: underline;
+}
+
+.tracing-paper-view-btn svg {
+  transition: transform 0.2s ease;
+}
+
+.tracing-paper-view-btn:hover svg {
+  transform: translate(2px, -2px);
+}
+
+/* 3. FRONT BOX LAYER (In front of Paper, z-index: 30) */
+.tracing-box-front-layer {
+  position: relative;
+  z-index: 30;
+  width: 122%;
+  height: 56px; /* Shorter front lip so it never covers the footer */
+  pointer-events: none;
+  margin-top: -18px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.tracing-box-front-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  filter: drop-shadow(0 -4px 14px rgba(0, 0, 0, 0.16));
+}
+
+/* In-Modal High-Res Lightbox for Certificate Image */
+.cert-lightbox-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100050;
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(14px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.cert-lightbox-modal {
+  max-width: 920px;
+  width: 100%;
+  background: #111319;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.92);
+  display: flex;
+  flex-direction: column;
+}
+
+.cert-lightbox-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.6rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.cert-lightbox-title {
+  margin: 0 0 0.2rem 0;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 750;
+  color: #FFFFFF;
+}
+
+.cert-lightbox-sub {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.cert-lightbox-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.cert-lightbox-ext-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.9rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 9999px;
+  color: #FFFFFF;
+  font-size: 0.78rem;
+  font-weight: 650;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.cert-lightbox-ext-btn:hover {
+  background: #0D55DB;
+  border-color: #0D55DB;
+}
+
+.cert-lightbox-close-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cert-lightbox-close-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+.cert-lightbox-img-wrapper {
+  padding: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-height: 75vh;
+  overflow: auto;
+  background: #08090C;
+}
+
+.cert-lightbox-img {
+  max-width: 100%;
+  max-height: 68vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+}
+
+/* Responsive adjustments */
+@media screen and (max-height: 850px) {
+  .tracing-stage-assembly {
+    transform: scale(0.92);
+    transform-origin: center bottom;
+  }
+}
+
+@media screen and (max-height: 740px) {
+  .tracing-stage-assembly {
+    transform: scale(0.84);
+    transform-origin: center bottom;
+  }
+}
+
+@media screen and (max-width: 980px) {
+  .top-left-cube,
+  .top-right-cube {
+    transform: scale(0.8);
+  }
+  .bottom-left-cube,
+  .bottom-right-cube {
+    transform: scale(0.8);
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .tracing-esc-btn {
+    top: 1rem;
+    right: 1.2rem;
+  }
+  .tracing-float-cube {
+    opacity: 0.35;
+  }
+  .tracing-screen-nav-btn.is-left {
+    left: 0.6rem;
+  }
+  .tracing-screen-nav-btn.is-right {
+    right: 0.6rem;
+  }
+  .tracing-stage-assembly {
+    width: 94vw;
+  }
+  .tracing-box-back-layer,
+  .tracing-box-front-layer {
+    width: 108%;
+  }
+  .tracing-paper-sheet {
+    padding: 28px 24px 34px 24px;
+    margin-bottom: -30px;
+  }
+  .tracing-paper-heading {
+    font-size: 1.15rem;
+  }
+  .tracing-paper-para {
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+}
+
+

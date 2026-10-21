@@ -6,11 +6,12 @@ import Lenis from 'lenis'
 import heroImage from './assets/Hero_image.png'
 import backgroundVideo from './assets/test_video_7.mp4'
 import Navbar from './components/Navbar'
+import Menu from './components/Menu'
 import secondpageImage from './assets/secondpage_image.png'
 import signatureImage from './assets/signature_image.png'
-import Menu from './components/Menu'
 import IntroLoader from './components/IntroLoader'
 import LanyardBadge from './components/LanyardBadge'
+import CertificatePass from './components/CertificatePass'
 import taskelloHeaderBg from './assets/taskello_header_bg.png'
 import card1Image from './assets/card_1_image.png'
 import card2Image from './assets/card_2_image.png'
@@ -2365,13 +2366,21 @@ const App = () => {
       <AnimatePresence>
         {selectedSocialCard && (
           selectedSocialCard.isContact ? (
-            /* New Experiment: Lanyard ID Badge (Image 3) with #030408 screen & top drop animation */
+            /* Contact Me: Lanyard ID Badge */
             <LanyardBadge
               key="contact-lanyard-badge"
               onClose={() => setSelectedSocialCard(null)}
               photo={myPhoto}
               phone={selectedSocialCard.phone || '8320377379'}
               email={selectedSocialCard.email || 'darjinisarg49@gmail.com'}
+            />
+          ) : (selectedSocialCard.id === 'certificates' || selectedSocialCard.isCertificates) ? (
+            /* Certificates: VIP Ticket Admit Pass Modal matching Image 2 */
+            <CertificatePass
+              key="certificates-ticket-pass"
+              onClose={() => setSelectedSocialCard(null)}
+              initialIndex={certificateSlide}
+              onSlideChange={setCertificateSlide}
             />
           ) : (
             <motion.div
@@ -2578,175 +2587,175 @@ const App = () => {
                   </div>
                 </div>
               ) : selectedSocialCard.id === 'certificates' || selectedSocialCard.isCertificates ? (
-                <div className="certificates-modal-content">
-                  {/* Top Bar with Tag and Arrow Navigation Controls */}
-                  <div className="certificates-modal-topbar">
-                    <div className="certificates-modal-tag-badge">
-                      <span className="certificates-modal-tag-dot"></span>
-                      <span className="certificates-modal-tag-text">
-                        {CERTIFICATES_DATA[certificateSlide].tag}
-                      </span>
-                    </div>
-
-                    <div className="certificates-modal-controls">
-                      <div className="certificates-dots">
-                        {CERTIFICATES_DATA.map((_, idx) => (
-                          <button
-                            key={idx}
-                            type="button"
-                            className={`certificates-dot ${certificateSlide === idx ? 'is-active' : ''}`}
-                            onClick={() => setCertificateSlide(idx)}
-                            aria-label={`Go to certificate ${idx + 1}`}
-                          />
-                        ))}
+                /* 
+                   ==================================================================
+                   ORIGINAL CERTIFICATES MODAL (WHITE CARD) - COMMENTED OUT AS REQUESTED
+                   Replaced by black background VIP Ticket Admit Pass matching Image 2
+                   ==================================================================
+                */
+                false ? (
+                  <div className="certificates-modal-content">
+                    {/* Top Bar with Tag and Arrow Navigation Controls */}
+                    <div className="certificates-modal-topbar">
+                      <div className="certificates-modal-tag-badge">
+                        <span className="certificates-modal-tag-dot"></span>
+                        <span className="certificates-modal-tag-text">
+                          {CERTIFICATES_DATA[certificateSlide].tag}
+                        </span>
                       </div>
 
-                      <span className="certificates-slide-counter">
-                        {certificateSlide + 1} / {CERTIFICATES_DATA.length}
-                      </span>
-
-                      <div className="certificates-arrows">
-                        <button
-                          type="button"
-                          className="certificates-nav-btn is-prev"
-                          onClick={() => setCertificateSlide((prev) => Math.max(0, prev - 1))}
-                          disabled={certificateSlide === 0}
-                          aria-label="Previous certificate"
-                        >
-                          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                            <polyline points="15 18 9 12 15 6" />
-                          </svg>
-                        </button>
-                        <button
-                          type="button"
-                          className="certificates-nav-btn is-next"
-                          onClick={() => setCertificateSlide((prev) => Math.min(CERTIFICATES_DATA.length - 1, prev + 1))}
-                          disabled={certificateSlide === CERTIFICATES_DATA.length - 1}
-                          aria-label="Next certificate"
-                        >
-                          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                            <polyline points="9 18 15 12 9 6" />
-                          </svg>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Animated Certificate Slide Body */}
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={certificateSlide}
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -20 }}
-                      transition={{ duration: 0.26, ease: 'easeOut' }}
-                      className="certificate-slide-body"
-                    >
-                      {/* Certificate Name Header */}
-                      <h3 className="certificate-slide-title">
-                        {CERTIFICATES_DATA[certificateSlide].name}
-                      </h3>
-
-                      {/* Certificate Presentation Layout */}
-                      <div className="certificate-presentation-card">
-                        {/* Small preview of the certificate */}
-                        <div className="certificate-preview-w">
-                          <a
-                            href={CERTIFICATES_DATA[certificateSlide].fullCertificateUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="certificate-preview-link"
-                            title="Click to view full certificate in new tab"
-                          >
-                            <img
-                              src={CERTIFICATES_DATA[certificateSlide].previewImage}
-                              alt={CERTIFICATES_DATA[certificateSlide].name}
-                              className="certificate-preview-img"
+                      <div className="certificates-modal-controls">
+                        <div className="certificates-dots">
+                          {CERTIFICATES_DATA.map((_, idx) => (
+                            <button
+                              key={idx}
+                              type="button"
+                              className={`certificates-dot ${certificateSlide === idx ? 'is-active' : ''}`}
+                              onClick={() => setCertificateSlide(idx)}
+                              aria-label={`Go to certificate ${idx + 1}`}
                             />
-                            <div className="certificate-preview-overlay">
-                              <span className="certificate-preview-overlay-btn">
-                                <span>View Full</span>
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                  <line x1="7" y1="17" x2="17" y2="7"></line>
-                                  <polyline points="7 7 17 7 17 17"></polyline>
-                                </svg>
-                              </span>
-                            </div>
-                          </a>
+                          ))}
                         </div>
 
-                        {/* Details Column */}
-                        <div className="certificate-details-col">
-                          {/* Issuing Organization · Year */}
-                          <div className="certificate-meta-row">
-                            <span className="certificate-meta-icon">
-                              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                                <circle cx="12" cy="8" r="7" />
-                                <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
-                              </svg>
-                            </span>
-                            <span className="certificate-org-text">
-                              {CERTIFICATES_DATA[certificateSlide].organization}
-                            </span>
-                            <span className="certificate-meta-dot">·</span>
-                            <span className="certificate-year-badge">
-                              {CERTIFICATES_DATA[certificateSlide].year}
-                            </span>
-                          </div>
+                        <span className="certificates-slide-counter">
+                          {certificateSlide + 1} / {CERTIFICATES_DATA.length}
+                        </span>
 
-                          {/* Short description of the certificate */}
-                          <p className="certificate-description-p">
-                            {CERTIFICATES_DATA[certificateSlide].description}
-                          </p>
+                        <div className="certificates-arrows">
+                          <button
+                            type="button"
+                            className="certificates-nav-btn is-prev"
+                            onClick={() => setCertificateSlide((prev) => Math.max(0, prev - 1))}
+                            disabled={certificateSlide === 0}
+                            aria-label="Previous certificate"
+                          >
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                              <polyline points="15 18 9 12 15 6" />
+                            </svg>
+                          </button>
+                          <button
+                            type="button"
+                            className="certificates-nav-btn is-next"
+                            onClick={() => setCertificateSlide((prev) => Math.min(CERTIFICATES_DATA.length - 1, prev + 1))}
+                            disabled={certificateSlide === CERTIFICATES_DATA.length - 1}
+                            aria-label="Next certificate"
+                          >
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                              <polyline points="9 18 15 12 9 6" />
+                            </svg>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
 
-                          {/* View Full Certificate ↗ Button */}
-                          <div className="certificate-actions-row">
+                    {/* Animated Certificate Slide Body */}
+                    <AnimatePresence mode="wait">
+                      <motion.div
+                        key={certificateSlide}
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -20 }}
+                        transition={{ duration: 0.26, ease: 'easeOut' }}
+                        className="certificate-slide-body"
+                      >
+                        <h3 className="certificate-slide-title">
+                          {CERTIFICATES_DATA[certificateSlide].name}
+                        </h3>
+
+                        <div className="certificate-presentation-card">
+                          <div className="certificate-preview-w">
                             <a
                               href={CERTIFICATES_DATA[certificateSlide].fullCertificateUrl}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="certificate-view-full-btn"
+                              className="certificate-preview-link"
+                              title="Click to view full certificate in new tab"
                             >
-                              <span>View Full Certificate</span>
-                              <span className="certificate-view-full-arrow">↗</span>
+                              <img
+                                src={CERTIFICATES_DATA[certificateSlide].previewImage}
+                                alt={CERTIFICATES_DATA[certificateSlide].name}
+                                className="certificate-preview-img"
+                              />
+                              <div className="certificate-preview-overlay">
+                                <span className="certificate-preview-overlay-btn">
+                                  <span>View Full</span>
+                                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                    <line x1="7" y1="17" x2="17" y2="7"></line>
+                                    <polyline points="7 7 17 7 17 17"></polyline>
+                                  </svg>
+                                </span>
+                              </div>
                             </a>
                           </div>
-                        </div>
-                      </div>
 
-                      {/* Bottom Carousel Navigation Controls / CTAs */}
-                      <div className="certificate-bottom-nav">
-                        <div className="certificate-nav-ctas">
-                          {certificateSlide > 0 ? (
-                            <button
-                              type="button"
-                              className="certificate-slide-cta-btn is-prev-cta"
-                              onClick={() => setCertificateSlide((prev) => Math.max(0, prev - 1))}
-                            >
-                              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                <polyline points="15 18 9 12 15 6" />
-                              </svg>
-                              <span>{CERTIFICATES_DATA[certificateSlide].prevCtaText}</span>
-                            </button>
-                          ) : <div />}
+                          <div className="certificate-details-col">
+                            <div className="certificate-meta-row">
+                              <span className="certificate-meta-icon">
+                                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                                  <circle cx="12" cy="8" r="7" />
+                                  <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
+                                </svg>
+                              </span>
+                              <span className="certificate-org-text">
+                                {CERTIFICATES_DATA[certificateSlide].organization}
+                              </span>
+                              <span className="certificate-meta-dot">·</span>
+                              <span className="certificate-year-badge">
+                                {CERTIFICATES_DATA[certificateSlide].year}
+                              </span>
+                            </div>
 
-                          {certificateSlide < CERTIFICATES_DATA.length - 1 && (
-                            <button
-                              type="button"
-                              className="certificate-slide-cta-btn is-next-cta"
-                              onClick={() => setCertificateSlide((prev) => Math.min(CERTIFICATES_DATA.length - 1, prev + 1))}
-                            >
-                              <span>{CERTIFICATES_DATA[certificateSlide].nextCtaText}</span>
-                              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                <polyline points="9 18 15 12 9 6" />
-                              </svg>
-                            </button>
-                          )}
+                            <p className="certificate-description-p">
+                              {CERTIFICATES_DATA[certificateSlide].description}
+                            </p>
+
+                            <div className="certificate-actions-row">
+                              <a
+                                href={CERTIFICATES_DATA[certificateSlide].fullCertificateUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="certificate-view-full-btn"
+                              >
+                                <span>View Full Certificate</span>
+                                <span className="certificate-view-full-arrow">↗</span>
+                              </a>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    </motion.div>
-                  </AnimatePresence>
-                </div>
+
+                        <div className="certificate-bottom-nav">
+                          <div className="certificate-nav-ctas">
+                            {certificateSlide > 0 ? (
+                              <button
+                                type="button"
+                                className="certificate-slide-cta-btn is-prev-cta"
+                                onClick={() => setCertificateSlide((prev) => Math.max(0, prev - 1))}
+                              >
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                  <polyline points="15 18 9 12 15 6" />
+                                </svg>
+                                <span>{CERTIFICATES_DATA[certificateSlide].prevCtaText}</span>
+                              </button>
+                            ) : <div />}
+
+                            {certificateSlide < CERTIFICATES_DATA.length - 1 && (
+                              <button
+                                type="button"
+                                className="certificate-slide-cta-btn is-next-cta"
+                                onClick={() => setCertificateSlide((prev) => Math.min(CERTIFICATES_DATA.length - 1, prev + 1))}
+                              >
+                                <span>{CERTIFICATES_DATA[certificateSlide].nextCtaText}</span>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                  <polyline points="9 18 15 12 9 6" />
+                                </svg>
+                              </button>
+                            )}
+                          </div>
+                        </div>
+                      </motion.div>
+                    </AnimatePresence>
+                  </div>
+                ) : null
               ) : selectedSocialCard.id === 'tools' || selectedSocialCard.isTools ? (
                 <div className="tools-modal-content">
                   <div className="tools-modal-header">
