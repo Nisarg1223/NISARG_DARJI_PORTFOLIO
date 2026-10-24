@@ -12,6 +12,7 @@ import signatureImage from './assets/signature_image.png'
 import IntroLoader from './components/IntroLoader'
 import LanyardBadge from './components/LanyardBadge'
 import CertificatePass from './components/CertificatePass'
+import Interest from './components/Interest'
 import taskelloHeaderBg from './assets/taskello_header_bg.png'
 import card1Image from './assets/card_1_image.png'
 import card2Image from './assets/card_2_image.png'
@@ -634,7 +635,19 @@ const App = () => {
   const statementContainerRef = useRef(null)
   const ototPinRef = useRef(null)
 
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return (window.location.pathname === '/interest' || window.location.hash === '#interest-page') ? false : true
+    }
+    return true
+  })
+  const [currentPage, setCurrentPage] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const isInterest = window.location.pathname === '/interest' || window.location.hash === '#interest-page' || window.location.hash === '#interest'
+      return isInterest ? 'interest' : 'home'
+    }
+    return 'home'
+  })
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [selectedSocialCard, setSelectedSocialCard] = useState(null)
   const [selectedFolderIndex, setSelectedFolderIndex] = useState(null)
@@ -645,6 +658,19 @@ const App = () => {
   const lenisRef = useRef(null)
 
   const introRefreshTimeoutRef = useRef(null)
+
+  useEffect(() => {
+    const handlePopState = () => {
+      const isInterest = window.location.pathname === '/interest' || window.location.hash === '#interest-page' || window.location.hash === '#interest'
+      setCurrentPage(isInterest ? 'interest' : 'home')
+    }
+    window.addEventListener('popstate', handlePopState)
+    window.addEventListener('hashchange', handlePopState)
+    return () => {
+      window.removeEventListener('popstate', handlePopState)
+      window.removeEventListener('hashchange', handlePopState)
+    }
+  }, [])
 
   const handleIntroComplete = () => {
     setIsLoading(false)
@@ -714,6 +740,27 @@ const App = () => {
         el.scrollIntoView({ behavior: 'smooth' })
       }
     }
+  }
+
+  const navigateTo = (target) => {
+    if (target === '/interest' || target === 'interest' || target === '#interest-page') {
+      if (currentPage !== 'interest') {
+        window.history.pushState({}, '', '/interest')
+        setCurrentPage('interest')
+      }
+      return
+    }
+
+    if (currentPage !== 'home') {
+      window.history.pushState({}, '', '/')
+      setCurrentPage('home')
+      setTimeout(() => {
+        scrollToSection(target)
+      }, 150)
+      return
+    }
+
+    scrollToSection(target)
   }
 
   useEffect(() => {
@@ -1580,8 +1627,16 @@ const App = () => {
       <Menu
         isOpen={isMenuOpen}
         onClose={() => setIsMenuOpen(false)}
-        onNavigate={(target) => scrollToSection(target)}
+        onNavigate={(target) => navigateTo(target)}
       />
+
+      {/* Dedicated Interest Page Overlay / View */}
+      {currentPage === 'interest' && (
+        <Interest
+          onBack={() => navigateTo('/')}
+          onNavigateSection={(section) => navigateTo(section)}
+        />
+      )}
 
       {/* Main Page Content */}
       <main className="main-w">
@@ -2320,7 +2375,7 @@ const App = () => {
                       <a href="#home" onClick={(e) => { e.preventDefault(); scrollToSection('#home'); }} className="text-link-w">Home</a>
                       <a href="https://github.com/Nisarg1223/my-live-projects" target="_blank" rel="noopener noreferrer" className="text-link-w">Live Projects</a>
                       <a href="#about" onClick={(e) => { e.preventDefault(); scrollToSection('#about'); }} className="text-link-w">About</a>
-                      <a href="#interest" onClick={(e) => { e.preventDefault(); scrollToSection('#interest'); }} className="text-link-w">Interest</a>
+                      <a href="/interest" onClick={(e) => { e.preventDefault(); navigateTo('/interest'); }} className="text-link-w">Interest</a>
                       <a href="#contact" onClick={(e) => { e.preventDefault(); scrollToSection('#contact'); }} className="text-link-w c-lime">Contact</a>
                     </div>
                   </div>

@@ -146,7 +146,7 @@ const Menu = ({ isOpen, onClose, onNavigate }) => {
   const menuItems = [
     { label: 'HOME', href: '#home', isExternal: false },
     { label: 'LIVE PROJECTS', href: 'https://github.com/Nisarg1223/my-live-projects', isExternal: true },
-    { label: 'INTEREST', href: '#interest', isExternal: false },
+    { label: 'INTEREST', href: '/interest', isExternal: false },
     { label: 'CONTACT', href: '#contact', isExternal: false }
   ]
 
