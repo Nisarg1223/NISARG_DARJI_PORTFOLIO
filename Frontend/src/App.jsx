@@ -689,7 +689,15 @@ const App = () => {
   }
 
   const scrollToSection = (target) => {
-    if (target === '#home') {
+    let elTarget = target
+    if (target === '#interest') {
+      const interestEl = document.querySelector('#interest')
+      if (!interestEl) {
+        elTarget = '#skills'
+      }
+    }
+
+    if (elTarget === '#home') {
       if (lenisRef.current) {
         lenisRef.current.scrollTo(0, { duration: 1.2 })
       } else {
@@ -699,9 +707,9 @@ const App = () => {
     }
 
     if (lenisRef.current) {
-      lenisRef.current.scrollTo(target, { offset: -20, duration: 1.2 })
+      lenisRef.current.scrollTo(elTarget, { offset: -20, duration: 1.2 })
     } else {
-      const el = document.querySelector(target)
+      const el = document.querySelector(elTarget)
       if (el) {
         el.scrollIntoView({ behavior: 'smooth' })
       }
@@ -1569,7 +1577,11 @@ const App = () => {
       <Navbar ref={headerRef} onOpenMenu={() => setIsMenuOpen(true)} />
 
       {/* Full-Screen Overlay Menu */}
-      <Menu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+      <Menu
+        isOpen={isMenuOpen}
+        onClose={() => setIsMenuOpen(false)}
+        onNavigate={(target) => scrollToSection(target)}
+      />
 
       {/* Main Page Content */}
       <main className="main-w">
@@ -2122,6 +2134,7 @@ const App = () => {
 
         {/* Partners & Campaigns Section */}
         <section className="s is-home-collabs" id="skills">
+          <div id="interest" style={{ position: 'relative', top: '-60px', pointerEvents: 'none' }}></div>
           {/* Diagonal "collabs" watermark in background */}
           <div className="home-collab-rive-w">
             <img src={signatureImage} alt="" className="image is-collab-placeholder" />
@@ -2305,9 +2318,9 @@ const App = () => {
                     <div className="text-eyebrow">pages</div>
                     <div className="footer-links-layout">
                       <a href="#home" onClick={(e) => { e.preventDefault(); scrollToSection('#home'); }} className="text-link-w">Home</a>
+                      <a href="https://github.com/Nisarg1223/my-live-projects" target="_blank" rel="noopener noreferrer" className="text-link-w">Live Projects</a>
                       <a href="#about" onClick={(e) => { e.preventDefault(); scrollToSection('#about'); }} className="text-link-w">About</a>
-                      <a href="#projects" onClick={(e) => { e.preventDefault(); scrollToSection('#projects'); }} className="text-link-w">Projects</a>
-                      <a href="#skills" onClick={(e) => { e.preventDefault(); scrollToSection('#skills'); }} className="text-link-w">Skills</a>
+                      <a href="#interest" onClick={(e) => { e.preventDefault(); scrollToSection('#interest'); }} className="text-link-w">Interest</a>
                       <a href="#contact" onClick={(e) => { e.preventDefault(); scrollToSection('#contact'); }} className="text-link-w c-lime">Contact</a>
                     </div>
                   </div>

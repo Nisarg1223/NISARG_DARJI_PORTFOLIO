@@ -6,7 +6,7 @@ import socialImage3 from '../assets/social_image_3.jpeg'
 import socialImage4 from '../assets/social_image_4.jpeg'
 
 
-const Menu = ({ isOpen, onClose }) => {
+const Menu = ({ isOpen, onClose, onNavigate }) => {
   const overlayRef = useRef(null)
   const gridItemsRef = useRef([])
   const menuLinksRef = useRef([])
@@ -120,11 +120,34 @@ const Menu = ({ isOpen, onClose }) => {
     })
   }
 
+  const handleLinkClick = (e, item) => {
+    setActiveLink(item.label)
+    onClose()
+
+    if (item.isExternal) {
+      window.open(item.href, '_blank', 'noopener,noreferrer')
+      return
+    }
+
+    if (onNavigate) {
+      setTimeout(() => {
+        onNavigate(item.href)
+      }, 150)
+    } else {
+      setTimeout(() => {
+        const el = document.querySelector(item.href)
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' })
+        }
+      }, 150)
+    }
+  }
+
   const menuItems = [
-    { label: 'HOME', href: '/' },
-    { label: 'ON TRACK', href: '/on-track' },
-    { label: 'OFF TRACK', href: '/off-track' },
-    { label: 'CALENDAR', href: '/calendar' }
+    { label: 'HOME', href: '#home', isExternal: false },
+    { label: 'LIVE PROJECTS', href: 'https://github.com/Nisarg1223/my-live-projects', isExternal: true },
+    { label: 'INTEREST', href: '#interest', isExternal: false },
+    { label: 'CONTACT', href: '#contact', isExternal: false }
   ]
 
   const gridImages = [
@@ -223,17 +246,24 @@ const Menu = ({ isOpen, onClose }) => {
                   style={{ opacity: opacityStyle, transition: 'opacity 0.4s ease' }}
                   onMouseEnter={() => setHoveredLink(item.label)}
                   onMouseLeave={() => setHoveredLink(null)}
-                  onClick={() => {
-                    setActiveLink(item.label)
-                    onClose()
-                  }}
+                  onClick={(e) => handleLinkClick(e, item)}
                 >
-                  <a href={item.href} className="menu-link-item" onClick={(e) => e.preventDefault()}>
+                  <a
+                    href={item.href}
+                    target={item.isExternal ? '_blank' : undefined}
+                    rel={item.isExternal ? 'noopener noreferrer' : undefined}
+                    className="menu-link-item"
+                    onClick={(e) => {
+                      e.preventDefault()
+                      e.stopPropagation()
+                      handleLinkClick(e, item)
+                    }}
+                  >
                     {item.label}
                   </a>
                   
                   {/* Neon hand-drawn style squiggly line */}
-                  <svg className="menu-link-squiggly" viewBox="0 0 300 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <svg className="menu-link-squiggly" viewBox="0 0 300 40" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                       d="M5 20 C 60 5, 110 35, 150 20 C 190 5, 240 35, 295 20"
                       stroke="var(--color--lime)"
