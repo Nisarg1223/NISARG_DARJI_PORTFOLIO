@@ -1,0 +1,656 @@
+/* ==========================================================================
+   SPACE PAGE - EXPLORE THE SPACE (RETRO VOYAGER INK ARTWORK)
+   Route: /interest/space
+   Aesthetic: Vintage 1970s Monochrome Ink & Cosmic Portal Illustration
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Cinzel:wght@600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+.space-page-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  background-color: #ede9e1;
+  background-image: 
+    radial-gradient(ellipse at 50% 50%, rgba(255, 255, 255, 0.4) 0%, rgba(225, 220, 210, 0.6) 100%);
+  color: #121214;
+  font-family: 'Space Grotesk', 'Outfit', sans-serif;
+  overflow: hidden;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Subtle Film / Newspaper Print Grain Texture */
+.space-grain-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0.055;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Faint Vignette / Shadow Overlay across the canvas */
+.space-scanlines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 20;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.04) 0%, transparent 40%, rgba(0, 0, 0, 0.08) 100%);
+}
+
+/* Stardust Drift */
+.space-dust-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.cosmic-dust {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #111111;
+  opacity: 0.35;
+  animation: floatDust 6s ease-in-out infinite alternate;
+}
+
+.cosmic-dust.d1 { animation-duration: 5s; width: 2px; height: 2px; }
+.cosmic-dust.d2 { animation-duration: 7s; width: 4px; height: 4px; opacity: 0.25; }
+.cosmic-dust.d3 { animation-duration: 9s; width: 2.5px; height: 2.5px; }
+
+@keyframes floatDust {
+  0% { transform: translateY(0px) translateX(0px); }
+  100% { transform: translateY(-12px) translateX(8px); }
+}
+
+/* ==========================================================================
+   TOP HEADER & NAVIGATION
+   ========================================================================== */
+.space-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.4rem 2.8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 50;
+  box-sizing: border-box;
+}
+
+/* VOYAGER Logo Button */
+.voyager-brand-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: none;
+  border: none;
+  color: #111112;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.voyager-brand-btn:hover {
+  transform: scale(1.04);
+  opacity: 0.85;
+}
+
+.voyager-swirl-icon {
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.voyager-brand-btn:hover .voyager-swirl-icon {
+  transform: rotate(180deg);
+}
+
+.swirl-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.voyager-brand-text {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  color: #111112;
+}
+
+.space-header-right {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* Audio Pill Button */
+.space-audio-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(18, 18, 20, 0.05);
+  border: 1px solid rgba(18, 18, 20, 0.2);
+  border-radius: 999px;
+  padding: 0.35rem 0.9rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: #1e1e22;
+}
+
+.space-audio-pill:hover {
+  background: rgba(18, 18, 20, 0.1);
+  border-color: #121214;
+}
+
+.space-audio-pill.active {
+  background: #121214;
+  color: #f7f5f0;
+  border-color: #121214;
+}
+
+.pill-pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: currentColor;
+  transition: transform 0.3s ease;
+}
+
+.space-audio-pill.active .pill-pulse-dot {
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
+  animation: pulseDot 1.4s infinite alternate;
+}
+
+@keyframes pulseDot {
+  0% { transform: scale(0.85); opacity: 0.6; }
+  100% { transform: scale(1.3); opacity: 1; }
+}
+
+/* Nav Menu */
+.space-nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+}
+
+.space-nav-item {
+  background: none;
+  border: none;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #222226;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 0.3rem 0;
+  position: relative;
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.space-nav-item::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 1.5px;
+  background-color: #121214;
+  transition: width 0.3s ease;
+}
+
+.space-nav-item:hover {
+  color: #000000;
+  transform: translateY(-1px);
+}
+
+.space-nav-item:hover::after {
+  width: 100%;
+}
+
+/* ==========================================================================
+   MAIN VIEWPORT STAGE
+   ========================================================================== */
+.space-stage {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Master Illustration Container */
+.space-canvas-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 100vw;
+  max-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.18s ease-out;
+}
+
+/* Master Image */
+.space-master-image {
+  width: 100vw;
+  height: 100vh;
+  object-fit: contain;
+  object-position: center center;
+  display: block;
+  user-select: none;
+  filter: contrast(1.02);
+}
+
+/* ==========================================================================
+   INTERACTIVE HOTSPOTS
+   ========================================================================== */
+.space-hotspot {
+  position: absolute;
+  z-index: 40;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+}
+
+.hotspot-beacon {
+  width: 24px;
+  height: 24px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.beacon-core {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #111112;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
+  transition: transform 0.25s ease, background-color 0.25s ease;
+}
+
+.beacon-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 1.5px solid rgba(18, 18, 20, 0.65);
+  animation: radarPulse 2s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+}
+
+@keyframes radarPulse {
+  0% { transform: scale(0.6); opacity: 0.9; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+.space-hotspot:hover .beacon-core {
+  transform: scale(1.4);
+  background-color: #000000;
+}
+
+.space-hotspot:hover .beacon-ring {
+  border-color: #000000;
+  animation-duration: 1.2s;
+}
+
+/* Floating Comic Speech Bubble Card */
+.hotspot-popup {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 230px;
+  background: #ffffff;
+  border: 1.5px solid #111112;
+  border-radius: 8px;
+  padding: 0.85rem 1rem;
+  box-shadow: 4px 6px 0px #111112;
+  pointer-events: none;
+  z-index: 60;
+  animation: popupSlide 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.hotspot-popup::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px;
+  border-style: solid;
+  border-color: #ffffff transparent transparent transparent;
+}
+
+.hotspot-popup::before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 8px;
+  border-style: solid;
+  border-color: #111112 transparent transparent transparent;
+}
+
+@keyframes popupSlide {
+  0% { opacity: 0; transform: translateX(-50%) translateY(6px); }
+  100% { opacity: 1; transform: translateX(-50%) translateY(0px); }
+}
+
+.popup-tag {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: #111112;
+  margin-bottom: 0.35rem;
+  text-transform: uppercase;
+}
+
+.popup-desc {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.76rem;
+  line-height: 1.45;
+  color: #38383c;
+  margin-bottom: 0.5rem;
+}
+
+.popup-hint {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: rgba(0, 0, 0, 0.45);
+  text-transform: uppercase;
+}
+
+/* ==========================================================================
+   BOTTOM ACTION BAR
+   ========================================================================== */
+.space-bottom-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem 2.8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 50;
+  box-sizing: border-box;
+}
+
+.space-return-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #ffffff;
+  color: #111112;
+  border: 1.5px solid #111112;
+  border-radius: 999px;
+  padding: 0.55rem 1.35rem;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  box-shadow: 2px 3px 0px #111112;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.space-return-btn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 4px 0px #111112;
+  background-color: #f7f6f2;
+}
+
+.space-return-btn:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0px #111112;
+}
+
+.space-return-btn.portfolio-btn {
+  background: #111112;
+  color: #ffffff;
+  border-color: #111112;
+}
+
+.space-return-btn.portfolio-btn:hover {
+  background-color: #2a2a30;
+}
+
+.space-meta-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: rgba(18, 18, 20, 0.6);
+}
+
+.badge-sep {
+  opacity: 0.4;
+}
+
+/* ==========================================================================
+   MODAL / DOSSIER DIALOG
+   ========================================================================== */
+.space-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(18, 18, 20, 0.65);
+  backdrop-filter: blur(5px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  animation: fadeIn 0.25s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.space-modal-card {
+  position: relative;
+  width: 100%;
+  max-width: 580px;
+  background: #fdfcf9;
+  border: 2px solid #111112;
+  border-radius: 12px;
+  padding: 2.5rem;
+  box-shadow: 8px 10px 0px #111112;
+  box-sizing: border-box;
+  animation: scaleUp 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes scaleUp {
+  from { transform: scale(0.94) translateY(12px); opacity: 0; }
+  to { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.space-modal-close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  width: 32px;
+  height: 32px;
+  border: 1.5px solid #111112;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #111112;
+  font-size: 0.85rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.space-modal-close:hover {
+  transform: rotate(90deg);
+  background: #111112;
+  color: #ffffff;
+}
+
+.modal-eyebrow {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  color: #6a6a74;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+}
+
+.modal-title {
+  margin: 0 0 1.25rem 0;
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.4rem, 3.5vw, 1.9rem);
+  font-weight: 700;
+  color: #111112;
+  line-height: 1.25;
+  letter-spacing: 0.04em;
+}
+
+.modal-body {
+  margin: 0 0 1.5rem 0;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: #303036;
+}
+
+.modal-meta {
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: #55555c;
+  padding: 0.75rem 1rem;
+  background: #edeae2;
+  border-left: 3px solid #111112;
+  border-radius: 0 6px 6px 0;
+  margin-bottom: 1.5rem;
+}
+
+.modal-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.modal-tags span {
+  font-size: 0.74rem;
+  font-weight: 600;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  background: #edeae2;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  color: #222226;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modal-action-btn {
+  background: #111112;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.8rem 1.6rem;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.modal-action-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (Tablets & Mobile)
+   ========================================================================== */
+@media (max-width: 900px) {
+  .space-header {
+    padding: 1rem 1.5rem;
+  }
+
+  .space-nav-menu {
+    display: none;
+  }
+
+  .space-bottom-bar {
+    padding: 0.8rem 1.5rem;
+  }
+
+  .space-meta-badge {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .space-master-image {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+  }
+
+  .hotspot-popup {
+    width: 180px;
+  }
+
+  .space-return-btn {
+    padding: 0.45rem 1rem;
+    font-size: 0.68rem;
+  }
+}

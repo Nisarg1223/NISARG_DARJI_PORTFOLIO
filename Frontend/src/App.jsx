@@ -13,6 +13,7 @@ import IntroLoader from './components/IntroLoader'
 import LanyardBadge from './components/LanyardBadge'
 import CertificatePass from './components/CertificatePass'
 import Interest from './components/Interest'
+import SpacePage from './components/SpacePage'
 import taskelloHeaderBg from './assets/taskello_header_bg.png'
 import card1Image from './assets/card_1_image.png'
 import card2Image from './assets/card_2_image.png'
@@ -637,12 +638,20 @@ const App = () => {
 
   const [isLoading, setIsLoading] = useState(() => {
     if (typeof window !== 'undefined') {
-      return (window.location.pathname === '/interest' || window.location.hash === '#interest-page') ? false : true
+      const isDirectRoute = window.location.pathname === '/interest' || 
+                            window.location.pathname === '/interest/space' || 
+                            window.location.hash === '#interest-page' || 
+                            window.location.hash === '#interest/space' ||
+                            window.location.hash === '#space'
+      return isDirectRoute ? false : true
     }
     return true
   })
   const [currentPage, setCurrentPage] = useState(() => {
     if (typeof window !== 'undefined') {
+      if (window.location.pathname === '/interest/space' || window.location.hash === '#interest/space' || window.location.hash === '#space') {
+        return 'space'
+      }
       const isInterest = window.location.pathname === '/interest' || window.location.hash === '#interest-page' || window.location.hash === '#interest'
       return isInterest ? 'interest' : 'home'
     }
@@ -661,6 +670,10 @@ const App = () => {
 
   useEffect(() => {
     const handlePopState = () => {
+      if (window.location.pathname === '/interest/space' || window.location.hash === '#interest/space' || window.location.hash === '#space') {
+        setCurrentPage('space')
+        return
+      }
       const isInterest = window.location.pathname === '/interest' || window.location.hash === '#interest-page' || window.location.hash === '#interest'
       setCurrentPage(isInterest ? 'interest' : 'home')
     }
@@ -743,6 +756,14 @@ const App = () => {
   }
 
   const navigateTo = (target) => {
+    if (target === '/interest/space' || target === 'space' || target === '#interest/space' || target === '#space') {
+      if (currentPage !== 'space') {
+        window.history.pushState({}, '', '/interest/space')
+        setCurrentPage('space')
+      }
+      return
+    }
+
     if (target === '/interest' || target === 'interest' || target === '#interest-page') {
       if (currentPage !== 'interest') {
         window.history.pushState({}, '', '/interest')
@@ -1635,6 +1656,14 @@ const App = () => {
         <Interest
           onBack={() => navigateTo('/')}
           onNavigateSection={(section) => navigateTo(section)}
+        />
+      )}
+
+      {/* Dedicated Space Interest Page Overlay / View (/interest/space) */}
+      {currentPage === 'space' && (
+        <SpacePage
+          onBack={() => navigateTo('/interest')}
+          onNavigate={(target) => navigateTo(target)}
         />
       )}
 

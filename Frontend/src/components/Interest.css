@@ -418,13 +418,8 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 0.75rem;
-  cursor: pointer;
   user-select: none;
-  transition: opacity 0.3s ease;
-}
-
-.interest-scroll-indicator:hover {
-  opacity: 0.85;
+  pointer-events: none;
 }
 
 .scroll-indicator-text {
@@ -536,170 +531,7 @@
   background-color: rgba(255, 255, 255, 0.75);
 }
 
-/* ==========================================================================
-   DETAIL SECTION (Revealed on scroll)
-   ========================================================================== */
-.interest-detail-section {
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
-  padding: 6rem 3.5rem;
-  box-sizing: border-box;
-  background-color: rgb(73, 69, 105);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  z-index: 30;
-}
 
-.detail-header-w {
-  max-width: 900px;
-  margin: 0 auto 4.5rem auto;
-  text-align: center;
-}
-
-.detail-eyebrow {
-  font-family: 'Cinzel', 'Outfit', serif;
-  font-size: 0.88rem;
-  font-weight: 600;
-  letter-spacing: 0.25em;
-  color: rgba(215, 208, 255, 0.85);
-  margin-bottom: 1rem;
-  text-transform: uppercase;
-}
-
-.detail-title {
-  margin: 0 0 1.5rem 0;
-  font-family: 'Italiana', 'Cinzel', serif;
-  font-size: clamp(2.4rem, 5vw, 4.2rem);
-  font-weight: 400;
-  letter-spacing: 0.05em;
-  color: #ffffff;
-  line-height: 1.15;
-}
-
-.detail-intro {
-  margin: 0 auto;
-  font-family: 'Outfit', sans-serif;
-  font-size: 1.15rem;
-  line-height: 1.7;
-  color: rgba(255, 255, 255, 0.85);
-  max-width: 720px;
-}
-
-/* Cards Grid */
-.interest-cards-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
-  max-width: 1300px;
-  margin: 0 auto;
-}
-
-.interest-card {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 1rem;
-  padding: 3rem 2.5rem;
-  backdrop-filter: blur(10px);
-  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.4s ease, background-color 0.4s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.interest-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.interest-card:hover {
-  transform: translateY(-6px);
-  border-color: rgba(255, 255, 255, 0.3);
-  background: rgba(255, 255, 255, 0.07);
-}
-
-.interest-card:hover::before {
-  opacity: 1;
-}
-
-.card-top-num {
-  font-family: 'Cinzel', serif;
-  font-size: 1.3rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  color: rgba(255, 255, 255, 0.45);
-  margin-bottom: 1.25rem;
-}
-
-.card-heading {
-  margin: 0 0 1rem 0;
-  font-family: 'Outfit', sans-serif;
-  font-size: 1.55rem;
-  font-weight: 600;
-  color: #ffffff;
-  letter-spacing: -0.01em;
-}
-
-.card-desc {
-  margin: 0 0 2rem 0;
-  font-family: 'Outfit', sans-serif;
-  font-size: 1rem;
-  line-height: 1.65;
-  color: rgba(255, 255, 255, 0.75);
-}
-
-.card-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-}
-
-.card-tags span {
-  font-size: 0.78rem;
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  padding: 0.35rem 0.85rem;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: rgba(255, 255, 255, 0.88);
-}
-
-/* CTA Row */
-.detail-cta-row {
-  display: flex;
-  justify-content: center;
-  margin-top: 5rem;
-}
-
-.interest-back-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  background: #ffffff;
-  color: rgb(81, 77, 115);
-  border: none;
-  border-radius: 999px;
-  padding: 1.1rem 2.6rem;
-  font-family: 'Outfit', sans-serif;
-  font-size: 0.92rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-}
-
-.interest-back-btn:hover {
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
-}
 
 /* ==========================================================================
    RESPONSIVE DESIGN (Tablets & Mobile)
@@ -718,9 +550,6 @@
     bottom: 4.8rem;
   }
 
-  .interest-cards-grid {
-    grid-template-columns: 1fr;
-  }
 
   .interest-subject-wrapper {
     height: 60vh;
@@ -810,7 +639,4 @@
     letter-spacing: 0.12em;
   }
 
-  .interest-detail-section {
-    padding: 4rem 1.5rem;
-  }
 }

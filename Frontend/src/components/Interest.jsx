@@ -69,13 +69,6 @@ export default function Interest({ onBack, onNavigateSection }) {
     }
   }
 
-  const handleScrollToExplore = () => {
-    const target = document.getElementById('interest-content-section')
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth' })
-    }
-  }
-
   return (
     <div
       ref={containerRef}
@@ -129,6 +122,15 @@ export default function Interest({ onBack, onNavigateSection }) {
             </button>
 
             <nav className="interest-nav-links" aria-label="Main Navigation">
+              <button
+                type="button"
+                className="interest-nav-link"
+                onClick={() => handleNavClick('/interest/space')}
+                title="Explore Space"
+                style={{ color: '#ffffff', opacity: 0.95 }}
+              >
+                SPACE 🪐
+              </button>
               <button
                 type="button"
                 className="interest-nav-link"
@@ -258,13 +260,15 @@ export default function Interest({ onBack, onNavigateSection }) {
         {/* BOTTOM LEFT: SCROLL TO EXPLORE WITH L-BRACKET GUIDE */}
         <div
           className="interest-scroll-indicator"
-          onClick={handleScrollToExplore}
+          onClick={() => handleNavClick('/interest/space')}
           role="button"
           tabIndex={0}
-          aria-label="Scroll to explore"
+          aria-label="Explore Space"
+          style={{ cursor: 'pointer', pointerEvents: 'auto' }}
+          title="Click to Explore Space"
         >
-          <span className="scroll-indicator-text">SCROLL TO EXPLORE</span>
-          <div className="scroll-indicator-bracket" aria-hidden="true">
+          <span className="scroll-indicator-text">EXPLORE SPACE ↗</span>
+          <div className="scroll-indicator-bracket">
             <span className="bracket-vert"></span>
           </div>
         </div>
@@ -295,93 +299,6 @@ export default function Interest({ onBack, onNavigateSection }) {
             </div>
           </div>
         </footer>
-      </section>
-
-      {/* STEP INSIDE: INTERACTIVE SHOWCASE (Revealed upon scroll) */}
-      <section id="interest-content-section" className="interest-detail-section">
-        <div className="detail-header-w">
-          <div className="detail-eyebrow">CURATED DISCIPLINES &amp; PASSIONS</div>
-          <h2 className="detail-title">WHAT DRIVES MY CRAFT</h2>
-          <p className="detail-intro">
-            A confluence of avant-garde design aesthetics, computational precision, and human-centric digital architecture.
-          </p>
-        </div>
-
-        {/* 4 Cards matching CODE, DESIGN, AI, EXPERIMENTS */}
-        <div className="interest-cards-grid">
-          {/* Card 1: CODE */}
-          <div className="interest-card">
-            <div className="card-top-num">01 / CODE</div>
-            <h3 className="card-heading">Full-Stack Architecture &amp; Performance</h3>
-            <p className="card-desc">
-              Engineered with clean RESTful backends, React 19 component trees, Vite speed, and modular maintainability.
-            </p>
-            <div className="card-tags">
-              <span>React 19</span>
-              <span>Node.js</span>
-              <span>Full-Stack</span>
-              <span>Clean Architecture</span>
-            </div>
-          </div>
-
-          {/* Card 2: DESIGN */}
-          <div className="interest-card">
-            <div className="card-top-num">02 / DESIGN</div>
-            <h3 className="card-heading">Editorial &amp; Swiss Grid Systems</h3>
-            <p className="card-desc">
-              Obsessed with editorial typography, brutalist clarity, Swiss grid structures, and harmonious serif-sans pairings.
-            </p>
-            <div className="card-tags">
-              <span>Editorial Typography</span>
-              <span>Swiss Grid</span>
-              <span>Visual Hierarchy</span>
-            </div>
-          </div>
-
-          {/* Card 3: AI */}
-          <div className="interest-card">
-            <div className="card-top-num">03 / AI</div>
-            <h3 className="card-heading">Autonomous Agents &amp; AI Experiments</h3>
-            <p className="card-desc">
-              Building intelligent workflows with generative AI, multi-agent frameworks, context retrieval, and developer productivity tools.
-            </p>
-            <div className="card-tags">
-              <span>AI Agents</span>
-              <span>LLM Orchestration</span>
-              <span>Microsoft Certified</span>
-            </div>
-          </div>
-
-          {/* Card 4: EXPERIMENTS */}
-          <div className="interest-card">
-            <div className="card-top-num">04 / EXPERIMENTS</div>
-            <h3 className="card-heading">Creative Coding, WebGL &amp; GSAP</h3>
-            <p className="card-desc">
-              Creating fluid physics-based interactions, smooth 60fps animations with GSAP/Lenis, and Three.js spatial environments.
-            </p>
-            <div className="card-tags">
-              <span>GSAP</span>
-              <span>Three.js</span>
-              <span>Lenis Scroll</span>
-              <span>Kinetic Motion</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Back to Home CTA */}
-        <div className="detail-cta-row">
-          <button
-            type="button"
-            className="interest-back-btn"
-            onClick={() => handleNavClick('#home')}
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="19" y1="12" x2="5" y2="12"></line>
-              <polyline points="12 19 5 12 12 5"></polyline>
-            </svg>
-            BACK TO PORTFOLIO
-          </button>
-        </div>
       </section>
     </div>
   )
