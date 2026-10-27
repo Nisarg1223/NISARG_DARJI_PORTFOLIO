@@ -80,7 +80,6 @@ export default function Interest({ onBack, onNavigateSection }) {
   const needleRef = useRef(null)
   const rulerFillRef = useRef(null)
   const brandNameRef = useRef(null)
-  const statusPillRef = useRef(null)
   const categoryRowRef = useRef(null)
 
   // Sound state (only toggled on click)
@@ -464,12 +463,7 @@ export default function Interest({ onBack, onNavigateSection }) {
       if (pastHero !== wasPastHeroRef.current) {
         wasPastHeroRef.current = pastHero
         if (brandNameRef.current) {
-          brandNameRef.current.textContent = pastHero ? 'NESIL NOBLE' : 'INTEREST'
-        }
-        if (statusPillRef.current) {
-          statusPillRef.current.style.opacity = pastHero ? '1' : '0'
-          statusPillRef.current.style.pointerEvents = pastHero ? 'auto' : 'none'
-          statusPillRef.current.style.transform = pastHero ? 'none' : 'translateY(-6px)'
+          brandNameRef.current.textContent = pastHero ? 'nisarg darji' : 'INTEREST'
         }
       }
 
@@ -547,20 +541,6 @@ export default function Interest({ onBack, onNavigateSection }) {
               >
                 INTEREST
               </button>
-
-              <span
-                ref={statusPillRef}
-                className="interest-status-pill"
-                style={{
-                  opacity: 0,
-                  transform: 'translateY(-6px)',
-                  transition: 'opacity 0.4s ease, transform 0.4s ease',
-                  pointerEvents: 'none',
-                }}
-              >
-                <span className="status-live-dot" aria-hidden="true"></span>
-                <span>Open to roles and freelance</span>
-              </span>
             </div>
 
             <div className="interest-nav-right">
@@ -815,8 +795,7 @@ export default function Interest({ onBack, onNavigateSection }) {
 
               {/* SUBTITLE PARAGRAPH */}
               <p ref={hiCapRef} className="hello-caption">
-                7+ years designing digital experiences, products and interfaces.<br />
-                Currently leading Product Design at upGrad, where I work across product, strategy, systems, AI and design culture.
+                In my free time, I love exploring new ideas, learning concepts that spark my curiosity, and deepening my understanding of space, geopolitics, coding, and web design.
               </p>
             </div>
           </section>
