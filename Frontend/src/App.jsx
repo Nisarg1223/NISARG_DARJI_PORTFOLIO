@@ -794,6 +794,11 @@ const App = () => {
       smoothWheel: true,
       wheelMultiplier: 1,
       touchMultiplier: 1.5,
+      prevent: (node) => {
+        return Boolean(
+          node && node.closest && (node.closest('.interest-page-container') || node.closest('.space-page-container'))
+        )
+      },
     })
 
     lenisRef.current = lenis
@@ -817,13 +822,20 @@ const App = () => {
 
   useEffect(() => {
     if (lenisRef.current) {
-      if (isLoading || isMenuOpen || selectedSocialCard || selectedFolderIndex !== null) {
+      if (
+        isLoading ||
+        isMenuOpen ||
+        selectedSocialCard ||
+        selectedFolderIndex !== null ||
+        currentPage === 'interest' ||
+        currentPage === 'space'
+      ) {
         lenisRef.current.stop()
       } else {
         lenisRef.current.start()
       }
     }
-  }, [isLoading, isMenuOpen, selectedSocialCard, selectedFolderIndex])
+  }, [isLoading, isMenuOpen, selectedSocialCard, selectedFolderIndex, currentPage])
 
   useEffect(() => {
     const handleKeyDown = (e) => {
