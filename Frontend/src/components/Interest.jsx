@@ -4,7 +4,7 @@ import Lenis from 'lenis'
 import interestImage from '../assets/interest_image.png'
 import './Interest.css'
 
-// Character data for "HI, I'M NESIL." with the exact alternating letter tilt from nesilnoble
+// Character data for "HI, I'M NISU." with alternating letter tilt
 const HELLO_WORDS = [
   {
     word: 'HI,',
@@ -23,13 +23,12 @@ const HELLO_WORDS = [
     ],
   },
   {
-    word: 'NESIL.',
+    word: 'NISU.',
     chars: [
       { char: 'N', rot: -5, sm: false },
-      { char: 'E', rot: 3, sm: true },
+      { char: 'I', rot: 3, sm: true },
       { char: 'S', rot: -3, sm: true },
-      { char: 'I', rot: 4, sm: false },
-      { char: 'L', rot: -2, sm: false },
+      { char: 'U', rot: 4, sm: false },
       { char: '.', rot: 3, sm: false },
     ],
   },
@@ -759,8 +758,8 @@ export default function Interest({ onBack, onNavigateSection }) {
                 </svg>
               </div>
 
-              {/* GIANT DISPLAY TITLE: HI, I'M NESIL. */}
-              <h1 ref={hiLineRef} className="hello-hi-line" aria-label="HI, I'M NESIL.">
+              {/* GIANT DISPLAY TITLE: HI, I'M NISU. */}
+              <h1 ref={hiLineRef} className="hello-hi-line" aria-label="HI, I'M NISU.">
                 {HELLO_WORDS.map((wordObj, wIdx) => (
                   <span key={wIdx} className="hi-word">
                     {wordObj.chars.map((charObj, cIdx) => (
