@@ -800,33 +800,15 @@ export default function Interest({ onBack, onNavigateSection }) {
           </section>
 
           {/* ================================================================
-              STAGE 2: SYSTEMS CHAPTER
+              STAGE 2: SPACE CHAPTER
               ================================================================ */}
           <section ref={systemsLayerRef} className="interest-content-layer layer-systems">
             <div className="layer-content-wrap">
-              <p className="sys-small-tag">I build</p>
-              <h2 className="sys-giant-title">SYSTEMS.</h2>
-
-              <div className="sys-kit-card">
-                <div className="sys-card-header">
-                  <span className="sys-badge">Card / Default</span>
-                  <div className="sys-swatches-row">
-                    <span className="swatch sw-1"></span>
-                    <span className="swatch sw-2"></span>
-                    <span className="swatch sw-3"></span>
-                    <span className="swatch sw-4"></span>
-                    <span className="swatch sw-5"></span>
-                  </div>
-                </div>
-                <div className="sys-card-skeleton">
-                  <span className="skeleton-line a"></span>
-                  <span className="skeleton-line b"></span>
-                </div>
-                <button type="button" className="sys-pill-btn">Continue learning →</button>
-              </div>
+              <p className="sys-small-tag">I HAVE AN INTEREST IN</p>
+              <h2 className="sys-giant-title">SPACE.</h2>
 
               <p className="sys-caption">
-                Tokens become components. Components become products. Products become something a team can keep building on.
+                I love exploring the mysteries of the universe, discovering distant galaxies, and following humanity's journey through space missions.
               </p>
             </div>
           </section>
@@ -991,9 +973,9 @@ export default function Interest({ onBack, onNavigateSection }) {
                 type="button"
                 className="ruler-category-btn col-systems"
                 onClick={() => scrollToProgress(0.48)}
-                title="Jump to Systems"
+                title="Jump to Space"
               >
-                SYSTEMS
+                SPACE
               </button>
               <button
                 type="button"
