@@ -564,11 +564,10 @@ export default function Interest({ onBack, onNavigateSection }) {
                 <button
                   type="button"
                   className="interest-nav-link"
-                  onClick={() => handleNavClick('/interest/space')}
-                  title="Explore Space"
-                  style={{ color: '#ffffff', opacity: 0.95 }}
+                  onClick={() => scrollToProgress(0.48)}
+                  title="Jump to Space Section"
                 >
-                  SPACE 🪐
+                  SPACE
                 </button>
                 <button
                   type="button"
@@ -722,7 +721,7 @@ export default function Interest({ onBack, onNavigateSection }) {
                 style={{ cursor: 'pointer', pointerEvents: 'auto' }}
                 title="Scroll down or click to dive in"
               >
-                <span className="scroll-indicator-text">EXPLORE SPACE ↗</span>
+                <span className="scroll-indicator-text">SCROLL TO EXPLORE ↓</span>
                 <div className="scroll-indicator-bracket">
                   <span className="bracket-vert"></span>
                 </div>
@@ -907,17 +906,16 @@ export default function Interest({ onBack, onNavigateSection }) {
               <div className="work-action-cards">
                 <div className="work-card">
                   <div className="work-card-top">
-                    <span className="card-badge">3D SPACE EXPERIENCE</span>
-                    <span className="card-dot-live"></span>
+                    <span className="card-badge">CURATED PASSION</span>
                   </div>
-                  <h3>THE SPACE ODYSSEY</h3>
-                  <p>Step into an interactive 3D solar system with planetary orbits, cosmic physics, and ambient space soundscapes.</p>
+                  <h3>SPACE & COSMOLOGY</h3>
+                  <p>Exploring celestial mechanics, planetary science, and the philosophical mysteries of the cosmos.</p>
                   <button
                     type="button"
                     className="action-btn primary"
-                    onClick={() => handleNavClick('/interest/space')}
+                    onClick={() => scrollToProgress(0.48)}
                   >
-                    ENTER SPACE 🪐 ↗
+                    EXPLORE SPACE ↗
                   </button>
                 </div>
 
