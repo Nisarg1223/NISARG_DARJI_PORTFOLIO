@@ -2138,7 +2138,7 @@ const App = () => {
                   <svg width="16" height="17" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ marginRight: '8px' }}>
                     <path d="m10.931 5.783-.759.812c-1.132 1.212-2.89 1.212-4.022 0l-.76-.812C4.313 4.637 2.568 5.29 2.275 6.928l-1.238 7.18c-.227 1.318.652 2.543 1.838 2.543h10.588c1.185 0 2.064-1.225 1.838-2.544l-1.239-7.179c-.28-1.638-2.037-2.29-3.116-1.145h-.014ZM10.839 3.048 9.84 1.849C8.894.717 7.43.717 6.484 1.85l-1 1.199" stroke="currentColor" strokeWidth="1.949" strokeMiterlimit="10" />
                   </svg>
-                  <span>LANDO STORE</span>
+                  <span>NISARG DARJI</span>
                 </div>
 
                 <h2 className="exe-headline">
@@ -2147,21 +2147,21 @@ const App = () => {
                     <div className="reveal-line-block"></div>
                   </div>
                   <div className="reveal-line-wrapper">
-                    <span className="reveal-line-text">DRIVERS'</span>
+                    <span className="reveal-line-text">WIDE WEB</span>
                     <div className="reveal-line-block"></div>
                   </div>
                   <div className="reveal-line-wrapper">
-                    <span className="reveal-line-text span-font-brier">CHAMPION</span>
+                    <span className="reveal-line-text span-font-brier">CRAFTER</span>
                     <div className="reveal-line-block"></div>
                   </div>
                 </h2>
 
                 <p className="exe-para">
-                  Celebrate this incredible moment with a collection designed for the fans who never stopped believing. Wear it, frame it, treasure it forever.
+                  Where creativity meets technology. Exploring ideas, crafting experiences, and bringing the digital world to life.
                 </p>
 
                 <a href="https://landonorris.store/" target="_blank" rel="noopener noreferrer" className="btn-w is-store">
-                  VISIT THE STORE
+                  RESUME
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ marginLeft: '10px' }}>
                     <path d="M1 8H15M15 8L8 1M15 8L8 15" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
