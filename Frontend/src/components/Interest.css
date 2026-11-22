@@ -3,7 +3,7 @@
    - Hero Section (Image 1): "INTEREST", photo, birds, sparkle, orbit curve
    - Square Animation: Concentric expanding perspective wireframe boxes
    - Stage 1+: "HI, I'M NESIL." with bouncy tilts, squiggly underline & sparks
-   - Subsequent chapters: SYSTEMS, BELIEFS, BENGALURU, WORK
+   - Subsequent chapters: HELLO, SPACE, GEOPOLITICS, CODING, AHMEDABAD
    - Pinned viewport stage with liquid-smooth Lenis scrolling
    ========================================================================== */
 
@@ -18,6 +18,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
+  height: 100dvh;
   z-index: 9999;
   background-color: rgb(81, 77, 115);
   background-image: radial-gradient(ellipse at 50% 45%, rgba(108, 102, 152, 0.45) 0%, rgba(81, 77, 115, 0) 70%);
@@ -50,6 +51,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
+  height: 100dvh;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -124,126 +126,43 @@
   gap: 1.1rem;
 }
 
-.interest-brand-name {
+.interest-back-btn {
   background: none;
   border: none;
   color: #ffffff;
   font-family: 'Big Shoulders Text', 'Outfit', sans-serif;
   font-size: 1.22rem;
   font-weight: 800;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   cursor: pointer;
-  padding: 0;
-  transition: opacity 0.3s ease;
-}
-
-.interest-brand-name:hover {
-  opacity: 0.8;
-}
-
-/* Status Pill: "• Open to roles and freelance" */
-.interest-status-pill {
+  padding: 0.2rem 0;
   display: inline-flex;
   align-items: center;
-  gap: 0.55rem;
-  padding: 0.36rem 0.95rem;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1.5px solid rgba(255, 255, 255, 0.45);
-  border-radius: 9999px;
-  font-family: 'Outfit', sans-serif;
-  font-size: 0.82rem;
-  font-weight: 500;
-  color: #ffffff;
-  letter-spacing: 0.01em;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
 }
 
-.status-live-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #7CE38B;
-  box-shadow: 0 0 0 0 rgba(124, 227, 139, 0.7);
-  animation: statusPulse 2.2s infinite;
+.interest-back-btn:hover {
+  opacity: 0.75;
+  transform: translateX(-4px);
 }
 
-@keyframes statusPulse {
-  0% { box-shadow: 0 0 0 0 rgba(124, 227, 139, 0.7); }
-  70% { box-shadow: 0 0 0 8px rgba(124, 227, 139, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(124, 227, 139, 0); }
+.interest-back-btn .back-arrow {
+  display: inline-block;
+  font-size: 1.35rem;
+  line-height: 1;
+  transition: transform 0.3s ease;
+}
+
+.interest-back-btn:hover .back-arrow {
+  transform: translateX(-3px);
 }
 
 .interest-nav-right {
   display: flex;
   align-items: center;
   gap: 2.2rem;
-}
-
-/* Audio Pill Button: "||.|| SOUND ON / OFF" */
-.interest-sound-pill {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.32);
-  border-radius: 9999px;
-  padding: 0.36rem 1.1rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  color: #ffffff;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.interest-sound-pill:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.6);
-  transform: scale(1.02);
-}
-
-.sound-wave-icon {
-  display: flex;
-  align-items: center;
-  gap: 2.5px;
-  height: 12px;
-}
-
-.wave-dot {
-  font-size: 0.95rem;
-  line-height: 0;
-  color: #ffffff;
-}
-
-.wave-bar {
-  display: inline-block;
-  width: 2px;
-  background-color: #ffffff;
-  border-radius: 1px;
-}
-
-.wave-bar.bar-1 { height: 6px; }
-.wave-bar.bar-2 { height: 11px; }
-.wave-bar.bar-3 { height: 8px; }
-
-.wave-bar.playing.bar-1 {
-  animation: soundBounce 0.9s ease-in-out infinite alternate;
-}
-.wave-bar.playing.bar-2 {
-  animation: soundBounce 0.7s ease-in-out 0.2s infinite alternate;
-}
-.wave-bar.playing.bar-3 {
-  animation: soundBounce 1.1s ease-in-out 0.4s infinite alternate;
-}
-
-@keyframes soundBounce {
-  0% { height: 3px; }
-  100% { height: 13px; }
-}
-
-.sound-pill-text {
-  font-family: 'Outfit', sans-serif;
-  font-size: 0.76rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
 }
 
 .interest-nav-links {
@@ -824,282 +743,232 @@
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
 }
 
-/* BELIEFS SECTION */
+/* BELIEFS / GEOPOLITICS SECTION */
 .beliefs-wrap {
-  max-width: 1080px;
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto;
 }
 
 .beliefs-headline-row {
   position: relative;
-  display: inline-block;
-  margin-bottom: 0.4rem;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 0.5rem;
 }
 
 .beliefs-years {
   margin: 0;
   font-family: 'Big Shoulders Display', sans-serif;
-  font-size: clamp(3.2rem, 8vw, 6.8rem);
+  font-size: min(18vw, 28vh);
+  line-height: 0.88;
   font-weight: 900;
   text-transform: uppercase;
   color: #ffffff;
-  line-height: 1;
+  letter-spacing: -0.02em;
+  text-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+  text-align: center;
 }
 
 .beliefs-under-svg {
-  width: 100%;
-  height: 18px;
-  margin-top: 2px;
+  width: min(75%, 360px);
+  height: 20px;
+  margin: 0.6rem auto 0 auto;
+  display: block;
 }
 
 .beliefs-curious {
   font-family: 'Big Shoulders Text', sans-serif;
-  font-size: clamp(1.2rem, 2vw, 1.8rem);
+  font-size: clamp(1.1rem, 2vw, 1.7rem);
   font-weight: 700;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.85);
-  margin: 0 0 2.2rem 0;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0.8rem 0 0 0;
+  text-align: center;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
 }
 
-.beliefs-statements-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  width: 100%;
-}
-
-.belief-box {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 18px;
-  padding: 1.8rem 1.6rem;
-  text-align: left;
-}
-
-.belief-box h3 {
-  margin: 0 0 0.85rem 0;
-  font-family: 'Big Shoulders Text', sans-serif;
-  font-size: 1.4rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  line-height: 1.15;
-  color: #ffffff;
-}
-
-.belief-box p {
-  margin: 0;
+.beliefs-caption {
   font-family: 'Outfit', sans-serif;
-  font-size: 0.88rem;
-  line-height: 1.55;
-  color: rgba(255, 255, 255, 0.78);
-}
-
-/* BENGALURU SECTION */
-.bengaluru-wrap {
-  max-width: 900px;
-}
-
-.bengaluru-title {
-  margin: 0 0 1.5rem 0;
-  font-family: 'Big Shoulders Display', sans-serif;
-  font-size: clamp(3.6rem, 9vw, 8rem);
-  font-weight: 900;
-  text-transform: uppercase;
-  color: #ffffff;
-  line-height: 0.95;
-}
-
-.bengaluru-landscape {
-  position: relative;
-  width: 100%;
-  max-width: 780px;
-  height: 150px;
-  margin: 0 auto 1.5rem auto;
-}
-
-.landscape-svg {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-}
-
-.palm-tree {
-  position: absolute;
-  bottom: 12px;
-  width: 72px;
-  height: 130px;
-  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.3));
-}
-
-.palm-tree.palm-left { left: 8%; }
-.palm-tree.palm-right { right: 8%; }
-
-.coffee-cup-wrap {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 65px;
-  height: 65px;
-}
-
-.coffee-cup-svg {
-  width: 100%;
-  height: 100%;
-}
-
-.cup-steam.s1 { animation: steamRise 1.6s ease-in-out infinite alternate; }
-.cup-steam.s2 { animation: steamRise 1.8s ease-in-out 0.2s infinite alternate; }
-.cup-steam.s3 { animation: steamRise 1.5s ease-in-out 0.4s infinite alternate; }
-
-@keyframes steamRise {
-  0% { transform: translateY(0); opacity: 0.3; }
-  100% { transform: translateY(-4px); opacity: 0.9; }
-}
-
-.bengaluru-caption {
-  font-family: 'Outfit', sans-serif;
-  font-size: clamp(1rem, 1.6vw, 1.35rem);
-  line-height: 1.5;
+  font-size: clamp(0.95rem, 1.45vw, 1.25rem);
+  line-height: 1.6;
   color: rgba(255, 255, 255, 0.88);
-  max-width: 680px;
+  max-width: 760px;
+  margin: 1.8rem auto 0 auto;
+  text-wrap: balance;
+  text-align: center;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+}
+
+/* AHMEDABAD SECTION */
+.ahmedabad-wrap {
+  width: 100%;
+  max-width: 1040px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   margin: 0 auto;
 }
 
-/* WORK & CONTACT SECTION */
-.work-wrap {
-  max-width: 860px;
-}
-
-.work-headline {
-  margin: 0 0 0.8rem 0;
+.ahmedabad-title {
+  margin: 0;
   font-family: 'Big Shoulders Display', sans-serif;
-  font-size: clamp(2.8rem, 6.5vw, 5.5rem);
+  font-size: min(13vw, 17vh);
+  line-height: 0.88;
   font-weight: 900;
   text-transform: uppercase;
-  line-height: 0.95;
   color: #ffffff;
-}
-
-.work-lead {
-  font-family: 'Outfit', sans-serif;
-  font-size: clamp(0.95rem, 1.4vw, 1.25rem);
-  color: rgba(255, 255, 255, 0.85);
-  margin: 0 0 2rem 0;
-}
-
-.work-action-cards {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
-  width: 100%;
-  margin-bottom: 2rem;
-}
-
-.work-card {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1.5px solid rgba(255, 255, 255, 0.28);
-  backdrop-filter: blur(16px);
-  border-radius: 20px;
-  padding: 2rem 1.8rem;
+  letter-spacing: -0.01em;
+  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  text-align: center;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-}
-
-.work-card-top {
-  display: flex;
   align-items: center;
-  gap: 0.6rem;
-  margin-bottom: 0.9rem;
 }
 
-.card-badge {
+.ahmedabad-title span {
+  display: block;
+}
+
+.ahmedabad-landscape {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  height: clamp(140px, 20vw, 210px);
+  margin: 1.2rem auto 1rem auto;
+}
+
+.ahmedabad-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.25));
+}
+
+.ahmedabad-kite {
+  animation: kiteSway 4s ease-in-out infinite alternate;
+  transform-origin: 194px 58px;
+}
+
+@keyframes kiteSway {
+  0% { transform: translateY(0px) rotate(-1.5deg); }
+  100% { transform: translateY(-5px) rotate(2deg); }
+}
+
+.ahmedabad-caption {
   font-family: 'Outfit', sans-serif;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.7);
+  font-size: clamp(0.95rem, 1.45vw, 1.25rem);
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.88);
+  max-width: 720px;
+  margin: 0 auto;
+  text-wrap: balance;
+  text-align: center;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
 }
 
-.card-dot-live {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #7CE38B;
-  box-shadow: 0 0 6px #7CE38B;
+/* CODING SECTION */
+.coding-wrap {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto;
 }
 
-.work-card h3 {
-  margin: 0 0 0.6rem 0;
+.coding-headline-row {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.coding-small-tag {
   font-family: 'Big Shoulders Text', sans-serif;
-  font-size: 1.5rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  color: #ffffff;
-}
-
-.work-card p {
-  margin: 0 0 1.5rem 0;
-  font-family: 'Outfit', sans-serif;
-  font-size: 0.86rem;
-  line-height: 1.5;
-  color: rgba(255, 255, 255, 0.76);
-  flex-grow: 1;
-}
-
-.action-btn {
-  font-family: 'Outfit', sans-serif;
-  font-size: 0.8rem;
+  font-size: clamp(1.4rem, 2.5vw, 2.2rem);
   font-weight: 700;
-  letter-spacing: 0.14em;
   text-transform: uppercase;
-  padding: 0.75rem 1.5rem;
-  border-radius: 9999px;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0 0 -0.4rem 0;
 }
 
-.action-btn.primary {
-  background: #ffffff;
-  color: #704567;
-  border: none;
-}
-
-.action-btn.primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.35);
-}
-
-.action-btn.secondary {
-  background: transparent;
+.coding-giant-title {
+  margin: 0;
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-size: min(18vw, 28vh);
+  line-height: 0.88;
+  font-weight: 900;
+  text-transform: uppercase;
   color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  letter-spacing: -0.02em;
+  text-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+  text-align: center;
 }
 
-.action-btn.secondary:hover {
-  background: rgba(255, 255, 255, 0.12);
+.coding-tagline {
+  font-family: 'Big Shoulders Text', sans-serif;
+  font-size: clamp(1.1rem, 2vw, 1.7rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0.8rem 0 0 0;
+  text-align: center;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+}
+
+.coding-caption {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(0.95rem, 1.45vw, 1.25rem);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.88);
+  max-width: 760px;
+  margin: 1.8rem auto 0 auto;
+  text-wrap: balance;
+  text-align: center;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
 }
 
 .rewind-top-btn {
   background: none;
-  border: none;
-  color: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.85);
   font-family: 'Outfit', sans-serif;
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   cursor: pointer;
-  padding: 0.4rem 0.8rem;
-  transition: color 0.3s ease;
+  padding: 0.65rem 1.4rem;
+  border-radius: 9999px;
+  margin-top: 2rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
 }
 
 .rewind-top-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.6);
   color: #ffffff;
+  transform: translateY(-2px);
 }
 
 /* ==========================================================================
@@ -1233,95 +1102,501 @@
 }
 
 /* ==========================================================================
-   RESPONSIVE DESIGN (Tablets & Mobile)
+   RESPONSIVE DESIGN (Tablets, Mobiles, and Small Screens)
    ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. TABLETS & SMALL LAPTOPS (max-width: 1024px)
+   -------------------------------------------------------------------------- */
 @media (max-width: 1024px) {
   .interest-nav-header {
-    padding: 2rem 2.5rem;
-  }
-
-  .interest-bottom-ruler-bar {
-    padding: 0 2.5rem 1.4rem 2.5rem;
-  }
-
-  .interest-subject-wrapper {
-    height: 60vh;
-  }
-
-  .beliefs-statements-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-    max-height: 48vh;
-    overflow-y: auto;
-  }
-}
-
-@media (max-width: 768px) {
-  .interest-nav-header {
-    padding: 1.25rem 1.5rem;
-    flex-wrap: wrap;
-    gap: 0.8rem;
-  }
-
-  .interest-status-pill {
-    font-size: 0.72rem;
-    padding: 0.28rem 0.7rem;
+    padding: 1.6rem 2.2rem;
   }
 
   .interest-nav-right {
-    gap: 1.2rem;
+    gap: 1.6rem;
   }
 
   .interest-nav-links {
-    gap: 1rem;
-  }
-
-  .interest-nav-link {
-    font-size: 0.76rem;
-  }
-
-  .interest-title {
-    font-size: clamp(3rem, 13.5vw, 6rem);
-    letter-spacing: 0.12em;
-  }
-
-  .interest-subtitle {
-    font-size: clamp(0.76rem, 3.2vw, 1.15rem);
-  }
-
-  .interest-tagline {
-    font-size: clamp(0.72rem, 2.7vw, 0.95rem);
-  }
-
-  .interest-subject-wrapper {
-    height: 56vh;
-    min-height: 360px;
-  }
-
-  .hello-hi-line {
-    font-size: min(22vw, 24vh);
-  }
-
-  .hello-caption {
-    font-size: 0.84rem;
-    padding: 0 1rem;
-  }
-
-  .hello-squig-wrapper {
-    width: 65vw;
-    top: 58%;
+    gap: 1.5rem;
   }
 
   .interest-bottom-ruler-bar {
-    padding: 0 1.5rem 1rem 1.5rem;
+    padding: 0 2.2rem 1.3rem 2.2rem;
+  }
+
+  .interest-content-layer {
+    padding: 4.8rem 2.5rem 5rem 2.5rem;
+  }
+
+  .interest-subject-wrapper {
+    height: 58vh;
+    max-height: 600px;
+    min-height: 380px;
+  }
+
+  .interest-title {
+    font-size: clamp(3.2rem, 10vw, 7.8rem);
+    letter-spacing: 0.14em;
+  }
+
+  .hello-hi-line {
+    font-size: min(15vw, 24vh);
+  }
+
+  .sys-giant-title {
+    font-size: min(17vw, 26vh);
+  }
+
+  .beliefs-years {
+    font-size: min(14vw, 22vh);
+  }
+
+  .coding-giant-title {
+    font-size: min(15vw, 22vh);
+  }
+
+  .ahmedabad-title {
+    font-size: min(12vw, 15vh);
+  }
+
+  .ahmedabad-landscape {
+    max-width: 820px;
+    height: clamp(120px, 18vw, 180px);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   2. MOBILE DEVICES & PHONES (max-width: 768px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .interest-nav-header {
+    padding: 1.1rem 1.4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .interest-back-btn {
+    font-size: 1.05rem;
+    letter-spacing: 0.08em;
+  }
+
+  .interest-nav-right {
+    gap: 0.9rem;
+    align-items: center;
+  }
+
+  .interest-nav-links {
+    gap: 0.85rem;
+  }
+
+  .interest-nav-link {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+  }
+
+  /* Content Layers General */
+  .interest-content-layer {
+    padding: 4.2rem 1.25rem 4.5rem 1.25rem;
+  }
+
+  /* Hero Section */
+  .interest-typography-bg {
+    top: 13%;
+    padding: 0 1rem;
+  }
+
+  .interest-title {
+    font-size: clamp(2.5rem, 10vw, 5rem);
+    letter-spacing: 0.09em;
+  }
+
+  .interest-subtitle {
+    font-size: clamp(0.7rem, 2.6vw, 0.95rem);
+    letter-spacing: 0.16em;
+    margin-top: 0.45rem;
+  }
+
+  .interest-tagline {
+    font-size: clamp(0.66rem, 2.3vw, 0.86rem);
+    margin-top: 0.35rem;
+    line-height: 1.4;
+    padding: 0 0.8rem;
+  }
+
+  .interest-subject-wrapper {
+    height: 50vh;
+    max-height: 480px;
+    min-height: 290px;
+  }
+
+  .interest-scroll-indicator {
+    bottom: 4.6rem;
+    left: 1.25rem;
+  }
+
+  .scroll-indicator-text {
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+  }
+
+  .scroll-indicator-bracket {
+    height: 26px;
+  }
+
+  .interest-sparkle-wrapper {
+    right: 4%;
+    top: 36%;
+    width: 38px;
+    height: 38px;
+  }
+
+  .interest-birds-wrapper {
+    right: 4%;
+    top: 14%;
+    width: 140px;
+  }
+
+  /* Stage 1: Hello */
+  .hello-content-wrapper {
+    padding: 0 1rem;
+  }
+
+  .hello-hi-line {
+    font-size: clamp(2.6rem, 11vw, 6.2rem);
+    line-height: 0.92;
+  }
+
+  .hello-squig-wrapper {
+    width: min(58vw, 290px);
+    top: 59%;
+  }
+
+  .hello-caption {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    padding: 0 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .hello-spark.s-top-left { width: 28px; height: 28px; left: 4%; }
+  .hello-spark.s-top-right { width: 26px; height: 26px; right: 5%; }
+  .hello-spark.s-bottom-left { width: 20px; height: 20px; left: 8%; }
+  .hello-spark.s-bottom-right { width: 30px; height: 30px; right: 8%; }
+
+  /* Stage 2: Space */
+  .sys-small-tag {
+    font-size: clamp(0.95rem, 3.2vw, 1.35rem);
+    margin-bottom: 0;
+  }
+
+  .sys-giant-title {
+    font-size: clamp(3.4rem, 17vw, 7rem);
+    line-height: 0.88;
+  }
+
+  .sys-caption {
+    font-size: 0.86rem;
+    line-height: 1.52;
+    padding: 0 0.5rem;
+    margin-top: 1.2rem;
+  }
+
+  /* Stage 3: Geopolitics */
+  .beliefs-years {
+    font-size: clamp(2.3rem, 10.5vw, 5.6rem);
+    line-height: 0.9;
+  }
+
+  .beliefs-under-svg {
+    width: min(80%, 250px);
+    height: 16px;
+    margin: 0.4rem auto 0 auto;
+  }
+
+  .beliefs-curious {
+    font-size: clamp(0.75rem, 2.4vw, 1.05rem);
+    letter-spacing: 0.05em;
+    margin-top: 0.5rem;
+    padding: 0 0.4rem;
+  }
+
+  .beliefs-caption {
+    font-size: 0.86rem;
+    line-height: 1.52;
+    padding: 0 0.5rem;
+    margin-top: 1.2rem;
+  }
+
+  /* Stage 4: Coding */
+  .coding-small-tag {
+    font-size: clamp(0.95rem, 3.2vw, 1.35rem);
+    margin-bottom: 0;
+  }
+
+  .coding-giant-title {
+    font-size: clamp(3.2rem, 15vw, 7.2rem);
+    line-height: 0.88;
+  }
+
+  .coding-tagline {
+    font-size: clamp(0.75rem, 2.4vw, 1.05rem);
+    letter-spacing: 0.05em;
+    margin-top: 0.5rem;
+    padding: 0 0.4rem;
+  }
+
+  .coding-caption {
+    font-size: 0.86rem;
+    line-height: 1.52;
+    padding: 0 0.5rem;
+    margin-top: 1.2rem;
+  }
+
+  /* Stage 5: Ahmedabad */
+  .ahmedabad-title {
+    font-size: clamp(2.3rem, 10vw, 5rem);
+    line-height: 0.92;
+  }
+
+  .ahmedabad-landscape {
+    max-width: 100%;
+    height: clamp(85px, 20vw, 135px);
+    margin: 0.75rem auto 0.6rem auto;
+  }
+
+  .ahmedabad-caption {
+    font-size: 0.82rem;
+    line-height: 1.5;
+    padding: 0 0.5rem;
+  }
+
+  .rewind-top-btn {
+    margin-top: 1rem;
+    padding: 0.5rem 1.15rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+  }
+
+  /* Persistent Bottom Timeline Ruler */
+  .interest-bottom-ruler-bar {
+    padding: 0 1.2rem 0.8rem 1.2rem;
+    gap: 0.35rem;
+  }
+
+  .ruler-labels-row {
+    padding: 0 0.15rem;
   }
 
   .ruler-category-btn {
-    font-size: 0.72rem;
+    font-size: clamp(0.58rem, 2.2vw, 0.76rem);
+    letter-spacing: 0.03em;
+    padding: 0.25rem 0.1rem;
+    min-height: 26px;
+    white-space: nowrap;
   }
 
-  .work-action-cards {
-    grid-template-columns: 1fr;
-    gap: 1rem;
+  .ruler-axis-track {
+    height: 10px;
+  }
+
+  .ruler-tick {
+    height: 3.5px;
+  }
+
+  .ruler-tick.is-mid {
+    height: 6px;
+  }
+
+  .ruler-tick.is-tall {
+    height: 9px;
+  }
+
+  .runner-diamond {
+    width: 6px;
+    height: 6px;
+  }
+
+  .runner-line {
+    height: 14px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3. EXTRA SMALL PHONES & COMPACT MOBILE (max-width: 480px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 480px) {
+  .interest-nav-header {
+    padding: 0.75rem 0.9rem;
+  }
+
+  .interest-back-btn {
+    font-size: 0.92rem;
+    letter-spacing: 0.06em;
+  }
+
+  .interest-nav-right {
+    gap: 0.55rem;
+  }
+
+  .interest-nav-links {
+    gap: 0.55rem;
+  }
+
+  .interest-nav-link {
+    font-size: 0.66rem;
+    letter-spacing: 0.05em;
+  }
+
+  .interest-content-layer {
+    padding: 3.6rem 0.8rem 3.8rem 0.8rem;
+  }
+
+  .interest-subject-wrapper {
+    height: 44vh;
+    max-height: 380px;
+    min-height: 230px;
+  }
+
+  .interest-title {
+    font-size: clamp(2rem, 9.5vw, 3.6rem);
+    letter-spacing: 0.06em;
+  }
+
+  .interest-subtitle {
+    font-size: 0.66rem;
+    letter-spacing: 0.1em;
+  }
+
+  .interest-tagline {
+    font-size: 0.62rem;
+    padding: 0 0.3rem;
+  }
+
+  .interest-scroll-indicator {
+    bottom: 3.8rem;
+    left: 0.9rem;
+  }
+
+  .scroll-indicator-text {
+    font-size: 0.56rem;
+    letter-spacing: 0.09em;
+  }
+
+  .scroll-indicator-bracket {
+    height: 18px;
+  }
+
+  .hello-hi-line {
+    font-size: clamp(2.2rem, 10.5vw, 4.4rem);
+  }
+
+  .hello-squig-wrapper {
+    width: min(65vw, 240px);
+  }
+
+  .sys-giant-title {
+    font-size: clamp(2.8rem, 15vw, 5.2rem);
+  }
+
+  .beliefs-years {
+    font-size: clamp(2rem, 9.6vw, 3.8rem);
+  }
+
+  .coding-giant-title {
+    font-size: clamp(2.6rem, 13.5vw, 5rem);
+  }
+
+  .ahmedabad-title {
+    font-size: clamp(1.9rem, 9vw, 3.5rem);
+  }
+
+  .ahmedabad-landscape {
+    height: clamp(70px, 22vw, 105px);
+    margin: 0.45rem auto 0.35rem auto;
+  }
+
+  .hello-caption,
+  .sys-caption,
+  .beliefs-caption,
+  .coding-caption,
+  .ahmedabad-caption {
+    font-size: 0.78rem;
+    line-height: 1.45;
+  }
+
+  .interest-bottom-ruler-bar {
+    padding: 0 0.65rem 0.55rem 0.65rem;
+  }
+
+  .ruler-category-btn {
+    font-size: clamp(0.5rem, 2.2vw, 0.65rem);
+    letter-spacing: 0.01em;
+    padding: 0.2rem 0.05rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. SHORT VIEWPORT / LANDSCAPE MOBILE (max-height: 560px)
+   -------------------------------------------------------------------------- */
+@media (max-height: 560px) {
+  .interest-nav-header {
+    padding: 0.5rem 1.2rem;
+  }
+
+  .interest-bottom-ruler-bar {
+    padding: 0 1.2rem 0.4rem 1.2rem;
+  }
+
+  .interest-content-layer {
+    padding: 2.4rem 1rem 2.6rem 1rem;
+  }
+
+  .interest-subject-wrapper {
+    height: 46vh;
+    min-height: 160px;
+    max-height: 230px;
+  }
+
+  .interest-title {
+    font-size: min(12vw, 14vh);
+  }
+
+  .hello-hi-line {
+    font-size: min(14vw, 15vh);
+  }
+
+  .sys-giant-title {
+    font-size: min(15vw, 17vh);
+  }
+
+  .beliefs-years {
+    font-size: min(12vw, 14vh);
+  }
+
+  .coding-giant-title {
+    font-size: min(13vw, 15vh);
+  }
+
+  .ahmedabad-title {
+    font-size: min(10vw, 12vh);
+  }
+
+  .ahmedabad-landscape {
+    height: clamp(55px, 16vh, 85px);
+    margin: 0.25rem auto;
+  }
+
+  .interest-scroll-indicator {
+    bottom: 2.6rem;
+    left: 1rem;
+  }
+
+  .rewind-top-btn {
+    margin-top: 0.5rem;
+    padding: 0.35rem 0.85rem;
+    font-size: 0.65rem;
   }
 }

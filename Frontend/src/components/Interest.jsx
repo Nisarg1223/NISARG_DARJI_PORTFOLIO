@@ -72,22 +72,16 @@ export default function Interest({ onBack, onNavigateSection }) {
 
   const systemsLayerRef = useRef(null)
   const beliefsLayerRef = useRef(null)
-  const bengaluruLayerRef = useRef(null)
-  const workLayerRef = useRef(null)
+  const codingLayerRef = useRef(null)
+  const ahmedabadLayerRef = useRef(null)
 
   // Direct DOM refs to avoid 120fps React re-renders
   const needleRef = useRef(null)
   const rulerFillRef = useRef(null)
-  const brandNameRef = useRef(null)
   const categoryRowRef = useRef(null)
 
-  // Sound state (only toggled on click)
-  const [isSoundOn, setIsSoundOn] = useState(true)
-
   const activeSectionRef = useRef('interest')
-  const wasPastHeroRef = useRef(false)
   const wasScrolledRef = useRef(false)
-  const audioContextRef = useRef(null)
 
   // Pure GPU-driven mouse parallax via gsap.quickTo (Zero React state overhead)
   const parallaxX = useRef(null)
@@ -127,49 +121,15 @@ export default function Interest({ onBack, onNavigateSection }) {
     parallaxY.current(y)
   }
 
-  // Interactive Web Audio ambient sound toggle
-  const toggleSound = () => {
-    if (!isSoundOn) {
-      try {
-        const AudioCtx = window.AudioContext || window.webkitAudioContext
-        if (AudioCtx) {
-          const ctx = new AudioCtx()
-          audioContextRef.current = ctx
-
-          const osc = ctx.createOscillator()
-          const gain = ctx.createGain()
-          osc.type = 'sine'
-          osc.frequency.setValueAtTime(220, ctx.currentTime)
-          gain.gain.setValueAtTime(0.018, ctx.currentTime)
-
-          const filter = ctx.createBiquadFilter()
-          filter.type = 'lowpass'
-          filter.frequency.setValueAtTime(450, ctx.currentTime)
-
-          osc.connect(gain)
-          gain.connect(filter)
-          filter.connect(ctx.destination)
-          osc.start()
-        }
-      } catch (err) {
-        console.warn('Web Audio error:', err)
-      }
-      setIsSoundOn(true)
+  const handleBackToPortfolio = () => {
+    if (onBack) {
+      onBack()
+    } else if (onNavigateSection) {
+      onNavigateSection('/')
     } else {
-      if (audioContextRef.current) {
-        audioContextRef.current.close().catch(() => {})
-      }
-      setIsSoundOn(false)
+      window.location.href = '/'
     }
   }
-
-  useEffect(() => {
-    return () => {
-      if (audioContextRef.current) {
-        audioContextRef.current.close().catch(() => {})
-      }
-    }
-  }, [])
 
   const handleNavClick = (section) => {
     if (onNavigateSection) {
@@ -256,7 +216,7 @@ export default function Interest({ onBack, onNavigateSection }) {
 
     // Initial positioning for all subsequent layers
     gsap.set(
-      [helloLayerRef.current, systemsLayerRef.current, beliefsLayerRef.current, bengaluruLayerRef.current, workLayerRef.current],
+      [helloLayerRef.current, systemsLayerRef.current, beliefsLayerRef.current, codingLayerRef.current, ahmedabadLayerRef.current],
       { autoAlpha: 0, scale: 0.5, pointerEvents: 'none' }
     )
     if (tunnelRef.current) {
@@ -381,8 +341,8 @@ export default function Interest({ onBack, onNavigateSection }) {
       .set(systemsLayerRef.current, { autoAlpha: 0 }, 60)
 
       /* =========================================================================
-         PHASE 4: BELIEFS CHAPTER (58% to 78%)
-         - "7+ years. Still curious. Still making."
+         PHASE 4: GEOPOLITICS CHAPTER (58% to 78%)
+         - "GEOPOLITICS."
          ========================================================================= */
       .set(beliefsLayerRef.current, { autoAlpha: 1, pointerEvents: 'auto' }, 58)
       .fromTo(
@@ -398,34 +358,34 @@ export default function Interest({ onBack, onNavigateSection }) {
       .set(beliefsLayerRef.current, { autoAlpha: 0 }, 78)
 
       /* =========================================================================
-         PHASE 5: BENGALURU CHAPTER (76% to 92%)
-         - "Based in Bengaluru." with landscape & coffee cup
+         PHASE 5: CODING CHAPTER (76% to 92%)
+         - "INTEREST IN CODING" with </> symbols
          ========================================================================= */
-      .set(bengaluruLayerRef.current, { autoAlpha: 1, pointerEvents: 'auto' }, 76)
+      .set(codingLayerRef.current, { autoAlpha: 1, pointerEvents: 'auto' }, 76)
       .fromTo(
-        bengaluruLayerRef.current,
+        codingLayerRef.current,
         { scale: 0.5, autoAlpha: 0 },
         { scale: 1, autoAlpha: 1, duration: 6, ease: 'sine.out', immediateRender: false },
         76
       )
       // Continuous forward glide in reading sweet spot
-      .to(bengaluruLayerRef.current, { scale: 1.12, duration: 6, ease: 'sine.inOut' }, 82)
+      .to(codingLayerRef.current, { scale: 1.12, duration: 6, ease: 'sine.inOut' }, 82)
       // Smooth exit zoom
-      .to(bengaluruLayerRef.current, { scale: 2.4, autoAlpha: 0, pointerEvents: 'none', duration: 5, ease: 'sine.in' }, 88)
-      .set(bengaluruLayerRef.current, { autoAlpha: 0 }, 93)
+      .to(codingLayerRef.current, { scale: 2.4, autoAlpha: 0, pointerEvents: 'none', duration: 5, ease: 'sine.in' }, 88)
+      .set(codingLayerRef.current, { autoAlpha: 0 }, 93)
 
       /* =========================================================================
-         PHASE 6: WORK & CONTACT CHAPTER (91% to 100%)
-         - "That's what I make. That's what I lead."
+         PHASE 6: AHMEDABAD CHAPTER (FINAL CHAPTER) (91% to 100%)
+         - "BASED IN AHMEDABAD." with skyline illustration + Rewind
          ========================================================================= */
-      .set(workLayerRef.current, { autoAlpha: 1, pointerEvents: 'auto' }, 91)
+      .set(ahmedabadLayerRef.current, { autoAlpha: 1, pointerEvents: 'auto' }, 91)
       .fromTo(
-        workLayerRef.current,
+        ahmedabadLayerRef.current,
         { scale: 0.55, autoAlpha: 0 },
         { scale: 1, autoAlpha: 1, duration: 6, ease: 'sine.out', immediateRender: false },
         91
       )
-      .to(workLayerRef.current, { scale: 1.02, duration: 3, ease: 'sine.out' }, 97)
+      .to(ahmedabadLayerRef.current, { scale: 1.02, duration: 3, ease: 'sine.out' }, 97)
 
     // 3. Direct, liquid-smooth scroll synchronization (Zero React re-renders)
     const handleScroll = (data) => {
@@ -449,21 +409,9 @@ export default function Interest({ onBack, onNavigateSection }) {
         rulerFillRef.current.style.width = `${progress * 100}%`
       }
 
-      // Discrete transitions directly in the DOM (Zero React re-renders)
       const scrolled = progress > 0.05
       if (scrolled !== wasScrolledRef.current) {
         wasScrolledRef.current = scrolled
-        if (brandNameRef.current) {
-          brandNameRef.current.title = scrolled ? 'Back to Top' : 'Return to Portfolio'
-        }
-      }
-
-      const pastHero = progress > 0.17
-      if (pastHero !== wasPastHeroRef.current) {
-        wasPastHeroRef.current = pastHero
-        if (brandNameRef.current) {
-          brandNameRef.current.textContent = pastHero ? 'nisarg darji' : 'INTEREST'
-        }
       }
 
       // Ruler category active state directly updated in DOM
@@ -472,8 +420,8 @@ export default function Interest({ onBack, onNavigateSection }) {
       else if (progress < 0.38) sec = 'hello'
       else if (progress < 0.58) sec = 'systems'
       else if (progress < 0.76) sec = 'beliefs'
-      else if (progress < 0.90) sec = 'bengaluru'
-      else sec = 'work'
+      else if (progress < 0.90) sec = 'coding'
+      else sec = 'ahmedabad'
 
       if (sec !== activeSectionRef.current) {
         activeSectionRef.current = sec
@@ -488,11 +436,17 @@ export default function Interest({ onBack, onNavigateSection }) {
 
     lenis.on('scroll', handleScroll)
 
+    const handleResize = () => {
+      lenis.resize()
+    }
+    window.addEventListener('resize', handleResize)
+
     // Force layout measurement & initial state
     lenis.resize()
     handleScroll({ progress: 0 })
 
     return () => {
+      window.removeEventListener('resize', handleResize)
       gsap.ticker.remove(updateLenis)
       lenis.destroy()
       tl.kill()
@@ -526,40 +480,16 @@ export default function Interest({ onBack, onNavigateSection }) {
           <header className="interest-nav-header">
             <div className="interest-brand-group">
               <button
-                ref={brandNameRef}
                 type="button"
-                className="interest-brand-name"
-                onClick={() => {
-                  if (wasScrolledRef.current) {
-                    scrollToTop()
-                  } else {
-                    handleNavClick('#home')
-                  }
-                }}
-                title="Return to Portfolio"
+                className="interest-back-btn"
+                onClick={handleBackToPortfolio}
+                title="Back to Portfolio"
               >
-                INTEREST
+                <span className="back-arrow" aria-hidden="true">&larr;</span> BACK
               </button>
             </div>
 
             <div className="interest-nav-right">
-              {/* Sound Toggle Button */}
-              <button
-                type="button"
-                className={`interest-sound-pill ${isSoundOn ? 'is-active' : ''}`}
-                onClick={toggleSound}
-                aria-label="Toggle ambient audio"
-              >
-                <span className="sound-wave-icon" aria-hidden="true">
-                  <span className={`wave-bar bar-1 ${isSoundOn ? 'playing' : ''}`}></span>
-                  <span className={`wave-bar bar-2 ${isSoundOn ? 'playing' : ''}`}></span>
-                  <span className="wave-dot">·</span>
-                  <span className={`wave-bar bar-3 ${isSoundOn ? 'playing' : ''}`}></span>
-                  <span className={`wave-bar bar-1 ${isSoundOn ? 'playing' : ''}`}></span>
-                </span>
-                <span className="sound-pill-text">{isSoundOn ? 'SOUND ON' : 'SOUND OFF'}</span>
-              </button>
-
               <nav className="interest-nav-links" aria-label="Main Navigation">
                 <button
                   type="button"
@@ -572,23 +502,26 @@ export default function Interest({ onBack, onNavigateSection }) {
                 <button
                   type="button"
                   className="interest-nav-link"
-                  onClick={() => scrollToProgress(0.92)}
+                  onClick={() => scrollToProgress(0.68)}
+                  title="Jump to Geopolitics Section"
                 >
-                  WORK
+                  GEOPOLITICS
                 </button>
                 <button
                   type="button"
                   className="interest-nav-link"
-                  onClick={() => scrollToProgress(0.68)}
+                  onClick={() => scrollToProgress(0.84)}
+                  title="Jump to Coding Section"
                 >
-                  ABOUT
+                  CODING
                 </button>
                 <button
                   type="button"
                   className="interest-nav-link"
                   onClick={() => scrollToProgress(0.96)}
+                  title="Jump to Ahmedabad Section"
                 >
-                  CONTACT
+                  AHMEDABAD
                 </button>
               </nav>
             </div>
@@ -813,132 +746,333 @@ export default function Interest({ onBack, onNavigateSection }) {
           </section>
 
           {/* ================================================================
-              STAGE 3: BELIEFS CHAPTER
+              STAGE 3: GEOPOLITICS CHAPTER
               ================================================================ */}
           <section ref={beliefsLayerRef} className="interest-content-layer layer-beliefs">
             <div className="layer-content-wrap beliefs-wrap">
               <div className="beliefs-headline-row">
-                <h2 className="beliefs-years">7+ YEARS.</h2>
+                <h2 className="beliefs-years">GEOPOLITICS.</h2>
                 <svg className="beliefs-under-svg" viewBox="0 0 380 24" fill="none">
                   <path d="M4 14 Q60 4 120 14 T240 12 T376 10" stroke="#ffffff" strokeWidth="4.5" strokeLinecap="round" />
                 </svg>
               </div>
-              <p className="beliefs-curious">Still curious. Still making.</p>
-
-              <div className="beliefs-statements-grid">
-                <div className="belief-box">
-                  <h3>I build products and the teams that build products.</h3>
-                  <p>From the first blank Figma frame to a product people actually use. I've built products from scratch, shaped design systems, and built teams that make good ideas happen.</p>
-                </div>
-
-                <div className="belief-box">
-                  <h3>My obsession lives in the gap between usable and unforgettable.</h3>
-                  <p>I believe great design should solve the problem first, then make people feel something. I bring together product thinking, art direction and a little bit of the unexpected.</p>
-                </div>
-
-                <div className="belief-box">
-                  <h3>These days I'm also in the code.</h3>
-                  <p>Prototyping faster, helping designers push PRs, shipping alongside engineers. The seam between design and engineering is where the craft either holds or falls apart.</p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* ================================================================
-              STAGE 4: BENGALURU CHAPTER
-              ================================================================ */}
-          <section ref={bengaluruLayerRef} className="interest-content-layer layer-bengaluru">
-            <div className="layer-content-wrap bengaluru-wrap">
-              <h2 className="bengaluru-title">Based in Bengaluru.</h2>
-
-              <div className="bengaluru-landscape" aria-hidden="true">
-                <svg className="landscape-svg" viewBox="0 0 900 140" fill="none">
-                  <path
-                    d="M0 140 L0 100 Q90 60 180 85 Q270 110 360 70 Q450 30 550 75 Q650 110 740 70 Q820 40 900 80 L900 140 Z"
-                    fill="rgba(255, 255, 255, 0.08)"
-                    stroke="rgba(255, 255, 255, 0.25)"
-                    strokeWidth="2"
-                  />
-                  <path
-                    d="M0 140 L0 115 Q140 85 280 105 Q420 125 560 95 Q700 70 840 105 L900 110 L900 140 Z"
-                    fill="rgba(255, 255, 255, 0.04)"
-                  />
-                </svg>
-
-                <svg className="palm-tree palm-left" viewBox="0 0 100 180">
-                  <path d="M50 180 Q42 120 54 60" fill="none" stroke="#ffffff" strokeWidth="6" strokeLinecap="round" />
-                  <path d="M54 58 Q24 40 2 68 Q28 52 52 64 Z M54 58 Q32 20 6 28 Q34 36 52 62 Z M54 58 Q66 18 94 22 Q68 36 56 62 Z M54 58 Q86 46 98 80 Q80 58 56 64 Z" fill="#ffffff" />
-                </svg>
-
-                <svg className="palm-tree palm-right" viewBox="0 0 100 180">
-                  <path d="M50 180 Q56 120 46 60" fill="none" stroke="#ffffff" strokeWidth="6" strokeLinecap="round" />
-                  <path d="M46 58 Q16 40 0 68 Q24 52 44 64 Z M46 58 Q28 20 4 28 Q28 36 44 62 Z M46 58 Q60 18 88 22 Q64 36 48 62 Z M46 58 Q78 46 92 80 Q72 58 48 64 Z" fill="#ffffff" />
-                </svg>
-
-                <div className="coffee-cup-wrap">
-                  <svg className="coffee-cup-svg" viewBox="0 0 80 80" fill="none">
-                    <path className="cup-steam s1" d="M30 18 Q26 12 30 6" stroke="#ffffff" strokeWidth="2.5" strokeLinecap="round" />
-                    <path className="cup-steam s2" d="M38 18 Q42 12 38 6" stroke="#ffffff" strokeWidth="2.5" strokeLinecap="round" />
-                    <path className="cup-steam s3" d="M46 18 Q42 12 46 6" stroke="#ffffff" strokeWidth="2.5" strokeLinecap="round" />
-                    <path d="M20 28 H58 V42 Q58 58 44 58 H34 Q20 58 20 42 Z" fill="#ffffff" stroke="#704567" strokeWidth="2" />
-                    <path d="M58 34 Q68 34 68 40 Q68 46 58 46" fill="none" stroke="#ffffff" strokeWidth="3" strokeLinecap="round" />
-                    <path d="M14 62 H64" stroke="#ffffff" strokeWidth="3" strokeLinecap="round" />
-                  </svg>
-                </div>
-              </div>
-
-              <p className="bengaluru-caption">
-                Open to building brands, designing experiences and good conversations over a cup of coffee.
+              <p className="beliefs-curious">GLOBAL DYNAMICS &bull; STRATEGIC ALLIANCES &bull; WORLD ORDER</p>
+              <p className="beliefs-caption">
+                Exploring international relations, multilateral diplomacy, and how global power dynamics, trade corridors, and economic statecraft shape modern history.
               </p>
             </div>
           </section>
 
           {/* ================================================================
-              STAGE 5: WORK & CONTACT CHAPTER
+              STAGE 4: CODING CHAPTER
               ================================================================ */}
-          <section ref={workLayerRef} className="interest-content-layer layer-work">
-            <div className="layer-content-wrap work-wrap">
-              <h2 className="work-headline">That's what I make.<br />That's what I lead.</h2>
-              <p className="work-lead">
-                If you're building something that deserves to be remembered, let's talk.
-              </p>
-
-              <div className="work-action-cards">
-                <div className="work-card">
-                  <div className="work-card-top">
-                    <span className="card-badge">CURATED PASSION</span>
-                  </div>
-                  <h3>SPACE & COSMOLOGY</h3>
-                  <p>Exploring celestial mechanics, planetary science, and the philosophical mysteries of the cosmos.</p>
-                  <button
-                    type="button"
-                    className="action-btn primary"
-                    onClick={() => scrollToProgress(0.48)}
-                  >
-                    EXPLORE SPACE ↗
-                  </button>
-                </div>
-
-                <div className="work-card">
-                  <div className="work-card-top">
-                    <span className="card-badge">PORTFOLIO & WORK</span>
-                  </div>
-                  <h3>SELECTED WORK</h3>
-                  <p>Explore case studies spanning product design systems, generative AI experiments, and full-stack platforms.</p>
-                  <button
-                    type="button"
-                    className="action-btn secondary"
-                    onClick={() => handleNavClick('#projects')}
-                  >
-                    VIEW PROJECTS ↗
-                  </button>
-                </div>
+          <section ref={codingLayerRef} className="interest-content-layer layer-coding">
+            <div className="layer-content-wrap coding-wrap">
+              <div className="coding-headline-row">
+                <p className="coding-small-tag">I have an interest in</p>
+                <h2 className="coding-giant-title">CODING.</h2>
               </div>
+
+              <p className="coding-tagline">ARCHITECTURE &bull; CREATIVE LOGIC &bull; CLEAN CRAFT</p>
+
+              <p className="coding-caption">
+                Turning abstract ideas into performant digital realities. Obsessed with clean modular architecture, fluid kinetic interactions, full-stack development, and writing code that feels alive.
+              </p>
+            </div>
+          </section>
+
+          {/* ================================================================
+              STAGE 5: AHMEDABAD CHAPTER (FINAL CHAPTER)
+              ================================================================ */}
+          <section ref={ahmedabadLayerRef} className="interest-content-layer layer-ahmedabad">
+            <div className="layer-content-wrap ahmedabad-wrap">
+              <h2 className="ahmedabad-title">
+                <span>BASED IN</span>
+                <span>AHMEDABAD.</span>
+              </h2>
+
+              <div className="ahmedabad-landscape" aria-hidden="true">
+                <svg className="ahmedabad-svg" viewBox="0 0 1000 210" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <linearGradient id="treeGrad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="rgba(255, 255, 255, 0.12)" />
+                      <stop offset="100%" stopColor="rgba(255, 255, 255, 0.02)" />
+                    </linearGradient>
+                  </defs>
+
+                  {/* 1. BACKGROUND FOLIAGE & TREE CANOPIES */}
+                  {/* Far-left cluster */}
+                  <path
+                    d="M 135 175 C 135 158 148 148 162 152 C 170 140 188 138 198 148 C 208 142 222 145 228 156 C 235 152 248 156 250 175 Z"
+                    fill="url(#treeGrad)"
+                    stroke="rgba(255, 255, 255, 0.28)"
+                    strokeWidth="1"
+                  />
+                  {/* Between Teen Darwaza and Sarkhej Roza */}
+                  <path
+                    d="M 358 175 C 358 162 368 154 378 156 C 385 146 398 146 405 154 C 412 150 422 154 425 175 Z"
+                    fill="url(#treeGrad)"
+                    stroke="rgba(255, 255, 255, 0.28)"
+                    strokeWidth="1"
+                  />
+                  {/* Between Sarkhej Roza and Patang Tower */}
+                  <path
+                    d="M 578 175 C 578 160 590 152 602 154 C 610 144 624 144 632 152 C 640 148 650 155 652 175 Z"
+                    fill="url(#treeGrad)"
+                    stroke="rgba(255, 255, 255, 0.28)"
+                    strokeWidth="1"
+                  />
+                  {/* Far-right cluster beside Atal Bridge */}
+                  <path
+                    d="M 822 175 C 822 160 834 150 846 153 C 854 144 868 145 874 155 C 880 152 890 158 892 175 Z"
+                    fill="url(#treeGrad)"
+                    stroke="rgba(255, 255, 255, 0.28)"
+                    strokeWidth="1"
+                  />
+
+                  {/* 2. LEFT SKY: PATANG (UTTARAYAN KITE) & FLOWING STRING */}
+                  <g className="ahmedabad-kite">
+                    {/* Kite diamond body */}
+                    <polygon
+                      points="194,42 208,62 188,78 174,58"
+                      fill="rgba(255, 255, 255, 0.12)"
+                      stroke="rgba(255, 255, 255, 0.85)"
+                      strokeWidth="1.4"
+                    />
+                    {/* Vertical spine */}
+                    <line x1="194" y1="42" x2="188" y2="78" stroke="rgba(255, 255, 255, 0.85)" strokeWidth="1.2" />
+                    {/* Horizontal bow curve (kamani) */}
+                    <path d="M 174 58 Q 192 50 208 62" fill="none" stroke="rgba(255, 255, 255, 0.85)" strokeWidth="1.2" />
+                    {/* Bottom triangle tail */}
+                    <polygon points="188,78 183,86 193,86" fill="rgba(255, 255, 255, 0.7)" stroke="rgba(255, 255, 255, 0.85)" strokeWidth="1" />
+                    {/* Gracefully curving string (manja) */}
+                    <path
+                      d="M 188 86 C 172 110, 150 135, 138 152 C 126 168, 118 180, 108 190"
+                      fill="none"
+                      stroke="rgba(255, 255, 255, 0.45)"
+                      strokeWidth="1.2"
+                      strokeLinecap="round"
+                    />
+                  </g>
+
+                  {/* 3. RIGHT SKY: FLYING BIRDS */}
+                  <g className="ahmedabad-birds" stroke="rgba(255, 255, 255, 0.7)" strokeWidth="1.2" fill="none" strokeLinecap="round">
+                    <path d="M 758 78 Q 762 74 766 77 Q 770 74 774 78" />
+                    <path d="M 772 68 Q 776 64 780 67 Q 784 64 788 68" />
+                    <path d="M 786 75 Q 789 72 792 74 Q 795 72 798 75" />
+                  </g>
+
+                  {/* 4. MONUMENT 1: TEEN DARWAZA / SIDI SAIYYED ARCHES (Left) */}
+                  <g className="ahmedabad-monument teen-darwaza">
+                    {/* Main gateway facade wall */}
+                    <rect x="238" y="124" width="134" height="51" fill="rgba(255, 255, 255, 0.04)" stroke="rgba(255, 255, 255, 0.8)" strokeWidth="1.4" />
+
+                    {/* Decorative crenellated battlements (Kanguras) on top parapet */}
+                    <path
+                      d="M 238 124 L 238 119 L 243 119 L 243 124 L 248 124 L 248 119 L 253 119 L 253 124 L 258 124 L 258 119 L 263 119 L 263 124 L 268 124 L 268 119 L 273 119 L 273 124 L 278 124 L 278 119 L 283 119 L 283 124 L 288 124 L 288 119 L 293 119 L 293 124 L 298 124 L 298 119 L 303 119 L 303 124 L 308 124 L 308 119 L 313 119 L 313 124 L 318 124 L 318 119 L 323 119 L 323 124 L 328 124 L 328 119 L 333 119 L 333 124 L 338 124 L 338 119 L 343 119 L 343 124 L 348 124 L 348 119 L 353 119 L 353 124 L 358 124 L 358 119 L 363 119 L 363 124 L 368 124 L 368 119 L 372 119 L 372 124"
+                      fill="none"
+                      stroke="rgba(255, 255, 255, 0.85)"
+                      strokeWidth="1.2"
+                    />
+                    {/* Cornice line below battlements */}
+                    <line x1="238" y1="127" x2="372" y2="127" stroke="rgba(255, 255, 255, 0.5)" strokeWidth="1" />
+
+                    {/* Center Main Arch (Taller & Grand) */}
+                    <path
+                      d="M 288 175 L 288 150 C 288 133, 322 133, 322 150 L 322 175"
+                      fill="none"
+                      stroke="rgba(255, 255, 255, 0.9)"
+                      strokeWidth="1.5"
+                    />
+                    <path
+                      d="M 292 175 L 292 151 C 292 137, 318 137, 318 151 L 318 175"
+                      fill="none"
+                      stroke="rgba(255, 255, 255, 0.45)"
+                      strokeWidth="1"
+                    />
+
+                    {/* Left Arch */}
+                    <path
+                      d="M 248 175 L 248 154 C 248 141, 276 141, 276 154 L 276 175"
+                      fill="none"
+                      stroke="rgba(255, 255, 255, 0.85)"
+                      strokeWidth="1.4"
+                    />
+                    <path
+                      d="M 252 175 L 252 155 C 252 144, 272 144, 272 155 L 272 175"
+                      fill="none"
+                      stroke="rgba(255, 255, 255, 0.45)"
+                      strokeWidth="1"
+                    />
+
+                    {/* Right Arch */}
+                    <path
+                      d="M 334 175 L 334 154 C 334 141, 362 141, 362 154 L 362 175"
+                      fill="none"
+                      stroke="rgba(255, 255, 255, 0.85)"
+                      strokeWidth="1.4"
+                    />
+                    <path
+                      d="M 338 175 L 338 155 C 338 144, 358 144, 358 155 L 358 175"
+                      fill="none"
+                      stroke="rgba(255, 255, 255, 0.45)"
+                      strokeWidth="1"
+                    />
+
+                    {/* Spandrel Medallions */}
+                    <circle cx="282" cy="138" r="2.5" fill="none" stroke="rgba(255, 255, 255, 0.6)" strokeWidth="0.8" />
+                    <circle cx="328" cy="138" r="2.5" fill="none" stroke="rgba(255, 255, 255, 0.6)" strokeWidth="0.8" />
+                  </g>
+
+                  {/* 5. MONUMENT 2: SARKHEJ ROZA / HERITAGE COLONNADE (Center) */}
+                  <g className="ahmedabad-monument sarkhej-roza">
+                    {/* Base plinth */}
+                    <line x1="400" y1="172" x2="590" y2="172" stroke="rgba(255, 255, 255, 0.85)" strokeWidth="1.4" />
+                    <line x1="395" y1="175" x2="595" y2="175" stroke="rgba(255, 255, 255, 0.7)" strokeWidth="1.2" />
+
+                    {/* Horizontal roof beam & cornice */}
+                    <line x1="400" y1="145" x2="590" y2="145" stroke="rgba(255, 255, 255, 0.85)" strokeWidth="1.4" />
+                    <line x1="396" y1="142" x2="594" y2="142" stroke="rgba(255, 255, 255, 0.7)" strokeWidth="1.2" />
+                    <line x1="396" y1="140" x2="594" y2="140" stroke="rgba(255, 255, 255, 0.45)" strokeWidth="0.8" />
+
+                    {/* Repeating Columns across the colonnade */}
+                    {[
+                      408, 420, 432, 444, 456, 468, 480, 492, 504, 516, 528, 540, 552, 564, 576, 584
+                    ].map((cx, i) => (
+                      <g key={i}>
+                        <line x1={cx} y1="145" x2={cx} y2="172" stroke="rgba(255, 255, 255, 0.8)" strokeWidth="1.3" />
+                        <line x1={cx - 2} y1="147" x2={cx + 2} y2="147" stroke="rgba(255, 255, 255, 0.6)" strokeWidth="1" />
+                        <line x1={cx - 2} y1="170" x2={cx + 2} y2="170" stroke="rgba(255, 255, 255, 0.6)" strokeWidth="1" />
+                      </g>
+                    ))}
+
+                    {/* Center Chhatri Pavilion & Classical Ribbed Dome */}
+                    <rect x="472" y="136" width="46" height="4" fill="rgba(255, 255, 255, 0.15)" stroke="rgba(255, 255, 255, 0.85)" strokeWidth="1" />
+                    <line x1="476" y1="136" x2="476" y2="128" stroke="rgba(255, 255, 255, 0.85)" strokeWidth="1.2" />
+                    <line x1="486" y1="136" x2="486" y2="128" stroke="rgba(255, 255, 255, 0.85)" strokeWidth="1.2" />
+                    <line x1="495" y1="136" x2="495" y2="128" stroke="rgba(255, 255, 255, 0.85)" strokeWidth="1.2" />
+                    <line x1="504" y1="136" x2="504" y2="128" stroke="rgba(255, 255, 255, 0.85)" strokeWidth="1.2" />
+                    <line x1="514" y1="136" x2="514" y2="128" stroke="rgba(255, 255, 255, 0.85)" strokeWidth="1.2" />
+                    <line x1="470" y1="128" x2="520" y2="128" stroke="rgba(255, 255, 255, 0.9)" strokeWidth="1.4" />
+                    {/* Dome */}
+                    <path
+                      d="M 474 128 C 474 116, 516 116, 516 128 Z"
+                      fill="rgba(255, 255, 255, 0.12)"
+                      stroke="rgba(255, 255, 255, 0.85)"
+                      strokeWidth="1.3"
+                    />
+                    {/* Finial Spire / Kalash */}
+                    <line x1="495" y1="116" x2="495" y2="108" stroke="rgba(255, 255, 255, 0.9)" strokeWidth="1.4" />
+                    <circle cx="495" cy="108" r="1.5" fill="#ffffff" />
+                  </g>
+
+                  {/* 6. MONUMENT 3: PATANG HOTEL REVOLVING RESTAURANT TOWER (Center-Right) */}
+                  <g className="ahmedabad-monument patang-tower">
+                    {/* Vertical tower shaft tapering upwards */}
+                    <polygon
+                      points="652,175 655,108 667,108 670,175"
+                      fill="rgba(255, 255, 255, 0.05)"
+                      stroke="rgba(255, 255, 255, 0.85)"
+                      strokeWidth="1.3"
+                    />
+                    {/* Shaft vertical grooves/lines */}
+                    <line x1="658" y1="175" x2="659" y2="108" stroke="rgba(255, 255, 255, 0.35)" strokeWidth="0.9" />
+                    <line x1="664" y1="175" x2="663" y2="108" stroke="rgba(255, 255, 255, 0.35)" strokeWidth="0.9" />
+
+                    {/* Revolving Disc Saucer Base Bracket */}
+                    <polygon
+                      points="654,108 644,98 678,98 668,108"
+                      fill="rgba(255, 255, 255, 0.1)"
+                      stroke="rgba(255, 255, 255, 0.85)"
+                      strokeWidth="1.3"
+                    />
+                    {/* Glass window band / disc perimeter */}
+                    <rect x="643" y="93" width="36" height="5" fill="rgba(255, 255, 255, 0.2)" stroke="rgba(255, 255, 255, 0.9)" strokeWidth="1.3" />
+                    {/* Conical roof of revolving deck */}
+                    <polygon
+                      points="644,93 653,86 669,86 678,93"
+                      fill="rgba(255, 255, 255, 0.1)"
+                      stroke="rgba(255, 255, 255, 0.85)"
+                      strokeWidth="1.3"
+                    />
+                    {/* Observation cupola */}
+                    <polygon points="655,86 658,82 664,82 667,86" fill="rgba(255, 255, 255, 0.15)" stroke="rgba(255, 255, 255, 0.85)" strokeWidth="1" />
+                    {/* Antenna spire */}
+                    <line x1="661" y1="82" x2="661" y2="62" stroke="rgba(255, 255, 255, 0.9)" strokeWidth="1.4" />
+                    <circle cx="661" cy="62" r="1.5" fill="#ffffff" />
+                  </g>
+
+                  {/* 7. MONUMENT 4: ATAL PEDESTRIAN BRIDGE OVER SABARMATI (Right) */}
+                  <g className="ahmedabad-monument atal-bridge">
+                    {/* Tension Stay Cables radiating from pylon apex to deck */}
+                    <g stroke="rgba(255, 255, 255, 0.55)" strokeWidth="0.9">
+                      <line x1="737" y1="108" x2="694" y2="168" />
+                      <line x1="737" y1="108" x2="706" y2="162" />
+                      <line x1="737" y1="108" x2="718" y2="157" />
+                      <line x1="737" y1="108" x2="728" y2="154" />
+                      <line x1="737" y1="108" x2="745" y2="152" />
+                      <line x1="737" y1="108" x2="758" y2="154" />
+                      <line x1="737" y1="108" x2="774" y2="157" />
+                      <line x1="737" y1="108" x2="792" y2="162" />
+                      <line x1="737" y1="108" x2="812" y2="167" />
+                      <line x1="737" y1="108" x2="828" y2="172" />
+                    </g>
+
+                    {/* Curved Central Mast / Pylon */}
+                    <path
+                      d="M 731 175 Q 734 135 737 106 Q 741 135 744 175"
+                      fill="none"
+                      stroke="rgba(255, 255, 255, 0.95)"
+                      strokeWidth="2.2"
+                      strokeLinecap="round"
+                    />
+
+                    {/* Upper bridge deck curve */}
+                    <path
+                      d="M 686 172 Q 748 147 834 170"
+                      fill="none"
+                      stroke="rgba(255, 255, 255, 0.9)"
+                      strokeWidth="1.8"
+                    />
+                    {/* Lower structural truss deck curve */}
+                    <path
+                      d="M 686 175 Q 748 155 834 175"
+                      fill="none"
+                      stroke="rgba(255, 255, 255, 0.7)"
+                      strokeWidth="1.4"
+                    />
+                    {/* Bridge deck vertical structural truss members */}
+                    {[696, 708, 720, 732, 744, 756, 768, 780, 792, 804, 816, 826].map((bx, idx) => (
+                      <line
+                        key={idx}
+                        x1={bx}
+                        y1={175 - Math.sin(((bx - 686) / 148) * Math.PI) * 23}
+                        x2={bx}
+                        y2={175 - Math.sin(((bx - 686) / 148) * Math.PI) * 16}
+                        stroke="rgba(255, 255, 255, 0.5)"
+                        strokeWidth="1"
+                      />
+                    ))}
+                    {/* Bridge piers into riverbed */}
+                    <line x1="712" y1="172" x2="712" y2="175" stroke="rgba(255, 255, 255, 0.8)" strokeWidth="2" />
+                    <line x1="772" y1="171" x2="772" y2="175" stroke="rgba(255, 255, 255, 0.8)" strokeWidth="2" />
+                  </g>
+
+                  {/* 8. BASELINE & RIVERFRONT WATER EDGE */}
+                  <line x1="120" y1="175" x2="880" y2="175" stroke="rgba(255, 255, 255, 0.6)" strokeWidth="1.5" />
+                  <line x1="160" y1="178" x2="840" y2="178" stroke="rgba(255, 255, 255, 0.2)" strokeWidth="1" />
+                </svg>
+              </div>
+
+              <p className="ahmedabad-caption">
+                Open to building brands, designing experiences and good conversations over a cup of tea.
+              </p>
 
               <button
                 type="button"
                 className="rewind-top-btn"
                 onClick={scrollToTop}
+                title="Rewind to top"
               >
                 REWIND TO TOP ↺
               </button>
@@ -947,7 +1081,7 @@ export default function Interest({ onBack, onNavigateSection }) {
 
           {/* ================================================================
               PERSISTENT BOTTOM TIMELINE RULER
-              - INTEREST • HELLO • SYSTEMS • BELIEFS • BENGALURU • WORK
+              - INTEREST • HELLO • SPACE • GEOPOLITICS • CODING • AHMEDABAD
               ================================================================ */}
           <footer className="interest-bottom-ruler-bar" aria-label="Section navigation">
             <div ref={categoryRowRef} className="ruler-labels-row">
@@ -979,25 +1113,25 @@ export default function Interest({ onBack, onNavigateSection }) {
                 type="button"
                 className="ruler-category-btn col-beliefs"
                 onClick={() => scrollToProgress(0.68)}
-                title="Jump to Beliefs"
+                title="Jump to Geopolitics"
               >
-                BELIEFS
+                GEOPOLITICS
               </button>
               <button
                 type="button"
-                className="ruler-category-btn col-bengaluru"
+                className="ruler-category-btn col-coding"
                 onClick={() => scrollToProgress(0.84)}
-                title="Jump to Bengaluru"
+                title="Jump to Coding"
               >
-                BENGALURU
+                CODING
               </button>
               <button
                 type="button"
-                className="ruler-category-btn col-work"
+                className="ruler-category-btn col-ahmedabad"
                 onClick={() => scrollToProgress(0.96)}
-                title="Jump to Work"
+                title="Jump to Ahmedabad"
               >
-                WORK
+                AHMEDABAD
               </button>
             </div>
 
